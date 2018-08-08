@@ -14,13 +14,6 @@
 /turf/simulated/floor/airless/solar
 	icon_state = "solarbase"
 
-// cogwerks - catwalk plating
-
-/turf/simulated/floor/airless/catwalk
-	name = "catwalk support"
-	icon_state = "catwalk"
-	allows_vehicles = 1
-
 /////////////////////////////////////////
 
 /turf/simulated/floor/airless/scorched
@@ -62,6 +55,13 @@
 
 /turf/simulated/floor/airless/plating/damaged3
 	icon_state = "platingdmg3"
+
+// cogwerks - catwalk plating
+
+/turf/simulated/floor/airless/plating/catwalk
+	name = "catwalk support"
+	icon_state = "catwalk"
+	allows_vehicles = 1
 
 /////////////////////////////////////////
 

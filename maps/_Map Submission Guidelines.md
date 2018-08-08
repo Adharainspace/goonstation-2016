@@ -10,7 +10,7 @@ If these features do not work in the **2016 release** then your map will be **re
 
 - Crates should be able to be sold from cargo from the expected conveyor belt **without player intervention**. Having to open a few-tile conveyor "airlock" is fine (see Destiny).
 
-- **Access levels** (for both doors and machinery, e.g. NanoMeds, AI turrets) should be correct. Missing a small handful is acceptable, but if excess access levels are incorrect (at the coders' discretion) the map will be rejected.
+- **Access levels** (for both doors and machinery, e.g. NanoMeds, AI turrets) should be correct. Missing a small handful is acceptable, but if excess access levels are incorrect (at the coders' discretion) the map will be rejected. Using the new access_spawn objects is required.
 
 - Wiring and pipes (disposals, mail, brig, and morgue/crematorium, if present) should be **complete and error-free** for the most part. Obviously, it is okay if you are missing a single wire or something.
 
@@ -30,14 +30,20 @@ If these features do not work in the **2016 release** then your map will be **re
 
 - A **correctly linked** up syndicate listening post (i.e. nuclear operatives should be able to teleport there), and the airlocks should absolutely be correctly configured.
 
+- A **Correctly placed** landmark for the Map at 1,1.
+
+- **Windows** should be placed using the `obj/wingrille_spawn` spawners.
+
+- **Drains**, the path is `/obj/machinery/drainage`. It won't actually drain anything, but it'll convert into one that does.
+
 
 ####  Turf Replacements
 
-Goonstation now primarily uses pathed floors instead of instanced versions of `/turf/simulated/floor`. For example, `/turf/simulated/floor/red/corner` is a tile that is grey with red corners in the cardinal directions for its direction states. Because of this change, maps should be primarily made from scratch and not from copied parts of old maps. It is possible to convert old maps, 
+Goonstation now primarily uses pathed floors instead of instanced versions of `/turf/simulated/floor`. For example, `/turf/simulated/floor/red/corner` is a tile that is grey with red corners in the cardinal directions for its direction states. Because of this change, maps should be primarily made from scratch and not from copied parts of old maps. It is possible to convert old maps,
 
 - All of `/turf/simulated/floor/grid` must be changed to `/turf/simulated/floor/circuit`
 
-- All of `/turf/simulated/floor/plating/airless/catwalk` must be changed to `/turf/simulated/floor/airless/catwalk`
+- All of `/turf/simulated/floor/plating/airless/catwalk` must be changed to `/turf/simulated/floor/airless/plating/catwalk`
 
 - All maps must **not use** instanced floors for the majority of their turfs.
 
@@ -65,9 +71,14 @@ This RegEx must be done for every floor path/icon_state in floors.dm if you want
 
 That's all to it! If you have any questions about this RegEx replace for converting maps, visit #imcoder on SynIRC or the Goonstation Discord.
 
-## Recommended 
+## Recommended
 ###### These are generally recommended map features that should probably be present in your map. If they are present, please ensure they work as intended.
 - An owlery or aviary.
-- Drains, the path is `/obj/machinery/drainage`. However, you would need to make a placeholder object and not submit it along with your map.
-- Monkeys (including a place for Stirstir in the brig)
-- Functioning buddy-paths. Including a tour guide written for Murray.
+- Monkeys spawn landmarks (including a place for Stirstir in the brig)
+- Functioning buddy-paths. Including a tour guide written for Murray/Tour Buddy.
+- If you are using perspective walls, try to minimize placing objects on the south side of rooms.
+- Blobstart, peststart, and halloweenspawn landmarks.
+- Medbay and Security should be well-thought out, daresay more so than other departments.
+- Arrivals should have more than one exit, to prevent people from being unable to join the game.
+- Cloning should follow the style of modern maps and be mostly public access.
+- Feel free to take inspiration from other maps, but please don't copy paste large parts of them.
