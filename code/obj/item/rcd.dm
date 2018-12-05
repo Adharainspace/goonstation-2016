@@ -43,6 +43,16 @@ RCD
 	cyborg
 		material_name = "electrum"
 
+	suicide(var/mob/user as mob)
+		user.visible_message("<span style=\"color:red\"><b>[user] [pick("jams", "crams", "stuffs", "sticks")] [src] down [his_or_her(user)] throat and starts squeezing the trigger...</b></span>")
+		spawn(15)
+		user.visible_message("<span style=\"color:red\"><b>[user]'s [pick("eyes start straining against their sockets like a rabid chained animal, streaks of red running through them in the process", "throat begins to swell and bulge outwards like a python is forcing its way through the narrow passageway", "begins hiccuping violently, [his_or_her(user)] face going a bright cherry red not that far off from the color of peeling, sunburnt skin", "starts choking, various thick veins in their head and neck pulating wildly and erratically")]!
+		spawn(20)
+		user.visible_message("<span style=\"color:red\"><b>[user] looks like they're carrying an overdue baby in their stomach, and [pick("odd sharp edges are pressing against their stretched out skin", "it looks like whatever is in their stomach is struggling to break free", "its rumbling and quaking like an atmosphere of gas is struggling to escape the confines of their stomach")]!!"
+		spawn(15)
+		user.visible_message("<span style=\"color:red\"><b>[user]'s cartoonishly distended stomach begins to rapidly expand outwards and then [pick("bursts like an overstuffed balloon full of entrails and red paint", "explodes into a verifiable mist of blood particulates and shreds of skin", "explodes like a frag grenade, shards of bone and skin and blood raining down alongside the shredded remains of their bowels", "splits open like a rotten mango hitting a steel wall, complete with oozing blood and bruised, floppy gibs.")]!!! Holy shit!"
+
+
 /obj/item/rcd/construction
 	name = "rapid-construction-device (RCD) deluxe"
 	desc = "A device used to rapidly construct."
