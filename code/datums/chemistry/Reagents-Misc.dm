@@ -634,6 +634,36 @@ datum
 				..()
 				return
 
+		stable_void
+			name = "Stable Anomalous Material"
+			id = "stable_void"
+			description = "***CLASSIFIED. ULTRAVIOLET-CLASS ANOMALOUS MATERIAL. INFORMATION REGARDING THIS REAGENT IS ABOVE YOUR PAY GRADE. QUARANTINE THE SAMPLE IMMEDIATELY AND REPORT THIS INCIDENT TO YOUR HEAD OF SECURITY***"
+			reagent_state = LIQUID
+			fluid_r = 250
+			fluid_b = 250
+			fluid_g = 0
+			transparency = 40
+
+			reaction_turf(var/turf/T, var/volume)
+				src = null
+				if(volume >= 5)
+					if(isrestrictedz(T.z))
+						if(!istype(T, /turf/unsimulated))
+							if(istype(T, /turf/simulated/floor))
+								playsound(T, "sound/effects/splat.ogg", 50, 1)
+								new /turf/simulated/floor/void(T)
+									if(prob(5))
+										new /obj/critter/floateye
+							else if(istype(T, /turf/simulated/wall))
+								playsound(T, "sound/effects/splat.ogg", 50, 1)
+								new /turf/simulated/wall/void(T)
+									if(prob(5))
+										new /obj/critter/floateye
+							else
+								return
+
+			on_mob_life(var/mob/M)
+				if (!M) M = holder.my_atom
 
 		stabiliser
 			name = "stabilising agent"
