@@ -18,13 +18,13 @@
 			if(prob(15))
 				affected_mob.emote(pick("blink", "shiver", "twitch"))
 		if(2)
-			if(prob(6))
+			if(prob(8))
 				boutput(affected_mob, "Your vision is getting really blurry!")
 				change_eye_blurry(12, 12)
-			if(prob(7))
+			if(prob(10))
 				boutput(affected_mob, "You can hear your heart pounding in your ears!")
 				playsound(M, "sound/effects/Heart Beat.ogg", 50, 1)
-			if(prob(12))
+			if(prob(13))
 				boutput(affected_mob, pick("Your hands seem really far away...", "Your thoughts are jumbled!"))
 			if(prob(15))
 				affected_mob.emote(pick("tremble", "quiver", "shake", "shudder"))
@@ -42,12 +42,12 @@
 			if(prob(18))
 				affected_mob.say(pick("Help me! I feel so... cold.", "It's all your fault! Help me, please!", "I can't feel myself anymore! I... something's wrong!"))
 			if(prob(20))
-				//spookyish emotes
+
 			if(prob(20))
 				//is stumbling all over the place!
 				M.change_misstep_chance(12)
 			if(prob(40))
-				boutput(affected_mob, "You fee")
+				boutput(affected_mob, "You feel ")
 				if(affected_mob.canmove && isturf(affected_mob.loc))
 					step(affected_mob, pick(cardinal))
 		if(4)
@@ -64,7 +64,7 @@
 			if(prob(20))
 				//spooky things to say
 		if(5)
-			/*say that you feel your body letting go of itself
+			boutput(affected_mob, "Ohgodohgodohgod! Its happening!"
 			permastun? one last chance to get a shock in*/
 			if(prob(25))
 				boutput(affected_mob, "Your hands don't seem to be responding to your thoughts at all!")
