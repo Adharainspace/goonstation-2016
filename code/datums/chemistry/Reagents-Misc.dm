@@ -637,33 +637,57 @@ datum
 		stable_void
 			name = "Stable Anomalous Material"
 			id = "stable_void"
-			description = "***CLASSIFIED. ULTRAVIOLET-CLASS ANOMALOUS MATERIAL. INFORMATION REGARDING THIS REAGENT IS ABOVE YOUR PAY GRADE. QUARANTINE THE SAMPLE IMMEDIATELY AND REPORT THIS INCIDENT TO YOUR HEAD OF SECURITY***"
+			description = "And humankind marches onwards, off of their sphere and into the heavens. They do not stop to consider the effects of their actions and experiements. They only wish to go further and further, to bend the nature of the heavens to their wills. They do not stop, even when the cracks begin to reveal themselves. They do not relent."
 			reagent_state = LIQUID
-			fluid_r = 250
-			fluid_b = 250
+			fluid_r = 102
 			fluid_g = 0
+			fluid_b = 102
 			transparency = 40
 
 			reaction_turf(var/turf/T, var/volume)
 				src = null
-				if(volume >= 5)
-					if(isrestrictedz(T.z))
-						if(!istype(T, /turf/unsimulated))
-							if(istype(T, /turf/simulated/floor))
-								playsound(T, "sound/effects/splat.ogg", 50, 1)
-								new /turf/simulated/floor/void(T)
-									if(prob(5))
-										new /obj/critter/floateye
-							else if(istype(T, /turf/simulated/wall))
-								playsound(T, "sound/effects/splat.ogg", 50, 1)
-								new /turf/simulated/wall/void(T)
-									if(prob(5))
-										new /obj/critter/floateye
-							else
-								return
+
+				if(volume < 5)
+					return
+
+				if(isrestrictedz(T.z))
+					return
+
+				if(istype(T, /turf/unsimulated))
+					return
+
+				if((istype(T, /turf/simulated/floor/void)) || (istype(T, /turf/simulated/wall/void)))
+					return
+
+				if(istype(T, /turf/simulated/floor))
+					playsound(T, "sound/effecs/splat.ogg", 50, 1)
+					new /turf/simulated/floor/void(T)
+					if(prob(5))
+						new /obj/critter/floateye(T)
+				else if(istype(T, /turf/simulated/wall))
+					playsound(T, "sound/effects/splat.ogg", 50, 1)
+					new /turf/simulated/wall/void(T)
+					if(prob(5))
+						new /obj/critter/floateye(T)
+				else
+					return
 
 			on_mob_life(var/mob/M)
 				if (!M) M = holder.my_atom
+				if ((holder.get_reagent_amount(src.id) >= 10) && prob(10))
+					var/turf/T = get_turf(M)
+					if (!locate(/obj/decal/cleanable/voidpuke) in T)
+						playsound(T, "sound/effects/splat.ogg", 50, 1)
+						new /obj/decal/cleanable/voidpuke(T)
+						random_brute_damage(M, rand(4))
+						M.visible_message("<span style=\"color:red\"><b>[M]</b> [pick("hacks", "barfs", "hurls", "pukes", "vomits")] up some [pick("...uh... something", "shimmering slop", "weird purple goo", "shifty looking crud", "purple gunk")]?! [pick("What the hell?", "Grody!", "Is that healthy?")]</span>")
+						boutput(M, "<span style=\"color:red\">[pick("Urgh", "Damn", "God")]... that did not feel good coming up.</span>")
+						if (prob(15))
+							//boutput(M, "<span style=\"color:red\"><b>Something... else... is coming up, oh god!</b></span>")
+							sleep(20)
+							playsound(T, "sound/effects/splat.ogg", 50, 1)
+							M.visible_message("<span style=\"color:red\"><b>[M]</b> pukes up a... a floating eyeball? Grody!</b></span>")
+							new /obj/critter/floateye(T)
 
 		stabiliser
 			name = "stabilising agent"

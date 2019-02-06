@@ -1,4 +1,5 @@
 //oh no you are becoming a transposed particle field!
+//apparently, status effects changed a bunch? im so sorry if this is really problematic D:
 /datum/ailment/disease/void_infection
 	name = "Electrostatic Atomic Detanglement and Trans-superposition Syndrome"
 	scantype = "NULL. CONTACT SYSTEM ADMINISTRATOR IMMEDIATELY."
@@ -29,43 +30,45 @@
 			if(prob(15))
 				affected_mob.emote(pick("tremble", "quiver", "shake", "shudder"))
 		if(3)
-			if(prob(8))
+			if(prob(8)) //this one should knock you over and then faint you!
 				boutput(affected_mob, "You get REALLY lightheaded!")
 				sleep(20)
 				M.weakened += 8
 				M.emote("faint")
-			if(prob(10))
+			if(prob(10)) //this one should make you drop everything youre holding
 				boutput(affected_mob, "Your hands don't seem to be responding to your thoughts at all!")
-				//drop items!
-			if(prob(15))
-				boutput(affected_mob, "
+				var/h = affected_mob.hand
+				affected_mob.hand = 0
+				affected_mob.drop_item()
+				affected_mob.hand = 1
+				affected_mob.drop_item()
+				affected_mob.hand = h
 			if(prob(18))
 				affected_mob.say(pick("Help me! I feel so... cold.", "It's all your fault! Help me, please!", "I can't feel myself anymore! I... something's wrong!"))
-			if(prob(20))
-
-			if(prob(20))
-				//is stumbling all over the place!
-				M.change_misstep_chance(12)
-			if(prob(40))
-				boutput(affected_mob, "You feel ")
+			if(prob(20)) //this one should give you about ten seconds of really confused movement
+				affected_mob.visible_message("<span style=\"color:red\"<b>[affected_mob]</b> is stumbling all over the place!</span>"
+				M.change_misstep_chance(40)
+				sleep(100)
+				M.change_misstep_chance(0)
+			if(prob(40)) //this one should make you move one tile in a random direction
+				boutput(affected_mob, "You stumble!")
 				if(affected_mob.canmove && isturf(affected_mob.loc))
 					step(affected_mob, pick(cardinal))
 		if(4)
-			if(prob(6))
-				//limb goes missing?
+			if(prob(6)) //this one should disintegrate one of your limbs!
+
+			if(prob(8)) //this one should
 			if(prob(10))
 				//throw up blood + brute damage
-			if(prob(8))
-				//faint
 			if(prob(15))
-				//confused movement, ouch
+				M.change_misstep_chance(
 			if(prob(20))
 				//spooky messages
 			if(prob(20))
 				//spooky things to say
-		if(5)
+		if(5
 			boutput(affected_mob, "Ohgodohgodohgod! Its happening!"
-			permastun? one last chance to get a shock in*/
+			//permastun? one last chance to get a shock in
 			if(prob(25))
 				boutput(affected_mob, "Your hands don't seem to be responding to your thoughts at all!")
 				//say that you feel something hijack your body as it starts to vaporise
