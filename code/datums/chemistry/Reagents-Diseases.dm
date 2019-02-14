@@ -374,7 +374,7 @@ datum
 				..(M)
 				return
 
-		disease/void_infection
+		/*disease/void_infection
 			name = "unstable void"
 			id = "unstable_void"
 			description  = "Ì-DUH, UG-ENE-SE LU-ENE-E É-A-NIR-RA-GAL-GAL-LA-T I-TA-N-ÉD-ENE KÁ-ZU DUH-A-B."
@@ -383,7 +383,7 @@ datum
 			fluid_g = 0
 			fluid_b = 91
 			transparency = 0
-			disease = /datum/ailment/disease/kuru
+			disease = /datum/ailment/disease/void_infection */
 
 		// Marquesas' one stop pathology shop
 		blood/pathogen

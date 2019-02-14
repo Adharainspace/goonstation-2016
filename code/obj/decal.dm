@@ -1102,7 +1102,7 @@
 			W.reagents.add_reagent("something", 2)
 			W.reagents.add_reagent("yuck", 1)
 
-			var/fluff = pick("twitches confusingly", "writhes unsettlingly", "burbles upsettlingly", "glumps unnaturally")
+			var/fluff = pick("twitches confusingly", "writhes unsettlingly", "burbles upsettedly", "glomps unnaturally")
 			user.visible_message("<span style=\"color:blue\"><b>[user]</b> is shoving their hands into [src] and scooping it into [W].<span style=\"color:red\">It [fluff].</span></span>",\
 			"<span style=\"color:blue\">You [src.sample_verb] some of the puke into [W].<span style=\"color:red\">It [fluff].</span></span>")
 			W.reagents.handle_reactions()

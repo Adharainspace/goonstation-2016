@@ -10,66 +10,38 @@
 	affected_species = list("Human")
 
 /datum/ailment/disease/void_infection/stage_act(var/mob/living/affected_mob,var/datum/ailment_data/D)
+
+/datum/ailment/disease/void_infection/stage_act(var/mob/living/affected_mob,var/datum/ailment_data/D)
 	if(..())
 		return
-	switch(D.stage)
-		if(1)
-			if(prob(10))
-				boutput(affected_mob, pick("Your thoughts feel scattered.", "Your eyes aren't focusing right.", "Something seems... different."))
-			if(prob(15))
-				affected_mob.emote(pick("blink", "shiver", "twitch"))
-		if(2)
-			if(prob(8))
-				boutput(affected_mob, "Your vision is getting really blurry!")
-				change_eye_blurry(12, 12)
-			if(prob(10))
-				boutput(affected_mob, "You can hear your heart pounding in your ears!")
-				playsound(M, "sound/effects/Heart Beat.ogg", 50, 1)
-			if(prob(13))
-				boutput(affected_mob, pick("Your hands seem really far away...", "Your thoughts are jumbled!"))
-			if(prob(15))
-				affected_mob.emote(pick("tremble", "quiver", "shake", "shudder"))
-		if(3)
-			if(prob(8)) //this one should knock you over and then faint you!
-				boutput(affected_mob, "You get REALLY lightheaded!")
-				sleep(20)
-				M.weakened += 8
-				M.emote("faint")
-			if(prob(10)) //this one should make you drop everything youre holding
-				boutput(affected_mob, "Your hands don't seem to be responding to your thoughts at all!")
-				var/h = affected_mob.hand
-				affected_mob.hand = 0
-				affected_mob.drop_item()
-				affected_mob.hand = 1
-				affected_mob.drop_item()
-				affected_mob.hand = h
-			if(prob(18))
-				affected_mob.say(pick("Help me! I feel so... cold.", "It's all your fault! Help me, please!", "I can't feel myself anymore! I... something's wrong!"))
-			if(prob(20)) //this one should give you about ten seconds of really confused movement
-				affected_mob.visible_message("<span style=\"color:red\"<b>[affected_mob]</b> is stumbling all over the place!</span>"
-				M.change_misstep_chance(40)
-				sleep(100)
-				M.change_misstep_chance(0)
-			if(prob(40)) //this one should make you move one tile in a random direction
-				boutput(affected_mob, "You stumble!")
-				if(affected_mob.canmove && isturf(affected_mob.loc))
-					step(affected_mob, pick(cardinal))
-		if(4)
-			if(prob(6)) //this one should disintegrate one of your limbs!
-
-			if(prob(8)) //this one should
-			if(prob(10))
-				//throw up blood + brute damage
-			if(prob(15))
-				M.change_misstep_chance(
-			if(prob(20))
-				//spooky messages
-			if(prob(20))
-				//spooky things to say
-		if(5
-			boutput(affected_mob, "Ohgodohgodohgod! Its happening!"
-			//permastun? one last chance to get a shock in
-			if(prob(25))
-				boutput(affected_mob, "Your hands don't seem to be responding to your thoughts at all!")
-				//say that you feel something hijack your body as it starts to vaporise
-				//delete the body, spawn in a transposed particle field
+	switch(D.stage) //if() order goes from greatest prob to least probability
+		if(1) //this stage should mainly be really subtle things that make the infected feel uneasy
+			if() //play a spooky ghost noise
+			if() //send a subtle spooky message
+			if() //send an uncomfy emote
+		if(2) //this stage should start to amp up the danger with stuns and burn/losebreath/oxy
+			if() //play a spooky noise AND send a spooky message
+			if() //play a spooky emote AND do some damage
+			if() //spooky message AND confused movement
+			if() //spooky message, noise AND a faint
+		if(3) //this stage should be the spookiest stage, only diff. from stage 2 is more dialogue
+			if() //play a spookIER noise AND send a spookIER message
+			if() //make them say a spooky message ABD do some damage
+			if() //play a spookIER emote AND do some damage
+			if() //spookIER message and confused movement
+			if() //spookIER message, noise AND a faint
+		if(4) //this stage should be the danger stage, with stuns and crippling effects (theyve had plenty of time to get to a doctor by now)
+			if() //long bouts of pretty confused movement and some spooky messages/emotes
+			if() //drop everything your holding and fall to the ground, take some brute
+			if() //start coughing violently and puke up blood and vomit and grossness
+			if() //spooky messages and emotes and then your limb disappears!
+		if(5) //this stage should start with a permastun and end with the infected having their mob (teleported to hell? someplace spooky? should i keep this?) and spawning a tpf
+			if(33) //medium to high probability to move to the instagib! a final chance to get any sort of shock in
+				//IF WE'RE GOING THE HELL ROUTE
+					//spawn a carbon copy dummy mob in hell/wherever
+					//switch the bodies
+					//delete the mob
+					//spawn a tpf
+				//IF WE'RE NOT GOING THE HELL ROUTE
+					//delete the mob
+					//spawn a tpf
