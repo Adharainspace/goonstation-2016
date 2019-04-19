@@ -248,6 +248,14 @@
 				logTheThing("combat", user, null, "poisoned [I] [log_reagents(I)] with reagents from [src] [log_reagents(src)] at [log_loc(user)].") // Added location (Convair880).
 				user.visible_message("<span style=\"color:red\"><b>[user]</b> dips the blade of [I] into [src]!</span>")
 				return
+
+		else if (istype(I, /obj/item/implant/projectile/bardart))
+			if (src.reagents && I.reagents)
+				I:Poisoner = user
+				src.reagents.trans_to(I, 3)
+				logTheThing("combat", user, null, "poisoned [I] [log_reagents(I)] with reagents from [src] [log_reagents(src)] at [log_loc(user)].")
+				user.visible_message("<span style=\"color:red\"><b>[user]</b> dips the tip of [I] into [src]!</span>")
+				return
 		else
 			..()
 		return

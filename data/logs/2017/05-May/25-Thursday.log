@@ -1,0 +1,157 @@
+
+
+Starting up. 15:16.20
+---------------------
+
+[15:16:24] ADMIN: Loading jobban_rank
+[15:16:24] ADMIN: Jobban_keylist was empty
+[15:16:24] ADMIN: Updating jobbanfile!
+[15:16:24] ADMIN: Loading oocban_rank
+[15:16:24] ADMIN: oocban_keylist was empty
+[15:16:24] ADMIN: Updating jobbanfile!
+ADMIN: arborinus = Host
+[15:16:30] ACCESS: Login: Arborinus from 
+[15:16:45] ADMIN: Arborinus [DEAD] has started the game.
+[15:16:46] ACCESS: Login: Jace Roberts (Arborinus) [TRAITOR] from 
+[15:17:21] SAY: Shitty Bill (NPC) : Got any 420?
+[15:17:31] SAY: Shitty Bill (NPC) : What're you lookin' at, bro?
+[15:17:52] SAY: Shitty Bill (NPC) : Nice name, owl man.
+[15:18:18] ADMIN: Jace Roberts (Arborinus) [TRAITOR] has toggled their nodamage to On
+[15:18:34] ADMIN: Jace Roberts (Arborinus) [TRAITOR] has toggled their nodamage to Off
+[15:18:58] SAY: Shitty Bill (NPC) : Got any lepo?
+[15:19:01] ADMIN: Jace Roberts (Arborinus) [TRAITOR] has toggled their nodamage to On
+[15:20:28] SAY: Shitty Bill (NPC) : Hey brud, gimme yer high fives.
+[15:20:33] SAY: Shitty Bill (NPC) : I ever tell you 'bout the time I found an alien thing that got you high?
+[15:20:36] ADMIN: Jace Roberts (Arborinus) [TRAITOR] created a /obj/item/item_box/heartbox
+[15:20:40] ADMIN: Jace Roberts (Arborinus) [TRAITOR] created a /obj/item/item_box/heart
+[15:21:02] SAY: Father Jack (NPC) : GIRLS!
+[15:21:18] SAY: Shitty Bill (NPC) : Got a light, dingus?
+[15:21:32] SAY: Father Jack (NPC) : That would be an ecumenical matter.
+[15:21:41] SAY: Shitty Bill (NPC) : Hey dweeb, gimme yer card.
+[15:21:42] ADMIN: Jace Roberts (Arborinus) [TRAITOR] modified Cupid Dan's Sweethearts's icon_open to heartbox_open
+[15:21:54] ADMIN: Jace Roberts (Arborinus) [TRAITOR] modified Cupid Dan's Sweethearts's icon_state to heartbox_open
+[15:22:12] ADMIN: Jace Roberts (Arborinus) [TRAITOR] created a /obj/item/reagent_containers/food/snacks/candy/sweetheart
+[15:22:22] ADMIN: Jace Roberts (Arborinus) [TRAITOR] created 10ea /obj/item/reagent_containers/food/snacks/candy/sweetheart
+[15:22:25] ADMIN: Jace Roberts (Arborinus) [TRAITOR] created 10ea /obj/item/reagent_containers/food/snacks/candy/sweetheart
+[15:22:28] ADMIN: Jace Roberts (Arborinus) [TRAITOR] created 10ea /obj/item/reagent_containers/food/snacks/candy/sweetheart
+[15:22:30] ADMIN: Jace Roberts (Arborinus) [TRAITOR] created 10ea /obj/item/reagent_containers/food/snacks/candy/sweetheart
+[15:22:31] SAY: Shitty Bill (NPC) : I think my bruds stole my key.
+[15:22:33] ADMIN: Jace Roberts (Arborinus) [TRAITOR] created 10ea /obj/item/reagent_containers/food/snacks/candy/sweetheart
+[15:23:40] SAY: Shitty Bill (NPC) : Nice name, buddy.
+[15:23:50] SAY: Shitty Bill (NPC) : Nice karma, buddy.
+[15:24:25] SAY: Shitty Bill (NPC) : How's it goin' Donald "Don" Glabs.
+[15:24:41] SAY: Shitty Bill (NPC) : Nice podd, dork.
+[15:25:26] SAY: Shitty Bill (NPC) : Nice hog, dork.
+[15:26:14] SAY: Shitty Bill (NPC) : What you lookin' at, scrub?
+[15:26:29] SAY: Shitty Bill (NPC) : What the hell are you lookin' at, clown?
+[15:26:36] SAY: Shitty Bill (NPC) : Oh Christ, it's Donald "Don" Glabs.
+[15:26:43] SAY: Father Jack (NPC) : GIRLS!
+[15:26:53] SAY: Shitty Bill (NPC) : Man, I sure don't miss my dad.
+[15:27:00] SAY: Shitty Bill (NPC) : Dang, it's Donald "Don" Glabs.
+[15:27:02] SAY: Shitty Bill (NPC) : Man, I sure miss the Belt.
+[15:27:30] SAY: Shitty Bill (NPC) : I think my homies forgot about me.
+[15:27:58] SAY: Shitty Bill (NPC) : Nice burner, astronaut.
+[15:29:19] SAY: Father Jack (NPC) : FECK!
+[15:29:28] SAY: Shitty Bill (NPC) : Hey buddy, gimme yer patch.
+[15:29:40] SAY: Shitty Bill (NPC) : You a wizman?
+[15:30:44] SAY: Shitty Bill (NPC) : You a wizman?
+[15:32:54] ADMIN: Jace Roberts (Arborinus) [TRAITOR] created a /obj/trigger/spooky_emote
+[15:33:00] ADMIN: Jace Roberts (Arborinus) [TRAITOR] created a /obj/creepy_sound_trigger
+[15:33:06] ADMIN: Jace Roberts (Arborinus) [TRAITOR] created a /obj/graveyard/lightning_trigger
+[15:33:12] ADMIN: Jace Roberts (Arborinus) [TRAITOR] created a /obj/chaser/hospital_trigger
+[15:33:16] ACCESS: Login: Jace Roberts (Arborinus) [TRAITOR] [DEAD] from 
+[15:33:30] ADMIN: Jace Roberts (Arborinus) [TRAITOR] [DEAD] created a /obj/chaser/trigger
+[15:33:33] ADMIN: Jace Roberts (Arborinus) [TRAITOR] [DEAD] created a /obj/chaser/hospital_trigger
+[15:33:45] ACCESS: Login: Arborinus [TRAITOR] from 
+[15:33:54] SAY: Shitty Bill (NPC) : You a robot?
+
+
+Starting up. 16:38.50
+---------------------
+
+[16:38:54] ADMIN: Loading jobban_rank
+[16:38:54] ADMIN: Jobban_keylist was empty
+[16:38:54] ADMIN: Updating jobbanfile!
+[16:38:54] ADMIN: Loading oocban_rank
+[16:38:54] ADMIN: oocban_keylist was empty
+[16:38:54] ADMIN: Updating jobbanfile!
+ADMIN: arborinus = Host
+[16:39:00] ACCESS: Login: Arborinus from 
+[16:41:02] ADMIN: Arborinus [DEAD] has started the game.
+[16:41:02] ACCESS: Login: Trenton Harrow (Arborinus) [TRAITOR] from 
+[16:41:11] SAY: Shitty Bill (NPC) : I ever tell you 'bout your grampa?
+[16:41:28] ADMIN: Trenton Harrow (Arborinus) [TRAITOR] created a /obj/item/item_box/heartcandy
+[16:41:30] SAY: Shitty Bill (NPC) : You drink?
+[16:41:48] SAY: Shitty Bill (NPC) : Got a light, dork?
+[16:43:43] SAY: Shitty Bill (NPC) : Man, I sure miss bein' a clown.
+[16:44:14] SAY: Shitty Bill (NPC) : Nice karma, bro.
+[16:44:41] SAY: Shitty Bill (NPC) : You a beardo?
+[16:45:18] ADMIN: Trenton Harrow (Arborinus) [TRAITOR] has toggled their nodamage to On
+[16:45:18] SAY: Shitty Bill (NPC) : You a Russian?
+[16:45:27] SAY: Shitty Bill (NPC) : Yo Father Jack.
+[16:45:42] SAY: Shitty Bill (NPC) : What the hell are you lookin' at, owl man?
+[16:45:45] ADMIN: Trenton Harrow (Arborinus) [TRAITOR] created a /obj/item/device/reagentscanner
+[16:46:08] ADMIN: Trenton Harrow (Arborinus) [TRAITOR] created 50ea /obj/item/reagent_containers/food/snacks/candy/sweetheart
+[16:46:11] ADMIN: Trenton Harrow (Arborinus) [TRAITOR] created 50ea /obj/item/reagent_containers/food/snacks/candy/sweetheart
+[16:46:12] ADMIN: Trenton Harrow (Arborinus) [TRAITOR] created 50ea /obj/item/reagent_containers/food/snacks/candy/sweetheart
+[16:46:14] ADMIN: Trenton Harrow (Arborinus) [TRAITOR] created 50ea /obj/item/reagent_containers/food/snacks/candy/sweetheart
+[16:46:16] ADMIN: Trenton Harrow (Arborinus) [TRAITOR] created 50ea /obj/item/reagent_containers/food/snacks/candy/sweetheart
+[16:47:07] SAY: Father Jack (NPC) : ARSE!
+[16:47:19] ADMIN: Trenton Harrow (Arborinus) [TRAITOR] added 100 units of ldmatter to Trenton Harrow at (<a href='?src=%admin_ref%;action=jumptocoords;target=72,115,1' title='Jump to Coords'>72,115,1</a> in Bar).
+[16:47:41] SAY: Shitty Bill (NPC) : Nice face, buddy.
+[16:47:47] SAY: Shitty Bill (NPC) : Got a light, scrub?
+[16:48:14] SAY: Shitty Bill (NPC) : I ever tell you 'bout the time I found an alien thing that got you high?
+[16:48:24] ADMIN: Trenton Harrow (Arborinus) [TRAITOR] added 50 units of ldmatter to the drinking glass at (<a href='?src=%admin_ref%;action=jumptocoords;target=93,122,1' title='Jump to Coords'>93,122,1</a> in Technical Storage).
+[16:48:54] SAY: Shitty Bill (NPC) : You a narc?
+[16:49:11] SAY: Shitty Bill (NPC) : I think my associates set me up.
+
+
+Starting up. 16:55.47
+---------------------
+
+[16:55:51] ADMIN: Loading jobban_rank
+[16:55:51] ADMIN: Jobban_keylist was empty
+[16:55:51] ADMIN: Updating jobbanfile!
+[16:55:51] ADMIN: Loading oocban_rank
+[16:55:51] ADMIN: oocban_keylist was empty
+[16:55:51] ADMIN: Updating jobbanfile!
+ADMIN: arborinus = Host
+[16:55:56] ACCESS: Login: Arborinus from 
+[16:56:14] ADMIN: Arborinus [DEAD] has started the game.
+[16:56:15] ACCESS: Login: Eliott Draudy (Arborinus) [TRAITOR] from 
+[16:56:32] SAY: Shitty Bill (NPC) : You a Synder?
+[16:56:34] SAY: Shitty Bill (NPC) : Got any Dan's?
+[16:56:48] SAY: Shitty Bill (NPC) : I ever tell you 'bout the time I helped some weird dudes build some little beepin' robots?
+[16:56:53] SAY: Father Jack (NPC) : DRINK!
+[16:57:52] SAY: Shitty Bill (NPC) : You jam?
+[16:57:52] ADMIN: Eliott Draudy (Arborinus) [TRAITOR] created a /obj/item/item_box/heartcandy
+[16:58:01] ADMIN: Eliott Draudy (Arborinus) [TRAITOR] created a /obj/item/storage/goodybag
+[16:58:03] ADMIN: Eliott Draudy (Arborinus) [TRAITOR] created a /obj/item/storage/goodybag
+[16:58:04] ADMIN: Eliott Draudy (Arborinus) [TRAITOR] created a /obj/item/storage/goodybag
+[16:58:05] ADMIN: Eliott Draudy (Arborinus) [TRAITOR] created a /obj/item/storage/goodybag
+[16:58:05] SAY: Shitty Bill (NPC) : Got any ciggs?
+[16:58:59] SAY: Shitty Bill (NPC) : Hey dweeb, gimme yer high fives.
+[16:59:08] ADMIN: Eliott Draudy (Arborinus) [TRAITOR] created a /obj/item/device/reagentscanner
+[16:59:23] SAY: Shitty Bill (NPC) : Got a light, weirdo?
+[16:59:37] SAY: Shitty Bill (NPC) : Got any 'ritos?
+[16:59:39] SAY: Shitty Bill (NPC) : You a Synder?
+[17:00:10] SAY: Shitty Bill (NPC) : Nice karma, buddy.
+[17:00:17] SAY: Shitty Bill (NPC) : What the hell are you lookin' at, nerd?
+[17:00:26] SAY: Father Jack (NPC) : DRINK!
+[17:01:03] SAY: Shitty Bill (NPC) : Got a light, pal?
+[17:01:03] SAY: Father Jack (NPC) : DRINK!
+[17:02:06] SAY: Shitty Bill (NPC) : Man, I sure miss bein' a wizard.
+[17:03:32] ADMIN: Eliott Draudy (Arborinus) [TRAITOR] created a /obj/item/reagent_containers/food/snacks/candy
+[17:03:45] ADMIN: Eliott Draudy (Arborinus) [TRAITOR] created 50ea /obj/item/reagent_containers/food/snacks/candy/sweetheart
+[17:04:39] SAY: Father Jack (NPC) : GIRLS!
+[17:06:39] SAY: Shitty Bill (NPC) : Nice treads, nerd.
+[17:07:12] SAY: Shitty Bill (NPC) : You a nerd?
+[17:07:58] SAY: Father Jack (NPC) : FECK!
+[17:08:01] SAY: Shitty Bill (NPC) : Hey, gimme yer dosh.
+[17:08:29] SAY: Shitty Bill (NPC) : You jam?
+[17:09:50] SAY: Shitty Bill (NPC) : The hell're you lookin' at, Colonel?
+[17:10:14] SAY: Father Jack (NPC) : DRINK!
+[17:10:23] SAY: Shitty Bill (NPC) : I think my pals left without me.
+[17:10:23] SAY: Father Jack (NPC) : ARSE!
+[17:11:14] SAY: Shitty Bill (NPC) : I think my homebros set me up.
+[17:11:25] SAY: Shitty Bill (NPC) : What the hell are you lookin' at, chief?

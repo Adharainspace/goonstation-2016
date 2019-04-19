@@ -1,0 +1,69 @@
+
+
+Starting up. 23:25.10
+---------------------
+
+[23:25:14] ADMIN: Loading jobban_rank
+[23:25:14] ADMIN: Jobban_keylist was empty
+[23:25:14] ADMIN: Updating jobbanfile!
+[23:25:14] ADMIN: Loading oocban_rank
+[23:25:14] ADMIN: oocban_keylist was empty
+[23:25:14] ADMIN: Updating jobbanfile!
+ADMIN: arborinus = Host
+[23:25:26] ACCESS: Login: Arborinus from 
+[23:38:19] ADMIN: Arborinus [DEAD] has started the game.
+[23:38:20] ACCESS: Login: Javon Campbell (Arborinus) [TRAITOR] from 
+[23:38:34] SAY: Shitty Bill (NPC) : Nice pod, wirehead.
+[23:39:03] ADMIN: Javon Campbell (Arborinus) [TRAITOR] created a /mob/living/carbon/human/normal/male
+[23:39:17] ADMIN: Javon Campbell (Arborinus) [TRAITOR] created a /mob/living/critter/wendigo
+[23:39:20] ADMIN: Javon Campbell (Arborinus) [TRAITOR] swapped bodies with wendigo (NPC)
+[23:39:20] ACCESS: Login: wendigo (Arborinus) [TRAITOR] from 
+[23:39:31] ACCESS: Login: wendigo (Arborinus) [TRAITOR] from 
+[23:40:00] SAY: Father Jack (NPC) : DRINK!
+[23:40:02] ADMIN: wendigo (Arborinus) [TRAITOR] removed the antagonist status of wendigo (Arborinus) [TRAITOR].
+[23:40:02] ACCESS: Login: wendigo (Arborinus) [DEAD] from 
+[23:40:19] ADMIN: wendigo (Arborinus) [DEAD] modified wendigo's icon to 
+[23:41:03] SAY: Father Jack (NPC) : DRINK!
+[23:42:07] SAY: Shitty Bill (NPC) : Nice face, clown.
+[23:42:11] SAY: Shitty Bill (NPC) : Got any Synapse?
+[23:42:13] SAY: Shitty Bill (NPC) : Hey dweeb, gimme yer dosh.
+[23:42:53] SAY: Father Jack (NPC) : ARSE!
+[23:44:27] SAY: Father Jack (NPC) : DRINK!
+[23:44:39] SAY: Shitty Bill (NPC) : You a narc?
+[23:44:44] SAY: Father Jack (NPC) : FECK!
+[23:45:14] SAY: Father Jack (NPC) : DRINK!
+[23:45:53] ADMIN: wendigo (Arborinus) [DEAD] modified light fixture's on to 1
+[23:46:06] SAY: Father Jack (NPC) : ARSE!
+[23:46:16] ADMIN: wendigo (Arborinus) [DEAD] created a /obj/decal/cleanable/greenglow
+[23:46:18] ADMIN: wendigo (Arborinus) [DEAD] created a /obj/decal/cleanable/greenglow
+[23:46:19] ADMIN: wendigo (Arborinus) [DEAD] created a /obj/decal/cleanable/greenglow
+[23:46:23] ADMIN: wendigo (Arborinus) [DEAD] deleted the green glow at (<a href='?src=%admin_ref%;action=jumptocoords;target=141,193,1' title='Jump to Coords'>141,193,1</a>)
+[23:46:31] SAY: Shitty Bill (NPC) : Howdy Donald "Don" Glabs.
+[23:47:45] SAY: Father Jack (NPC) : GIRLS!
+[23:50:19] SAY: Shitty Bill (NPC) : Whatcha you lookin' at, beardo?
+[23:53:11] ADMIN: wendigo (Arborinus) [DEAD] created a /obj/decal/glow
+[23:53:16] ADMIN: wendigo (Arborinus) [DEAD] created a /obj/decal/cleanable/greenglow
+[23:53:17] ADMIN: wendigo (Arborinus) [DEAD] created a /obj/decal/cleanable/greenglow
+[23:53:18] ADMIN: wendigo (Arborinus) [DEAD] created a /obj/decal/cleanable/greenglow
+[23:53:20] ADMIN: wendigo (Arborinus) [DEAD] created a /obj/decal/cleanable/greenglow
+[23:53:21] ADMIN: wendigo (Arborinus) [DEAD] created a /obj/decal/cleanable/greenglow
+[23:53:35] SAY: Shitty Bill (NPC) : Dang, it's Father Jack.
+[23:54:38] SAY: Shitty Bill (NPC) : You dance?
+[23:54:43] SAY: Shitty Bill (NPC) : Got any smokes?
+[23:56:16] SAY: Shitty Bill (NPC) : Nice name, dingus.
+[23:57:12] SAY: Shitty Bill (NPC) : Hey dweeb, gimme yer patch.
+[23:58:21] SAY: Shitty Bill (NPC) : You grustle?
+[23:58:54] SAY: Shitty Bill (NPC) : Got a light, buddy?
+[23:59:27] SAY: Shitty Bill (NPC) : Got any cats?
+[00:00:00] SAY: Shitty Bill (NPC) : What the hell are you lookin' at, bud?
+[00:00:11] SAY: Shitty Bill (NPC) : Got any Omni?
+[00:00:14] SAY: Shitty Bill (NPC) : Man, I sure don't miss the Cloud.
+[00:00:58] SAY: Shitty Bill (NPC) : The hell're you lookin' at, bro?
+[00:01:17] SAY: Shitty Bill (NPC) : Man, I sure miss bein' an atmos tech.
+[00:01:33] SAY: Shitty Bill (NPC) : Hey brud, gimme yer keys.
+[00:01:35] SAY: Shitty Bill (NPC) : Nice threads, owl man.
+[00:01:42] SAY: Shitty Bill (NPC) : Got any alky?
+[00:01:51] SAY: Shitty Bill (NPC) : Nice name, wirehead.
+[00:02:21] SAY: Shitty Bill (NPC) : You jet?
+[00:02:24] SAY: Shitty Bill (NPC) : Nice karma, clown.
+[00:02:56] SAY: Father Jack (NPC) : GIRLS!

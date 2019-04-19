@@ -1,0 +1,61 @@
+
+
+Starting up. 00:54.36
+---------------------
+
+[00:54:40] ADMIN: Loading jobban_rank
+[00:54:40] ADMIN: Jobban_keylist was empty
+[00:54:40] ADMIN: Updating jobbanfile!
+[00:54:40] ADMIN: Loading oocban_rank
+[00:54:40] ADMIN: oocban_keylist was empty
+[00:54:40] ADMIN: Updating jobbanfile!
+ADMIN: arborinus = Host
+[00:54:45] ACCESS: Login: Arborinus from 
+
+
+Starting up. 00:56.50
+---------------------
+
+[00:56:54] ADMIN: Loading jobban_rank
+[00:56:54] ADMIN: Jobban_keylist was empty
+[00:56:54] ADMIN: Updating jobbanfile!
+[00:56:54] ADMIN: Loading oocban_rank
+[00:56:54] ADMIN: oocban_keylist was empty
+[00:56:54] ADMIN: Updating jobbanfile!
+ADMIN: arborinus = Host
+[00:56:59] ACCESS: Login: Arborinus from 
+[00:57:51] ADMIN: Arborinus [DEAD] has started the game.
+[00:57:51] ACCESS: Login: Buck Jenner (Arborinus) [TRAITOR] from 
+[00:57:56] ADMIN: Buck Jenner (Arborinus) [TRAITOR] has toggled their nodamage to On
+[00:58:58] SAY: Shitty Bill (NPC) : You a beardo?
+[00:59:41] ADMIN: Buck Jenner (Arborinus) [TRAITOR] jumped to Catering Storage (<a href='?src=%admin_ref%;action=jumptocoords;target=96,108,1' title='Jump to Coords'>96,108,1</a>)
+[01:00:40] SAY: Shitty Bill (NPC) : Whoa, it's Donald "Don" Glabs.
+[01:04:47] SAY: Shitty Bill (NPC) : Got a light, dingus?
+[01:06:55] SAY: Father Jack (NPC) : FECK!
+[01:07:09] SAY: Shitty Bill (NPC) : Got any krok?
+[01:07:36] ADMIN: Buck Jenner (Arborinus) [TRAITOR] created a /obj/item/reagent_containers/food/snacks/slimjim
+[01:07:42] ADMIN: Buck Jenner (Arborinus) [TRAITOR] created a /obj/item/reagent_containers/food/snacks/slimjim
+[01:07:43] ADMIN: Buck Jenner (Arborinus) [TRAITOR] created a /obj/item/reagent_containers/food/snacks/slimjim
+[01:07:45] ADMIN: Buck Jenner (Arborinus) [TRAITOR] created a /obj/item/reagent_containers/food/snacks/slimjim
+[01:07:46] ADMIN: Buck Jenner (Arborinus) [TRAITOR] created a /obj/item/reagent_containers/food/snacks/slimjim
+[01:07:47] ADMIN: Buck Jenner (Arborinus) [TRAITOR] created a /obj/item/reagent_containers/food/snacks/slimjim
+[01:07:49] ADMIN: Buck Jenner (Arborinus) [TRAITOR] created a /obj/item/reagent_containers/food/snacks/slimjim
+[01:07:50] ADMIN: Buck Jenner (Arborinus) [TRAITOR] created a /obj/item/reagent_containers/food/snacks/slimjim
+[01:07:52] ADMIN: Buck Jenner (Arborinus) [TRAITOR] created a /obj/item/reagent_containers/food/snacks/slimjim
+[01:07:53] ADMIN: Buck Jenner (Arborinus) [TRAITOR] created a /obj/item/reagent_containers/food/snacks/slimjim
+[01:07:54] ADMIN: Buck Jenner (Arborinus) [TRAITOR] created a /obj/item/reagent_containers/food/snacks/slimjim
+[01:07:56] ADMIN: Buck Jenner (Arborinus) [TRAITOR] created a /obj/item/reagent_containers/food/snacks/slimjim
+[01:07:59] ADMIN: Buck Jenner (Arborinus) [TRAITOR] created a /obj/item/reagent_containers/food/snacks/slimjim
+[01:08:02] ADMIN: Buck Jenner (Arborinus) [TRAITOR] created a /obj/item/reagent_containers/food/snacks/slimjim
+[01:08:07] ADMIN: Buck Jenner (Arborinus) [TRAITOR] created a /obj/item/reagent_containers/food/snacks/slimjim
+[01:08:27] SAY: Shitty Bill (NPC) : Hey, gimme yer card.
+[01:08:46] SAY: Shitty Bill (NPC) : Man, I sure don't miss Earth.
+[01:10:14] ADMIN: Buck Jenner (Arborinus) [TRAITOR] created a /mob/living/carbon/human/machoman
+[01:10:19] ADMIN: Buck Jenner (Arborinus) [TRAITOR] swapped bodies with macho Mann (NPC)
+[01:10:19] ACCESS: Login: macho Mann (Arborinus) [TRAITOR] from 
+[01:11:54] SAY: Father Jack (NPC) : FECK!
+[01:13:25] ADMIN: macho Mann (Arborinus) [TRAITOR] has toggled their nodamage to On
+[01:14:17] SAY: Shitty Bill (NPC) : You rhyme?
+[01:14:22] SAY: Shitty Bill (NPC) : What the hell are you lookin' at, dork?
+[01:14:28] ADMIN: macho Mann (Arborinus) [TRAITOR] swapped bodies with Buck Jenner (NPC)
+[01:14:28] ACCESS: Login: Buck Jenner (Arborinus) [TRAITOR] from 

@@ -198,3 +198,9 @@
 	brew_result = "catdrugs"
 	module_research = list("vice" = 3)
 	module_research_type = /obj/item/plant/herb/cannabis
+
+/obj/item/plant/pistachio
+	name = "pistachio nut"
+	desc = "Protected by a hard shell."
+	icon = 'icons/obj/foodNdrink/food_produce.dmi'
+	icon_state = "pistachionut"

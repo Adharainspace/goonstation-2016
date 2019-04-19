@@ -1,0 +1,31 @@
+
+
+Starting up. 19:57.58
+---------------------
+
+[19:58:02] ADMIN: Loading jobban_rank
+[19:58:02] ADMIN: Jobban_keylist was empty
+[19:58:02] ADMIN: Updating jobbanfile!
+[19:58:02] ADMIN: Loading oocban_rank
+[19:58:02] ADMIN: oocban_keylist was empty
+[19:58:02] ADMIN: Updating jobbanfile!
+ADMIN: arborinus = Host
+[19:58:07] ACCESS: Login: Arborinus from 
+[19:58:23] ADMIN: Arborinus [DEAD] has started the game.
+[19:58:24] ACCESS: Login: Danny Treeby (Arborinus) [TRAITOR] from 
+[19:58:38] ADMIN: Danny Treeby (Arborinus) [TRAITOR] has toggled their nodamage to On
+[19:58:47] ADMIN: Danny Treeby (Arborinus) [TRAITOR] checked the reagents of A Farty Snott's Every Flavour Bean <i>(<b>Contents:</b> sugar (50), magnesium chloride (50))</i>. <b>Temp:</b> <i>293.15 K</i>) (<a href='?src=%admin_ref%;action=jumptocoords;target=78,184,1' title='Jump to Coords'>78,184,1</a> in Space)
+[19:59:01] SAY: Father Jack (NPC) : DRINK!
+[19:59:39] ADMIN: Danny Treeby (Arborinus) [TRAITOR] created a /obj/item/device/flashlight
+[20:00:07] SAY: Shitty Bill (NPC) : Man, I sure don't miss bein' an operative.
+[20:00:20] ADMIN: Danny Treeby (Arborinus) [TRAITOR] created a /obj/item/device/flashlight
+[20:00:30] ADMIN: Danny Treeby (Arborinus) [TRAITOR] created a /obj/item/device/flashlight
+[20:00:45] ADMIN: Danny Treeby (Arborinus) [TRAITOR] created a /obj/item/device/flashlight
+[20:00:53] SAY: Shitty Bill (NPC) : I think my associates got caught.
+[20:01:24] SAY: Father Jack (NPC) : DRINK!
+[20:01:28] SAY: Shitty Bill (NPC) : I think my homebros stole my key.
+[20:01:30] ADMIN: Danny Treeby (Arborinus) [TRAITOR] created a /obj/machinery/conveyor_switch
+[20:01:43] ADMIN: Danny Treeby (Arborinus) [TRAITOR] modified conveyor switch's id to brigplate
+[20:02:11] SAY: Shitty Bill (NPC) : Hey friendo, gimme yer keys.
+[20:02:46] ADMIN: Danny Treeby (Arborinus) [TRAITOR] created a /obj/item/item_box/heart
+[20:03:06] ADMIN: Danny Treeby (Arborinus) [TRAITOR] created a /obj/item/reagent_containers/food/snacks/candy/candyheart

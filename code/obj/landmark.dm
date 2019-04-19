@@ -179,6 +179,10 @@
 		ancientfall += src.loc
 		qdel(src)
 
+	if (name == "combatfall")
+		combatfall += src.loc
+		qdel(src)
+
 	if (name == "iceelefall")
 		iceelefall += src.loc
 		qdel(src)

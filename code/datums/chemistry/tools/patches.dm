@@ -59,7 +59,7 @@
 
 	attack(mob/M as mob, mob/user as mob)
 		if (src.in_use)
-			//DEBUG_MESSAGE("[src] in use")
+			//DEBUG("[src] in use")
 			return
 
 		if (src.borg == 1 && !issilicon(user))

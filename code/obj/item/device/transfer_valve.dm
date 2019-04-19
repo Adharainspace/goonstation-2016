@@ -192,7 +192,7 @@
 				if(!B || !T) return
 
 				var/power = min(T.air_contents.return_pressure() / TANK_RUPTURE_PRESSURE, 2)
-				DEBUG_MESSAGE("Power: [power]")
+				DEBUG("Power: [power]")
 
 				if(power < 0.30) //Really weak
 					return

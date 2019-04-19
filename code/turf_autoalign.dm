@@ -266,7 +266,7 @@ var/global/map_setting = null
 	light_mod = "wall-"
 	connect_overlay = 1
 	connects_to = list(/turf/simulated/wall/auto/supernorn, /turf/simulated/wall/auto/reinforced/supernorn, /obj/machinery/door,
-	/obj/window)
+	/obj/window, /obj/plasticflaps)
 	connects_with_overlay = list(/turf/simulated/wall/auto/reinforced/supernorn, /obj/machinery/door,
 	/obj/window)
 
@@ -275,7 +275,7 @@ var/global/map_setting = null
 	light_mod = "wall-"
 	connect_overlay = 1
 	connects_to = list(/turf/simulated/wall/auto/supernorn, /turf/simulated/wall/auto/reinforced/supernorn, /obj/machinery/door,
-	/obj/window)
+	/obj/window, /obj/plasticflaps)
 	connects_with_overlay = list(/turf/simulated/wall/auto/supernorn, /obj/machinery/door,
 	/obj/window)
 

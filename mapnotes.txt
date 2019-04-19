@@ -1,0 +1,4 @@
+cog2: 150x130
+alc: 200x180
+alc squished: 105x150
+cog1: 130x140

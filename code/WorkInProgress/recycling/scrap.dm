@@ -291,4 +291,51 @@
 
 	return S
 
+/* ================================================= */
+/* ---------------- Prison Tools ------------------- */
+/* ================================================= */
 
+/obj/item/scrap_hammer
+	name = "scrap hammer"
+	desc = "Used to break and flatten scrap material. The head houses an inertia damper that prevents misuse."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "axe0"
+	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
+	item_state = "axe0"
+	w_class = 4.0
+	flags = ONBELT
+	stamina_damage = 0
+	stamina_crit_chance = 0
+	stamina_cost = 80
+	hitsound = 'sound/weapons/smash.ogg'
+
+//	attack(var/W as mob|obj|turf, mob/user)
+//		if (!istype(W, /obj/item/scrap))
+//			src.visible_message("<span style=\"color:red\">[src]'s internal safety system stops [user] from hitting [W]!</span>", "<span style=\"color:red\">[src]'s internal safety system stops you from hitting [W]!</span>")
+//			playsound(user.loc, "sound/weapons/punchmiss.ogg", 100, 1)
+//			return 0
+
+/obj/machinery/plate_machine
+	name = "scrap reclaimer"
+	desc = "Processes acceptable scrap into pod license plates."
+	icon = 'icons/obj/manufacturer.dmi'
+	icon_state = "fab2-on"
+	anchored = 1
+	density = 1
+	var/active = 0
+	var/smelt_interval = 5
+	var/sound/sound_load = sound('sound/items/Deconstruct.ogg')
+	var/sound/sound_process = sound('sound/effects/pop.ogg')
+	var/sound/sound_grump = sound('sound/machines/buzz-two.ogg')
+
+/obj/item/podplate
+	name = "license plate"
+	desc = "It probably says something clever. If only you knew alienese."
+	icon = 'icons/obj/scrap.dmi'
+	icon_state = "plate"
+	w_class = 3.0
+
+	New()
+		..()
+		src.icon_state = "plate-[rand(1,4)]"
+		return

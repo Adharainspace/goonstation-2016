@@ -177,3 +177,20 @@
 	vending = 1
 	mutations = list(/datum/plantmutation/tree/money)
 	commuts = list(/datum/plant_gene_strain/metabolism_fast,/datum/plant_gene_strain/metabolism_slow,/datum/plant_gene_strain/resistance_drought)
+
+/datum/plant/pistachio
+	name = "Pistachio"
+	category = "Miscellaneous"
+	seedcolor = "#D0CA2F"
+	crop = /obj/item/plank
+	starthealth = 40
+	growtime = 200
+	harvtime = 260
+	cropsize = 3
+	harvests = 10
+	endurance = 5
+	genome = 20
+	force_seed_on_harvest = 1
+	vending = 1
+	mutations = list(/datum/plantmutation/tree/money)
+	commuts = list(/datum/plant_gene_strain/metabolism_fast,/datum/plant_gene_strain/metabolism_slow,/datum/plant_gene_strain/resistance_drought)

@@ -1074,3 +1074,15 @@
 		name = "massive asshole's hat"
 		desc = "A purple cap with a tetris block on it. It radiates pure malice."
 		icon_state = "waluigi"
+
+/obj/item/clothing/under/gimmick/frog
+	name = "frog jumpsuit"
+	desc = "This jumpsuit calls to question your sense of belonging."
+	icon_state = "frog"
+	item_state = "frog"
+	equipped(var/mob/user, var/slot)
+		var/mob/living/carbon/human/H = user
+		H.bioHolder.AddEffect("jumpy")
+	unequipped(var/mob/user, var/slot)
+		var/mob/living/carbon/human/H = user
+		H.bioHolder.RemoveEffect("jumpy")

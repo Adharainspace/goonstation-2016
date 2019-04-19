@@ -297,5 +297,117 @@
 		else
 			return ..()
 
+////// THIS GOES HERE. PROBABLY. //////
+
+/obj/item/reagent_containers/smitty
+	name = "number one hat"
+	desc = "You haven't seen number two in a long time..."
+	icon = 'icons/obj/clothing/item_hats.dmi'
+	icon_state = "smitty"
+	item_state = "smitty"
+	w_class = 1.0
+	var/see_face = 1
+	var/body_parts_covered = HEAD
+	flags = FPRINT | TABLEPASS | SUPPRESSATTACK | OPENCONTAINER
+	rc_flags = RC_VISIBLE | RC_FULLNESS | RC_SPECTRO
+	amount_per_transfer_from_this = 5
+	initial_volume = 100
+	var/mob/living/carbon/human/patient = null
+//	var/mode = IV_DRAW
+	var/in_use = 0
+
+	is_open_container()
+		return 1
+
+//	New()
+//		..()
+//		src.reagents.add_reagent("cola", src.initial_volume)
+
+//	attack_self(mob/user as mob)
+//		src.mode = !(src.mode)
+//		user.show_text("You switch [src] to [src.mode ? "inject" : "draw"].")
+//		src.update_icon()
+
+	attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+		if (!ishuman(M))
+			return ..()
+		var/mob/living/carbon/human/H = M
+
+		if (in_use && src.patient)
+			if (src.patient != H)
+				user.show_text("[src] is already being enjoyed by someone else!", "red")
+				return
+			else if (src.patient == H)
+				H.tri_message("<span style=\"color:blue\"><b>[user]</b> removes [src]'s straw from [H == user ? "[H.gender == "male" ? "his" : "her"]" : "[H]'s"] mouth.</span>",\
+				user, "<span style=\"color:blue\">You remove [src]'s straw from [H == user ? "your" : "[H]'s"] mouth.</span>",\
+				H, "<span style=\"color:blue\">[H == user ? "You remove" : "<b>[user]</b> removes"] [src]'s straw from your mouth.</span>")
+				src.stop_transfusion()
+				return
+		else
+			if (!src.reagents.total_volume)
+				user.show_text("There's nothing left in [src]!", "red")
+				return
+			if (H.reagents && H.reagents.is_full())
+				user.show_text("[H]'s stomach seems dangerously full as it is, there's probably no room for anything else!", "red")
+				return
+
+			H.tri_message("<span style=\"color:blue\"><b>[user]</b> begins putting [src]'s straw into [H == user ? "[H.gender == "male" ? "his" : "her"]" : "[H]'s"] mouth.</span>",\
+			user, "<span style=\"color:blue\">You begin putting [src]'s straw into [H == user ? "your" : "[H]'s"] mouth.</span>",\
+			H, "<span style=\"color:blue\">[H == user ? "You begin" : "<b>[user]</b> begins"] putting [src]'s straw into your mouth.</span>")
+			logTheThing("combat", user, H, "tries to hook up a novelty drink hat [log_reagents(src)] to %target% at [log_loc(user)].")
+
+			if (H != user)
+				if (!do_mob(user, H, 50))
+					user.show_text("You were interrupted!", "red")
+					return
+			else if (!do_after(H, 15))
+				H.show_text("You were interrupted!", "red")
+				return
+
+			src.patient = H
+			H.tri_message("<span style=\"color:blue\"><b>[user]</b> put [src]'s straw into [H == user ? "[H.gender == "male" ? "his" : "her"]" : "[H]'s"] mouth.</span>",\
+			user, "<span style=\"color:blue\">You put [src]'s straw into [H == user ? "your" : "[H]'s"] mouth.</span>",\
+			H, "<span style=\"color:blue\">[H == user ? "You put" : "<b>[user]</b> inserts"] [src]'s straw into your mouth.</span>")
+			logTheThing("combat", user, H, "connects a novelty drink hat [log_reagents(src)] to %target% at [log_loc(user)].")
+			src.start_transfusion()
+			return
+
+	process(var/mob/living/carbon/human/H as mob)
+		if (!src.patient || !ishuman(src.patient) || !src.patient.reagents)
+			src.stop_transfusion()
+			return
+
+		if ((get_dist(src, src.patient) > 1))
+			var/fluff = pick("pulled", "yanked", "ripped")
+			src.patient.visible_message("<span style=\"color:red\"><b>[src]'s straw gets [fluff] out of [src.patient]'s mouth!</b></span>",\
+			"<span style=\"color:red\"><b>[src]'s straw gets [fluff] out of your mouth!</b></span>")
+			src.stop_transfusion()
+			return
+
+		if (src.patient.reagents.is_full())
+			src.patient.visible_message("<span style=\"color:blue\"><b>[src.patient]</b>'s journey to flavor town finishes.</span>",\
+			"<span style=\"color:blue\">Your journey to flavor town finishes.</span>")
+			src.stop_transfusion()
+			return
+		if (!src.reagents.total_volume)
+			src.patient.visible_message("<span style=\"color:red\">[src] runs out of delicious drink!</span>")
+			src.stop_transfusion()
+			return
+
+		src.reagents.trans_to(src.patient, src.amount_per_transfer_from_this)
+		src.patient.reagents.reaction(src.patient, INGEST, src.amount_per_transfer_from_this)
+		return
+
+	proc/start_transfusion()
+		src.in_use = 1
+		if (!(src in processing_items))
+			processing_items.Add(src)
+
+	proc/stop_transfusion()
+		if (src in processing_items)
+			processing_items.Remove(src)
+		src.in_use = 0
+		src.patient = null
+
 #undef IV_INJECT
 #undef IV_DRAW

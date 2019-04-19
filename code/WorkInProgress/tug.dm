@@ -266,3 +266,223 @@
 			return
 		if (cart)
 			cart.Move(oldloc)
+
+/obj/vehicle/tram/
+	name = "tram"
+	icon = 'icons/obj/tug.dmi'
+	icon_state = "tug"
+	layer = MOB_LAYER + 1
+	sealed_cabin = 0
+	mats = 0
+	var/obj/tug_cart/cart = null
+	throw_dropped_items_overboard = 1
+	var/sealed = 0
+	var/tramspeed = 1.5
+	var/flying = 0
+	var/facing = 0
+	var/datum/light/light
+	var/headlights = 1
+
+	New()
+		..()
+		if (sealed)
+			src.sealed_cabin = 1
+		if (headlights)
+			light = new /datum/light/point
+			light.attach(src)
+			light.set_brightness(1)
+			light.enable()
+
+	eject_rider(var/crashed, var/selfdismount)
+		rider.set_loc(src.loc)
+		rider.pixel_y = 0
+		walk(src, 0)
+		if (crashed)
+			if (crashed == 2)
+				playsound(src.loc, "sound/misc/meteorimpact.ogg", 40, 1)
+			boutput(rider, "<span style=\"color:red\"><B>You are flung off of [src]!</B></span>")
+			rider.stunned = 8
+			rider.weakened = 5
+			for (var/mob/C in AIviewers(src))
+				if (C == rider)
+					continue
+				C.show_message("<span style=\"color:red\"><B>[rider] is flung off of [src]!</B></span>", 1)
+			var/turf/target = get_edge_target_turf(src, src.dir)
+			rider.throw_at(target, 5, 1)
+			rider.buckled = null
+			rider = null
+			overlays = null
+			return
+		if (selfdismount)
+			boutput(rider, "<span style=\"color:blue\">You dismount from [src].</span>")
+			for (var/mob/C in AIviewers(src))
+				if (C == rider)
+					continue
+				C.show_message("<B>[rider]</B> dismounts from [src].", 1)
+		rider.buckled = null
+		rider = null
+		overlays = null
+		return
+
+	Move(NewLoc,Dir=0,step_x=0,step_y=0)
+//		if (!istype(src.loc, /turf/simulated/floor/railway))
+//			return 0
+		if (!istype(src.loc, /obj/tramway))
+			return 0
+
+		.=..(NewLoc,Dir,step_x,step_y)
+
+	relaymove(mob/user as mob, direction)
+//		if (!istype(src.loc, /turf/simulated/floor/railway))
+//			return 0
+		if (!istype(src.loc, /obj/tramway))
+			return 0
+		if (user.stunned > 0 || user.weakened > 0 || user.paralysis > 0 || user.stat != 0)
+			return
+		if (user in src)
+			src.facing = direction
+			if (src.dir == direction)
+				if(flying == turn(src.dir,180))
+					walk(src, 0)
+					flying = 0
+				else
+					walk(src, src.dir, tramspeed)
+					flying = src.dir
+			else
+				src.dir = direction
+
+	MouseDrop_T(var/atom/movable/C, mob/user)
+		if (!in_range(user, src) || !in_range(user, C) || user.restrained() || user.paralysis || user.sleeping || user.stat || user.lying)
+			return
+
+		if (istype(C, /obj/tug_cart) && in_range(C, src))
+			if (src == C)
+				return
+			else if (!src.cart)
+				src.cart = C
+				user.visible_message("[user] connects [C] to [src].", "You connect [C] to [src].")
+				return
+			else if (src.cart == C)
+				src.cart = null
+				user.visible_message("[user] disconnects [C] from [src].", "You disconnect [C] from [src].")
+				return
+			else
+				user.show_text("\The [src] already has a cart connected to it!", "red")
+				return
+
+		if (!ishuman(C))
+			return
+
+		var/mob/living/carbon/human/target = C
+
+		if (rider || target.buckled || LinkBlocked(target.loc,src.loc) || isAI(user))
+			return
+
+		var/msg
+
+		if (target == user && !user.stat)
+			msg = "[user.name] climbs onto [src]."
+			boutput(user, "<span style=\"color:blue\">You climb onto [src].</span>")
+		else if (target != user && !user.restrained())
+			msg = "[user.name] helps [target.name] onto [src]!"
+			boutput(user, "<span style=\"color:blue\">You help [target.name] onto [src]!</span>")
+		else
+			return
+
+		target.set_loc(src)
+		rider = target
+		rider.pixel_y = 12
+		overlays += rider
+		if (rider.restrained() || rider.stat)
+			rider.buckled = src
+
+		for (var/mob/H in AIviewers(src))
+			if (H == user)
+				continue
+			H.show_message(msg, 3)
+
+		return
+
+	Click()
+		if (usr != rider)
+			..()
+			return
+		if (!(usr.paralysis || usr.stunned || usr.weakened || usr.stat))
+			eject_rider(0, 1)
+		return
+
+	attack_hand(mob/living/carbon/human/M as mob)
+		if (!M || !rider)
+			..()
+			return
+		switch (M.a_intent)
+			if ("harm", "disarm")
+				if (prob(60))
+					playsound(src.loc, "sound/weapons/thudswoosh.ogg", 50, 1, -1)
+					src.visible_message("<span style=\"color:red\"><B>[M] has shoved [rider] off of [src]!</B></span>")
+					rider.weakened = 2
+					eject_rider()
+				else
+					playsound(src.loc, "sound/weapons/punchmiss.ogg", 25, 1, -1)
+					src.visible_message("<span style=\"color:red\"><B>[M] has attempted to shove [rider] off of [src]!</B></span>")
+		return
+
+	bullet_act(flag, A as obj)
+		if (rider)
+			eject_rider()
+			rider.bullet_act(flag, A)
+		return
+
+	meteorhit()
+		if (rider)
+			eject_rider()
+			rider.meteorhit()
+		return
+
+	disposing()
+		if (rider)
+			boutput(rider, "<span style=\"color:red\"><B>[src] is destroyed!</B></span>")
+			eject_rider()
+		..()
+		return
+
+	Move()
+		if (prob(7))
+			animate_shake(src, amount = 1, x_severity = 1, y_severity = 2)
+		//	var/datum/effects/system/spark_spread/s = unpool(/datum/effects/system/spark_spread)
+		//	s.set_up(2, 1, src.loc)
+		//	s.start() //okay maybe this was a bad idea
+		var/oldloc = src.loc
+		..()
+		if (src.loc == oldloc)
+			return
+		if (cart)
+			cart.Move(oldloc)
+
+/obj/tug_cart/tram
+	name = "tram cart"
+	desc = "A cargo cart capable of leaving the tram tracks."
+	icon = 'icons/obj/tug.dmi'
+	icon_state = "cart"
+	layer = MOB_LAYER - 0.1
+
+/obj/tramway
+	name = "track"
+	desc = "A track designed to convey specialized industrial equipment."
+	icon = 'icons/obj/tug.dmi'
+	icon_state = "track"
+	anchored = 1
+	layer = OBJ_LAYER
+
+/obj/tramway/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	if (!(istype(mover, /obj/vehicle/tram/)))
+		return 0
+	return ..()
+
+/obj/machinery/door/poddoor/blast/pyro/tramdoor
+	layer = OBJ_LAYER + 0.1
+	autoclose = 1
+
+	Bumped(M as mob|obj)
+		if (istype(M,/obj/vehicle/tram))
+			open(src)

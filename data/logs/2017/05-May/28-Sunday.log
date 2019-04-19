@@ -1,0 +1,428 @@
+
+
+Starting up. 00:08.31
+---------------------
+
+[00:08:35] ADMIN: Loading jobban_rank
+[00:08:35] ADMIN: Jobban_keylist was empty
+[00:08:35] ADMIN: Updating jobbanfile!
+[00:08:35] ADMIN: Loading oocban_rank
+[00:08:35] ADMIN: oocban_keylist was empty
+[00:08:35] ADMIN: Updating jobbanfile!
+ADMIN: arborinus = Host
+[00:08:41] ACCESS: Login: Arborinus from 
+[00:09:01] ADMIN: Arborinus [DEAD] has started the game.
+[00:09:02] ACCESS: Login: Gavin James (Arborinus) [TRAITOR] from 
+[00:09:32] SAY: Shitty Bill (NPC) : You drink?
+[00:10:24] SAY: Shitty Bill (NPC) : You rap?
+[00:10:26] SAY: Shitty Bill (NPC) : You smoke?
+[00:10:47] ADMIN: Gavin James (Arborinus) [TRAITOR] modified paper plane's throw_speed to 1
+[00:10:50] SAY: Shitty Bill (NPC) : Nice wheels, dweeb.
+[00:11:10] ADMIN: Gavin James (Arborinus) [TRAITOR] modified paper plane's throw_speed to 0.5
+[00:11:44] ADMIN: Gavin James (Arborinus) [TRAITOR] modified paper plane's throw_speed to 0.1
+[00:11:58] SAY: Shitty Bill (NPC) : Whatcha you lookin' at, dude?
+[00:12:01] SAY: Shitty Bill (NPC) : Got any weed?
+[00:12:17] SAY: Shitty Bill (NPC) : Got any weed?
+[00:12:24] SAY: Shitty Bill (NPC) : Hey friendo, gimme yer cats.
+[00:12:43] ADMIN: Gavin James (Arborinus) [TRAITOR] modified paper plane's throw_speed to 5
+[00:12:47] SAY: Father Jack (NPC) : FECK!
+[00:12:53] SAY: Father Jack (NPC) : FECK!
+[00:13:21] SAY: Shitty Bill (NPC) : Howdy Donald "Don" Glabs.
+[00:13:30] SAY: Shitty Bill (NPC) : What the hell are you lookin' at, flyboy?
+[00:13:33] SAY: Shitty Bill (NPC) : Nice burner, chief.
+[00:14:22] SAY: Shitty Bill (NPC) : I think my bros stole my key.
+[00:14:27] SAY: Shitty Bill (NPC) : Got any argine?
+[00:14:41] SAY: Shitty Bill (NPC) : I ever tell you 'bout that time I learned Sumerian?
+[00:15:04] ADMIN: Gavin James (Arborinus) [TRAITOR] has toggled their nodamage to On
+[00:15:16] ADMIN: Gavin James (Arborinus) [TRAITOR] modified paper plane's throw_speed to 1
+
+
+Starting up. 02:39.34
+---------------------
+
+[02:39:38] ADMIN: Loading jobban_rank
+[02:39:38] ADMIN: Jobban_keylist was empty
+[02:39:38] ADMIN: Updating jobbanfile!
+[02:39:38] ADMIN: Loading oocban_rank
+[02:39:38] ADMIN: oocban_keylist was empty
+[02:39:38] ADMIN: Updating jobbanfile!
+ADMIN: arborinus = Host
+[02:39:44] ACCESS: Login: Arborinus from 
+[02:39:58] ADMIN: Arborinus [DEAD] has started the game.
+[02:39:58] ACCESS: Login: Melvyn Davies (Arborinus) [TRAITOR] from 
+[02:40:36] ADMIN: Melvyn Davies (Arborinus) [TRAITOR] created a /obj/dartboard
+[02:40:49] SAY: Shitty Bill (NPC) : Got any nog?
+[02:40:51] ADMIN: Melvyn Davies (Arborinus) [TRAITOR] created a /obj/item/implant/projectile/bardart
+[02:41:13] SAY: Father Jack (NPC) : That would be an ecumenical matter.
+[02:41:34] ADMIN: Melvyn Davies (Arborinus) [TRAITOR] has toggled their nodamage to On
+[02:42:01] ADMIN: Melvyn Davies (Arborinus) [TRAITOR] modified Mr. Muggles's health to -400
+[02:42:14] SAY: Shitty Bill (NPC) : Howdy Donald "Don" Glabs.
+[02:42:17] SAY: Shitty Bill (NPC) : I ever tell you 'bout the terrible secret of juggling?
+[02:42:38] ADMIN: Melvyn Davies (Arborinus) [TRAITOR] modified Mr. Muggles's health to 0
+[02:42:50] ADMIN: Melvyn Davies (Arborinus) [TRAITOR] modified Mr. Muggles's ai_suicidal to 1
+[02:43:19] SAY: Shitty Bill (NPC) : Nice pod, idiot.
+[02:43:31] SAY: Shitty Bill (NPC) : You a wizman?
+[02:43:36] ADMIN: Melvyn Davies (Arborinus) [TRAITOR] has toggled their nodamage to Off
+[02:43:38] ADMIN: Melvyn Davies (Arborinus) [TRAITOR] has toggled their nodamage to On
+[02:44:36] SAY: Shitty Bill (NPC) : Nice name, dude.
+[02:44:45] SAY: Shitty Bill (NPC) : What're you lookin' at, beardo?
+[02:45:02] SAY: Father Jack (NPC) : That would be an ecumenical matter.
+
+
+Starting up. 14:03.58
+---------------------
+
+[14:04:02] ADMIN: Loading jobban_rank
+[14:04:02] ADMIN: Jobban_keylist was empty
+[14:04:02] ADMIN: Updating jobbanfile!
+[14:04:02] ADMIN: Loading oocban_rank
+[14:04:02] ADMIN: oocban_keylist was empty
+[14:04:02] ADMIN: Updating jobbanfile!
+ADMIN: arborinus = Host
+[14:04:07] ACCESS: Login: Arborinus from 
+[14:04:55] ADMIN: Arborinus [DEAD] has started the game.
+[14:04:55] ACCESS: Login: Angelo Franks (Arborinus) [TRAITOR] from 
+[14:05:34] ADMIN: Angelo Franks (Arborinus) [TRAITOR] modified cigarette machine's anchored to 0
+[14:05:48] ADMIN: Angelo Franks (Arborinus) [TRAITOR] created a /obj/dartboard
+[14:05:54] SAY: Shitty Bill (NPC) : Man, I sure miss Luna.
+[14:06:00] ADMIN: Angelo Franks (Arborinus) [TRAITOR] modified Dartboard's pixel_x to 20
+[14:06:16] ADMIN: Angelo Franks (Arborinus) [TRAITOR] modified Dartboard's pixel_x to 0
+[14:06:20] SAY: Shitty Bill (NPC) : Hey chump, gimme yer patch.
+[14:06:23] ADMIN: Angelo Franks (Arborinus) [TRAITOR] modified Dartboard's pixel_y to 20
+[14:06:31] ADMIN: Angelo Franks (Arborinus) [TRAITOR] modified Dartboard's pixel_y to 22
+[14:06:41] ADMIN: Angelo Franks (Arborinus) [TRAITOR] modified Dartboard's pixel_y to 23
+[14:06:48] SAY: Shitty Bill (NPC) : I think my crew died in space.
+[14:06:49] ADMIN: Angelo Franks (Arborinus) [TRAITOR] created a /obj/item/implant/projectile/bardart
+[14:06:49] ADMIN: Angelo Franks (Arborinus) [TRAITOR] created a /obj/item/implant/projectile/bardart
+[14:07:18] SAY: Shitty Bill (NPC) : I ever tell you 'bout the time I was a clown?
+[14:07:30] SAY: Shitty Bill (NPC) : Got any lexo?
+[14:08:43] SAY: Shitty Bill (NPC) : What you lookin' at, bud?
+[14:08:53] SAY: Shitty Bill (NPC) : Oh Christ, it's Donald "Don" Glabs.
+[14:09:07] ADMIN: Angelo Franks (Arborinus) [TRAITOR] modified Mr. Muggles's ai_suicidal to 1
+[14:09:13] ADMIN: Angelo Franks (Arborinus) [TRAITOR] modified Mr. Muggles's anchored to 1
+[14:09:27] ADMIN: Angelo Franks (Arborinus) [TRAITOR] has toggled their nodamage to On
+[14:09:32] SAY: Shitty Bill (NPC) : Got a light, bucko?
+[14:09:40] ACCESS: Login: Arborinus [TRAITOR] from 
+[14:10:36] SAY: Shitty Bill (NPC) : Oh Christ, it's Donald "Don" Glabs.
+[14:10:56] SAY: Shitty Bill (NPC) : You a Russian?
+
+
+Starting up. 14:12.40
+---------------------
+
+[14:12:44] ADMIN: Loading jobban_rank
+[14:12:44] ADMIN: Jobban_keylist was empty
+[14:12:44] ADMIN: Updating jobbanfile!
+[14:12:44] ADMIN: Loading oocban_rank
+[14:12:44] ADMIN: oocban_keylist was empty
+[14:12:44] ADMIN: Updating jobbanfile!
+ADMIN: arborinus = Host
+[14:12:49] ACCESS: Login: Arborinus from 
+[14:13:03] ADMIN: Arborinus [DEAD] has started the game.
+[14:13:04] ACCESS: Login: Hartley Green (Arborinus) [TRAITOR] from 
+[14:13:37] ADMIN: Hartley Green (Arborinus) [TRAITOR] created a /obj/dartboard
+[14:13:40] ADMIN: Hartley Green (Arborinus) [TRAITOR] created a /obj/item/implant/projectile/dart
+[14:13:43] ADMIN: Hartley Green (Arborinus) [TRAITOR] created a /obj/item/implant/projectile/bardart
+[14:13:57] SAY: Shitty Bill (NPC) : Hey brud, gimme yer bees.
+[14:14:33] SAY: Shitty Bill (NPC) : Got any bee food?
+[14:14:51] SAY: Shitty Bill (NPC) : Got any hyper?
+[14:15:01] SAY: Shitty Bill (NPC) : Hey dweeb, gimme yer patch.
+[14:15:15] SAY: Shitty Bill (NPC) : You a Russian?
+
+
+Starting up. 14:17.39
+---------------------
+
+[14:17:43] ADMIN: Loading jobban_rank
+[14:17:43] ADMIN: Jobban_keylist was empty
+[14:17:43] ADMIN: Updating jobbanfile!
+[14:17:43] ADMIN: Loading oocban_rank
+[14:17:43] ADMIN: oocban_keylist was empty
+[14:17:43] ADMIN: Updating jobbanfile!
+ADMIN: arborinus = Host
+[14:17:49] ACCESS: Login: Arborinus from 
+[14:18:05] ADMIN: Arborinus [DEAD] has started the game.
+[14:18:05] ACCESS: Login: Davion Mcloskey (Arborinus) [TRAITOR] from 
+[14:18:07] SAY: Shitty Bill (NPC) : You ride?
+[14:18:25] SAY: Shitty Bill (NPC) : Nice hair, friend.
+[14:18:29] ADMIN: Davion Mcloskey (Arborinus) [TRAITOR] created a /obj/item/implant/projectile/bardart
+[14:18:31] ADMIN: Davion Mcloskey (Arborinus) [TRAITOR] created a /obj/dartboard
+[14:18:54] ADMIN: Davion Mcloskey (Arborinus) [TRAITOR] modified Dartboard's density to 1
+[14:19:14] SAY: Shitty Bill (NPC) : Got a light, idiot?
+
+
+Starting up. 14:23.55
+---------------------
+
+[14:23:59] ADMIN: Loading jobban_rank
+[14:23:59] ADMIN: Jobban_keylist was empty
+[14:23:59] ADMIN: Updating jobbanfile!
+[14:23:59] ADMIN: Loading oocban_rank
+[14:23:59] ADMIN: oocban_keylist was empty
+[14:23:59] ADMIN: Updating jobbanfile!
+ADMIN: arborinus = Host
+[14:24:04] ACCESS: Login: Arborinus from 
+[14:24:21] ADMIN: Arborinus [DEAD] has started the game.
+[14:24:22] ACCESS: Login: Nathan Kelley (Arborinus) [TRAITOR] from 
+[14:24:39] ADMIN: Nathan Kelley (Arborinus) [TRAITOR] created a /obj/dartboard
+[14:24:41] ADMIN: Nathan Kelley (Arborinus) [TRAITOR] created a /obj/item/implant/projectile/bardart
+[14:24:55] ADMIN: Nathan Kelley (Arborinus) [TRAITOR] modified Dartboard's density to 1
+[14:25:17] SAY: Shitty Bill (NPC) : I ever tell you 'bout the time I found an alien thing that went to the bathroom for you?
+[14:25:24] SAY: Shitty Bill (NPC) : You a beardo?
+[14:26:35] ADMIN: Nathan Kelley (Arborinus) [TRAITOR] created a /turf/simulated/wall/auto/reinforced/supernorn
+[14:26:44] SAY: Father Jack (NPC) : DRINK!
+
+
+Starting up. 14:45.52
+---------------------
+
+[14:45:57] ADMIN: Loading jobban_rank
+[14:45:57] ADMIN: Jobban_keylist was empty
+[14:45:57] ADMIN: Updating jobbanfile!
+[14:45:57] ADMIN: Loading oocban_rank
+[14:45:57] ADMIN: oocban_keylist was empty
+[14:45:57] ADMIN: Updating jobbanfile!
+ADMIN: arborinus = Host
+[14:46:02] ACCESS: Login: Arborinus from 
+[14:46:29] ADMIN: Arborinus [DEAD] has started the game.
+[14:46:29] ACCESS: Login: Ryan Gibson (Arborinus) [TRAITOR] from 
+[14:46:36] ADMIN: Ryan Gibson (Arborinus) [TRAITOR] has toggled their nodamage to On
+[14:47:10] SAY: Shitty Bill (NPC) : You a Russian?
+[14:47:28] SAY: Shitty Bill (NPC) : Nice burner, scrub.
+[14:48:19] ADMIN: Ryan Gibson (Arborinus) [TRAITOR] modified Dartboard's pixel_y to 26
+[14:48:29] ADMIN: Ryan Gibson (Arborinus) [TRAITOR] modified Dartboard's pixel_y to 24
+[14:48:29] SAY: Shitty Bill (NPC) : You a changer?
+[14:49:37] SAY: Shitty Bill (NPC) : What you lookin' at, owl man?
+[14:50:01] SAY: Shitty Bill (NPC) : The hell you lookin' at, kid?
+[14:50:05] SAY: Shitty Bill (NPC) : I ever tell you 'bout what really happened to Jons the Catte?
+[14:50:24] SAY: Shitty Bill (NPC) : Man, I sure don't miss Mars.
+[14:51:15] SAY: Father Jack (NPC) : ARSE!
+[14:51:38] SAY: Shitty Bill (NPC) : I think my associates stole my hat.
+[14:51:47] SAY: Shitty Bill (NPC) : Got a light, Colonel?
+[14:51:57] SAY: Shitty Bill (NPC) : Yo, gimme yer cash.
+[14:52:00] ADMIN: Ryan Gibson (Arborinus) [TRAITOR] swapped bodies with Mr. Muggles (Monkey)
+[14:52:00] ACCESS: Login: Mr. Muggles (Monkey) (Arborinus) [TRAITOR] from 
+[14:52:11] SAY: Shitty Bill (NPC) : You a dracula?
+[14:52:51] SAY: Shitty Bill (NPC) : Nice face, idiot.
+
+
+Starting up. 17:57.25
+---------------------
+
+[17:57:29] ADMIN: Loading jobban_rank
+[17:57:29] ADMIN: Jobban_keylist was empty
+[17:57:29] ADMIN: Updating jobbanfile!
+[17:57:29] ADMIN: Loading oocban_rank
+[17:57:29] ADMIN: oocban_keylist was empty
+[17:57:29] ADMIN: Updating jobbanfile!
+ADMIN: arborinus = Host
+[17:57:34] ACCESS: Login: Arborinus from 
+[17:57:50] ADMIN: Arborinus [DEAD] has started the game.
+[17:57:51] ACCESS: Login: Jace Mcfall (Arborinus) [TRAITOR] from 
+[17:57:52] SAY: Shitty Bill (NPC) : Got any space drugs?
+[17:57:56] ADMIN: Jace Mcfall (Arborinus) [TRAITOR] has toggled their nodamage to On
+[17:58:30] ADMIN: Jace Mcfall (Arborinus) [TRAITOR] modified Dartboard's pixel_y to 26
+[17:58:38] SAY: Shitty Bill (NPC) : Got a light, buddy?
+[17:59:05] SAY: Father Jack (NPC) : FECK!
+[17:59:19] ADMIN: Jace Mcfall (Arborinus) [TRAITOR] jumped to Bar (<a href='?src=%admin_ref%;action=jumptocoords;target=81,108,1' title='Jump to Coords'>81,108,1</a>)
+[17:59:27] ADMIN: Jace Mcfall (Arborinus) [TRAITOR] created a /obj/item/implant/projectile/lawndart
+[18:00:09] SAY: Shitty Bill (NPC) : Hey chump, gimme yer patch.
+[18:00:44] SAY: Shitty Bill (NPC) : Man, I sure don't miss the wizzers.
+[18:00:46] SAY: Shitty Bill (NPC) : Got a light, scrub?
+[18:01:14] SAY: Shitty Bill (NPC) : The hell're you lookin' at, brud?
+
+
+Starting up. 18:07.03
+---------------------
+
+[18:07:06] ADMIN: Loading jobban_rank
+[18:07:06] ADMIN: Jobban_keylist was empty
+[18:07:06] ADMIN: Updating jobbanfile!
+[18:07:06] ADMIN: Loading oocban_rank
+[18:07:06] ADMIN: oocban_keylist was empty
+[18:07:06] ADMIN: Updating jobbanfile!
+ADMIN: arborinus = Host
+[18:07:12] ACCESS: Login: Arborinus from 
+[18:07:46] ADMIN: Arborinus [DEAD] has started the game.
+[18:07:47] ACCESS: Login: Bryson Glover (Arborinus) [TRAITOR] from 
+[18:07:51] ADMIN: Bryson Glover (Arborinus) [TRAITOR] has toggled their nodamage to On
+[18:08:14] SAY: Father Jack (NPC) : That would be an ecumenical matter.
+
+
+Starting up. 18:12.37
+---------------------
+
+[18:12:41] ADMIN: Loading jobban_rank
+[18:12:41] ADMIN: Jobban_keylist was empty
+[18:12:41] ADMIN: Updating jobbanfile!
+[18:12:41] ADMIN: Loading oocban_rank
+[18:12:41] ADMIN: oocban_keylist was empty
+[18:12:41] ADMIN: Updating jobbanfile!
+ADMIN: arborinus = Host
+[18:12:47] ACCESS: Login: Arborinus from 
+[18:13:17] ADMIN: Arborinus [DEAD] has started the game.
+[18:13:17] ACCESS: Login: Han Spock (Arborinus) [TRAITOR] from 
+[18:13:22] ADMIN: Han Spock (Arborinus) [TRAITOR] has toggled their nodamage to On
+
+
+Starting up. 19:15.12
+---------------------
+
+[19:15:16] ADMIN: Loading jobban_rank
+[19:15:16] ADMIN: Jobban_keylist was empty
+[19:15:16] ADMIN: Updating jobbanfile!
+[19:15:16] ADMIN: Loading oocban_rank
+[19:15:16] ADMIN: oocban_keylist was empty
+[19:15:16] ADMIN: Updating jobbanfile!
+ADMIN: arborinus = Host
+[19:15:21] ACCESS: Login: Arborinus from 
+[19:15:53] ADMIN: Arborinus [DEAD] has started the game.
+[19:15:53] ACCESS: Login: Jimmy Mitchell (Arborinus) [TRAITOR] from 
+[19:15:55] SAY: Jimmy Mitchell (Arborinus) [TRAITOR] : *fart
+[19:16:00] ADMIN: Jimmy Mitchell (Arborinus) [TRAITOR] has toggled their nodamage to On
+[19:16:30] SAY: Shitty Bill (NPC) : I think my bruds got lost on the way here.
+[19:17:03] ADMIN: Jimmy Mitchell (Arborinus) [TRAITOR] modified dart's pixel_y to 25
+[19:17:18] ADMIN: Jimmy Mitchell (Arborinus) [TRAITOR] modified Dartboard's level to 4
+
+
+Starting up. 19:29.46
+---------------------
+
+[19:29:51] ADMIN: Loading jobban_rank
+[19:29:51] ADMIN: Jobban_keylist was empty
+[19:29:51] ADMIN: Updating jobbanfile!
+[19:29:51] ADMIN: Loading oocban_rank
+[19:29:51] ADMIN: oocban_keylist was empty
+[19:29:51] ADMIN: Updating jobbanfile!
+ADMIN: arborinus = Host
+[19:29:56] ACCESS: Login: Arborinus from 
+[19:30:17] ADMIN: Arborinus [DEAD] has started the game.
+[19:30:17] ACCESS: Login: Darin Willey (Arborinus) [TRAITOR] from 
+[19:30:24] SAY: Shitty Bill (NPC) : Howdy Donald "Don" Glabs.
+[19:30:26] ADMIN: Darin Willey (Arborinus) [TRAITOR] has toggled their nodamage to On
+[19:30:55] SAY: Shitty Bill (NPC) : You a changer?
+[19:32:00] SAY: Shitty Bill (NPC) : The hell you lookin' at, 'Traser?
+
+
+Starting up. 19:37.10
+---------------------
+
+[19:37:14] ADMIN: Loading jobban_rank
+[19:37:14] ADMIN: Jobban_keylist was empty
+[19:37:14] ADMIN: Updating jobbanfile!
+[19:37:14] ADMIN: Loading oocban_rank
+[19:37:14] ADMIN: oocban_keylist was empty
+[19:37:14] ADMIN: Updating jobbanfile!
+ADMIN: arborinus = Host
+[19:37:19] ACCESS: Login: Arborinus from 
+[19:37:52] ADMIN: Arborinus [DEAD] has started the game.
+[19:37:52] ACCESS: Login: Lincoln Walker (Arborinus) [TRAITOR] from 
+[19:37:57] ADMIN: Lincoln Walker (Arborinus) [TRAITOR] has toggled their nodamage to On
+[19:38:20] ADMIN: Lincoln Walker (Arborinus) [TRAITOR] modified Dartboard's pixel_y to 26
+[19:38:50] SAY: Shitty Bill (NPC) : You a narc?
+[19:40:30] SAY: Shitty Bill (NPC) : You smoke?
+[19:41:05] SAY: Shitty Bill (NPC) : You smoke?
+[19:41:12] SAY: Shitty Bill (NPC) : Got any ecto?
+[19:41:48] ADMIN: Lincoln Walker (Arborinus) [TRAITOR] modified light fixture's icon_state to 0
+[19:41:59] ADMIN: Lincoln Walker (Arborinus) [TRAITOR] modified light fixture's icon_state to 0
+[19:42:27] SAY: Shitty Bill (NPC) : Yo Donald "Don" Glabs.
+[19:43:18] SAY: Shitty Bill (NPC) : I ever tell you 'bout that time I fell in some lava?
+[19:43:21] SAY: Father Jack (NPC) : That would be an ecumenical matter.
+[19:43:30] SAY: Shitty Bill (NPC) : You a changer?
+[19:43:30] SAY: Father Jack (NPC) : ARSE!
+[19:44:31] SAY: Shitty Bill (NPC) : You rap?
+[19:44:33] SAY: Shitty Bill (NPC) : Got a light, bucko?
+[19:44:45] SAY: Shitty Bill (NPC) : What're you lookin' at, bro?
+[19:45:36] SAY: Shitty Bill (NPC) : You wrassle?
+[19:45:41] ADMIN: Lincoln Walker (Arborinus) [TRAITOR] created a /obj/item/implant/projectile/lawndart
+[19:46:08] SAY: Shitty Bill (NPC) : Got a light, kid?
+[19:46:11] SAY: Father Jack (NPC) : DRINK!
+
+
+Starting up. 20:06.20
+---------------------
+
+[20:06:24] ADMIN: Loading jobban_rank
+[20:06:24] ADMIN: Jobban_keylist was empty
+[20:06:24] ADMIN: Updating jobbanfile!
+[20:06:24] ADMIN: Loading oocban_rank
+[20:06:24] ADMIN: oocban_keylist was empty
+[20:06:24] ADMIN: Updating jobbanfile!
+ADMIN: arborinus = Host
+[20:06:30] ACCESS: Login: Arborinus from 
+[20:06:44] ADMIN: Arborinus [DEAD] has started the game.
+[20:06:44] ACCESS: Login: Morgan Conrad (Arborinus) [TRAITOR] from 
+
+
+Starting up. 20:34.10
+---------------------
+
+[20:34:14] ADMIN: Loading jobban_rank
+[20:34:14] ADMIN: Jobban_keylist was empty
+[20:34:14] ADMIN: Updating jobbanfile!
+[20:34:14] ADMIN: Loading oocban_rank
+[20:34:14] ADMIN: oocban_keylist was empty
+[20:34:14] ADMIN: Updating jobbanfile!
+ADMIN: arborinus = Host
+[20:34:20] ACCESS: Login: Arborinus from 
+[20:34:49] ADMIN: Arborinus [DEAD] has started the game.
+[20:34:49] ACCESS: Login: Keaton Blunt (Arborinus) [TRAITOR] from 
+[20:36:24] ADMIN: Keaton Blunt (Arborinus) [TRAITOR] modified lawn dart's throw_speed to 3
+[20:37:13] SAY: Shitty Bill (NPC) : I ever tell you 'bout the day the Marties overran our position?
+[20:37:20] SAY: Shitty Bill (NPC) : Oh Christ, it's Father Jack.
+[20:37:34] SAY: Shitty Bill (NPC) : I think my homebros sent you.
+[20:37:50] SAY: Shitty Bill (NPC) : Man, I sure don't miss my dad.
+[20:38:34] SAY: Shitty Bill (NPC) : Got a light, nerd?
+[20:38:51] ADMIN: Keaton Blunt (Arborinus) [TRAITOR] has toggled their nodamage to On
+[20:39:00] SAY: Shitty Bill (NPC) : You a miner?
+[20:39:00] SAY: Father Jack (NPC) : FECK!
+[20:39:34] SAY: Shitty Bill (NPC) : I think my bruds left me here.
+[20:40:44] SAY: Shitty Bill (NPC) : I ever tell you 'bout the time I poisoned a dude with my own pee?
+
+
+Starting up. 20:44.32
+---------------------
+
+[20:44:36] ADMIN: Loading jobban_rank
+[20:44:36] ADMIN: Jobban_keylist was empty
+[20:44:36] ADMIN: Updating jobbanfile!
+[20:44:36] ADMIN: Loading oocban_rank
+[20:44:36] ADMIN: oocban_keylist was empty
+[20:44:36] ADMIN: Updating jobbanfile!
+ADMIN: arborinus = Host
+[20:44:42] ACCESS: Login: Arborinus from 
+[20:44:55] ADMIN: Arborinus [DEAD] has started the game.
+[20:44:55] ACCESS: Login: Jaime James (Arborinus) [TRAITOR] from 
+[20:45:16] SAY: Shitty Bill (NPC) : Hey chump, gimme yer dosh.
+[20:46:08] SAY: Shitty Bill (NPC) : I ever tell you 'bout the time I found an alien thing that went to the bathroom for you?
+[20:46:56] SAY: Shitty Bill (NPC) : Man, I sure miss that long station.
+[20:48:02] SAY: Shitty Bill (NPC) : Got any argine?
+[20:48:04] SAY: Shitty Bill (NPC) : I ever tell you 'bout the time I got cloned?
+
+
+Starting up. 22:21.07
+---------------------
+
+[22:21:11] ADMIN: Loading jobban_rank
+[22:21:11] ADMIN: Jobban_keylist was empty
+[22:21:11] ADMIN: Updating jobbanfile!
+[22:21:11] ADMIN: Loading oocban_rank
+[22:21:11] ADMIN: oocban_keylist was empty
+[22:21:11] ADMIN: Updating jobbanfile!
+ADMIN: arborinus = Host
+[22:21:17] ACCESS: Login: Arborinus from 
+[22:21:26] ADMIN: Arborinus [DEAD] has started the game.
+[22:21:27] ACCESS: Login: Fabian Bennett (Arborinus) [TRAITOR] from 
+[22:21:35] ADMIN: Fabian Bennett (Arborinus) [TRAITOR] has toggled their nodamage to On
+[22:23:28] SAY: Father Jack (NPC) : FECK!
+[22:24:46] SAY: Shitty Bill (NPC) : 'Ey, it's Father Jack.
+[22:25:14] SAY: Father Jack (NPC) : DRINK!
+[22:25:44] SAY: Shitty Bill (NPC) : Got any cola?
+[22:25:46] SAY: Shitty Bill (NPC) : Hey dweeb, gimme yer jet.
+[22:26:05] SAY: Shitty Bill (NPC) : I ever tell you 'bout my secret stash?
+[22:26:07] SAY: Shitty Bill (NPC) : You grustle?
+[22:26:22] SAY: Shitty Bill (NPC) : Nice podd, dweeb.
+[22:27:13] SAY: Shitty Bill (NPC) : You a robot?
+[22:27:29] SAY: Shitty Bill (NPC) : I think my homies took off.
+[22:27:38] SAY: Shitty Bill (NPC) : Yo, gimme yer cats.
+[22:28:30] SAY: Shitty Bill (NPC) : I think my homies got lost on the way here.

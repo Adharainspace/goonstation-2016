@@ -1,0 +1,40 @@
+
+
+Starting up. 23:48.37
+---------------------
+
+[23:48:41] ADMIN: Loading jobban_rank
+[23:48:41] ADMIN: Jobban_keylist was empty
+[23:48:41] ADMIN: Updating jobbanfile!
+[23:48:41] ADMIN: Loading oocban_rank
+[23:48:41] ADMIN: oocban_keylist was empty
+[23:48:41] ADMIN: Updating jobbanfile!
+ADMIN: arborinus = Host
+[23:48:52] ACCESS: Login: Arborinus from 
+[23:49:08] ADMIN: Arborinus [DEAD] has started the game.
+[23:49:09] ACCESS: Login: Jimmy Philips (Arborinus) [TRAITOR] from 
+[23:49:23] SAY: Shitty Bill (NPC) : Nice threads, bro.
+[23:49:31] ADMIN: Jimmy Philips (Arborinus) [TRAITOR] created a /obj/item/card/id/captains_spare
+[23:50:25] SAY: Shitty Bill (NPC) : Hello Donald "Don" Glabs.
+[23:50:53] SAY: Shitty Bill (NPC) : You dance?
+[23:51:07] SAY: Shitty Bill (NPC) : Hey brud, gimme yer bees.
+[23:51:26] SAY: Father Jack (NPC) : DRINK!
+[23:51:31] SAY: Shitty Bill (NPC) : I ever tell you 'bout the time I caught gibbis?
+[23:51:52] SAY: Shitty Bill (NPC) : Man, I sure don't miss bein' a borg.
+[23:52:02] SAY: Shitty Bill (NPC) : Man, I sure don't miss bein' an NT.
+[23:52:16] ADMIN: Jimmy Philips (Arborinus) [TRAITOR] created a /mob/living/carbon/human/normal/male/headofsecurity
+[23:52:19] ADMIN: Jimmy Philips (Arborinus) [TRAITOR] swapped bodies with Roman Straub (NPC)
+[23:52:19] ACCESS: Login: Roman Straub (Arborinus) [TRAITOR] from 
+[23:52:48] SAY: Shitty Bill (NPC) : I ever tell you 'bout the time I huffed a whole canister fulla laughing gas?
+[23:53:21] ADMIN: Roman Straub (Arborinus) [TRAITOR] modified Captain's spare ID's access to /list on all entities of same type
+[23:53:32] ADMIN: Roman Straub (Arborinus) [TRAITOR] modified Captain's spare ID's access to 37
+[23:53:50] ADMIN: Roman Straub (Arborinus) [TRAITOR] modified Captain's spare ID's access to "37"
+[23:53:56] ADMIN: Roman Straub (Arborinus) [TRAITOR] jumped to 192, 125, 2 in Head of Security's Office
+[23:54:27] SAY: Shitty Bill (NPC) : I think my associates stole my key.
+[23:54:53] SAY: Father Jack (NPC) : FECK!
+[23:55:21] ADMIN: Roman Straub (Arborinus) [TRAITOR] healed / revived Roman Straub (Arborinus) [TRAITOR]
+[23:55:25] ADMIN: Roman Straub (Arborinus) [TRAITOR] has toggled their nodamage to On
+[23:55:52] SAY: Shitty Bill (NPC) : Got any salts?
+[23:56:19] ADMIN: Roman Straub (Arborinus) [TRAITOR] jumped to 186, 129, 2 in Space
+[23:56:20] SAY: Shitty Bill (NPC) : Got a light, kid?
+[23:56:36] SAY: Shitty Bill (NPC) : Man, I sure miss the Cloud.

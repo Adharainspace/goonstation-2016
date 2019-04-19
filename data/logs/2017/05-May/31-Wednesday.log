@@ -1,0 +1,138 @@
+
+
+Starting up. 02:56.08
+---------------------
+
+[02:56:12] ADMIN: Loading jobban_rank
+[02:56:12] ADMIN: Jobban_keylist was empty
+[02:56:12] ADMIN: Updating jobbanfile!
+[02:56:12] ADMIN: Loading oocban_rank
+[02:56:12] ADMIN: oocban_keylist was empty
+[02:56:12] ADMIN: Updating jobbanfile!
+ADMIN: arborinus = Host
+[02:56:20] ACCESS: Login: Arborinus from 
+[02:56:36] ADMIN: Arborinus [DEAD] has started the game.
+[02:56:36] ACCESS: Login: Jaxon Martin (Arborinus) [TRAITOR] from 
+[02:56:38] SAY: Shitty Bill (NPC) : I think my bros set me up.
+[02:56:47] ADMIN: Jaxon Martin (Arborinus) [TRAITOR] has toggled their nodamage to On
+[02:57:14] SAY: Shitty Bill (NPC) : I think my bros left without me.
+[02:57:21] SAY: Shitty Bill (NPC) : 'Ey, it's Donald "Don" Glabs.
+[02:57:27] SAY: Jaxon Martin (Arborinus) [TRAITOR] : poo
+[02:58:33] ADMIN: Jaxon Martin (Arborinus) [TRAITOR] created a /obj/item/card/id/captains_spare
+[02:59:08] SAY: Father Jack (NPC) : That would be an ecumenical matter.
+[02:59:57] SAY: Shitty Bill (NPC) : Got a light, scrub?
+[03:00:02] SAY: Shitty Bill (NPC) : Hey brud, gimme yer cash.
+[03:00:14] SAY: Shitty Bill (NPC) : I ever tell you 'bout that weird copper fella who just looks at the sun all day?
+[03:01:01] SAY: Father Jack (NPC) : That would be an ecumenical matter.
+[03:01:45] SAY: Jaxon Martin (Arborinus) [TRAITOR] : poo
+[03:02:12] SAY: Father Jack (NPC) : That would be an ecumenical matter.
+[03:02:43] SAY: Shitty Bill (NPC) : Hey dweeb, gimme yer smokes.
+[03:03:07] SAY: Shitty Bill (NPC) : Man, I sure don't miss the wizzers.
+[03:03:49] ADMIN: Jaxon Martin (Arborinus) [TRAITOR] jumped to Solarium (<a href='?src=%admin_ref%;action=jumptocoords;target=98,87,2' title='Jump to Coords'>98,87,2</a>)
+[03:03:56] SAY: Shitty Bill (NPC) : The hell're you lookin' at, chump?
+[03:04:09] ADMIN: Jaxon Martin (Arborinus) [TRAITOR] modified automaton's got_cheget_key to 1
+[03:04:32] SAY: Shitty Bill (NPC) : You grustle?
+[03:05:02] ADMIN: Jaxon Martin (Arborinus) [TRAITOR] modified automaton's saw_moon_bee to 1
+[03:05:12] SAY: Father Jack (NPC) : ARSE!
+[03:05:13] ADMIN: Jaxon Martin (Arborinus) [TRAITOR] modified automaton's sun_spin to 1
+[03:05:24] ADMIN: Jaxon Martin (Arborinus) [TRAITOR] modified automaton's keycount to 99
+[03:06:08] ADMIN: Jaxon Martin (Arborinus) [TRAITOR] modified automaton's wanderer to 1
+[03:06:38] SAY: Father Jack (NPC) : DRINK!
+[03:06:43] ADMIN: Jaxon Martin (Arborinus) [TRAITOR] created a /obj/item/clothing/mask/cigarette/custom
+[03:07:04] ADMIN: Jaxon Martin (Arborinus) [TRAITOR] has toggled their nodamage to Off
+
+
+Starting up. 13:35.10
+---------------------
+
+[13:35:15] ADMIN: Loading jobban_rank
+[13:35:15] ADMIN: Jobban_keylist was empty
+[13:35:15] ADMIN: Updating jobbanfile!
+[13:35:15] ADMIN: Loading oocban_rank
+[13:35:15] ADMIN: oocban_keylist was empty
+[13:35:15] ADMIN: Updating jobbanfile!
+ADMIN: arborinus = Host
+[13:35:22] ACCESS: Login: Arborinus from 
+[13:35:51] ADMIN: Arborinus [DEAD] has started the game.
+[13:35:52] ACCESS: Login: Dorian Ramos (Arborinus) [TRAITOR] from 
+[13:36:22] SAY: Shitty Bill (NPC) : You a dracula?
+[13:36:27] SAY: Shitty Bill (NPC) : I ever tell you 'bout the time I made a rocket launcher?
+[13:37:37] SAY: Shitty Bill (NPC) : Sup Donald "Don" Glabs.
+[13:37:39] SAY: Shitty Bill (NPC) : Got any cola?
+[13:37:42] SAY: Shitty Bill (NPC) : You fly?
+[13:38:03] SAY: Shitty Bill (NPC) : You drink?
+[13:38:40] SAY: Father Jack (NPC) : That would be an ecumenical matter.
+[13:38:59] SAY: Shitty Bill (NPC) : Man, I sure miss Europa Station.
+[13:40:41] SAY: Shitty Bill (NPC) : Got any nog?
+[13:42:29] SAY: Shitty Bill (NPC) : Hey, gimme yer card.
+[13:43:18] SAY: Shitty Bill (NPC) : I ever tell you 'bout my accident?
+[13:44:10] SAY: Shitty Bill (NPC) : You ride?
+[13:44:12] SAY: Shitty Bill (NPC) : I ever tell you 'bout the day the Marties overran our position?
+[13:44:17] ADMIN: Dorian Ramos (Arborinus) [TRAITOR] has toggled their nodamage to On
+[13:44:32] ADMIN: Dorian Ramos (Arborinus) [TRAITOR] has toggled their nodamage to Off
+[13:46:25] SAY: Shitty Bill (NPC) : How's it hangin' Father Jack.
+[13:47:55] SAY: Shitty Bill (NPC) : I ever tell you 'bout the time I got cloned?
+[13:49:07] SAY: Shitty Bill (NPC) : I think my pals got caught.
+[13:50:12] SAY: Shitty Bill (NPC) : I think my bros set me up.
+[13:50:17] SAY: Shitty Bill (NPC) : Nice ship, wirehead.
+[13:50:53] ADMIN: Dorian Ramos (Arborinus) [TRAITOR] created a /obj/item/football
+[13:51:33] ADMIN: Dorian Ramos (Arborinus) [TRAITOR] created a /obj/item/bloodbowlball
+[13:51:49] SAY: Shitty Bill (NPC) : You dance?
+[13:51:50] ADMIN: Dorian Ramos (Arborinus) [TRAITOR] modified spiked ball's throw_spin to 0
+[13:52:33] ADMIN: Dorian Ramos (Arborinus) [TRAITOR] modified football's throw_spin to 0
+
+
+Starting up. 15:13.02
+---------------------
+
+[15:13:06] ADMIN: Loading jobban_rank
+[15:13:06] ADMIN: Jobban_keylist was empty
+[15:13:06] ADMIN: Updating jobbanfile!
+[15:13:06] ADMIN: Loading oocban_rank
+[15:13:06] ADMIN: oocban_keylist was empty
+[15:13:06] ADMIN: Updating jobbanfile!
+ADMIN: arborinus = Host
+[15:13:14] ACCESS: Login: Arborinus from 
+[15:13:35] ADMIN: Arborinus [DEAD] has started the game.
+[15:13:35] ACCESS: Login: Desmond Cowper (Arborinus) [TRAITOR] from 
+[15:13:41] SAY: Shitty Bill (NPC) : Got a light, kid?
+[15:13:56] SAY: Shitty Bill (NPC) : You a Synder?
+[15:14:02] SAY: Shitty Bill (NPC) : Man, I sure don't miss bein' uploaded.
+[15:14:21] SAY: Shitty Bill (NPC) : Got a light, wirehead?
+[15:14:26] SAY: Shitty Bill (NPC) : Got any krok?
+[15:14:44] ADMIN: Desmond Cowper (Arborinus) [TRAITOR] added 50 units of big_bang to the drinking glass at (<a href='?src=%admin_ref%;action=jumptocoords;target=70,106,1' title='Jump to Coords'>70,106,1</a> in Bar).
+[15:15:00] ADMIN: Desmond Cowper (Arborinus) [TRAITOR] created a /obj/item/reagent_containers/glass/beaker
+[15:16:19] SAY: Shitty Bill (NPC) : You drink?
+[15:16:57] SAY: Shitty Bill (NPC) : Nice hogg, owl man.
+[15:17:02] ADMIN: Desmond Cowper (Arborinus) [TRAITOR] created a /obj/item/scalpel
+[15:17:20] SAY: Father Jack (NPC) : That would be an ecumenical matter.
+[15:18:11] SAY: Shitty Bill (NPC) : How's it goin' Donald "Don" Glabs.
+[15:19:35] SAY: Shitty Bill (NPC) : Man, I sure don't miss those damn ghosts.
+[15:19:42] SAY: Father Jack (NPC) : FECK!
+[15:20:04] ADMIN: Desmond Cowper (Arborinus) [TRAITOR] added 2.4 units of big_bang to the dart at (<a href='?src=%admin_ref%;action=jumptocoords;target=70,106,1' title='Jump to Coords'>70,106,1</a> in Bar).
+[15:20:41] SAY: Shitty Bill (NPC) : I think my bruds left me here.
+[15:20:41] SAY: Father Jack (NPC) : ARSE!
+[15:21:19] ACCESS: Login: Desmond Cowper (Arborinus) [TRAITOR] [DEAD] from 
+[15:21:33] SAY: Shitty Bill (NPC) : Got any weed?
+[15:22:03] SAY: Father Jack (NPC) : That would be an ecumenical matter.
+
+
+Starting up. 15:39.49
+---------------------
+
+[15:39:54] ADMIN: Loading jobban_rank
+[15:39:54] ADMIN: Jobban_keylist was empty
+[15:39:54] ADMIN: Updating jobbanfile!
+[15:39:54] ADMIN: Loading oocban_rank
+[15:39:54] ADMIN: oocban_keylist was empty
+[15:39:54] ADMIN: Updating jobbanfile!
+ADMIN: arborinus = Host
+[15:40:02] ACCESS: Login: Arborinus from 
+[15:40:31] ADMIN: Arborinus [DEAD] has started the game.
+[15:40:32] ACCESS: Login: Mike Hussain (Arborinus) [TRAITOR] from 
+[15:40:38] SAY: Shitty Bill (NPC) : Nice pod, friend.
+[15:41:00] ADMIN: Mike Hussain (Arborinus) [TRAITOR] created a /obj/item/reagent_containers/glass/beaker
+[15:41:06] SAY: Shitty Bill (NPC) : I think my crew died in space.
+[15:41:13] ADMIN: Mike Hussain (Arborinus) [TRAITOR] added 50 units of big_bang to the beaker at (<a href='?src=%admin_ref%;action=jumptocoords;target=70,106,1' title='Jump to Coords'>70,106,1</a> in Bar).
+[15:41:13] SAY: Father Jack (NPC) : That would be an ecumenical matter.
+[15:41:29] SAY: Father Jack (NPC) : FECK!

@@ -240,3 +240,13 @@
 	icon_off = "lil_candle0"
 	icon_on = "lil_candle1"
 	brightness = 0.8
+
+/obj/item/device/spinner
+	name = "fidget spinner"
+	desc = "Spinny spin."
+	icon_state = "spinner_red"
+	var/speed = 5
+
+	attack_self(mob/user)
+		animate_spin(src, "R", speed, 1)
+		src.speed += 0.5

@@ -575,6 +575,7 @@ var/global
 	list/deepfall = list() // list of locations for people to fall into the precursor pit area
 	list/ancientfall = list() // list of locations for people to fall into the ancient pit area
 	list/bioelefall = list() // biodome elevator shaft
+	list/combatfall = list() // THIS IS SPARTA! (falling pit for combat maps)
 	list/cardinal = list( NORTH, SOUTH, EAST, WEST )
 	list/ordinal = list(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
 	list/alldirs = list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)

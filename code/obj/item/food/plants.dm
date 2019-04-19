@@ -649,6 +649,16 @@
 		else ..()
 	*/
 
+/obj/item/reagent_containers/food/snacks/plant/pistachio
+	name = "pistachio"
+	desc = "A delectable treat freed from its hard shell."
+	icon_state = "pistachio"
+	planttype = /datum/plant/pistachio
+	amount = 1
+	heal_amt = 2
+	food_color = "#D0CA2F"
+
+
 /obj/item/reagent_containers/food/snacks/plant/potato/
 	name = "potato"
 	desc = "It needs peeling first."

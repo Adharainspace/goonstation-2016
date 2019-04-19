@@ -321,7 +321,3 @@
 	var/list/signals = list()
 	var/list/transmitters = list()
 
-/obj/machinery/drainage
-	name = "drain"
-	desc = "I do not do anything, I am just a placeholder."
-	icon_state = "gsensor0"

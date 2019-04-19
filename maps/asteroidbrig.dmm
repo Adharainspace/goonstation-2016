@@ -1,0 +1,466 @@
+"aa" = (/turf/space,/area)
+"ab" = (/turf/simulated/floor,/area)
+"ac" = (/turf/simulated/wall/auto/reinforced/supernorn,/area)
+"ad" = (/obj/storage/cart/trash,/turf/simulated/floor/plating,/area)
+"ae" = (/turf/simulated/floor{icon_state = "caution_we"},/area)
+"af" = (/obj/item/material_piece/slag,/turf/simulated/floor/plating,/area)
+"ag" = (/obj/machinery/conveyor{dir = 2; id = "garbage"; operating = 1},/obj/plasticflaps{layer = 3},/obj/machinery/door/poddoor/pyro{id = "crusher"; layer = 4; name = "Crusher Door"},/turf/simulated/floor/plating,/area)
+"ah" = (/obj/machinery/conveyor_switch{id = "garbage"; position = 1},/obj/machinery/door_control{id = "crusher"; name = "Crusher Door Control"; pixel_x = -24; pixel_y = 0},/turf/simulated/floor/plating,/area)
+"ai" = (/turf/simulated/floor/plating,/area)
+"aj" = (/turf/simulated/wall/auto/supernorn,/area)
+"ak" = (/obj/machinery/conveyor{dir = 1; name = "cargo belt - north"; operating = 1},/turf/simulated/floor{icon_state = "caution_we"},/area)
+"al" = (/obj/grille/steel,/turf/simulated/floor/plating,/area)
+"am" = (/turf/simulated/wall/asteroid,/area)
+"an" = (/obj/machinery/door/airlock/pyro/command{aiControlDisabled = 1; dir = 2; icon_state = "com_closed"; name = "Armory"; req_access_txt = "37"},/obj/machinery/door/firedoor/pyro{dir = 2; icon_state = "fdoor0"},/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/overfloor/horizontal,/turf/simulated/floor{icon_state = "delivery"},/area)
+"ao" = (/obj/table/reinforced/auto,/obj/machinery/door/poddoor/pyro{dir = 2; id = "armory"; layer = 6; name = "Armory Window"},/obj/machinery/door/firedoor/pyro{icon_state = "fdoor0"; dir = 4},/obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/overfloor/horizontal,/turf/simulated/floor{icon_state = "delivery"},/area)
+"ap" = (/turf/simulated/floor{icon_state = "caution_west"},/area)
+"aq" = (/turf/simulated/floor{icon_state = "caution_ns"; dir = 1},/area)
+"ar" = (/obj/machinery/launcher_loader/south,/turf/simulated/floor/plating,/area)
+"as" = (/obj/disposalpipe/segment{dir = 4; icon_state = "pipe-c"},/turf/simulated/floor{icon_state = "caution_ns"; dir = 1},/area)
+"at" = (/obj/machinery/light/small{dir = 4; layer = 9.1; pixel_x = 10},/obj/disposalpipe/segment{dir = 4},/turf/simulated/floor{icon_state = "corner_east"; dir = 8},/area)
+"au" = (/obj/disposalpipe/segment{dir = 4},/turf/simulated/wall/auto/supernorn,/area)
+"av" = (/obj/machinery/conveyor{dir = 1; name = "cargo belt - north"; operating = 1},/obj/disposalpipe/segment{dir = 4},/turf/simulated/floor{icon_state = "caution_we"},/area)
+"aw" = (/obj/grille/steel,/obj/disposalpipe/segment{dir = 4},/turf/simulated/floor/plating,/area)
+"ax" = (/obj/disposalpipe/segment{icon_state = "pipe-c"; dir = 2},/turf/simulated/floor/plating,/area)
+"ay" = (/obj/machinery/light_switch{name = "W light switch"; pixel_x = -24; pixel_y = 0},/obj/machinery/light{dir = 1; icon_state = "tube1"; layer = 9.1; pixel_y = 21},/turf/simulated/floor{icon_state = "caution_north"},/area)
+"az" = (/turf/simulated/floor{icon_state = "caution_north"},/area)
+"aA" = (/obj/machinery/firealarm{dir = 4; pixel_x = 24},/obj/machinery/light{dir = 1; icon_state = "tube1"; layer = 9.1; pixel_y = 21},/turf/simulated/floor{icon_state = "caution_north"},/area)
+"aB" = (/obj/disposalpipe/segment{dir = 4; icon_state = "pipe-c"},/turf/simulated/floor{icon_state = "caution_we"},/area)
+"aC" = (/obj/disposalpipe/segment{dir = 4},/turf/simulated/floor/plating,/area)
+"aD" = (/obj/machinery/mass_driver{drive_range = 22; id = "cateringdock_in"},/obj/disposalpipe/segment{dir = 4},/turf/simulated/floor/plating/airless,/area)
+"aE" = (/obj/disposalpipe/segment{dir = 4},/obj/table/reinforced/auto,/obj/random_item_spawner/tools,/turf/simulated/floor/plating,/area)
+"aF" = (/obj/disposalpipe/segment{dir = 8; icon_state = "pipe-c"},/obj/table/reinforced/auto,/obj/random_item_spawner/tools,/turf/simulated/floor/plating,/area)
+"aG" = (/obj/table/reinforced/auto,/obj/random_item_spawner/tools,/turf/simulated/floor/plating,/area)
+"aH" = (/obj/disposalpipe/loafer,/turf/simulated/floor/plating,/area)
+"aI" = (/turf/simulated/floor{icon_state = "red"; dir = 8},/area)
+"aJ" = (/turf/simulated/floor{icon_state = "red"; dir = 4},/area)
+"aK" = (/obj/machinery/door/airlock/pyro/maintenance{icon_state = "maint_closed"; dir = 4},/obj/machinery/door/firedoor/pyro{icon_state = "fdoor0"; dir = 4},/turf/simulated/floor/plating,/area)
+"aL" = (/obj/disposalpipe/segment,/turf/simulated/floor{icon_state = "caution_we"},/area)
+"aM" = (/obj/machinery/conveyor{dir = 4; id = "garbage"; operating = 1},/turf/simulated/floor{dir = 1; icon_state = "corner_nwest"},/area)
+"aN" = (/obj/machinery/conveyor{dir = 4; id = "garbage"; operating = 1},/turf/simulated/floor{icon_state = "caution_ns"; dir = 1},/area)
+"aO" = (/obj/machinery/conveyor{dir = 1; name = "cargo belt - north"; operating = 1},/turf/simulated/floor{icon_state = "corner_east"; dir = 8},/area)
+"aP" = (/obj/disposalpipe/segment,/turf/simulated/floor/plating,/area)
+"aQ" = (/obj/structure/girder,/turf/simulated/floor/plating,/area)
+"aR" = (/turf/simulated/floor{icon_state = "carpetNW"},/area)
+"aS" = (/turf/simulated/floor{icon_state = "carpetN"},/area)
+"aT" = (/turf/simulated/floor{icon_state = "carpetNE"},/area)
+"aU" = (/obj/machinery/door/airlock/pyro/maintenance{icon_state = "maint_closed"; dir = 4},/obj/machinery/door/firedoor/pyro{icon_state = "fdoor0"; dir = 4},/obj/disposalpipe/segment{dir = 4},/turf/simulated/floor/plating,/area)
+"aV" = (/obj/machinery/conveyor/south{id = "brigplate"},/obj/plasticflaps{layer = 3},/obj/machinery/door/poddoor/pyro{density = 1; dir = 1; icon_state = "pdoor1"; id = "platein1"; layer = 4; name = "Scrap Door"; opacity = 1; p_open = 0},/turf/simulated/floor{icon_state = "caution_we"},/area)
+"aW" = (/obj/disposalpipe/segment,/turf/simulated/wall/auto/reinforced/supernorn,/area)
+"aX" = (/turf/simulated/floor{icon_state = "carpetW"},/area)
+"aY" = (/turf/simulated/floor/carpet,/area)
+"aZ" = (/turf/simulated/floor{icon_state = "carpetE"},/area)
+"ba" = (/obj/grille/steel,/obj/securearea{desc = ""; icon_state = "shock"; name = "Danger: High Voltage"; pixel_y = -32},/turf/simulated/floor/plating,/area)
+"bb" = (/obj/table/reinforced/auto,/obj/machinery/conveyor/south{id = "brigplate"; layer = 3},/obj/decal/tile_edge/stripe{dir = 8; icon_state = "stripe-edge"; tag = ""},/obj/decal/tile_edge/stripe{icon_state = "stripe-edge"; dir = 4},/turf/simulated/floor,/area)
+"bc" = (/obj/machinery/conveyor_switch{id = "brigplate"},/turf/simulated/floor{icon_state = "red"; dir = 9},/area)
+"bd" = (/obj/machinery/light{dir = 1; icon_state = "tube1"; layer = 9.1; pixel_y = 21},/obj/stool/chair/office/red,/turf/simulated/floor{icon_state = "red"; dir = 1},/area)
+"be" = (/obj/machinery/door_control{id = "platein1"; name = "Disposal inlet switch"; pixel_y = -24},/turf/simulated/floor{icon_state = "red"; dir = 1},/area)
+"bf" = (/turf/simulated/floor{icon_state = "red"; dir = 1},/area)
+"bg" = (/obj/machinery/light{dir = 1; icon_state = "tube1"; layer = 9.1; pixel_y = 21},/turf/simulated/floor{icon_state = "red"; dir = 1},/area)
+"bh" = (/obj/disposalpipe/segment,/turf/simulated/floor{icon_state = "red"; dir = 1},/area)
+"bi" = (/turf/simulated/floor{icon_state = "red"; dir = 5},/area)
+"bj" = (/obj/machinery/door/airlock/pyro/glass{dir = 4; name = "Quality Control"; req_access_txt = "1"},/obj/machinery/door/poddoor/pyro{density = 0; dir = 4; icon_state = "pdoor0"; id = "lockdown_sec"; name = "Security Lockdown Doors"; opacity = 0},/obj/machinery/door/firedoor/pyro{icon_state = "fdoor0"; dir = 4},/turf/simulated/floor{icon_state = "delivery"},/area)
+"bk" = (/turf/simulated/floor{icon_state = "bar"},/area)
+"bl" = (/obj/machinery/door/airlock/pyro/security{dir = 8; name = "Security Break Room"; req_access_txt = "1"},/obj/machinery/door/poddoor/pyro{density = 0; dir = 8; icon_state = "pdoor0"; id = "lockdown_sec"; name = "Security Lockdown Doors"; opacity = 0},/obj/machinery/door/firedoor/pyro{dir = 8; icon_state = "fdoor0"},/turf/simulated/floor{icon_state = "delivery"},/area)
+"bm" = (/obj/table/reinforced/auto,/obj/decal/tile_edge/stripe,/obj/item/kitchen/food_box/donut_box{desc = "It appears to be a Martian brand of donuts."; name = "Robust Donuts"},/turf/simulated/floor{icon_state = "red"; dir = 8},/area)
+"bn" = (/obj/table/reinforced/auto,/obj/decal/tile_edge/stripe,/turf/simulated/floor,/area)
+"bo" = (/obj/disposalpipe/segment,/turf/simulated/floor,/area)
+"bp" = (/obj/machinery/disposal{name = "Disposal Chute - Cargo Bay"},/turf/simulated/floor{icon_state = "delivery"; name = "floor"},/area)
+"bq" = (/obj/window/auto/reinforced,/obj/grille/steel,/turf/simulated/floor/plating,/area)
+"br" = (/turf/simulated/floor{icon_state = "red"},/area)
+"bs" = (/turf/simulated/floor/carpet{icon_state = "fred2"; dir = 10},/area)
+"bt" = (/turf/simulated/floor{icon_state = "carpetS"},/area)
+"bu" = (/turf/simulated/floor{icon_state = "carpetSE"},/area)
+"bv" = (/obj/machinery/shower{dir = 1; icon_state = "showerhead"; pixel_y = 16},/turf/simulated/floor/plating{icon_state = "panelscorched"},/area)
+"bw" = (/turf/simulated/floor{icon_state = "floorgrime-w"; dir = 4},/area)
+"bx" = (/turf/simulated/floor{icon_state = "grimy"; name = "cheap carpet"},/area)
+"by" = (/obj/decal/tile_edge/stripe{dir = 2; icon_state = "stripe-edge2"},/turf/simulated/floor{icon_state = "delivery"; name = "floor"},/area)
+"bz" = (/turf/simulated/floor{icon_state = "red"; dir = 10},/area)
+"bA" = (/obj/decal/tile_edge/stripe,/turf/simulated/floor{icon_state = "red"},/area)
+"bB" = (/obj/decal/tile_edge/stripe,/obj/disposalpipe/segment,/turf/simulated/floor{icon_state = "red"},/area)
+"bC" = (/obj/decal/tile_edge/stripe,/turf/simulated/floor{icon_state = "red"; dir = 6},/area)
+"bD" = (/obj/window/cubicle{dir = 4},/turf/simulated/floor{icon_state = "floorgrime-w"; dir = 4},/area)
+"bE" = (/obj/stool/bed,/obj/item/clothing/glasses/vr{network = "arcadevr"},/turf/simulated/floor{icon_state = "grimy"; name = "cheap carpet"},/area)
+"bF" = (/obj/submachine/chef_sink/chem_sink{desc = "A water-filled unit intended for hand-washing purposes."; dir = 8; pixel_x = 2},/turf/simulated/floor{icon_state = "grimy"; name = "cheap carpet"},/area)
+"bG" = (/obj/decal/stage_edge{icon_state = "edgebrig"},/turf/simulated/floor{icon_state = "floorgrime-w"},/area)
+"bH" = (/obj/decal/stage_edge{dir = 2; icon_state = "edgebrig"},/turf/simulated/floor{icon_state = "floorgrime-w"},/area)
+"bI" = (/obj/decal/stage_edge{dir = 2; icon_state = "edgebrig"},/obj/disposalpipe/segment,/turf/simulated/floor{icon_state = "floorgrime-w"},/area)
+"bJ" = (/obj/machinery/computer/secure_data{dir = 4},/obj/machinery/power/apc{dir = 1; name = "N APC"; pixel_x = 0; pixel_y = 24},/turf/simulated/floor{icon_state = "carpetNW"},/area)
+"bK" = (/obj/vehicle/segway,/obj/item/device/radio/intercom/brig{broadcasting = 0},/turf/simulated/floor{icon_state = "carpetN"},/area)
+"bL" = (/obj/storage/secure/closet/command/hos,/obj/machinery/firealarm{pixel_x = 1; pixel_y = 26; text = "NF"},/turf/simulated/floor{icon_state = "carpetN"},/area)
+"bM" = (/obj/machinery/light{dir = 1; icon_state = "tube1"; layer = 9.1; pixel_y = 21},/obj/blind_switch/area{pixel_y = 24},/turf/simulated/floor{icon_state = "carpetNE"},/area)
+"bN" = (/obj/machinery/door/airlock/pyro/security{dir = 4; name = "Head of Security's Office"; req_access_txt = "37"},/obj/machinery/door/firedoor/pyro{icon_state = "fdoor0"; dir = 4},/turf/simulated/floor{icon_state = "delivery"},/area)
+"bO" = (/obj/machinery/door/airlock/pyro{dir = 4; icon_state = "generic_closed"; name = "Dormitory"},/obj/machinery/door/firedoor/pyro{icon_state = "fdoor0"; dir = 4},/turf/simulated/floor{icon_state = "delivery"},/area)
+"bP" = (/turf/simulated/floor{icon_state = "floorgrime-w"},/area)
+"bQ" = (/obj/table/auto,/obj/item/scrap_hammer,/turf/simulated/floor{dir = 8; icon_state = "floor_hazard_misc"},/area)
+"bR" = (/obj/table/auto,/obj/item/scrap_hammer,/turf/simulated/floor{icon_state = "caution_ns"; dir = 1},/area)
+"bS" = (/obj/machinery/plate_machine,/turf/simulated/floor{dir = 4; icon_state = "floor_hazard_misc"},/area)
+"bT" = (/obj/disposalpipe/segment,/turf/simulated/floor{icon_state = "floorgrime-w"},/area)
+"bU" = (/obj/fitness/weightlifter,/turf/simulated/floor{icon_state = "floorgrime-w"},/area)
+"bV" = (/obj/machinery/computer/announcement{dir = 4; icon_state = "comm"; name = "Security Announcement Computer"; req_access_txt = "19"},/obj/machinery/light{dir = 8; icon_state = "tube1"; layer = 9.1; pixel_x = -10},/turf/simulated/floor{icon_state = "carpetW"},/area)
+"bW" = (/turf/simulated/floor{icon_state = "carpet2"},/area)
+"bX" = (/obj/item/device/radio/intercom/security{pixel_x = 28; pixel_y = 0},/turf/simulated/floor{icon_state = "carpetE"},/area)
+"bY" = (/obj/item/storage/toilet{dir = 4; icon_state = "toilet"; tag = ""},/obj/item/storage/pill_bottle/cyberpunk,/turf/simulated/floor{icon_state = "floorgrime-w"; dir = 4},/area)
+"bZ" = (/obj/stool/bed,/obj/item/clothing/glasses/vr{network = "arcadevr"},/turf/simulated/floor/plating{icon_state = "platingdmg1"},/area)
+"ca" = (/obj/machinery/computer/arcade{desc = "The VR representation of a popular computer game."},/turf/simulated/floor{icon_state = "floorgrime-w"},/area)
+"cb" = (/obj/table/auto,/obj/machinery/computer/security/wooden_tv/small{pixel_y = 8},/turf/simulated/floor{icon_state = "floorgrime-w"},/area)
+"cc" = (/obj/machinery/computer/security{icon_state = "security"; dir = 4},/turf/simulated/floor{icon_state = "carpetSW"},/area)
+"cd" = (/obj/stool/chair/comfy,/turf/simulated/floor{icon_state = "carpetS"},/area)
+"ce" = (/obj/window/auto/reinforced,/obj/grille/steel,/obj/window_blinds/cog2{dir = 8},/turf/simulated/floor/plating,/area)
+"cf" = (/obj/stool/chair/red{icon_state = "chair-r"; dir = 4},/turf/space,/area)
+"cg" = (/obj/submachine/slot_machine,/turf/simulated/floor{icon_state = "floorgrime-w"},/area)
+"ch" = (/obj/decal/tile_edge/stripe{dir = 6; icon_state = "xtra_bigstripe-corner2"},/turf/simulated/floor{icon_state = "floorgrime-w"},/area)
+"ci" = (/obj/decal/tile_edge/stripe/big,/turf/simulated/floor{icon_state = "floorgrime-w"},/area)
+"cj" = (/obj/decal/tile_edge/stripe{dir = 10; icon_state = "xtra_bigstripe-corner2"},/turf/simulated/floor{icon_state = "floorgrime-w"},/area)
+"ck" = (/obj/table/reinforced/auto,/obj/item/device/camera_viewer,/obj/machinery/door_control{id = "lockdown_sec"; name = "Security Lockdown"; pixel_x = -24; pixel_y = -8},/obj/machinery/door_control{id = "lionpit"; name = "Lion Pit"; pixel_x = -24; pixel_y = 4; req_access = list(19); req_access_txt = "37"},/obj/item/item_box/gold_star{item_amount = 20},/obj/decal/tile_edge/stripe/extra_big,/turf/simulated/floor{icon_state = "grimy"},/area)
+"cl" = (/obj/table/reinforced/auto,/obj/item/reagent_containers/food/snacks/spaghetti/spicy,/obj/item/kitchen/utensil/fork{pixel_x = 9; pixel_y = 3},/obj/decal/tile_edge/stripe/extra_big,/turf/simulated/floor{icon_state = "grimy"},/area)
+"cm" = (/obj/table/reinforced/auto,/obj/item/device/prisoner_scanner,/obj/machinery/recharger,/obj/decal/tile_edge/stripe{dir = 10; icon_state = "xtra_bigstripe-corner2"},/turf/simulated/floor{icon_state = "grimy"; name = "cheap carpet"},/area)
+"cn" = (/obj/stool/chair{tag = "icon-chair (EAST)"; icon_state = "chair"; dir = 4},/obj/machinery/atmospherics/pipe/simple{dir = 4},/turf/simulated/floor{icon_state = "dark"},/area)
+"co" = (/obj/table/reinforced/auto,/obj/window/reinforced/west{dir = 1; icon_state = "darkwindow"; name = "divider window"},/obj/window/reinforced/west{dir = 2; icon_state = "darkwindow"; name = "divider window"},/obj/submachine/ATM{pixel_y = 32},/obj/machinery/atmospherics/pipe/simple{dir = 4},/turf/simulated/floor{icon_state = "delivery"},/area)
+"cp" = (/obj/window/auto/reinforced,/obj/grille/steel,/obj/machinery/door/poddoor/pyro{density = 0; icon_state = "pdoor0"; id = "lockdown_sec"; name = "Security Lockdown Doors"; opacity = 0},/obj/cable{icon_state = "0-2"; d2 = 2},/obj/machinery/atmospherics/pipe/simple{dir = 4},/turf/simulated/floor/plating,/area)
+"cq" = (/obj/stool,/turf/simulated/floor{icon_state = "floorgrime-w"},/area)
+"cr" = (/obj/decal/tile_edge/stripe/big{icon_state = "bigstripe-edge"; dir = 4},/turf/simulated/floor{icon_state = "floorgrime-w"},/area)
+"cs" = (/obj/machinery/floorflusher/genpop,/obj/disposalpipe/trunk,/turf/simulated/floor{icon_state = "delivery"},/area)
+"ct" = (/obj/decal/tile_edge/stripe/big{icon_state = "bigstripe-edge"; dir = 8},/turf/simulated/floor{icon_state = "floorgrime-w"},/area)
+"cu" = (/obj/decal/stage_edge{icon_state = "edgebrig"},/obj/machinery/door/poddoor/pyro{density = 1; dir = 4; icon_state = "pdoor1"; id = "lionpit"; layer = 4; name = "Secure Hatch"; opacity = 1; p_open = 0},/turf/simulated/floor{icon_state = "delivery"; name = "floor"},/area)
+"cv" = (/obj/decal/stage_edge{dir = 2; icon_state = "edgebrig"},/turf/simulated/floor{dir = 2; icon_state = "grass1"; name = "astroturf"},/area)
+"cw" = (/obj/decal/stage_edge{icon_state = "edgebrig"},/turf/simulated/floor{dir = 2; icon_state = "grass1"; name = "astroturf"},/area)
+"cx" = (/obj/stool/bed,/obj/item/clothing/suit/bedsheet{bcolor = "red"; icon_state = "bedsheet-red"},/obj/landmark/start{name = "Head of Security"},/obj/machinery/light_switch/east,/turf/simulated/floor{icon_state = "grimy"},/area)
+"cy" = (/obj/machinery/door/airlock/pyro/glass{dir = 4; name = "Security"; req_access_txt = "1"},/obj/machinery/door/poddoor/pyro{density = 0; dir = 4; icon_state = "pdoor0"; id = "lockdown_sec"; name = "Security Lockdown Doors"; opacity = 0},/obj/machinery/door/firedoor/pyro{icon_state = "fdoor0"; dir = 4},/turf/simulated/floor{icon_state = "delivery"},/area)
+"cz" = (/obj/machinery/light{dir = 4; icon_state = "tube1"; layer = 9.1; pixel_x = 10},/turf/space,/area)
+"cA" = (/obj/disposalpipe/trunk{desc = "An underfloor mail pipe."; dir = 1; name = "mail pipe"},/obj/machinery/disposal/mail/autoname/security/brig,/turf/simulated/floor{icon_state = "floorgrime"},/area)
+"cB" = (/obj/machinery/disposal,/obj/disposalpipe/trunk,/turf/simulated/floor{icon_state = "caution_east"},/area)
+"cC" = (/obj/stool/chair{tag = "icon-chair (EAST)"; icon_state = "chair"; dir = 4},/turf/simulated/floor{icon_state = "dark"},/area)
+"cD" = (/obj/table/reinforced/auto,/obj/window/reinforced/west{dir = 1; icon_state = "darkwindow"; name = "divider window"},/obj/window/reinforced/west{dir = 2; icon_state = "darkwindow"; name = "divider window"},/obj/disposalpipe/segment{desc = "An underfloor mail pipe."; dir = 4; icon_state = "pipe-s"; name = "mail pipe"},/obj/item/device/radio/intercom/brig{broadcasting = 1; pixel_y = -3},/turf/simulated/floor{icon_state = "delivery"},/area)
+"cE" = (/obj/window/auto/reinforced,/obj/grille/steel,/obj/machinery/door/poddoor/pyro{density = 0; icon_state = "pdoor0"; id = "lockdown_sec"; name = "Security Lockdown Doors"; opacity = 0},/obj/cable,/obj/cable{icon_state = "0-2"; d2 = 2},/turf/simulated/floor/plating,/area)
+"cF" = (/obj/machinery/door/firedoor/pyro,/obj/disposalpipe/segment,/obj/machinery/door/airlock/pyro/glass{id = "genpop"; name = "General Population"; req_access_txt = "2"},/turf/simulated/floor{icon_state = "delivery"},/area)
+"cG" = (/obj/table/auto,/turf/simulated/floor{icon_state = "floorgrime-w"},/area)
+"cH" = (/obj/table/auto,/obj/item/game_kit,/turf/simulated/floor{icon_state = "floorgrime-w"},/area)
+"cI" = (/obj/table/auto,/obj/item/harmonica,/turf/simulated/floor{icon_state = "floorgrime-w"},/area)
+"cJ" = (/obj/table/auto,/obj/disposaloutlet{dir = 8},/obj/disposalpipe/trunk{dir = 4},/turf/simulated/floor{icon_state = "floorgrime-w"},/area)
+"cK" = (/obj/disposalpipe/segment{dir = 8; icon_state = "pipe-c"},/turf/simulated/floor{icon_state = "floorgrime-w"},/area)
+"cL" = (/obj/machinery/door/poddoor/pyro{density = 1; dir = 4; icon_state = "pdoor1"; id = "lionpit"; layer = 4; name = "Secure Hatch"; opacity = 1; p_open = 0},/turf/simulated/floor{icon_state = "delivery"; name = "floor"},/area)
+"cM" = (/obj/decal/cleanable/blood/gibs{icon_state = "gibleg"},/obj/decal/cleanable/blood{icon_state = "floor5"},/obj/machinery/light,/turf/simulated/floor{dir = 2; icon_state = "grass1"; name = "astroturf"},/area)
+"cN" = (/obj/critter/lion,/turf/simulated/floor{dir = 2; icon_state = "grass1"; name = "astroturf"},/area)
+"cO" = (/obj/window/auto/reinforced,/obj/grille/steel,/obj/disposalpipe/segment{dir = 4},/turf/simulated/floor/plating,/area)
+"cP" = (/obj/machinery/disposal{name = "Lion Pit"},/obj/disposalpipe/trunk{dir = 8},/obj/machinery/light,/turf/simulated/floor{icon_state = "grimy"; name = "cheap carpet"},/area)
+"cQ" = (/obj/machinery/door/firedoor/pyro,/obj/disposalpipe/segment,/obj/cable{icon_state = "2-4"; d1 = 2; d2 = 4},/obj/cable{icon_state = "2-8"; d1 = 2; d2 = 8},/obj/machinery/door/airlock/pyro/glass{id = "genpop"; name = "General Population"; req_access_txt = "2"},/obj/disposalpipe/segment,/turf/simulated/floor{icon_state = "delivery"},/area)
+"cR" = (/obj/stool/chair{tag = "icon-chair (EAST)"; icon_state = "chair"; dir = 4},/obj/machinery/light,/turf/simulated/floor{icon_state = "dark"},/area)
+"cS" = (/obj/table/reinforced/auto,/obj/window/reinforced/west{dir = 1; icon_state = "darkwindow"; name = "divider window"},/obj/window/reinforced/west{dir = 2; icon_state = "darkwindow"; name = "divider window"},/turf/simulated/floor{icon_state = "delivery"},/area)
+"cT" = (/obj/disposalpipe/trunk{desc = "An underfloor mail pipe."; dir = 1; name = "mail pipe"},/obj/machinery/disposal/mail/autoname/security/brig,/turf/simulated/floor{icon_state = "floorgrime-w"},/area)
+"cU" = (/turf/simulated/floor{icon_state = "delivery"; name = "floor"},/area)
+"cV" = (/obj/window/auto/reinforced,/obj/grille/steel,/obj/cable{d2 = 8; icon_state = "0-8"},/obj/cable{icon_state = "0-4"; d2 = 4},/turf/simulated/floor/plating,/area)
+"cW" = (/obj/table/reinforced/auto,/obj/item/device/camera_viewer,/obj/machinery/door_control{id = "lockdown_sec"; name = "Security Lockdown"; pixel_x = -24; pixel_y = -8},/turf/simulated/floor{icon_state = "grimy"},/area)
+"cX" = (/obj/stool/chair/comfy{icon_state = "chair_comfy"; dir = 8},/obj/item/device/radio/intercom/brig{broadcasting = 0},/turf/simulated/floor{icon_state = "grimy"},/area)
+"cY" = (/obj/machinery/computer/secure_data,/turf/simulated/floor{icon_state = "grimy"},/area)
+"cZ" = (/obj/machinery/computer/security,/turf/simulated/floor{icon_state = "grimy"},/area)
+"da" = (/obj/table/reinforced/auto,/obj/machinery/recharger,/obj/item/item_box/gold_star{item_amount = 20},/obj/machinery/power/apc{dir = 1; name = "N APC"; pixel_x = 0; pixel_y = 24},/obj/cable{icon_state = "0-2"; d2 = 2},/turf/simulated/floor{icon_state = "grimy"},/area)
+"db" = (/obj/storage/secure/closet/command/hos,/obj/blind_switch/area{pixel_x = 24},/obj/machinery/firealarm{pixel_x = 1; pixel_y = 26; text = "NF"},/turf/simulated/floor{icon_state = "grimy"},/area)
+"dc" = (/obj/disposaloutlet{dir = 2; mailgroup = "security"; message = "Automated parole chute activated."; name = "Automated Parole Chute"},/obj/disposalpipe/trunk{dir = 4},/turf/simulated/floor,/area)
+"dd" = (/turf/simulated/floor{icon_state = "red"; dir = 9},/area)
+"de" = (/obj/storage/secure/closet/security/equipment,/obj/machinery/light{dir = 1; icon_state = "tube1"; layer = 9.1; pixel_y = 21},/turf/simulated/floor{icon_state = "bot"},/area)
+"df" = (/obj/storage/secure/closet/security/equipment,/turf/simulated/floor{icon_state = "bot"},/area)
+"dg" = (/obj/shrub,/turf/simulated/floor,/area)
+"dh" = (/obj/table/reinforced/auto,/obj/item/reagent_containers/food/snacks/spaghetti/spicy,/obj/item/kitchen/utensil/fork{pixel_x = 9; pixel_y = 3},/turf/simulated/floor{icon_state = "grimy"},/area)
+"di" = (/obj/cable{icon_state = "1-2"; d1 = 1; d2 = 2},/turf/simulated/floor{icon_state = "carpetNE"},/area)
+"dj" = (/obj/item/device/radio/intercom/security{pixel_x = 28; pixel_y = 0},/obj/machinery/light{dir = 4; icon_state = "tube1"; layer = 9.1; pixel_x = 10},/turf/simulated/floor{icon_state = "grimy"},/area)
+"dk" = (/obj/machinery/atmospherics/pipe/simple{dir = 4},/turf/simulated/wall/auto/reinforced/supernorn,/area)
+"dl" = (/obj/machinery/computer/secure_data,/obj/item/device/radio/intercom/brig{broadcasting = 0},/obj/machinery/atmospherics/pipe/simple{dir = 4},/turf/simulated/floor{icon_state = "red"; dir = 9},/area)
+"dm" = (/obj/cable{icon_state = "1-2"; d1 = 1; d2 = 2},/obj/machinery/firealarm{pixel_y = 24; text = "NF"},/obj/table/reinforced/auto,/obj/machinery/recharger,/obj/item/device/prisoner_scanner,/obj/machinery/atmospherics/pipe/simple{dir = 4},/turf/simulated/floor{icon_state = "red"; dir = 1},/area)
+"dn" = (/obj/cable{d2 = 8; icon_state = "0-8"},/obj/machinery/power/data_terminal,/obj/table/reinforced/auto,/obj/item/storage/wall/medical{dir = 1; icon_state = "minimed"; pixel_y = 32},/obj/machinery/networked/printer{name = "Printer - Checkpoint"; pixel_y = 5; print_id = "Checkpoint"},/obj/machinery/atmospherics/pipe/simple{dir = 4},/turf/simulated/floor{icon_state = "red"; dir = 1},/area)
+"do" = (/obj/machinery/computer/security,/obj/machinery/light{dir = 1; icon_state = "tube1"; layer = 9.1; pixel_y = 21},/obj/machinery/atmospherics/pipe/simple{dir = 4},/turf/simulated/floor{icon_state = "red"; dir = 5},/area)
+"dp" = (/obj/machinery/light{dir = 1; icon_state = "tube1"; layer = 9.1; pixel_y = 21},/obj/machinery/door_timer/genpop/new_walls/north,/turf/simulated/floor{icon_state = "red"; dir = 9},/area)
+"dq" = (/turf/simulated/floor{icon_state = "redcorner"; dir = 1},/area)
+"dr" = (/obj/machinery/door/airlock/pyro/glass{dir = 4; name = "Security Locker Room"; req_access_txt = "38"},/obj/machinery/door/firedoor/pyro{icon_state = "fdoor0"; dir = 4},/turf/simulated/floor{icon_state = "delivery"},/area)
+"ds" = (/turf/simulated/floor{icon_state = "caution_east"},/area)
+"dt" = (/turf/simulated/floor{icon_state = "Stairs_wide"; dir = 4},/area)
+"du" = (/obj/machinery/light{dir = 8; icon_state = "tube1"; layer = 9.1; pixel_x = -10},/obj/machinery/computer/announcement{dir = 4; icon_state = "comm"; name = "Security Announcement Computer"; req_access_txt = "19"},/turf/simulated/floor{icon_state = "grimy"},/area)
+"dv" = (/obj/cable{icon_state = "1-2"; d1 = 1; d2 = 2},/turf/simulated/floor{icon_state = "carpetE"},/area)
+"dw" = (/obj/stool/bed,/obj/item/clothing/suit/bedsheet{bcolor = "red"; icon_state = "bedsheet-red"},/obj/landmark/start{name = "Head of Security"},/obj/machinery/light_switch/east,/obj/machinery/camera{c_tag = "autotag"; dir = 8; icon_state = "camera"; name = "autoname - SS13"; pixel_x = 10; tag = ""},/turf/simulated/floor{icon_state = "grimy"},/area)
+"dx" = (/obj/table/reinforced/auto,/obj/machinery/light/lamp,/obj/noticeboard{name = "Wanted Board"; pixel_y = 28},/obj/machinery/door/poddoor/pyro{density = 0; dir = 4; icon_state = "pdoor0"; id = "lockdown_sec"; name = "Security Lockdown Doors"; opacity = 0},/obj/machinery/door/firedoor/pyro{icon_state = "fdoor0"; dir = 4},/turf/simulated/floor{icon_state = "dark"},/area)
+"dy" = (/obj/stool/chair/red{icon_state = "chair-r"; dir = 8},/turf/simulated/floor{icon_state = "red"; dir = 8},/area)
+"dz" = (/obj/stool/chair/red,/turf/simulated/floor,/area)
+"dA" = (/obj/stool/chair/red,/turf/simulated/floor{icon_state = "red"; dir = 4},/area)
+"dB" = (/turf/simulated/floor{icon_state = "Stairs2_wide"; dir = 4},/area)
+"dC" = (/obj/cable{icon_state = "4-8"; d1 = 4; d2 = 8},/turf/simulated/floor{icon_state = "grimy"},/area)
+"dD" = (/obj/cable{icon_state = "4-8"; d1 = 4; d2 = 8},/turf/simulated/floor{icon_state = "carpetSW"},/area)
+"dE" = (/obj/cable{icon_state = "4-8"; d1 = 4; d2 = 8},/turf/simulated/floor{icon_state = "carpetS"},/area)
+"dF" = (/obj/vehicle/segway,/obj/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/simulated/floor{icon_state = "carpetSE"},/area)
+"dG" = (/obj/table/reinforced/auto,/obj/machinery/cashreg,/obj/machinery/door/poddoor/pyro{density = 0; dir = 4; icon_state = "pdoor0"; id = "lockdown_sec"; name = "Security Lockdown Doors"; opacity = 0},/obj/machinery/door/firedoor/pyro{icon_state = "fdoor0"; dir = 4},/turf/simulated/floor{icon_state = "dark"},/area)
+"dH" = (/obj/machinery/portableowl/judgementowl,/turf/simulated/floor{icon_state = "red"; dir = 8},/area)
+"dI" = (/obj/vehicle/segway,/turf/simulated/floor{icon_state = "bot"},/area)
+"dJ" = (/obj/table/reinforced/auto,/obj/item/clothing/glasses/vr{network = "arcadevr"},/obj/item/clothing/glasses/vr{network = "arcadevr"},/obj/item/clothing/glasses/vr{network = "arcadevr"},/turf/simulated/floor/carpet{icon_state = "fred2"; dir = 9},/area)
+"dK" = (/obj/table/reinforced/auto,/obj/machinery/computer/security/wooden_tv/small,/obj/machinery/computer/security/wooden_tv/small,/turf/simulated/floor{icon_state = "carpetN"},/area)
+"dL" = (/obj/table/reinforced/auto,/obj/machinery/recharger,/turf/simulated/floor{icon_state = "carpetNE"},/area)
+"dM" = (/obj/storage/closet/wardrobe/red/security_gimmick,/obj/machinery/light,/turf/simulated/floor{icon_state = "bot"},/area)
+"dN" = (/obj/storage/closet/wardrobe/red/security_gimmick,/turf/simulated/floor{icon_state = "bot"},/area)
+"dO" = (/obj/machinery/flasher/portable,/turf/simulated/floor{icon_state = "delivery"},/area)
+"dP" = (/obj/machinery/flasher/portable,/obj/machinery/light,/turf/simulated/floor{icon_state = "delivery"},/area)
+"dQ" = (/obj/machinery/vending/security,/turf/simulated/floor{icon_state = "red"},/area)
+"dR" = (/obj/machinery/computer/secure_data,/obj/item/reagent_containers/food/drinks/mug/random_color,/turf/simulated/floor{icon_state = "red"; dir = 6},/area)
+"dS" = (/obj/table/reinforced/auto,/obj/item/kitchen/food_box/donut_box{desc = "It appears to be a Martian brand of donuts."; name = "Robust Donuts"},/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/carpet{icon_state = "fred2"; dir = 8},/area)
+"dT" = (/obj/table/reinforced/auto,/obj/item/device/detective_scanner,/obj/item/device/detective_scanner,/obj/item/device/detective_scanner,/obj/machinery/light{dir = 8; icon_state = "tube1"; tag = ""},/turf/simulated/floor{icon_state = "carpetE"},/area)
+"dU" = (/obj/machinery/door/firedoor/pyro,/obj/machinery/door/airlock/pyro/security{name = "Interview Room"; req_access = null},/turf/simulated/floor{icon_state = "delivery"},/area)
+"dV" = (/obj/machinery/door/airlock/pyro/glass,/obj/machinery/door/firedoor/pyro,/turf/simulated/floor{icon_state = "delivery"},/area)
+"dW" = (/obj/machinery/door/airlock/pyro/glass{dir = 4; name = "Security Office"; req_access_txt = "1"},/obj/machinery/door/poddoor/pyro{density = 0; dir = 4; icon_state = "pdoor0"; id = "lockdown_sec"; name = "Security Lockdown Doors"; opacity = 0},/obj/machinery/door/firedoor/pyro{icon_state = "fdoor0"; dir = 4},/turf/simulated/floor{icon_state = "delivery"},/area)
+"dX" = (/obj/table/reinforced/auto,/turf/simulated/floor/carpet{icon_state = "fred2"; dir = 10},/area)
+"dY" = (/obj/table/reinforced/auto,/obj/machinery/networked/storage/scanner{bank_id = "security"; pixel_y = 4},/turf/simulated/floor{icon_state = "carpetS"},/area)
+"dZ" = (/obj/table/reinforced/auto,/obj/item/clothing/mask/gas,/obj/item/gun/kinetic/riot40mm,/turf/simulated/floor{icon_state = "carpetSE"},/area)
+"ea" = (/turf/simulated/floor{icon_state = "redcorner"; dir = 4},/area)
+"eb" = (/obj/machinery/door/airlock/pyro/security{dir = 4; name = "Interview Room"; req_access_txt = "1"},/obj/machinery/door/poddoor/pyro{density = 0; dir = 4; icon_state = "pdoor0"; id = "lockdown_sec"; name = "Security Lockdown Doors"; opacity = 0},/obj/machinery/door/firedoor/pyro{icon_state = "fdoor0"; dir = 4},/turf/simulated/floor{icon_state = "delivery"},/area)
+"ec" = (/turf/simulated/floor{icon_state = "grimy"},/area)
+"ed" = (/obj/item/device/audio_log/wall_mounted{anchored = 1; max_lines = 350; mode = 1; name = "Security Recorder"; pixel_x = 0; pixel_y = 28},/turf/simulated/floor{icon_state = "grimy"},/area)
+"ee" = (/obj/item/device/radio/intercom/security,/obj/blind_switch/area{pixel_x = 13; pixel_y = 28},/turf/simulated/floor{icon_state = "grimy"},/area)
+"ef" = (/obj/decal/tile_edge/stripe,/turf/simulated/floor/wood{icon_state = "wooden"},/area)
+"eg" = (/obj/stool/chair/red{icon_state = "chair-r"; dir = 1},/turf/simulated/floor,/area)
+"eh" = (/obj/window/auto/reinforced,/obj/grille/steel,/obj/machinery/door/poddoor/pyro{density = 0; dir = 4; icon_state = "pdoor0"; id = "lockdown_sec"; name = "Security Lockdown Doors"; opacity = 0},/obj/window_blinds/cog2{dir = 8},/turf/simulated/floor/plating,/area)
+"ei" = (/obj/stool/chair{icon_state = "chair"; dir = 4},/turf/simulated/floor{icon_state = "grimy"},/area)
+"ej" = (/obj/table/reinforced/auto,/obj/machinery/light/lamp,/turf/simulated/floor{icon_state = "grimy"},/area)
+"ek" = (/obj/stool/chair/red{icon_state = "chair-r"; dir = 8},/turf/simulated/floor{icon_state = "grimy"},/area)
+"el" = (/obj/shrub{icon_state = "shrub"; dir = 1},/turf/simulated/floor{icon_state = "grimy"},/area)
+"em" = (/obj/disposalpipe/trunk,/obj/machinery/light{dir = 8; icon_state = "tube1"; layer = 9.1; pixel_x = -10},/obj/machinery/disposal/brig{name = "ejection chute"},/turf/simulated/floor{icon_state = "red"; dir = 10},/area)
+"en" = (/obj/table/reinforced/auto,/obj/item/paper/Port_A_Brig,/obj/cable{icon_state = "1-2"},/obj/item/remote/porter/port_a_brig,/turf/simulated/floor{icon_state = "red"},/area)
+"eo" = (/obj/machinery/port_a_brig,/turf/simulated/floor{icon_state = "red"},/area)
+"ep" = (/obj/machinery/light,/turf/simulated/floor{icon_state = "red"; dir = 6},/area)
+"eq" = (/obj/machinery/door_timer/solitary{pixel_x = 0; pixel_y = -32},/turf/simulated/floor{icon_state = "red"; dir = 10},/area)
+"er" = (/obj/machinery/door_timer/solitary2{pixel_y = -32},/turf/simulated/floor{icon_state = "red"},/area)
+"es" = (/turf/simulated/floor{icon_state = "red"; dir = 6},/area)
+"et" = (/obj/machinery/camera/television{c_tag = "security 1"; dir = 4; name = "camera - interview room"},/turf/simulated/floor{icon_state = "grimy"},/area)
+"eu" = (/obj/stool/chair{icon_state = "chair"; dir = 4},/obj/machinery/light,/turf/simulated/floor{icon_state = "grimy"},/area)
+"ev" = (/obj/table/reinforced/auto,/obj/item/decoration/ashtray{butts = 5; icon_state = "ashtray"; name = "grubby old ashtray"},/turf/simulated/floor{icon_state = "grimy"},/area)
+"ew" = (/obj/reagent_dispensers/watertank/fountain,/obj/machinery/camera{c_tag = "autotag"; dir = 9; icon_state = "camera"; name = "autoname - SS13"; pixel_x = 10; tag = ""},/turf/simulated/floor{icon_state = "grimy"},/area)
+"ex" = (/obj/machinery/door/airlock/pyro/glass{dir = 1; id = "brig1"; name = "Cell 1"; req_access_txt = "2"},/turf/simulated/floor/engine,/area)
+"ey" = (/obj/machinery/door/airlock/pyro/glass{dir = 1; id = "brig2"; name = "Cell 2"; req_access_txt = "2"},/turf/simulated/floor/engine,/area)
+"ez" = (/obj/machinery/power/data_terminal,/obj/table/auto,/obj/machinery/computer3/generic/personal,/turf/simulated/floor/engine,/area)
+"eA" = (/obj/machinery/floorflusher/solitary,/turf/simulated/floor/engine,/area)
+"eB" = (/obj/storage/secure/closet/brig/automatic/solitary{anchored = 1},/turf/simulated/floor/engine,/area)
+"eC" = (/obj/machinery/floorflusher/solitary2,/turf/simulated/floor/engine,/area)
+"eD" = (/obj/storage/secure/closet/brig/automatic/solitary2{anchored = 1},/turf/simulated/floor/engine,/area)
+"eE" = (/obj/machinery/computer/security/wooden_tv,/turf/simulated/floor/plating,/area)
+"eF" = (/obj/machinery/bot/secbot/beepsky,/turf/simulated/floor/plating,/area)
+"eG" = (/obj/plasticflaps{layer = 3},/obj/machinery/door/firedoor/pyro{icon_state = "fdoor0"; dir = 4},/turf/simulated/floor/plating,/area)
+"eH" = (/obj/stool,/obj/disposalpipe/junction{icon_state = "pipe-j2"; dir = 8},/turf/simulated/floor/engine,/area)
+"eI" = (/turf/simulated/floor/engine,/area)
+"eJ" = (/obj/stool/bed,/obj/item/clothing/glasses/vr{network = "arcadevr"},/obj/machinery/flasher/solitary{pixel_x = 24; pixel_y = 0},/turf/simulated/floor/engine,/area)
+"eK" = (/obj/stool,/turf/simulated/floor/engine,/area)
+"eL" = (/obj/item/diary,/obj/item/clothing/shoes/black{desc = "You have no idea how a robot with wheels for locomotion could possibly require these."; name = "Beepsky's Shoes"},/obj/item/storage/photo_album/beepsky,/obj/item/clothing/suit/det_suit/beepsky,/obj/item/clothing/head/NTberet{desc = "It's a momento, I guess. An old keepsake. And maybe a reminder of the things we've left behind."; name = "Old Beret"},/obj/storage/crate,/turf/simulated/floor/plating{icon_state = "panelscorched"},/area)
+"eM" = (/obj/stool/bed,/obj/item/clothing/suit/bedsheet{bcolor = "red"; icon_state = "bedsheet-red"},/turf/simulated/floor/plating,/area)
+"eN" = (/obj/submachine/chef_sink/chem_sink{desc = "A water-filled unit intended for hand-washing purposes."; dir = 8; pixel_x = 2},/turf/simulated/floor{icon_state = "white"},/area)
+"eO" = (/obj/machinery/launcher_loader/south,/turf/simulated/floor/plating/airless,/area)
+"eP" = (/obj/machinery/vending/snack,/turf/simulated/floor{icon_state = "bot"},/area)
+"eQ" = (/obj/machinery/vending/cigarette,/turf/simulated/floor{icon_state = "bot"},/area)
+"eR" = (/obj/machinery/light{dir = 4; icon_state = "tube1"; layer = 9.1; pixel_x = 10},/turf/simulated/floor{icon_state = "red"; dir = 4},/area)
+"eS" = (/obj/stool/bed,/obj/item/clothing/suit/bedsheet{bcolor = "red"; icon_state = "bedsheet-red"},/turf/simulated/floor{icon_state = "bar"},/area)
+"eT" = (/obj/machinery/door/airlock/pyro/glass{dir = 4; name = "Security Break Room"; req_access_txt = "38"},/obj/machinery/door/firedoor/pyro{icon_state = "fdoor0"; dir = 4},/turf/simulated/floor{icon_state = "delivery"},/area)
+"eU" = (/obj/decal/tile_edge/line/black{icon_state = "line1"; dir = 2},/obj/machinery/light/small{dir = 8; pixel_x = -12},/turf/simulated/floor/plating,/area)
+"eV" = (/obj/table/reinforced/auto,/obj/machinery/conveyor/south{id = "brigplate"; layer = 3},/turf/simulated/floor{icon_state = "caution_we"},/area)
+"eW" = (/obj/disposalpipe/segment,/turf/simulated/floor{icon_state = "red"; dir = 5},/area)
+"eX" = (/turf/simulated/floor{icon_state = "bot"},/area)
+"eY" = (/turf/simulated/floor{icon_state = "fullcaution"},/area)
+"eZ" = (/obj/disposalpipe/segment,/turf/simulated/floor{icon_state = "caution_east"; dir = 8},/area)
+"fa" = (/obj/machinery/conveyor/south{id = "brigplate"},/turf/simulated/floor{icon_state = "caution_we"},/area)
+"fb" = (/obj/disposalpipe/segment,/turf/simulated/floor{icon_state = "red"; dir = 4},/area)
+"fc" = (/turf/simulated/floor{icon_state = "redcorner"; dir = 8},/area)
+"fd" = (/obj/disposalpipe/segment{dir = 4},/turf/simulated/floor,/area)
+"fe" = (/obj/disposalpipe/segment{dir = 4},/turf/simulated/floor{icon_state = "fullcaution"},/area)
+"ff" = (/obj/disposalpipe/segment{dir = 8; icon_state = "pipe-c"},/turf/simulated/floor{icon_state = "corner_east"; dir = 8},/area)
+"fg" = (/obj/machinery/conveyor_switch{id = "brigplate"},/turf/simulated/floor{icon_state = "bot"},/area)
+"fh" = (/obj/stool/chair/office,/turf/simulated/floor,/area)
+"fi" = (/obj/machinery/disposal{name = "Disposal Chute - Cargo Bay"},/turf/simulated/floor{icon_state = "bot"},/area)
+"fj" = (/obj/disposalpipe/segment,/turf/simulated/floor{icon_state = "red"; dir = 6},/area)
+"fk" = (/obj/table/reinforced/auto,/obj/machinery/conveyor/north{id = "brigplate"; layer = 3},/turf/simulated/floor{icon_state = "caution_we"},/area)
+"fl" = (/obj/table/auto,/obj/random_item_spawner/med_kit,/turf/simulated/floor/carpet{icon_state = "fred2"; dir = 9},/area)
+"fm" = (/turf/simulated/floor/carpet{dir = 5; icon_state = "fred2"},/area)
+"fn" = (/turf/simulated/floor{dir = 2; icon_state = "redcorner"},/area)
+"fo" = (/obj/machinery/light,/turf/simulated/floor{icon_state = "red"},/area)
+"fp" = (/obj/table/wood/auto,/turf/simulated/floor{icon_state = "bar"},/area)
+"fq" = (/obj/stool/bed,/obj/item/clothing/suit/bedsheet{bcolor = "red"; icon_state = "bedsheet-red"},/obj/machinery/light,/turf/simulated/floor{icon_state = "bar"},/area)
+"fr" = (/obj/table/reinforced/auto,/obj/machinery/door_control{id = "platein2"; name = "Scrap Door Switch - IN"},/turf/simulated/floor{icon_state = "red"; dir = 10},/area)
+"fs" = (/obj/table/reinforced/auto,/obj/machinery/door_control{id = "plateout1"; name = "Scrap Door Switch - OUT"},/turf/simulated/floor{icon_state = "red"},/area)
+"ft" = (/obj/table/reinforced/auto,/obj/machinery/door_control{id = "platein1"; name = "Disposal inlet switch"},/turf/simulated/floor{icon_state = "red"},/area)
+"fu" = (/obj/decal/poster/wallsign/stencil/right/o{pixel_x = -10},/obj/decal/poster/wallsign/stencil/right/u{pixel_x = 1},/obj/decal/poster/wallsign/stencil/right/t,/obj/disposalpipe/segment,/turf/simulated/wall/auto/reinforced/supernorn,/area)
+"fv" = (/obj/plasticflaps{layer = 3},/obj/machinery/door/poddoor/pyro{density = 1; dir = 1; icon_state = "pdoor1"; id = "plateout1"; layer = 4; name = "Scrap Door"; opacity = 1; p_open = 0},/obj/machinery/conveyor/north{id = "brigplate"; layer = 3},/turf/simulated/floor{icon_state = "caution_we"},/area)
+"fw" = (/obj/table/auto,/obj/random_item_spawner/med_kit,/turf/simulated/floor/carpet{icon_state = "fred2"; dir = 8},/area)
+"fx" = (/turf/simulated/floor/carpet{icon_state = "fred2"; dir = 4},/area)
+"fy" = (/obj/machinery/conveyor/east{id = "brigplate"},/obj/machinery/light{dir = 1; icon_state = "tube1"; layer = 9.1; pixel_y = 21},/turf/simulated/floor{icon_state = "caution_ns"; dir = 1},/area)
+"fz" = (/obj/machinery/conveyor/east{id = "brigplate"},/obj/plasticflaps{layer = 3},/obj/machinery/door/poddoor/pyro{density = 1; dir = 4; icon_state = "pdoor1"; id = "brigplatedoor"; layer = 4; name = "Scrap Door"; opacity = 1; p_open = 0},/turf/simulated/floor{icon_state = "caution_ns"; dir = 1},/area)
+"fA" = (/obj/machinery/conveyor/east{id = "brigplate"},/obj/overlay{anchored = 1; density = 1; desc = "This turns useless scrap into profitable space pod license plates. Or at least it used to."; icon = 'icons/obj/recycling.dmi'; icon_state = "grinder-o1"; name = "assembly machine"},/obj/decal/glow{brightness = 2.5; color_b = 0.3; color_g = 0.3; color_r = 0.8; invisibility = 101; name = "glow - RED"},/turf/simulated/floor{icon_state = "caution_ns"; dir = 1},/area)
+"fB" = (/obj/machinery/conveyor/east{id = "brigplate"},/obj/overlay{anchored = 1; density = 1; desc = "This turns useless scrap into profitable space pod license plates. Or at least it used to."; icon = 'icons/obj/recycling.dmi'; icon_state = "grinder-b1"; name = "assembly machine"},/obj/decal/glow{brightness = 2.5; color_b = 0.3; color_g = 0.3; color_r = 0.8; invisibility = 101; name = "glow - RED"},/turf/simulated/floor{icon_state = "caution_ns"; dir = 1},/area)
+"fC" = (/obj/machinery/conveyor/east{id = "brigplate"},/obj/overlay{anchored = 1; density = 1; desc = "This turns useless scrap into profitable space pod license plates. Or at least it used to."; icon = 'icons/obj/recycling.dmi'; icon_state = "separator-AO1"; name = "assembly machine"},/obj/decal/glow{brightness = 2.5; color_b = 0.3; color_g = 0.3; color_r = 0.8; invisibility = 101; name = "glow - RED"},/turf/simulated/floor{icon_state = "caution_ns"; dir = 1},/area)
+"fD" = (/obj/disposalpipe/segment,/turf/simulated/floor{icon_state = "delivery"; name = "floor"},/area)
+"fE" = (/obj/machinery/conveyor/north{id = "brigplate"; layer = 3},/turf/simulated/floor{icon_state = "caution_we"},/area)
+"fF" = (/obj/machinery/light{dir = 8; icon_state = "tube1"; layer = 9.1; pixel_x = -10},/turf/simulated/floor/carpet{icon_state = "fred2"; dir = 8},/area)
+"fG" = (/obj/machinery/shower{dir = 1; icon_state = "showerhead"; pixel_y = 16},/obj/item/storage/pill_bottle/cyberpunk,/turf/simulated/floor/plating{icon_state = "panelscorched"},/area)
+"fH" = (/obj/decal/cleanable/dirt,/turf/simulated/floor{icon_state = "floorgrime-w"; dir = 4},/area)
+"fI" = (/obj/machinery/shower{dir = 1; icon_state = "showerhead"; pixel_y = 16},/turf/simulated/floor{icon_state = "floorgrime-w"; dir = 4},/area)
+"fJ" = (/turf/simulated/floor{icon_state = "floorgrime"},/area)
+"fK" = (/obj/decal/poster/wallsign/hazard_danger,/turf/simulated/wall/auto/reinforced/supernorn,/area)
+"fL" = (/obj/machinery/sleeper,/obj/machinery/light,/obj/cable,/obj/machinery/power/data_terminal,/turf/simulated/floor/carpet{icon_state = "fred2"; dir = 10},/area)
+"fM" = (/obj/machinery/sleep_console,/turf/simulated/floor/carpet{icon_state = "fred2"; dir = 6},/area)
+"fN" = (/obj/window/auto/reinforced,/obj/grille/steel,/obj/window_blinds/cog2{dir = 4},/turf/simulated/floor/plating,/area)
+"fO" = (/obj/machinery/light/small{dir = 4; layer = 9.1; pixel_x = 10},/turf/simulated/floor{icon_state = "floorgrime-w"; dir = 4},/area)
+"fP" = (/obj/item/storage/toilet{dir = 4; icon_state = "toilet"; tag = ""},/turf/simulated/floor{icon_state = "floorgrime-w"; dir = 4},/area)
+"fQ" = (/obj/machinery/door/airlock/pyro{icon_state = "generic_closed"; dir = 4},/obj/machinery/door/firedoor/pyro{icon_state = "fdoor0"; dir = 4},/turf/simulated/floor{icon_state = "delivery"},/area)
+"fR" = (/obj/fitness/weightlifter,/turf/simulated/floor{icon_state = "floorgrime"},/area)
+"fS" = (/obj/table/auto,/obj/machinery/computer/security/wooden_tv/small{pixel_y = 8},/turf/simulated/floor{icon_state = "floorgrime"},/area)
+"fT" = (/obj/stool/bed,/obj/item/clothing/glasses/vr{network = "arcadevr"},/turf/simulated/floor,/area)
+"fU" = (/obj/machinery/light{dir = 8; icon_state = "tube1"; layer = 9.1; pixel_x = -10},/turf/simulated/floor{icon_state = "red"; dir = 8},/area)
+"fV" = (/obj/machinery/atmospherics/pipe/simple{dir = 5},/obj/machinery/door/airlock/pyro/security{dir = 4; name = "Head of Security's Office"; req_access_txt = "37"},/obj/machinery/door/firedoor/pyro{icon_state = "fdoor0"; dir = 4},/obj/cable{icon_state = "4-8"; d1 = 4; d2 = 8},/turf/simulated/floor{icon_state = "delivery"},/area)
+"fW" = (/obj/machinery/light{dir = 8; icon_state = "tube1"; layer = 9.1; pixel_x = -10},/turf/simulated/floor,/area)
+"fX" = (/obj/machinery/computer/arcade{desc = "The VR representation of a popular computer game."},/obj/disposalpipe/segment,/turf/simulated/floor{icon_state = "floorgrime"},/area)
+"fY" = (/obj/stool/bed,/obj/item/clothing/glasses/vr{network = "arcadevr"},/obj/machinery/light{dir = 4; icon_state = "tube1"; layer = 9.1; pixel_x = 10},/turf/simulated/floor,/area)
+"fZ" = (/obj/stool,/obj/machinery/atmospherics/pipe/simple{dir = 4},/turf/simulated/floor,/area)
+"ga" = (/obj/machinery/atmospherics/pipe/simple{dir = 4},/turf/simulated/floor,/area)
+"gb" = (/obj/window/auto/reinforced,/obj/grille/steel,/obj/machinery/atmospherics/pipe/simple{dir = 4; icon_state = "intact"; level = 2},/obj/machinery/atmospherics/pipe/simple{dir = 4},/turf/simulated/floor/plating,/area)
+"gc" = (/obj/table/reinforced/auto,/obj/machinery/door_control{id = "platein1"; name = "Disposal inlet switch"},/obj/machinery/atmospherics/pipe/simple{dir = 4},/turf/simulated/floor{icon_state = "red"; dir = 9},/area)
+"gd" = (/obj/table/reinforced/auto,/obj/machinery/atmospherics/pipe/simple{dir = 4},/turf/simulated/floor{icon_state = "red"; dir = 1},/area)
+"ge" = (/obj/table/reinforced/auto,/obj/machinery/light{dir = 1; icon_state = "tube1"; layer = 9.1; pixel_y = 21},/obj/machinery/atmospherics/pipe/simple{dir = 4},/obj/machinery/recharger,/turf/simulated/floor{icon_state = "red"; dir = 1},/area)
+"gf" = (/obj/table/reinforced/auto,/obj/item/kitchen/food_box/donut_box{desc = "It appears to be a Martian brand of donuts."; name = "Robust Donuts"},/obj/machinery/atmospherics/pipe/simple{dir = 4},/turf/simulated/floor{icon_state = "red"; dir = 1},/area)
+"gg" = (/obj/table/reinforced/auto,/obj/machinery/atmospherics/pipe/simple{dir = 4},/turf/simulated/floor{icon_state = "red"; dir = 5},/area)
+"gh" = (/obj/window/auto/reinforced,/obj/grille/steel,/obj/machinery/atmospherics/pipe/simple{dir = 4},/turf/simulated/floor/plating,/area)
+"gi" = (/obj/submachine/slot_machine,/obj/disposalpipe/segment,/obj/machinery/atmospherics/pipe/simple{dir = 4},/turf/simulated/floor{icon_state = "floorgrime"},/area)
+"gj" = (/obj/decal/poster/wallsign/cdnp{pixel_x = 32},/obj/stool/bed,/obj/item/clothing/glasses/vr{network = "arcadevr"},/turf/simulated/floor,/area)
+"gk" = (/obj/machinery/atmospherics/pipe/simple{dir = 4},/turf/simulated/floor{icon_state = "red"; dir = 8},/area)
+"gl" = (/obj/machinery/light{dir = 4; icon_state = "tube1"; layer = 9.1; pixel_x = 10},/obj/machinery/atmospherics/pipe/simple{dir = 4},/turf/simulated/floor{icon_state = "red"; dir = 4},/area)
+"gm" = (/obj/machinery/computer/security,/obj/machinery/light{dir = 1; icon_state = "tube1"; layer = 9.1; pixel_y = 21},/obj/machinery/atmospherics/pipe/simple{dir = 4},/turf/simulated/floor{icon_state = "red"; dir = 9},/area)
+"gn" = (/obj/machinery/computer/secure_data,/obj/item/device/radio/intercom/brig{broadcasting = 0},/obj/machinery/atmospherics/pipe/simple{dir = 4},/turf/simulated/floor{icon_state = "red"; dir = 5},/area)
+"go" = (/obj/machinery/atmospherics/pipe/simple{dir = 10},/turf/simulated/floor,/area)
+"gp" = (/obj/stool,/turf/simulated/floor,/area)
+"gq" = (/turf/simulated/floor{icon_state = "caution_south"},/area)
+"gr" = (/obj/table/reinforced/auto,/obj/machinery/door_control{id = "platein2"; name = "Scrap Door Switch - IN"},/turf/simulated/floor{icon_state = "red"; dir = 8},/area)
+"gs" = (/obj/stool/chair/office{dir = 1; icon_state = "office_chair"},/turf/simulated/floor,/area)
+"gt" = (/obj/table/reinforced/auto,/obj/machinery/door_control{id = "plateout1"; name = "Scrap Door Switch - OUT"},/turf/simulated/floor{icon_state = "red"; dir = 4},/area)
+"gu" = (/obj/table/auto,/obj/disposaloutlet{dir = 4},/obj/disposalpipe/trunk{dir = 1},/turf/simulated/floor{icon_state = "floorgrime"},/area)
+"gv" = (/obj/table/auto,/obj/item/harmonica,/turf/simulated/floor,/area)
+"gw" = (/obj/table/auto,/obj/item/game_kit,/obj/window/cubicle{icon_state = "cubicle"; dir = 4},/turf/simulated/floor,/area)
+"gx" = (/obj/stool/chair/red{icon_state = "chair-r"; dir = 4},/turf/simulated/floor{icon_state = "red"; dir = 4},/area)
+"gy" = (/obj/machinery/atmospherics/unary/outlet_injector{dir = 1; icon_state = "on"; on = 1},/turf/simulated/floor,/area)
+"gz" = (/obj/storage/secure/closet/brig/automatic/genpop,/turf/simulated/floor{icon_state = "red"; dir = 8},/area)
+"gA" = (/obj/machinery/portableowl/judgementowl,/turf/simulated/floor{icon_state = "red"; dir = 4},/area)
+"gB" = (/obj/storage/closet/wardrobe/orange,/turf/simulated/floor{icon_state = "red"; dir = 8},/area)
+"gC" = (/obj/disposalpipe/segment{dir = 4; level = -1; pixel_y = 0},/turf/simulated/wall/auto/reinforced/supernorn,/area)
+"gD" = (/obj/machinery/power/data_terminal,/obj/table/auto,/obj/machinery/computer3/generic/personal,/obj/disposalpipe/segment{dir = 4; level = -1; pixel_y = 0},/turf/simulated/floor/engine,/area)
+"gE" = (/obj/table/reinforced/auto,/obj/machinery/computer/security/wooden_tv/small{pixel_y = 8},/obj/item/clothing/glasses/vr{network = "arcadevr"},/obj/item/clothing/glasses/vr{network = "arcadevr"},/obj/item/clothing/glasses/vr{network = "arcadevr"},/obj/disposalpipe/segment{dir = 4; level = -1; pixel_y = 0},/turf/simulated/floor{icon_state = "red"; dir = 9},/area)
+"gF" = (/obj/storage/secure/crate/weapon/confiscated_items,/obj/disposalpipe/segment{dir = 4; level = -1; pixel_y = 0},/turf/simulated/floor{icon_state = "red"; dir = 1},/area)
+"gG" = (/obj/disposalpipe/segment{dir = 8; icon_state = "pipe-c"},/turf/simulated/floor{icon_state = "red"; dir = 1},/area)
+"gH" = (/obj/machinery/light{dir = 1; icon_state = "tube1"; layer = 9.1; pixel_y = 21},/obj/machinery/door_timer/genpop/new_walls/north,/turf/simulated/floor{icon_state = "red"; dir = 1},/area)
+"gI" = (/obj/disposalpipe/junction{dir = 1},/turf/simulated/floor/engine,/area)
+"gJ" = (/obj/machinery/floorflusher/solitary,/obj/disposalpipe/trunk{dir = 8},/turf/simulated/floor/engine,/area)
+"gK" = (/obj/machinery/door/airlock/pyro/glass{dir = 4; id = "brig1"; name = "Cell 1"; req_access_txt = "2"},/turf/simulated/floor/engine,/area)
+"gL" = (/obj/stool/bed,/obj/item/clothing/glasses/vr{network = "arcadevr"},/obj/machinery/flasher/solitary{pixel_x = -24; pixel_y = 0},/obj/disposalpipe/segment,/turf/simulated/floor/engine,/area)
+"gM" = (/obj/machinery/door_timer/solitary{pixel_x = -32; pixel_y = 0},/turf/simulated/floor{icon_state = "red"; dir = 8},/area)
+"gN" = (/obj/machinery/door_timer/solitary2{pixel_x = -32},/turf/simulated/floor{icon_state = "red"; dir = 10},/area)
+"gO" = (/obj/machinery/light{dir = 4; icon_state = "tube1"; layer = 9.1; pixel_x = 10},/obj/machinery/vending/security,/turf/simulated/floor{icon_state = "red"; dir = 6},/area)
+"gP" = (/obj/machinery/light,/turf/simulated/floor,/area)
+"gQ" = (/obj/machinery/door/firedoor/pyro,/obj/machinery/door/airlock/pyro/glass{req_access_txt = "2"},/obj/machinery/door/poddoor/pyro{density = 0; icon_state = "pdoor0"; id = "lockdown_sec"; name = "Security Lockdown Doors"; opacity = 0},/turf/simulated/floor{icon_state = "delivery"},/area)
+"gR" = (/obj/plasticflaps{layer = 3},/obj/machinery/door/airlock/pyro/security{dir = 4; opacity = 0},/obj/machinery/door/poddoor/pyro{density = 0; dir = 4; icon_state = "pdoor0"; id = "lockdown_sec"; name = "Security Lockdown Doors"; opacity = 0},/obj/machinery/door/firedoor/pyro{icon_state = "fdoor0"; dir = 4},/turf/simulated/floor/plating,/area)
+"gS" = (/turf/simulated/floor{icon_state = "caution_north"; dir = 8},/area)
+"gT" = (/obj/machinery/door_timer/solitary2{pixel_x = -32},/obj/storage/secure/closet/animal,/obj/machinery/light,/turf/simulated/floor{icon_state = "red"; dir = 10},/area)
+"gU" = (/obj/item/storage/box/evidence,/obj/item/storage/box/evidence,/obj/item/storage/box/evidence,/obj/item/storage/box/evidence,/obj/item/storage/box/evidence,/obj/item/hand_labeler,/obj/item/clothing/gloves/latex,/obj/item/clothing/mask/surgical,/obj/item/device/audio_log,/obj/item/device/detective_scanner,/obj/item/body_bag,/obj/item/body_bag,/obj/item/body_bag,/obj/storage/cart/forensic{req_access_txt = "1"},/obj/item/device/detective_scanner,/turf/simulated/floor{icon_state = "red"},/area)
+"gV" = (/turf/simulated/floor{dir = 2; icon_state = "caution_south"},/area)
+"gW" = (/obj/machinery/light,/turf/simulated/floor{dir = 2; icon_state = "caution_south"},/area)
+"gX" = (/obj/table/reinforced/auto,/obj/machinery/computer3/generic/personal,/obj/machinery/power/data_terminal,/turf/simulated/floor{icon_state = "red"},/area)
+"gY" = (/obj/table/reinforced/auto,/obj/machinery/recharger,/obj/machinery/light,/turf/simulated/floor{icon_state = "red"},/area)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabacadaeafacagacahaiaiaeajakalaiacamamamacacanacaoacacaaaaaaaaababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabacadapaqaqaraqaqaqasatauavawaxacacamamacayazazazaAacaaaaaaaaababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabacadaBaCaCaDaCaCaEaFaGajakalaHaiacamamacaIabababaJacaaaaaaaaababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaKaiaLacacaMaNaNaNaNaNaNaOalaPaQacamamacaRaSaSaSaTacaaaaaaaaababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaUaiaLalacaVacacacacacacacacaWacacacacacaXaYaYaYaZacacacacacababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabacbaalbaacbbbcbdbebfbgbfbfbgbhbibjbfbfbfaXaYaYaYaZacbkbkbkblababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacajajajacbbbmbnbnabababababbobpbqbrbrbrbsbtbtbtbuacbkbkbkacababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacbvbwbxaiacbybzbrbrbAbAbAbAbAbBbCacacacacacacaIabaJacbkbkbkacababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacbwbDbEbFacbGbHbGbHbGbHbGbHbGbIbGacbJbKbLbMbNaIabaJacbkbkbkacababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacbwbDbEbxbObPbPbPbQbRbRbRbSbPbTbUacbVbWbWbXacaIabaJacbkbkbkacababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacbYbDbZbxaccabPbPbPbPbPbPbPbPbTcbaccccdbtbuceaIabaJacbkbkbkacababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaacfaaaaaaaaaaaaaaacacacacacaccgbPchcicjbwbPbPbPbTbUacckclcmbxceaIabaJacacacacacababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaabababcncocpcocqbPcrcsctcqcqcqbPbTbPcucvcwbqcxacaIabaJcyaecyababababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaczaaaacAcBaaacabababcCcDcEcDcqbPaccFaccGcHcIcJcKbPcLcMcNcOcPacaIabaJacaeacababababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaabqbqcQacabababcRcScEcScqcTaccUaccVcVcVcVcVcVacacacacacacaIabaJcyaecyabababacacaaaaaaaaaaaaaacWcXcYcZdadbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaababdcacacacaccVcVaccFacddbfbfbfbfbiacdedfdfdeacaIabaJacacacabababdgaaaaaaaaaaaaaaaadhaRaSaSdidjaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaabababdkdldmdndobqdpbfbfdqababababaJdrapababdsdraIabaJacabababababdtaaaaaaaaaaaaaaaaduaXbWbWdvdwaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaabababdxdyababaJbqaIabababdzdzdzabaJdrapababdsdraIabdAacabababababdBaaaaaaaaaaaaaaaadCdDdEdEdFbxaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaabababdGdHababdIbqaIabababdJdKdLabaJacdMdNdOdPacbzdQdRacabababababdgaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaabababacaIababdIbqaIabababdSbqdTabaJacacacacacacdUacacacdVdVacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaabababdWaIababaJdWaIabababdXdYdZabeabiebececedeeecacaaaaababacamamamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaefaaaaaaaaaaaaabababdWaIababaJdWaIabababegegegababaJeheceiejekelacaaaaababacamamamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacemeneoepaceqbrbrbrerbrbrbrbreseheteuevekewacaaaaababacamamamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacacacacexacacaceyacacacacacacacacacacacaaaaababacamamamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacezeAeBacezeCeDaceEeFaiaiaieGaaaaaaaaaaababacamamamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaceHeIeJaceKeIeJaceLeMacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacacacacacacacacacabababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeNaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaabacadaeafacagacahaiaiaeajakalaiacamamamacacanacaoacacacacacacababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaabacadapaqaqeOaqaqaqasatauavawaxacacamamacayazazazaAacePeQbkblababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaabacadaBaCaCaDaCaCaEaFaGajakalaHaiacamamacddaaaaaabibqbkbkbkacababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaabacaiaLacacaMaNaNaNaNaNaNaOalaPaQacamamacaIaaaaaaeRbqbkbkeSacababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaabacaiaLalacaVacacacacacacacacaWacacacacacaIaaaaaaaJeTbkbkeSacababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaabaceUaLalaceVddbgbfbfbgbfbfbgeWeXbjbfbfbfdqaaaaaaaJeTbkbkeSacababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaabaKeYeZalacfaaaaaaaabababababfbcUbqbrbrfcabaaaaaaaJbqbkbkeSacababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaafdaUfeffalacfafgfhabbrfibrbrbrfjfkbqflfmaIfnfobrbrepbqfpbkfqacababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaabacbaalbaaccUfrfsftbqbqbqacacfufvacfwfxaIaJacacacacacacacacacababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaabacajajajacaacUfyfzfAfBfCfzfyfDfEacfFfxaIeRacaaaaaaaaaaaaacabababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaabacfGfHfIacaaabfJfKbqbqbqfKabbofEacfLfMaIaJfNaaaaaaaaaaaaacabababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaabacbwbwfOacaaababfJabababfJabbocUacacacaIaJacaaaaaaaaaaaaacabababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaabacfPbwfHfQababababfRfSfRababboababfTacfUaJfVaaaaaaaaaaaaacabababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacacacfWabbqbqbqbqbqbqbqfXababfYacaIaJacacacacacacacacabababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaacncocpcofZgagagagbgcgdgegfggghgifZfZgjdkgkgldkgmdmdngndkgagagoababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaacCcDcEcDgpababgqbqgrgsfggsgtbqgugvgwfTacaIaJbqaIababgxdxababgyababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaacRcScEcSgpcAcBcsacgzabababaJacacacacacacfUaJbqdIababgAdGabababababdgaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacacbqbqcQacgBabababaJacdedfdfdeacaIaJbqdIababeRacabababababdtaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaadcgCeHgDgCgEgFgGgHdqabababaJdrapababdsdraIaJdWaIababaJdWabababababdBaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaabacgIgJgKaIabababababababaJdrapababdsdraIaJdWaIababaJdWabababababdgaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaabacgLeBacgMabababababababeRacdMdNdOdPacgNgOacemeneoepacdVdVacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaadVaaaaaaaafUabababgPabababaJacacacacacacdUacacacacacacacababacamamamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaIabacgQacgQacabeabiebececedeeecgRaiaiaiaiaieGababacamamamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaIabbqgSgSgSbqdzabdAeheceiejekelaceEeFacacacacababacamamamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaagTgUbqgVgWgVbqgXgYdReheteuevekewaceLeMacabababababacamamamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaacacacgQacgQacacacacacacacacacacacacacacabababababacamamamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}

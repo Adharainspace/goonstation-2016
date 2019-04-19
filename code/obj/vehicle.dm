@@ -828,7 +828,7 @@ Contains:
 		in_bump = 0
 		return
 	if(ismob(AM))
-		DEBUG_MESSAGE("Bumped [AM] and gonna bowl 'em over.")
+		DEBUG("Bumped [AM] and gonna bowl 'em over.")
 		bumpstun(AM)
 
 //		eject_rider(2)
