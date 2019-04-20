@@ -2172,9 +2172,43 @@ datum
 			on_reaction(var/datum/reagents/holder, var/created_volume)
 				bust_lights()
 				creepify_station()
-				return
+				return */
 
-		bleach
+		stable_void
+			name = "Stablised Anomalous Semifluid"
+			id = "stable_void"
+			result = "stable_void"
+			result_amount = 1
+			required_reagents = list("water" = 1, "blood" = 1) //coders, change the recipe as you see fit! this is literally only to make it easy to test
+			mix_phrase = "A gloopy purple substance rapidly precipitates out of the solution. It gives you a headache to look at it."
+			mix_sound = 'sound/effects/blobattack.ogg'
+
+			on_reaction(var/datum/reagents/holder, var/created_volume)
+				var/T = get_turf(holder.my_atom)
+				var/datum/effects/system/spark_spread/s = unpool(/datum/effects/system/spark_spread)
+				s.set_up(3, 1, T)
+				s.start()
+
+		unstable_void
+			name = "Unstable Anomalous Semifluid"
+			id = "unstable_void"
+			result = "unstable_void"
+			result_amount = 1
+			required_reagents = list("stable_void" = 1, "plasma" = 1) //coders, change the recipe as you see fit! this is literally only to make it easy to test
+			mix_phrase = "The mixture begins to feverishly slosh around..."
+
+//SPOOK TIME. lets play a global spooky sound and give a global chat message, wait a little tiny bit, flash the screen and then make the station and space spooky
+			on_reaction(var/datum/reagents/holder, var/created_volume)
+				for (var/client/C in clients)
+					boutput(C, "An earsplitting screech fills your ears and the station itself seems to... seems to be melting and disintegrating and tearing itself apart like a monolithic abomination shedding its skin... until it just stops. And, surprisingly, everything is back to normal. Almost.")
+				world << sound('sound/effects/realityfailure.ogg', volume=60)
+				sleep(10)
+				for (var/mob/N in mobs)
+					N.flash(60)
+				bust_lights()
+				creepify_station()
+
+		/*bleach
 			name = "Bleach" // cogwerks WIP: could be useful for hobo chemistry, hair bleaching, stubborn stains, being a jerk and turning stuff white
 			id = "bleach"
 			result = "bleach"

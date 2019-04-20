@@ -374,16 +374,39 @@ datum
 				..(M)
 				return
 
-		/*disease/void_infection
-			name = "unstable void"
+		disease/void_infection
+			name = "ERROR. PLEASE CONTACT YOUR SYSTEM ADMINISTRATOR."
 			id = "unstable_void"
-			description  = "Ì-DUH, UG-ENE-SE LU-ENE-E É-A-NIR-RA-GAL-GAL-LA-T I-TA-N-ÉD-ENE KÁ-ZU DUH-A-B."
+			description  = "Ì-DUH, UG-ENE-SE LU-ENE-E É-A-NIR-RA-GAL-GAL-LA-T I-TA-N-ÉD-ENE KÁ-ZU DUH-A-B." //"[Gatekeeper], [for the sake of the dead ones] [the people] [out from the great house of mourning] [leaving (third plural)] [your door] [open!]
 			reagent_state = LIQUID
 			fluid_r = 91
 			fluid_g = 0
 			fluid_b = 91
 			transparency = 0
-			disease = /datum/ailment/disease/void_infection */
+			disease = /datum/ailment/disease/kuru
+
+			reaction_turf(var/turf/T, var/volume)
+				src = null
+				if(volume < 5)
+					return
+				if(isrestrictedz(T.z))
+					return
+				if(istype(T, /turf/unsimulated))
+					return
+				if((istype(T, /turf/simulated/floor/void)) || (istype(T, /turf/simulated/wall/void)))
+					return
+				if(istype(T, /turf/simulated/floor))
+					playsound(T, "sound/machines/engine_alert3.ogg", 50, 1)
+					new /turf/simulated/floor/void(T)
+					if(prob(9))
+						new /obj/critter/aberration(T)
+				else if(istype(T, /turf/simulated/wall))
+					playsound(T, "sound/machines/engine_alert3.ogg", 50, 1)
+					new /turf/simulated/wall/void(T)
+					if(prob(9))
+						new /obj/critter/aberration(T)
+				else
+					return
 
 		// Marquesas' one stop pathology shop
 		blood/pathogen

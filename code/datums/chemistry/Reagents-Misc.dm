@@ -683,6 +683,8 @@ datum
 							playsound(T, "sound/effects/splat.ogg", 50, 1)
 							M.visible_message("<span style=\"color:red\"><b>[M]</b> pukes up a... a floating eyeball?! [pick("Ewwwwww...", "That's disturbing.", "Lord above!", "Good god!")]</span>")
 							new /obj/critter/floateye(T)
+				..(M)
+				return
 
 		stabiliser
 			name = "stabilising agent"
