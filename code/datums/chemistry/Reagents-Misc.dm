@@ -2361,3 +2361,77 @@ datum
 				M.bioHolder.AddEffect("reversed_speech", timeleft = 180)
 				..(M)
 				return
+
+//=-=-=-=-=-=-=-=-=
+//|| C E M E N T ||
+//=-=-=-=-=-=-=-=-=
+
+		calcium_carbonate //made from crushed/hammered/picked/reagent/extracted sea shells
+			name = "calcium carbonate"
+			id = "calcium_carbonate"
+			description = "A naturally occuring chemical found in seashells and certain rocks."
+			reagent_state = SOLID
+			fluid_r = 255
+			fluid_g = 255
+			fluid_b = 255
+			transparency = 255
+
+		lime //made from burnt calcium carbonate
+			name = "lime"
+			id = "calcium_oxide"
+			description = "A material made primarily of calcium oxides, with trace amounts of other minerals present. It can cause pretty severe skin irritation."
+			reagent_state = SOLID
+			fluid_r = 255
+			fluid_g = 255
+			fluid_b = 255
+			transparency = 255
+
+		calcium_sulfate //made with waste sulfur gas and calcium carbonate or calcium oxide (sulfur + oxygen(3) + water + calcium_carbonate)
+			name = "calcium sulfate"
+			id = "calcium_sulfate"
+			description = "An inorganic chemical that has many uses in the industrial sector."
+			reagent_state = SOLID
+			fluid_r = 255
+			fluid_g = 255
+			fluid_b = 255
+			transparency = 255
+
+		perfect_cement //calcium oxide, aluminium(2), magnesium, iron(2), calcium sulfate, oxygen (10), sulfur
+			name = "cement"
+			id = "perfect_cement"
+			description = "A perfect mixture of different minerals and chemicals that binds with an aggregate to form a rock-solid... solid."
+			reagent_state = SOLID
+			fluid_r = 124
+			fluid_g = 124
+			fluid_b = 124
+			transparency = 255
+
+		good_cement //calcium oxide, aluminium(2), magnesium, iron(2), calcium sulfate, oxygen (7)
+			name = "cement"
+			id = "great_cement"
+			description = "A great mixture of different minerals and chemicals that binds with an aggregate to form a rock-solid... solid."
+			reagent_state = SOLID
+			fluid_r = 124
+			fluid_g = 124
+			fluid_b = 124
+			transparency = 255
+
+		ok_cement //calcium oxide, aluminium(2), magnesium, iron(2), oxygen (7)
+			name = "cement"
+			id = "good_cement"
+			description = "A good mixture of different minerals and chemicals that binds with an aggregate to form a rock-solid... solid."
+			reagent_state = SOLID
+			fluid_r = 124
+			fluid_g = 124
+			fluid_b = 124
+			transparency = 255
+
+		poor_cement  //calcium oxide, aluminium(2), iron(2), oxygen (6)
+			name = "cement"
+			id = "poor_cement"
+			description = "A poor mixture of different minerals and chemicals that binds with an aggregate to form a rock-solid... solid."
+			reagent_state = SOLID
+			fluid_r = 124
+			fluid_g = 124
+			fluid_b = 124
+			transparency = 255
