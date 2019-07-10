@@ -2386,7 +2386,7 @@ datum
 			fluid_b = 255
 			transparency = 255
 
-		calcium_sulfate //made with waste sulfur gas and calcium carbonate or calcium oxide (sulfur + oxygen(3) + water + calcium_carbonate)
+		calcium_sulfate //gypsum, made with waste sulfur gas and calcium carbonate or calcium oxide (sulfur + oxygen(3) + water + calcium_carbonate)
 			name = "calcium sulfate"
 			id = "calcium_sulfate"
 			description = "An inorganic chemical that has many uses in the industrial sector."
