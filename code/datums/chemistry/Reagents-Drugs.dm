@@ -514,6 +514,8 @@ datum
 						M.take_oxygen_deprivation(20)
 						M.updatehealth()
 
+		drug/nicotine_v2
+
 		drug/psilocybin
 			name = "psilocybin"
 			id = "psilocybin"
