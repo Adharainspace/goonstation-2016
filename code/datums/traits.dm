@@ -545,11 +545,11 @@
 	points = 1
 	isPositive = 0
 
-/obj/trait/random_allergies
-	name = "Allergies (+1)"
-	cleanName = "Allergies"
-	desc = "You're allergic to... something. You can't quite remember. Maybe it'll come back to you?"
-	id = "randomallergies
+/obj/trait/random_allergy
+	name = "Allergy (+1)"
+	cleanName = "Allergy"
+	desc = "You're allergic to... something. You can't quite remember. "
+	id = "randomallergies"
 	points = 1
 	isPositive = 0
 
@@ -562,12 +562,12 @@
 	"coffee","chocolate","chickensoup","salt","grease","badgrease","msg","egg")
 
 	onAdd(var/mob/owner)
+		var/owner_name = owner.real_name
 		if(allergen_list.len > 1)
 			allergen = pick(allergen_list)
-			//a slip of paper? edit their brain?
-		else
-			return
-		return
+			for(var/datum/data/record/E in data_core.medical)
+				if (E.fields["name"] == "[owner_name]")
+					E.fields["notes"] += "[owner_name] is allergic to [allergen]."
 
 /*
 /obj/trait/lizard
