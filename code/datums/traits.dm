@@ -544,6 +544,31 @@
 	id = "leftfeet"
 	points = 1
 	isPositive = 0
+
+/obj/trait/random_allergies
+	name = "Allergies (+1)"
+	cleanName = "Allergies"
+	desc = "You're allergic to... something. You can't quite remember. Maybe it'll come back to you?"
+	id = "randomallergies
+	points = 1
+	isPositive = 0
+
+	var/allergen = null
+	var/list/allergen_list = list("spaceacillin","morphine","teporone","salicylic_acid","calomel","synthflesh","omnizine","saline","anti_rad","smelling_salt",\
+	"haloperidol","epinephrine","insulin","silver_sulfadiazine","mutadone","ephedrine","penteticacid","antihistamine","stypic_powder","cryoxadone","atropine",\
+	"salbutamol","perfluorodecalin","mannitol","charcoal","antihol","ethanol","iron","lithium","copper","mercury","oxygen","plasma","sugar","radium","water","bathsalts",\
+	"jenkem","crank","LSD","space_drugs","THC","nicotine","krokodil","catdrugs","triplemeth","methamphetamine","thermite","smokepowder","infernite","ldmatter","fuel",\
+	"anti_fart","lube","ectoplasm","cryostylane","oil","sewage","ants","spiders","poo","love","hugs","fartonium","blood","bloodc","vomit","urine","capsaicin","cheese",\
+	"coffee","chocolate","chickensoup","salt","grease","badgrease","msg","egg")
+
+	onAdd(var/mob/owner)
+		if(allergen_list.len > 1)
+			allergen = pick(allergen_list)
+			//a slip of paper? edit their brain?
+		else
+			return
+		return
+
 /*
 /obj/trait/lizard
 	name = "Lizard (-1) \[Race\]"
