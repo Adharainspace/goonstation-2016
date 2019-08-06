@@ -22,7 +22,10 @@
 		if (istype(W, /obj/item/spacecash))
 			boutput(user, "<span style=\"color:red\">You roll up [W] into a cigarette.</span>")
 			var/obj/item/clothing/mask/cigarette/custom/P = new(user.loc)
-			P.name = "[W.amount]-credit [pick("joint","doobie","spliff","roach","blunt","roll","fatty","reefer")]"
+			if(istype(src, /obj/item/plant/herb/tobacco))
+				P.name = "[W.amount]-credit rolled cigarette"
+			else
+				P.name = "[W.amount]-credit [pick("joint","doobie","spliff","roach","blunt","roll","fatty","reefer")]"
 			P.reagents.maximum_volume = src.reagents.total_volume
 			src.reagents.trans_to(P, src.reagents.total_volume)
 			qdel (W)
@@ -30,7 +33,10 @@
 		else if (istype(W, /obj/item/paper/))
 			boutput(user, "<span style=\"color:red\">You roll up [W] into a cigarette.</span>")
 			var/obj/item/clothing/mask/cigarette/custom/P = new(user.loc)
-			P.name = pick("joint","doobie","spliff","roach","blunt","roll","fatty","reefer")
+			if(istype(src, /obj/item/plant/herb/tobacco))
+				P.name = "rolled cigarette"
+			else
+				P.name = pick("joint","doobie","spliff","roach","blunt","roll","fatty","reefer")
 			P.reagents.maximum_volume = src.reagents.total_volume
 			src.reagents.trans_to(P, src.reagents.total_volume)
 			qdel (W)
@@ -198,3 +204,17 @@
 	brew_result = "catdrugs"
 	module_research = list("vice" = 3)
 	module_research_type = /obj/item/plant/herb/cannabis
+
+/obj/item/plant/herb/tobacco
+	name = "tobacco leaf"
+	desc = "A leaf from a tobacco plant. This could probably be smoked..."
+	icon_state = "tobacco"
+	brewable = 1
+	brew_result = list("nicotine")
+
+/obj/item/plant/herb/tobacco/twobacco
+	name = "twobacco leaf"
+	desc = "A leaf from the twobacco plant. This could probably be smoked- wait, what?"
+	icon_state = "twobacco"
+	brewable = 1
+	brew_result = list("nicotine2")

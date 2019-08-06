@@ -119,3 +119,21 @@
 	vending = 2
 	genome = 1
 	assoc_reagents = list("catonium")
+
+/datum/plant/tobacco
+	name = "Tobacco"
+	catregory = "Herb"
+	seedcolor = "#82D213"
+	crop = /obj/item/plant/herb/tobacco
+	starthealth = 20
+	growtime = 30
+	harvtime = 80
+	cropsize = 6
+	harvests = 1
+	endurance = 1
+	isgrass = 1
+	genome = 2 //no idea if this was set to the right thing aaa
+	nectarlevel = 5
+	assoc_reagents = list("nicotine")
+	mutations = list(/datum/plantmutation/tobacco/twobacco)
+	commuts = list(/datum/plant_gene_strain/resistance_drought,/datum/plant_gene_strain/yield/stunted)

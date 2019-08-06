@@ -514,7 +514,17 @@ datum
 						M.take_oxygen_deprivation(20)
 						M.updatehealth()
 
-		drug/nicotine_v2
+		drug/nicotine/nicotine2
+			name = "nicotine 2"
+			id = "nicotine2"
+			description = "A highly addictive stimulant derived from the twobacco plant."
+			reagent_state = LIQUID
+			fluid_r = 0
+			fluid_g = 0
+			fluid_b = 0
+			transparency = 190
+			addiction_prob = 100
+			overdose = 17.5
 
 		drug/psilocybin
 			name = "psilocybin"

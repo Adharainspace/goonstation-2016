@@ -352,3 +352,9 @@
 	iconmod = "Cash"
 	crop = /obj/item/spacecash
 	chance = 20
+
+//tobacco mutations
+/datum/plantmutation/tobacco/twobacco
+	name = "Twobacco"
+	iconmod = "twobacco"
+	crop = /obj/item/plant/herb/tobacco/twobacco
