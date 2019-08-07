@@ -214,7 +214,7 @@
 
 /obj/item/plant/herb/tobacco/twobacco
 	name = "twobacco leaf"
-	desc = "A leaf from the twobacco plant. This could probably be smoked- wait, what?"
+	desc = "A leaf from the twobacco plant. This could probably be smoked- wait, is it already smoking?"
 	icon_state = "twobacco"
 	brewable = 1
 	brew_result = list("nicotine2")

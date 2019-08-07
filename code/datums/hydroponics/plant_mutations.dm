@@ -356,5 +356,8 @@
 //tobacco mutations
 /datum/plantmutation/tobacco/twobacco
 	name = "Twobacco"
-	iconmod = "twobacco"
+	iconmod = "Twobacco"
+	PTrange = list(30,null)
 	crop = /obj/item/plant/herb/tobacco/twobacco
+	assoc_reagents = list("nicotine2")
+	chance = 50

@@ -122,7 +122,7 @@
 
 /datum/plant/tobacco
 	name = "Tobacco"
-	catregory = "Herb"
+	category = "Herb"
 	seedcolor = "#82D213"
 	crop = /obj/item/plant/herb/tobacco
 	starthealth = 20

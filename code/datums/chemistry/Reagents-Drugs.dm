@@ -515,16 +515,86 @@ datum
 						M.updatehealth()
 
 		drug/nicotine/nicotine2
-			name = "nicotine 2"
+			name = "nicotwaine"
 			id = "nicotine2"
 			description = "A highly addictive stimulant derived from the twobacco plant."
-			reagent_state = LIQUID
-			fluid_r = 0
-			fluid_g = 0
-			fluid_b = 0
-			transparency = 190
 			addiction_prob = 100
-			overdose = 17.5
+			overdose = 70
+
+			on_mob_life(var/mob/M)
+				if(ishuman(M))
+					var/mob/living/carbon/human/H = M
+					if (H.sims)
+						H.sims.affectMotive("fun", 0.4)
+				if(prob(50))
+					M.make_jittery(5)
+					if(M.paralysis) M.paralysis--
+					if(M.stunned) M.stunned--
+					if(M.weakened) M.weakened--
+
+				if(src.volume > src.overdose)
+					M.take_toxin_damage(2)
+					M.updatehealth()
+				..(M)
+
+			do_overdose(var/severity, var/mob/M)
+				var/effect = ..(severity, M)
+				if (severity == 1)
+					if (effect <= 2)
+						M.visible_message("<span style=\"color:red\"><b>[M.name]</b> looks really nervous!</span>")
+						boutput(M, "<span style=\"color:red\"><b>You feel really nervous!</b></span>")
+						M.change_misstep_chance(30)
+						M.take_toxin_damage(4)
+						M.make_jittery(20)
+						M.emote("twitch")
+						spawn(5)
+							M.emote("twitch")
+					else if (effect <= 4)
+						M.visible_message("<span style=\"color:red\"><b>[M.name]</b> is super sweaty!</span>")
+						boutput(M, "<span style=\"color:red\"><b>You feel hot! Is it hot in here?!</b></span>")
+						M.bodytemperature += rand(30,60)
+						M.take_toxin_damage(6)
+						M.updatehealth()
+					else if (effect <= 7)
+						M.take_toxin_damage(8)
+						M.updatehealth()
+						M.emote("twitch_v")
+						spawn(5)
+							M.emote("twitch_v")
+						M.make_jittery(20)
+				else if (severity == 2)
+					if (effect <= 2)
+						M.emote("gasp")
+						spawn(5)
+							M.emote("gasp")
+						boutput(M, "<span style=\"color:red\"><b>You really can't breathe!</b></span>")
+						M.take_oxygen_deprivation(15)
+						M.take_toxin_damage(6)
+						M.updatehealth()
+						M.stunned++
+						spawn(10)
+							M.stunned++
+					else if (effect <= 4)
+						boutput(M, "<span style=\"color:red\"><b>You feel really terrible!</b></span>")
+						M.emote("drool")
+						spawn(5)
+							M.emote("drool")
+						M.make_jittery(20)
+						M.take_toxin_damage(10)
+						M.updatehealth()
+						M.weakened++
+						spawn(10)
+							M.weakened++
+						M.change_misstep_chance(66)
+					else if (effect <= 7)
+						M.emote("collapse")
+						boutput(M, "<span style=\"color:red\"><b>Your heart is pounding! You need help!</b></span>")
+						M << sound('sound/effects/heartbeat.ogg')
+						M.paralysis = max(M.paralysis, 5)
+						M.make_jittery(60)
+						M.take_toxin_damage(12)
+						M.take_oxygen_deprivation(20)
+						M.updatehealth()
 
 		drug/psilocybin
 			name = "psilocybin"
