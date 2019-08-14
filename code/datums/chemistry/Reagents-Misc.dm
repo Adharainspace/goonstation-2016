@@ -1803,7 +1803,7 @@ datum
 				..(M)
 				return
 
-		glitter_harmless // no recipe, doesn't do any damage
+		glitter_harmless // new recipe, doesn't do any damage
 			name = "glitter"
 			id = "glitter_harmless"
 			description = "Fabulous!"

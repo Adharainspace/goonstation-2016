@@ -2566,6 +2566,13 @@ datum
 			result_amount = 4
 			mix_phrase = "The mixture becomes far more fabulous!"
 
+		glitter_harmless
+			name = "harmless glitter"
+			id = "glitter_harmless"
+			result = "glitter_harmless"
+			required_reagents = list("colors" = 1, "paper" = 1, "platinum" = 1)
+			mix_phrase = "The mixture becomes far more fabulous- safely."
+
 		rotting
 			name = "rotting"
 			id = "rotting"
