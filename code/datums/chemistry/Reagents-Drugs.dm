@@ -521,17 +521,42 @@ datum
 			addiction_prob = 100
 			overdose = 70
 
+			on_add()
+				if(istype(holder) && istype(holder.my_atom) && hascall(holder.my_atom,"add_stam_mod_regen"))
+					remove_buff = holder.my_atom:add_stam_mod_regen("consumable_good", 2)
+				return
+
 			on_mob_life(var/mob/M)
 				if(ishuman(M))
 					var/mob/living/carbon/human/H = M
 					if (H.sims)
-						H.sims.affectMotive("fun", 0.4)
-				if(prob(50))
-					M.make_jittery(5)
+						H.sims.affectMotive("fun", 2)
+				if(prob(75))
+					M.make_jittery(10)
 					if(M.paralysis) M.paralysis--
 					if(M.stunned) M.stunned--
 					if(M.weakened) M.weakened--
-
+				if(prob(25))
+					M.emote(pick("drool","shudder","groan","moan","shiver"))
+					boutput(M, "<span style=\"color:green\"><b>You feel... pretty good... and calm... weird.</b></span>")
+				if(prob(10))
+					M.make_jittery(20)
+					M.emote(pick("twitch","twitch_v","shiver","shudder","flinch","blink_r"))
+					boutput(M, "<span style=\"color:red\"><b>You can feel your heartbeat in your throat!</b></span>")
+					M.playsound_local(M.loc, 'sound/effects/heartbeat.ogg', 50, 1)
+					M.take_toxin_damage(2)
+					M.updatehealth()
+				if(prob(5))
+					if(M.paralysis) M.paralysis = 0
+					if(M.stunned) M.stunned = 0
+					if(M.weakened) M.weakened = 0
+					if(M.sleeping) M.sleeping = 0
+					M.make_jittery(30)
+					M.emote(pick("twitch","twitch_v","shiver","shudder","flinch","blink_r"))
+					boutput(M, "<span style=\"color:red\"><b>Your heart's beating really really fast!</b></span>")
+					M.playsound_local(M.loc, 'sound/effects/heartbeat.ogg', 50, 1)
+					M.take_toxin_damage(4)
+					M.updatehealth()
 				if(src.volume > src.overdose)
 					M.take_toxin_damage(2)
 					M.updatehealth()
@@ -544,47 +569,39 @@ datum
 						M.visible_message("<span style=\"color:red\"><b>[M.name]</b> looks really nervous!</span>")
 						boutput(M, "<span style=\"color:red\"><b>You feel really nervous!</b></span>")
 						M.change_misstep_chance(30)
-						M.take_toxin_damage(4)
+						M.take_toxin_damage(3)
 						M.make_jittery(20)
 						M.emote("twitch")
-						spawn(5)
-							M.emote("twitch")
+						M.emote("twitch")
 					else if (effect <= 4)
 						M.visible_message("<span style=\"color:red\"><b>[M.name]</b> is super sweaty!</span>")
 						boutput(M, "<span style=\"color:red\"><b>You feel hot! Is it hot in here?!</b></span>")
 						M.bodytemperature += rand(30,60)
-						M.take_toxin_damage(6)
+						M.take_toxin_damage(4)
 						M.updatehealth()
 					else if (effect <= 7)
-						M.take_toxin_damage(8)
+						M.take_toxin_damage(5)
 						M.updatehealth()
 						M.emote("twitch_v")
-						spawn(5)
-							M.emote("twitch_v")
+						M.emote("twitch_v")
 						M.make_jittery(20)
 				else if (severity == 2)
 					if (effect <= 2)
 						M.emote("gasp")
-						spawn(5)
-							M.emote("gasp")
+						M.emote("gasp")
 						boutput(M, "<span style=\"color:red\"><b>You really can't breathe!</b></span>")
 						M.take_oxygen_deprivation(15)
-						M.take_toxin_damage(6)
+						M.take_toxin_damage(4)
 						M.updatehealth()
 						M.stunned++
-						spawn(10)
-							M.stunned++
 					else if (effect <= 4)
 						boutput(M, "<span style=\"color:red\"><b>You feel really terrible!</b></span>")
 						M.emote("drool")
-						spawn(5)
-							M.emote("drool")
+						M.emote("drool")
 						M.make_jittery(20)
-						M.take_toxin_damage(10)
+						M.take_toxin_damage(5)
 						M.updatehealth()
 						M.weakened++
-						spawn(10)
-							M.weakened++
 						M.change_misstep_chance(66)
 					else if (effect <= 7)
 						M.emote("collapse")
@@ -592,7 +609,7 @@ datum
 						M << sound('sound/effects/heartbeat.ogg')
 						M.paralysis = max(M.paralysis, 5)
 						M.make_jittery(60)
-						M.take_toxin_damage(12)
+						M.take_toxin_damage(5)
 						M.take_oxygen_deprivation(20)
 						M.updatehealth()
 
