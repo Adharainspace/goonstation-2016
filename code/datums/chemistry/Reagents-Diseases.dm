@@ -374,6 +374,16 @@ datum
 				..(M)
 				return
 
+		disease/heartbreak
+			name = "liquid heartbreak"
+			description = "Looking at this fluid sends twangs of sadness and regret reverberating through your body."
+			reagent_state = LIQUID
+			fluid_r = 172
+			fluid_g = 2
+			fluid_b = 40
+			transparency = 0
+			disease = /datum/ailment/disease/heartbreak
+
 		// Marquesas' one stop pathology shop
 		blood/pathogen
 			name = "pathogen"
