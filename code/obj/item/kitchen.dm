@@ -233,6 +233,41 @@ MISC KITCHENWARE
 		M.visible_message("<span style=\"color:red\">[user] taps [M] over the head with [src].</span>")
 		logTheThing("combat", user, M, "taps %target% over the head with [src].")
 
+/obj/item/tray //this is the big boy
+	name = "serving tray"
+	desc = "It's a big flat tray for serving food upon."
+	icon = 'icons/obj/foodNdrink/food_related.dmi'
+	icon_state = "tray"
+	var/image/food = null
+
+	attackby(obj/item/W as obj, mob/user as mob)
+		if (!W.edible)
+			boutput(user, "[W] isn't food! That doesn't belong on \the [src]")
+			user.visible_message("<span style=\"color:red\"><B>[user] tries to stuff \the [W] onto \the [src], but it's not food! What a doofus!</B></span>")
+			return
+		food = image(W.icon, "")
+		food.icon_state = "[w.icon_state]"
+		src.overlays += food
+		src.desc += "The tray has \an [W] on it."
+
+/*	New()
+		..()
+		handle = image('icons/obj/surgery.dmi', "")
+		handle.icon_state = "surgical-scissors-handle"
+		handle.color = "#[random_hex(6)]"
+		src.overlays += handle*/
+
+///obj/item/tray/attack(mod/M as mob, mob/user as mob)
+//loose plan for this is to...
+// when attacked one start doing the overlay stuff
+//first it checks if its food
+//then it checks the icon of the object for overlay stuff
+//then it sets an overlay on the tray with the icon and iconstate info
+//one per tray until i learn how to offset or whatever
+//also += to description with the name of the food that was added
+//then, figure out a way to get rid of the food without deleting it, potentially moving it to 0,0, then retrieving it later
+//then, when attacked w/ an empty hand, remove food (if there is any)
+
 /obj/item/fish
 	throwforce = 3
 	force = 5
