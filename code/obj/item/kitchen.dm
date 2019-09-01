@@ -238,35 +238,137 @@ MISC KITCHENWARE
 	desc = "It's a big flat tray for serving food upon."
 	icon = 'icons/obj/foodNdrink/food_related.dmi'
 	icon_state = "tray"
-	var/image/food = null
+	var/list/tray_contents = list()
+	var/old_desc = null //for build desc being able to take off the old one
+	var/new_desc = null //for build desc being able to put on the new one
+
+	proc/add_contents(var/obj/item/W) //just cleanliness
+		tray_contents += W
+
+	proc/remove_contents(var/obj/item/W) //just cleanliness
+		tray_contents -= W
+
+	proc/update_icon() //goes through the tray contents, adds overlays for everything, attaches them to the tray TODO: add an upper limit? fix y scaling
+		for (var/i = 0, i < tray_contents.len, i++)
+			var/obj/item/F = tray_contents[i]
+			var/image/I = SafeGetOverlayImage("food_[i]", F.icon, "[F.icon_state]")
+			I.transform *= 0.5
+			if (i % 2)
+				I.pixel_x = -8
+			else
+				I.pixel_x = 8
+			I.pixel_y = i * 2 //this wont work right, figure out how to make y change only after every 2 iterations
+			I.layer = src.layer + 0.1
+			UpdateOverlays(I, "food_[i]", 0, 1)
+		return
+
+	proc/build_desc() //this is a mess but it should work
+		if (old_desc) //remove old desc from the description
+			src.desc -= old_desc
+		if (tray_contents.len == 0) //if the tray's empty, set the empty description
+			new_desc = "There's nothing on \the [src]!"
+			old_desc = new_desc
+			src.desc = new_desc
+			return
+		new_desc = "[src] has " //set the start of the sentence
+		for (var/i = 0, i < tray_contents.len, i++) //loop through the list
+			var/obj/item/F = tray_contents[i]
+			if(i == tray_contents.len) //if its at the last element, cap off the sentence
+				new_desc += "and \an [F]."
+			else
+				new_desc += "\an [F], " //otherwise, keep building the sentence normally
+		old_desc = new_desc //set old desc so we can clear it next time we need to redo the description
+		src.desc += new_desc
+		return
 
 	attackby(obj/item/W as obj, mob/user as mob)
+		if(!W.edible)
+			boutput(user, "[W] isn't food! That doesn't belong on \the [src]")
+			return
+		user.drop_item()
+		W.set_loc(src)
+		src.add_contents(W)
+		src.update_icon()
+		src.build_desc()
+		boutput(user, "You put [W] on \the [src]")
+
+/*	attack_hand(mob/user as mob) //problem code
+		var/food_sel = input(user, "Test1", "Test2") as null|anything in tray_contents
+			if (!food_sel)
+				return
+		user.put_in_hand_or_drop(food_sel)
+		src.remove_contents(food_sel)
+		src.update_icon()
+		src.build_desc()
+		boutput(user, "You take \the [food_sel] off \the [src]")*/
+
+/*	attackby(obj/item/W as obj, mob/user as mob)
 		if (!W.edible)
 			boutput(user, "[W] isn't food! That doesn't belong on \the [src]")
-			user.visible_message("<span style=\"color:red\"><B>[user] tries to stuff \the [W] onto \the [src], but it's not food! What a doofus!</B></span>")
 			return
-		food = image(W.icon, "")
-		food.icon_state = "[w.icon_state]"
-		src.overlays += food
-		src.desc += "The tray has \an [W] on it."
+		if (!food1)
+			food1 = image(W.icon, "")
+			food1.icon_state = "[W.icon_state]"
+			food1.pixel_x = -8
+			user.drop_item()
+			W.set_loc(src)
+			food_in_tray += food1
+			src.UpdateOverlays(food1, 1)
+			src.desc += " The [src] has \an [W] on it."
+			return
+		if (food1 && !food2)
+			food2 = image(W.icon, "")
+			food2.icon_state = "[W.icon_state]"
+			food2.pixel_x = 8
+			user.drop_item()
+			W.set_loc(src)
+			food_in_tray += food2
+			src.UpdateOverlays(food2, 2)
+			src.desc += " The [src] also has \an [W] on it."
+			return
 
-/*	New()
+	attack_hand(mob/user as mob, unused, flag)
+		for(/obj/item/W in src)
+			if(W.edible)
+				food_in_tray += W.name
+
+ 		var/food_sel = input(user, "Test1", "Test2") as null|anything in food_in_tray
+			if (!food_sel)
+				return
+
+		user.put_in_hand_or_drop(food_sel)
+		boutput(user, "You take [food_sel] off of /the [src]")
+		if (food_sel.icon_state == food1.iconstate)
+			src.overlays -= food1
+			src.desc -= " The [src] has \an [W] on it."
+			return
+		else if (food_sel.icon_state == food2.icon_state)
+			src.overlays -= food2
+			src.desc -= " The [src] also has \an [W] on it."
+			return
+		else //is this necessary? probably not
+			return
+
+proc/build_desc(var/name1, var/name2) maybe not necessary?
+
+
+	New()
 		..()
 		handle = image('icons/obj/surgery.dmi', "")
 		handle.icon_state = "surgical-scissors-handle"
 		handle.color = "#[random_hex(6)]"
-		src.overlays += handle*/
+		src.overlays += handle
 
-///obj/item/tray/attack(mod/M as mob, mob/user as mob)
-//loose plan for this is to...
-// when attacked one start doing the overlay stuff
-//first it checks if its food
-//then it checks the icon of the object for overlay stuff
-//then it sets an overlay on the tray with the icon and iconstate info
-//one per tray until i learn how to offset or whatever
-//also += to description with the name of the food that was added
-//then, figure out a way to get rid of the food without deleting it, potentially moving it to 0,0, then retrieving it later
-//then, when attacked w/ an empty hand, remove food (if there is any)
+obj/item/tray/attack(mod/M as mob, mob/user as mob)
+loose plan for this is to...
+ when attacked one start doing the overlay stuff
+first it checks if its food
+then it checks the icon of the object for overlay stuff
+then it sets an overlay on the tray with the icon and iconstate info
+one per tray until i learn how to offset or whatever
+also += to description with the name of the food that was added
+then, store the food in src
+then, when attacked w/ an empty hand, remove food (if there is any)*/
 
 /obj/item/fish
 	throwforce = 3
