@@ -238,31 +238,134 @@ MISC KITCHENWARE
 	desc = "It's a big flat tray for serving food upon."
 	icon = 'icons/obj/foodNdrink/food_related.dmi'
 	icon_state = "tray"
+	throwforce = 3.0 //these values could use some tweaking if theyre too powerful
+	throw_speed = 3 //same as these
+	throw_range = 5 //these too
+	force = 8 //this too maybe? sorry
 	var/list/tray_contents = list()
-	var/old_desc = null //for build desc being able to take off the old one
-	var/new_desc = null //for build desc being able to put on the new one
+	var/old_desc = null
+	var/new_desc = null
+	var/y_counter = 0
+	var/y_mod = 0
+	var/tray_health = 6 //the number of times you can smash someone over the head with the tray before it breaks
 
-	proc/add_contents(var/obj/item/W) //just cleanliness
+	proc/add_contents(var/obj/item/W)
 		tray_contents += W
 
-	proc/remove_contents(var/obj/item/W) //just cleanliness
+	proc/remove_contents(var/obj/item/W)
 		tray_contents -= W
 
-	proc/update_icon() //goes through the tray contents, adds overlays for everything, attaches them to the tray TODO: add an upper limit? fix y scaling
-		for (var/i = 0, i < tray_contents.len, i++)
+	proc/update_icon()
+		for (var/i = 1, i <= tray_contents.len, i++)
 			var/obj/item/F = tray_contents[i]
-			var/image/I = SafeGetOverlayImage("food_[i]", F.icon, "[F.icon_state]")
+			var/image/I = SafeGetOverlayImage("food_[i]", F.icon, F.icon_state)
 			I.transform *= 0.5
 			if (i % 2)
 				I.pixel_x = -8
 			else
 				I.pixel_x = 8
-			I.pixel_y = i * 2 //this wont work right, figure out how to make y change only after every 2 iterations
+			y_counter++
+			if (y_counter == 3)
+				y_mod++
+				y_counter = 1
+			I.pixel_y = y_mod * 2
 			I.layer = src.layer + 0.1
-			UpdateOverlays(I, "food_[i]", 0, 1)
+			src.UpdateOverlays(I, "food_[i]", 0, 1)
+		for (var/i = tray_contents.len + 1, i <= src.overlays.len, i++)
+			src.ClearSpecificOverlays("food_[i]")
+		y_counter = 0
+		y_mod = 0
 		return
 
-	proc/build_desc() //this is a mess but it should work
+	proc/shit_goes_everywhere(var/turf/T)
+		if (!T)
+			T = src.loc
+		if (ismob(T))
+			T = get_turf(T)
+		if (!T)
+			qdel(src)
+			return
+
+		T.visible_message("<span style=\"color:red\">Everything on \the [src] goes flying!</span>")
+		var/list/nearby_turfs = list()
+		for (T in view(5,src))
+			nearby_turfs += T
+
+		while (tray_contents.len > 0)
+			var/obj/item/F = tray_contents[1]
+			src.remove_contents(F)
+			src.update_icon()
+			F.set_loc(src.loc)
+			F.throw_at(pick(nearby_turfs), 16, 3)
+
+	throw_impact(var/turf/T)
+		..()
+		if(tray_contents.len == 0)
+			return
+		src.shit_goes_everywhere(T)
+
+	attackby(obj/item/W as obj, mob/user as mob)
+		if (!W.edible)
+			boutput(user, "[W] isn't food, That doesn't belong on \the [src]!")
+			return
+		if (tray_contents.len == 30)
+			boutput(user, "That won't fit, \the [src] is too full!")
+			return
+		user.drop_item()
+		W.set_loc(src)
+		src.add_contents(W)
+		src.update_icon()
+//		src.build_desc()
+		boutput(user, "You put [W] on \the [src]")
+
+	attack_self(mob/user as mob)
+		if (tray_contents.len == 0)
+			boutput(user, "There's no food to take off of \the [src]!")
+			return
+		var/food_sel = input(user, "Which food?", "Tray Contents") as null|anything in tray_contents
+		if (!food_sel)
+			return
+		user.put_in_hand_or_drop(food_sel)
+		src.remove_contents(food_sel)
+		src.update_icon()
+//		src.build_desc()
+		boutput(user, "You take \the [food_sel] off of \the [src].")
+
+	attack(mob/M as mob, mob/user as mob)
+		if (user.a_intent == INTENT_HARM)
+			if (M == user)
+				boutput(user, "<span style=\"color:red\"><B>You bash yourself in the face with \the [src]!</b></span>")
+			else
+				M.visible_message("<span style=\"color:red\"><B>[user] bashes [M] over the head with \the [src]!</B></span>")
+				logTheThing("combat", user, M, "smashes \the [src] over %target%'s head! ")
+			user.drop_item(src)
+			if(tray_contents.len > 0)
+				src.shit_goes_everywhere(get_turf(src))
+			random_brute_damage(M, force)
+			M.weakened += rand(0,2)
+			M.updatehealth()
+			playsound(src, 'sound/weapons/trayhit.ogg', 50, 1)
+			if (tray_health == 0)
+				src.visible_message("The tray shatters!")
+				qdel(src)
+			tray_health--
+			src.visible_message("The tray looks a little less sturdy...")
+		else
+			M.visible_message("<span style=\"color:red\">[user] bops [M] over the head with \the [src].</span>")
+			logTheThing("combat", user, M, "taps %target% over the head with [src].")
+
+	attack_hand(mob/user as mob)
+		..()
+		src.update_icon()
+
+	dropped(mob/user as mob)
+		..()
+		if(tray_contents.len == 0)
+			return
+		user.visible_message("[user] drops \the [src] on the ground!")
+		src.shit_goes_everywhere(get_turf(src))
+
+/*	proc/build_desc() //this is a mess and doesnt work
 		if (old_desc) //remove old desc from the description
 			src.desc -= old_desc
 		if (tray_contents.len == 0) //if the tray's empty, set the empty description
@@ -271,7 +374,7 @@ MISC KITCHENWARE
 			src.desc = new_desc
 			return
 		new_desc = "[src] has " //set the start of the sentence
-		for (var/i = 0, i < tray_contents.len, i++) //loop through the list
+		for (var/i = 1, i <= tray_contents.len, i++) //loop through the list
 			var/obj/item/F = tray_contents[i]
 			if(i == tray_contents.len) //if its at the last element, cap off the sentence
 				new_desc += "and \an [F]."
@@ -281,26 +384,8 @@ MISC KITCHENWARE
 		src.desc += new_desc
 		return
 
-	attackby(obj/item/W as obj, mob/user as mob)
-		if(!W.edible)
-			boutput(user, "[W] isn't food! That doesn't belong on \the [src]")
-			return
-		user.drop_item()
-		W.set_loc(src)
-		src.add_contents(W)
-		src.update_icon()
-		src.build_desc()
-		boutput(user, "You put [W] on \the [src]")
-
-/*	attack_hand(mob/user as mob) //problem code
-		var/food_sel = input(user, "Test1", "Test2") as null|anything in tray_contents
-			if (!food_sel)
-				return
-		user.put_in_hand_or_drop(food_sel)
-		src.remove_contents(food_sel)
-		src.update_icon()
-		src.build_desc()
-		boutput(user, "You take \the [food_sel] off \the [src]")*/
+	New()
+		src.build_desc()*/
 
 /*	attackby(obj/item/W as obj, mob/user as mob)
 		if (!W.edible)
