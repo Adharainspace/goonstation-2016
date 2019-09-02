@@ -242,12 +242,13 @@ MISC KITCHENWARE
 	throw_speed = 3 //same as these
 	throw_range = 5 //these too
 	force = 8 //this too maybe? sorry
+	w_class = 4.0
 	var/list/tray_contents = list()
-	var/old_desc = null
-	var/new_desc = null
+	var/health_desc = null
+	var/food_desc = null
 	var/y_counter = 0
 	var/y_mod = 0
-	var/tray_health = 6 //the number of times you can smash someone over the head with the tray before it breaks
+	var/tray_health = 5 //the number of times you can smash someone over the head with the tray before it breaks, ADJUST BUILD DESC VALUES IF ADJUSTING TRAY HEALTH
 
 	proc/add_contents(var/obj/item/W)
 		tray_contents += W
@@ -298,6 +299,23 @@ MISC KITCHENWARE
 			F.set_loc(src.loc)
 			F.throw_at(pick(nearby_turfs), 16, 3)
 
+	proc/build_desc()
+//tray health description stuff
+		desc -= health_desc
+		if ((5 >= tray_health) && (tray_health > 3)) //between or at max health and 2/3rds health
+			health_desc = "The tray seems nice and sturdy!"
+		else if ((3 >= tray_health) && (tray_health > 1)) //between or at 2/3rds health or 1/3rd health
+			health_desc = "The tray is getting pretty warped and flimsy."
+		else if ((1 >= tray_health) && (tray_health >=0)) //between or at 1/3rd health and broken
+			health_desc = "The tray is on death's door, be careful!"
+		desc += health_desc
+//now for the fun part, descriptions based on the name's of what's on the tray
+
+
+	New()
+		..()
+		src.build_desc()
+
 	throw_impact(var/turf/T)
 		..()
 		if(tray_contents.len == 0)
@@ -306,6 +324,13 @@ MISC KITCHENWARE
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (!W.edible)
+			if (istype(W, /obj/item/kitchen/utensil))
+				var/sel_food = input(user, "Which food?", "Tray Contents") as null|anything in tray_contents
+				if(!sel_food)
+					return
+				W = sel_food
+				..()
+				return
 			boutput(user, "[W] isn't food, That doesn't belong on \the [src]!")
 			return
 		if (tray_contents.len == 30)
@@ -331,39 +356,44 @@ MISC KITCHENWARE
 //		src.build_desc()
 		boutput(user, "You take \the [food_sel] off of \the [src].")
 
-	attack(mob/M as mob, mob/user as mob)
+	attack(mob/M as mob, mob/user as mob) //bash trays over heads! NOTE: THIS COULD BE OVERPOWERED, SINCE IT DOES STUN
 		if (user.a_intent == INTENT_HARM)
 			if (M == user)
 				boutput(user, "<span style=\"color:red\"><B>You bash yourself in the face with \the [src]!</b></span>")
 			else
 				M.visible_message("<span style=\"color:red\"><B>[user] bashes [M] over the head with \the [src]!</B></span>")
 				logTheThing("combat", user, M, "smashes \the [src] over %target%'s head! ")
-			user.drop_item(src)
-			if(tray_contents.len > 0)
-				src.shit_goes_everywhere(get_turf(src))
 			random_brute_damage(M, force)
 			M.weakened += rand(0,2)
 			M.updatehealth()
 			playsound(src, 'sound/weapons/trayhit.ogg', 50, 1)
+			user.drop_item(src)
+			if(tray_contents.len > 0)
+				src.shit_goes_everywhere(get_turf(src))
 			if (tray_health == 0)
 				src.visible_message("The tray shatters!")
+				playsound(src, 'sound/effects/grillehit.ogg', 50, 1)
+				new /obj/item/scrap(src.loc)
 				qdel(src)
+				return
 			tray_health--
+			src.build_desc()
 			src.visible_message("The tray looks a little less sturdy...")
 		else
 			M.visible_message("<span style=\"color:red\">[user] bops [M] over the head with \the [src].</span>")
 			logTheThing("combat", user, M, "taps %target% over the head with [src].")
 
-	attack_hand(mob/user as mob)
+	attack_hand(mob/user as mob) //i want overlays to work in hands please please come ON
 		..()
-		src.update_icon()
+		spawn(5)
+			src.update_icon()
 
-	dropped(mob/user as mob)
+/*	dropped(mob/user as mob) apparently this triggers whenever you click with a tray at all so...?
 		..()
 		if(tray_contents.len == 0)
 			return
 		user.visible_message("[user] drops \the [src] on the ground!")
-		src.shit_goes_everywhere(get_turf(src))
+		src.shit_goes_everywhere(get_turf(src))*/
 
 /*	proc/build_desc() //this is a mess and doesnt work
 		if (old_desc) //remove old desc from the description
