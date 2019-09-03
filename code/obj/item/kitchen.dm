@@ -233,22 +233,22 @@ MISC KITCHENWARE
 		M.visible_message("<span style=\"color:red\">[user] taps [M] over the head with [src].</span>")
 		logTheThing("combat", user, M, "taps %target% over the head with [src].")
 
-/obj/item/tray //this is the big boy
+/obj/item/tray //this is the big boy!
 	name = "serving tray"
 	desc = "It's a big flat tray for serving food upon."
 	icon = 'icons/obj/foodNdrink/food_related.dmi'
 	icon_state = "tray"
-	throwforce = 3.0 //these values could use some tweaking if theyre too powerful
-	throw_speed = 3 //same as these
-	throw_range = 5 //these too
-	force = 8 //this too maybe? sorry
-	w_class = 4.0
-	var/list/tray_contents = list()
+	throwforce = 3.0 //these values could use some tweaking if theyre too powerful, i have 0 idea how damage stuff works sorry
+	throw_speed = 3
+	throw_range = 4
+	force = 10
+	w_class = 4.0 //cant be fried or fit in backpacks. this interacts REALLY WEIRDLY with the frier, so this is intentional
+	var/list/tray_contents = list() //this is an ordered list of stuff that gets put into the tray
 	var/health_desc = null
 	var/food_desc = null
 	var/y_counter = 0
 	var/y_mod = 0
-	var/tray_health = 5 //the number of times you can smash someone over the head with the tray before it breaks, ADJUST BUILD DESC VALUES IF ADJUSTING TRAY HEALTH
+	var/tray_health = 5 //the number of times ( + 1) you can smash someone over the head with the tray before it breaks, !!!ADJUST GET DESC VALUES IF ADJUSTING TRAY HEALTH!!!
 
 	proc/add_contents(var/obj/item/W)
 		tray_contents += W
@@ -256,12 +256,12 @@ MISC KITCHENWARE
 	proc/remove_contents(var/obj/item/W)
 		tray_contents -= W
 
-	proc/update_icon()
+	proc/update_icon() //this is what builds the overlays, it looks at the ordered list of food in the tray and does its magic from there
 		for (var/i = 1, i <= tray_contents.len, i++)
 			var/obj/item/F = tray_contents[i]
 			var/image/I = SafeGetOverlayImage("food_[i]", F.icon, F.icon_state)
-			I.transform *= 0.5
-			if (i % 2)
+			I.transform *= 0.75 //scaleable, currently puts food down to 1/4ths size
+			if (i % 2) //i feel clever for this haha
 				I.pixel_x = -8
 			else
 				I.pixel_x = 8
@@ -269,16 +269,16 @@ MISC KITCHENWARE
 			if (y_counter == 3)
 				y_mod++
 				y_counter = 1
-			I.pixel_y = y_mod * 2
+			I.pixel_y = y_mod * 3 //layers are 3px above eachother
 			I.layer = src.layer + 0.1
 			src.UpdateOverlays(I, "food_[i]", 0, 1)
-		for (var/i = tray_contents.len + 1, i <= src.overlays.len, i++)
+		for (var/i = tray_contents.len + 1, i <= src.overlays.len, i++) //this is to make clear up any funky ghost overlays
 			src.ClearSpecificOverlays("food_[i]")
 		y_counter = 0
 		y_mod = 0
 		return
 
-	proc/shit_goes_everywhere(var/turf/T)
+	proc/shit_goes_everywhere(var/turf/T) //i dont think i need to explain what this one does
 		if (!T)
 			T = src.loc
 		if (ismob(T))
@@ -289,7 +289,7 @@ MISC KITCHENWARE
 
 		T.visible_message("<span style=\"color:red\">Everything on \the [src] goes flying!</span>")
 		var/list/nearby_turfs = list()
-		for (T in view(5,src))
+		for (T in view(5,src)) //change this to increase/decrease how far stuff gets thrown
 			nearby_turfs += T
 
 		while (tray_contents.len > 0)
@@ -297,24 +297,34 @@ MISC KITCHENWARE
 			src.remove_contents(F)
 			src.update_icon()
 			F.set_loc(src.loc)
+			spawn(0) //i know it isnt good practice, but mbc told me to do this so blame them not me!!!
 			F.throw_at(pick(nearby_turfs), 16, 3)
 
-	proc/build_desc()
-//tray health description stuff
-		desc -= health_desc
-		if ((5 >= tray_health) && (tray_health > 3)) //between or at max health and 2/3rds health
-			health_desc = "The tray seems nice and sturdy!"
-		else if ((3 >= tray_health) && (tray_health > 1)) //between or at 2/3rds health or 1/3rd health
-			health_desc = "The tray is getting pretty warped and flimsy."
-		else if ((1 >= tray_health) && (tray_health >=0)) //between or at 1/3rd health and broken
-			health_desc = "The tray is on death's door, be careful!"
-		desc += health_desc
-//now for the fun part, descriptions based on the name's of what's on the tray
-
-
-	New()
-		..()
-		src.build_desc()
+	get_desc(dist) //this is the messiest part of this code, i think, but it w o r k s im so happy
+		if (dist > 5)
+			return
+		if ((5 >= tray_health) && (tray_health > 3)) //im using hardcoded values im so garbage
+			health_desc = "\The [src] seems nice and sturdy!"
+		else if ((3 >= tray_health) && (tray_health > 1)) //im a trash human
+			health_desc = "\The [src] is getting pretty warped and flimsy."
+		else if ((1 >= tray_health) && (tray_health >=0))  //im a bad coder
+			health_desc = "\The [src] is about to break, be careful!"
+		if (tray_contents.len == 0)
+			food_desc = "\The [src] has no food on it!"
+		else
+			food_desc = "\The [src] has "
+			for (var/i = 1, i <= tray_contents.len, i++)
+				var/obj/item/F = tray_contents[i]
+				if (i == tray_contents.len && i == 1)
+					food_desc += "\an [F] on it."
+					return "[health_desc] [food_desc]"
+				if (i == tray_contents.len)
+					food_desc += "and \an [F] on it."
+				else //just a normal food then ok
+					food_desc += "\an [F], "
+		if (length("[health_desc] [food_desc]") > MAX_MESSAGE_LEN)
+			return "<span style=\"color:orange\">There's a positively <i>indescribable</i> amount of food on \the [src]!</span>" //oo orange, fancy text colours ahoy
+		return "[health_desc] [food_desc]" //heres yr desc you *bastard*
 
 	throw_impact(var/turf/T)
 		..()
@@ -324,12 +334,16 @@ MISC KITCHENWARE
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (!W.edible)
-			if (istype(W, /obj/item/kitchen/utensil))
-				var/sel_food = input(user, "Which food?", "Tray Contents") as null|anything in tray_contents
+			if (istype(W, /obj/item/kitchen/utensil/fork) || istype(W, /obj/item/kitchen/utensil/spoon)) //youve heard of backwards compatible, now try forwards compatible
+				var/obj/item/reagent_containers/food/sel_food = input(user, "Which food?", "Tray Contents") as null|anything in tray_contents
 				if(!sel_food)
 					return
-				W = sel_food
-				..()
+				sel_food.Eat(user,user)
+				user.visible_message("[user] takes a bite from \the [sel_food].") //maybe unecessary?
+				if(sel_food in src.contents)
+					return
+				src.remove_contents(sel_food)
+				src.update_icon()
 				return
 			boutput(user, "[W] isn't food, That doesn't belong on \the [src]!")
 			return
@@ -340,53 +354,190 @@ MISC KITCHENWARE
 		W.set_loc(src)
 		src.add_contents(W)
 		src.update_icon()
-//		src.build_desc()
 		boutput(user, "You put [W] on \the [src]")
 
 	attack_self(mob/user as mob)
 		if (tray_contents.len == 0)
 			boutput(user, "There's no food to take off of \the [src]!")
 			return
-		var/food_sel = input(user, "Which food?", "Tray Contents") as null|anything in tray_contents
+		var/food_sel = input(user, "Which food?", "Tray Contents") as null|anything in tray_contents //the names for the window might be bad sorry
 		if (!food_sel)
 			return
 		user.put_in_hand_or_drop(food_sel)
 		src.remove_contents(food_sel)
 		src.update_icon()
-//		src.build_desc()
 		boutput(user, "You take \the [food_sel] off of \the [src].")
 
-	attack(mob/M as mob, mob/user as mob) //bash trays over heads! NOTE: THIS COULD BE OVERPOWERED, SINCE IT DOES STUN
+	attack(mob/M as mob, mob/user as mob) //this could be kinda op cos it does stun, but i tried my hardest to limit that potential
 		if (user.a_intent == INTENT_HARM)
-			if (M == user)
+			if (M == user) //why are you hitting yourself why are you hitting yourself
 				boutput(user, "<span style=\"color:red\"><B>You bash yourself in the face with \the [src]!</b></span>")
 			else
 				M.visible_message("<span style=\"color:red\"><B>[user] bashes [M] over the head with \the [src]!</B></span>")
 				logTheThing("combat", user, M, "smashes \the [src] over %target%'s head! ")
 			random_brute_damage(M, force)
-			M.weakened += rand(0,2)
+			M.weakened += rand(0,2) //adjust if stun is too long
 			M.updatehealth()
-			playsound(src, 'sound/weapons/trayhit.ogg', 50, 1)
+			playsound(get_turf(src), 'sound/weapons/trayhit.ogg', 50, 1) //i made this sound *flex*
+			src.visible_message("\The [src] falls out of [user]'s hands due to the impact!")
 			user.drop_item(src)
 			if(tray_contents.len > 0)
 				src.shit_goes_everywhere(get_turf(src))
-			if (tray_health == 0)
-				src.visible_message("The tray shatters!")
-				playsound(src, 'sound/effects/grillehit.ogg', 50, 1)
+			if (tray_health == 0) //breakable trays because you flew too close to the sun, you tried to have unlimited damage AND stuns you fool, your hubris is too fat, too wide
+				src.visible_message("\The [src] shatters!")
+				playsound(src, 'sound/effects/grillehit.ogg', 70, 1)
 				new /obj/item/scrap(src.loc)
 				qdel(src)
 				return
 			tray_health--
-			src.build_desc()
-			src.visible_message("The tray looks a little less sturdy...")
+			src.visible_message("\The [src] looks less sturdy now.")
 		else
-			M.visible_message("<span style=\"color:red\">[user] bops [M] over the head with \the [src].</span>")
+			if(M == user)
+				if (user.zone_sel.selecting == "head" && tray_contents.len > 0)
+					user.visible_message("<span style=\"color:red\"><B>[user] tilts \the [src] towards \his face and starts shovelling food into \his mouth!</b></span>")
+					actions.start(new/datum/action/bar/icon/tray_chug(user, src), user)
+					return
+				else
+					boutput(user, "<span style=\"color:red\">There isn't enough food on the tray to eat!</span>")
+					return
+			else
+				M.visible_message("<span style=\"color:green\">[user] bops themselves over the head with \the [src].</span>")
+				return
+			M.visible_message("<span style=\"color:green\">[user] bops [M] over the head with \the [src].</span>")
 			logTheThing("combat", user, M, "taps %target% over the head with [src].")
 
-	attack_hand(mob/user as mob) //i want overlays to work in hands please please come ON
+	attack_hand(mob/user as mob) //this works to make inhand overlays function AND lets you force update funky trays by grabbing them
+		..()
+		src.ClearAllOverlays()
+		src.update_icon()
+
+	dropped(mob/user as mob) //clowns are too clumsy to balance trays!! (sorry clowns i love you)
+		..()
+		if (user && user.bioHolder.HasEffect("clumsy") && prob(50))
+			user.visible_message("<span style=\"color:red\">[user] clumsily drops \the [src]!")
+			if (tray_contents.len == 0)
+				return
+			src.shit_goes_everywhere(get_turf(src))
+
+/datum/action/bar/icon/tray_chug
+	duration = 4
+	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_STUNNED
+	id = "tray_chug"
+	icon = 'icons/obj/foodNdrink/food_related.dmi'
+	icon_state = "tray_status"
+	var/mob/living/user
+	var/obj/item/tray/T
+
+	New(usermob, tray)
+		user = usermob
+		T = tray
+		..()
+
+	onUpdate()
+		..()
+		if (T != user.equipped() || user == null || T == null)
+			interrupt(INTERRUPT_ALWAYS)
+			return
+
+	onStart()
+		..()
+		if (T != user.equipped() || user == null || T == null)
+			interrupt(INTERRUPT_ALWAYS)
+			return
+
+		if (T.tray_contents.len == 0)
+			user.visible_message("<span style=\"color:blue\">[user] finishes eating everything on the tray!</span>")
+			user.emote("burp")
+			return
+
+		var/obj/item/reagent_containers/food/F = T.tray_contents[1]
+		F.Eat(user,user)
+		if (!F in T.contents)
+			T.remove_contents(F)
+			T.update_icon()
+
+	onEnd()
+		..()
+		if (T != user.equipped() || user == null || T == null)
+			interrupt(INTERRUPT_ALWAYS)
+			return
+
+		if (T.tray_contents.len == 0)
+			user.visible_message("<span style=\"color:blue\">[user] finishes eating everything on the tray!</span>")
+			user.emote("burp")
+			return
+
+		if (!F in T.contents)
+			T.remove_contents(F)
+			T.update_icon()
+
+		actions.start(new/datum/action/bar/icon/tray_chug(user, T), user)
+
+/*/datum/action/bar/icon/automender_apply
+    duration = 10
+    interrupt_flags = INTERRUPT_MOVE | INTERRUPT_STUNNED
+    id = "automender_apply"
+    icon = 'icons/obj/chemical.dmi'
+    icon_state = "mender-active"
+    var/mob/living/user
+    var/obj/item/reagent_containers/mender/M
+    var/mob/living/target
+    var/looped = 0
+
+    var/health_temp = 0
+
+    New(usermob,tool,targetmob, loopcount = 0)
+        user = usermob
+        M = tool
+        target = targetmob
+        looped = loopcount
+        ..()
+
+    onUpdate()
+        ..()
+        if(get_dist(user, target) > 1 || user == null || target == null)
+            interrupt(INTERRUPT_ALWAYS)
+            return
+
+
+    onStart()
+        ..()
+        if(get_dist(user, target) > 1 || user == null || target == null)
+            interrupt(INTERRUPT_ALWAYS)
+            return
+
+        if (!M.reagents || M.reagents.total_volume <= 0)
+            user.show_text("[M] is empty.", "red")
+            interrupt(INTERRUPT_ALWAYS)
+            return
+
+        health_temp = target.health
+
+        //WEAKEN the first apply or use some sort of ramp-up!
+        var/multiply = 1
+        if (looped <= 0)
+            multiply = 0.2
+
+        M.apply_to(target,user, multiply, silent = (looped >= 1))
+
+    onEnd()
+        ..()
+        if(get_dist(user, target) > 1 || user == null || target == null)
+            interrupt(INTERRUPT_ALWAYS)
+            return
+
+        //Auto stop healing loop if we are not tampered and the health didnt change at all
+        if (!M.tampered)
+            if (health_temp == target.health)
+                user.show_text("[M] is finished healing and powers down automatically.", "blue")
+                return
+
+        actions.start(new/datum/action/bar/icon/automender_apply(user, M, target, looped + 1), user)*/
+
+/*	attack_hand(mob/user as mob) //i want overlays to work in hands please please come ON
 		..()
 		spawn(5)
-			src.update_icon()
+			src.update_icon()*/
 
 /*	dropped(mob/user as mob) apparently this triggers whenever you click with a tray at all so...?
 		..()
@@ -463,6 +614,18 @@ MISC KITCHENWARE
 			return
 		else //is this necessary? probably not
 			return
+
+attackby(obj/item/W as obj, mob/user as mob)
+        if (istype(W,/obj/item/kitchen/utensil/fork) || istype(W,/obj/item/kitchen/utensil/spoon))
+            if (prob(20) && (istype(W,/obj/item/kitchen/utensil/fork/plastic) || istype(W,/obj/item/kitchen/utensil/spoon/plastic)))
+                var/obj/item/kitchen/utensil/spoon/plastic/S = W
+                S.break_spoon(user)
+                user.visible_message("<span style=\"color:red\">[user] stares glumly at [src].</span>")
+                return
+
+            src.Eat(user,user)
+        else
+            ..()
 
 proc/build_desc(var/name1, var/name2) maybe not necessary?
 
