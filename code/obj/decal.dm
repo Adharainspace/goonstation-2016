@@ -1080,7 +1080,7 @@
 	anchored = 1
 	icon = 'icons/effects/vomit.dmi'
 	icon_state = "void1"
-	random_icon_states = list("void_1", "void_2", "void_3")
+	random_icon_states = list("void1", "void2", "void3") //underscores if you want outlined sprites (void_1), no underscores for pure cutouts
 	slippery = 70
 	can_sample = 1
 	sample_amt = 5

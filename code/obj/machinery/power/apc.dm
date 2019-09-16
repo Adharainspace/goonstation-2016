@@ -1319,7 +1319,6 @@ var/zapLimiter = 0
 	if (prob(power * 2.5))
 		set_broken()
 
-
 /obj/machinery/power/apc/proc/set_broken()
 	stat |= BROKEN
 	icon_state = "apc-b"
@@ -1330,7 +1329,7 @@ var/zapLimiter = 0
 
 // overload all the lights in this APC area
 
-/obj/machinery/power/apc/proc/overload_lighting(var/omit_emergency_lights)
+/obj/machinery/power/apc/proc/overload_lighting(var/omit_emergency_lights, var/safe)
 	if(!get_connection() || !operating || shorted)
 		return
 	if( cell && cell.charge>=20)
@@ -1339,7 +1338,10 @@ var/zapLimiter = 0
 			for(var/obj/machinery/light/L in area)
 				if (L.type == /obj/machinery/light/emergency && omit_emergency_lights)
 					continue
-				L.on = 1
+				if (safe)
+					L.on = 0
+				else
+					L.on = 1
 				L.broken()
 				sleep(1)
 

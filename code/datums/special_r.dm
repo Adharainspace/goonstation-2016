@@ -313,10 +313,10 @@ EndNote
 				return
 
 
-/proc/bust_lights()
+/proc/bust_lights(var/safe)
 	for(var/obj/machinery/power/apc/apc in machines)
 		if(prob(60))
-		 apc.overload_lighting(1)
+		 apc.overload_lighting(1,safe)
 	return
 
 /proc/creepify_station()

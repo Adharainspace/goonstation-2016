@@ -2,6 +2,7 @@
 #define get_fucked_clarks if (istype(my_atom, /obj/critter/domestic_bee)) return my_atom.visible_message("<span style=\"color:red\">[my_atom] burps.</span>"); if (istype(my_atom, /obj/item/reagent_containers/food/snacks/ingredient/honey)) return
 #define CRITTER_REACTION_LIMIT 50
 #define fucking_critter_bullshit_fuckcrap_limiter(x) if (x > CRITTER_REACTION_LIMIT) return; else x += 1
+var/global/unstable_void_mixed = null //here to stop people from spamming the reaction of unstable void, slowing down the game. if this isnt supposed to be here yell at me sorry :(
 
 datum
 	chemical_reaction
@@ -2179,7 +2180,7 @@ datum
 			id = "stable_void"
 			result = "stable_void"
 			result_amount = 1
-			required_reagents = list("water" = 1, "blood" = 1) //coders, change the recipe as you see fit! this is literally only to make it easy to test
+			required_reagents = list("water" = 1, "blood" = 1) //coders, change the recipe as you see fit! dm me if you want suggestions
 			mix_phrase = "A gloopy purple substance rapidly precipitates out of the solution. It gives you a headache to look at it."
 			mix_sound = 'sound/effects/blobattack.ogg'
 
@@ -2194,19 +2195,56 @@ datum
 			id = "unstable_void"
 			result = "unstable_void"
 			result_amount = 1
-			required_reagents = list("stable_void" = 1, "plasma" = 1) //coders, change the recipe as you see fit! this is literally only to make it easy to test
-			mix_phrase = "The mixture begins to feverishly slosh around..."
+			required_reagents = list("stable_void" = 1, "plasma" = 1) //coders, change the recipe as you see fit! dm me if you want suggestions
+			mix_phrase = "The purple goo begins to shift and strain against the container... is it screaming? Oh god."
 
-//SPOOK TIME. lets play a global spooky sound and give a global chat message, wait a little tiny bit, flash the screen and then make the station and space spooky
 			on_reaction(var/datum/reagents/holder, var/created_volume)
-				for (var/client/C in clients)
-					boutput(C, "An earsplitting screech fills your ears and the station itself seems to... seems to be melting and disintegrating and tearing itself apart like a monolithic abomination shedding its skin... until it just stops. And, surprisingly, everything is back to normal. Almost.")
+//				var/heartbeat_counter = 6 //how many heart beets
+				var/space_color = "#A10817" // color space tiles will turn
+
+				if(unstable_void_mixed) //if the reaction has happened before, uh, dont do it again
+					for(var/mob/M in AIviewers(5, get_turf(holder.my_atom)))
+						boutput(M, "<span style=\"color:red\"><b>The chemical churns angrily, but nothing else unusual happens.</b></span>")
+						return
+
+				for (var/client/C in clients) //the spooky scary sound
+					boutput(C, "<span style=\"color:red\"><b>A horrific screeching noise fills your ears.</b></span>")
 				world << sound('sound/effects/realityfailure.ogg', volume=60)
-				sleep(10)
-				for (var/mob/N in mobs)
-					N.flash(60)
-				bust_lights()
+
+				for (var/client/C in clients) //this does the weird fucky overlay thing
+					boutput(C, "<span style=\"color:red\"><b>The station itself seems to be coming apart at the seams, molting and shedding its skin.</b></span>")
+				for (var/mob/M in mobs)
+					M.emote("scream")
+					if(M.client)
+						var/obj/screen/plane_parent/pp = new()
+						var/start = pp.filters.len
+						var/f_num = 1 //number of filters - more is more distorted
+						M.client.screen += pp
+						for(var/i = 1, i <= f_num, i++)
+							pp.filters += filter(type="wave", x=rand() * 50, y=rand() * 50, size=(rand()*2.5+0.5)*2, offset=rand())
+						for(var/i = 1, i <= f_num, i++)
+							var/f = pp.filters[start + i]
+							animate(f, offset=f:offset, time=0, loop=-1, flags=ANIMATION_PARALLEL)
+							animate(offset=f:offset-1, time=rand()*20+10)
+
+				/*for (var/client/C in clients) //play some heart beets
+					boutput(C, "<span style=\"color:red\"><b>Your vision starts to blur and you can feel your heart pounding in your ears, getting louder and louder and LOUDER AND LOUDER</b></span>")
+				while(heartbeat_counter > 0)
+					world << sound('sound/effects/heartbeat.ogg', volume = 100)
+					sleep(10)
+					heartbeat_counter--*/
+
+				bust_lights(1) //makes the station spooky as heck
 				creepify_station()
+
+				for (var/turf/space/S in world)
+					if (S.z == 1)
+						S.color = space_color
+					else
+						break
+				for (var/client/C in clients)
+					boutput(C, "<span style=\"color:red\"><b>And, surprisingly, everything seems to be patched back together again. Almost.</b></span>")
+				unstable_void_mixed = 1  //no MORE of this thank you very much, you already broke shit enough the first time
 
 		/*bleach
 			name = "Bleach" // cogwerks WIP: could be useful for hobo chemistry, hair bleaching, stubborn stains, being a jerk and turning stuff white
