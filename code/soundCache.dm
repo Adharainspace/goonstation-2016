@@ -178,6 +178,7 @@ var/global/list/soundCache = list(
  	"sound/effects/pixelexplosion.ogg" = 'sound/effects/pixelexplosion.ogg',\
  	"sound/effects/pop.ogg" = 'sound/effects/pop.ogg',\
  	"sound/effects/pump.ogg" = 'sound/effects/pump.ogg',\
+ 	"sound/effects/realityfailure.ogg" = 'sound/effects/realityfailure.ogg',\
  	"sound/effects/robogib.ogg" = 'sound/effects/robogib.ogg',\
  	"sound/effects/rockscrape.ogg" = 'sound/effects/rockscrape.ogg',\
  	"sound/effects/screech.ogg" = 'sound/effects/screech.ogg',\

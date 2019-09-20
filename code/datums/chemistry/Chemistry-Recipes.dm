@@ -2180,7 +2180,7 @@ datum
 			id = "stable_void"
 			result = "stable_void"
 			result_amount = 1
-			required_reagents = list("water" = 1, "blood" = 1) //coders, change the recipe as you see fit! dm me if you want suggestions
+			required_reagents = list("water" = 1, "blood" = 1) //just a placeholder, dm me if you want suggestions
 			mix_phrase = "A gloopy purple substance rapidly precipitates out of the solution. It gives you a headache to look at it."
 			mix_sound = 'sound/effects/blobattack.ogg'
 
@@ -2195,11 +2195,10 @@ datum
 			id = "unstable_void"
 			result = "unstable_void"
 			result_amount = 1
-			required_reagents = list("stable_void" = 1, "plasma" = 1) //coders, change the recipe as you see fit! dm me if you want suggestions
+			required_reagents = list("stable_void" = 1, "plasma" = 1) //just a placeholder, dm me if you want suggestions
 			mix_phrase = "The purple goo begins to shift and strain against the container... is it screaming? Oh god."
 
 			on_reaction(var/datum/reagents/holder, var/created_volume)
-//				var/heartbeat_counter = 6 //how many heart beets
 				var/space_color = "#A10817" // color space tiles will turn
 
 				if(unstable_void_mixed) //if the reaction has happened before, uh, dont do it again
@@ -2218,7 +2217,7 @@ datum
 					if(M.client)
 						var/obj/screen/plane_parent/pp = new()
 						var/start = pp.filters.len
-						var/f_num = 1 //number of filters - more is more distorted
+						var/f_num = 2 //number of filters - more is more distorted
 						M.client.screen += pp
 						for(var/i = 1, i <= f_num, i++)
 							pp.filters += filter(type="wave", x=rand() * 50, y=rand() * 50, size=(rand()*2.5+0.5)*2, offset=rand())
