@@ -708,6 +708,8 @@ var/global/client/ff_debugger = null
 			new_turf = new /turf/simulated/floor/engine( locate(src.x, src.y, src.z) )
 		if ("Grid")
 			new_turf = new /turf/simulated/floor/grid( locate(src.x, src.y, src.z) )
+		if("Concrete")
+			new_turf = new /turf/simulated/floor/concrete( locate(src.x, src.y, src.z) )
 		if ("RWall")
 			if (map_setting)
 				if (map_setting == "COG2")
@@ -766,6 +768,12 @@ var/global/client/ff_debugger = null
 
 /turf/proc/ReplaceWithEngineFloor()
 	var/turf/simulated/floor = ReplaceWith("EngineFloor")
+	if(icon_old)
+		floor.icon_state = icon_old
+	return floor
+
+/turf/proc/ReplaceWithConcrete()
+	var/turf/simulated/floor/concrete = ReplaceWith("Concrete")
 	if(icon_old)
 		floor.icon_state = icon_old
 	return floor

@@ -170,6 +170,50 @@ datum
 			result_amount = 1
 			mix_phrase = "The solution burns, leaving behind a lifeless mass!"
 
+//=-=-=-=-=-=-=-=-=
+//|| C E M E N T ||
+//=-=-=-=-=-=-=-=-=
+
+		calcium_carbonate //CaCl2(aq) + Na2CO3(aq) -> CaCO3(s) + 2NaCl(aq)
+			name = "calcium carbonate"
+			id = "calcium_carbonate"
+			result = "calcium_carbonate"
+			required_reagents = list("calcium" = 1, "chlorine" = 2, "sodium" = 2, "carbon" = 1, "oxygen" = 3)
+			result_amount = 1
+			mix_phrase = "A white solid precipitates out of the solution."
+			mix_sound = 'sound/misc/fuse.ogg'
+			on_reaction(var/datum/reagents/holder, created_volume)
+				holder.add_reagent("salt", created_volume * 2,,holder.total_temperature)
+
+		lime //CaCO3(s) -> CaO(s) + CO2(g)
+			name = "calcium oxide"
+			id = "lime"
+			result = "lime"
+			required_reagents = list("calcium_carbonate" = 1)
+			result_amount = 1
+			required_temperature = T0C + 700 //actually synthesises at 825c/1090k but that wont work
+			mix_phrase = "The white powder settles into little clusters of powder."
+			mix_sound = 'sound/misc/fuse.ogg'
+
+		gypsum //H2SO4(l) + CaCO3(aq) -> CaSO4(s) + H2O(l) + CO2(g)
+			name = "calcium sulfate"
+			id = "gypsum"
+			result = "gypsum"
+			required_reagents = list("acid" = 1, "calcium_carbonate" = 1)
+			result_amount = 1
+			on_reaction(var/datum/reagents/holder, created_volume)
+				holder.add_reagent("water", created_volume,,holder.total_temperature)
+
+		silicon_dioxide //Na2Si3O7 + H2SO4 -> 3SiO2 + Na2SO4 + H2O
+			name = "silicon dioxide"
+			id = "silicon_dioxide"
+			result = "silicon_dioxide"
+			required_reagents = list("sodium" = 2, "silicon" = 3, "oxygen" = 7, "acid" = 1)
+			result_amount = 3
+			on_reaction(var/datum/reagents/holder, created_volume)
+				holder.add_reagent("water", created_volume / 3,,holder.total_temperature)
+				holder.add_reagent("sodium_sulfate", created_volume / 3,,holder.total_temperature)
+
 		water_holy
 			name = "Holy Water"
 			id = "water_holy"

@@ -2366,7 +2366,7 @@ datum
 //|| C E M E N T ||
 //=-=-=-=-=-=-=-=-=
 
-		calcium_carbonate //made from crushed/hammered/picked/reagent/extracted sea shells
+		calcium_carbonate //made from crushed/hammered/picked/reagent/extracted sea shells OR just chemical synthesis
 			name = "calcium carbonate"
 			id = "calcium_carbonate"
 			description = "A naturally occuring chemical found in seashells and certain rocks."
@@ -2377,8 +2377,8 @@ datum
 			transparency = 255
 
 		lime //made from burnt calcium carbonate
-			name = "lime"
-			id = "calcium_oxide"
+			name = "calcium oxide"
+			id = "lime"
 			description = "A material made primarily of calcium oxides, with trace amounts of other minerals present. It can cause pretty severe skin irritation."
 			reagent_state = SOLID
 			fluid_r = 255
@@ -2386,9 +2386,9 @@ datum
 			fluid_b = 255
 			transparency = 255
 
-		calcium_sulfate //gypsum, made with waste sulfur gas and calcium carbonate or calcium oxide (sulfur + oxygen(3) + water + calcium_carbonate)
+		gypsum //gypsum, made with waste sulfur gas and calcium carbonate or calcium oxide (sulfur + oxygen(4) + water + calcium_carbonate)
 			name = "calcium sulfate"
-			id = "calcium_sulfate"
+			id = "gypsum"
 			description = "An inorganic chemical that has many uses in the industrial sector."
 			reagent_state = SOLID
 			fluid_r = 255
@@ -2396,42 +2396,49 @@ datum
 			fluid_b = 255
 			transparency = 255
 
-		perfect_cement //calcium oxide, aluminium(2), magnesium, iron(2), calcium sulfate, oxygen (10), sulfur
-			name = "cement"
+		silicon_dioxide
+			name = "silicon dioxide"
+			id = "silicon_dioxide"
+			description = "Also known as Silica, it is one of the main minerals found in sand."
+			reagent_state = SOLID
+			fluid_r = 255
+			fluid_g = 255
+			fluid_b = 255
+			transparency = 255
+
+//		sodium_sulfate //useless right now, maybe for laundry detergent? just here so i dont have a really messy reaction
+
+		cement
+			name = "cement parent"
+			id = "cement_parent"
+			description = "You shouldn't see this!"
+			reagent_state = SOLID
+			fluid_r = 124
+			fluid_g = 124
+			fluid_b = 124
+			transparency = 255
+//			var/quality = 0
+
+		cement/perfect_cement //calcium oxide, aluminium(2), magnesium, iron(2), calcium sulfate, oxygen (10), sulfur
+			name = "ultrahigh grade supercement"
 			id = "perfect_cement"
 			description = "A perfect mixture of different minerals and chemicals that binds with an aggregate to form a rock-solid... solid."
-			reagent_state = SOLID
-			fluid_r = 124
-			fluid_g = 124
-			fluid_b = 124
-			transparency = 255
+			cement_quality = 4
 
-		good_cement //calcium oxide, aluminium(2), magnesium, iron(2), calcium sulfate, oxygen (7)
-			name = "cement"
-			id = "great_cement"
-			description = "A great mixture of different minerals and chemicals that binds with an aggregate to form a rock-solid... solid."
-			reagent_state = SOLID
-			fluid_r = 124
-			fluid_g = 124
-			fluid_b = 124
-			transparency = 255
-
-		ok_cement //calcium oxide, aluminium(2), magnesium, iron(2), oxygen (7)
-			name = "cement"
+		cement/good_cement //calcium oxide, aluminium(2), magnesium, iron(2), calcium sulfate, oxygen (7)
+			name = "high grade cement"
 			id = "good_cement"
-			description = "A good mixture of different minerals and chemicals that binds with an aggregate to form a rock-solid... solid."
-			reagent_state = SOLID
-			fluid_r = 124
-			fluid_g = 124
-			fluid_b = 124
-			transparency = 255
+			description = "A great mixture of different minerals and chemicals that binds with an aggregate to form a rock-solid... solid."
+			cement_quality = 3
 
-		poor_cement  //calcium oxide, aluminium(2), iron(2), oxygen (6)
-			name = "cement"
+		cement/ok_cement //calcium oxide, aluminium(2), magnesium, iron(2), oxygen (7)
+			name = "standard cement"
+			id = "ok_cement"
+			description = "A good mixture of different minerals and chemicals that binds with an aggregate to form a rock-solid... solid."
+			cement_quality = 2
+
+		cement/poor_cement  //calcium oxide, aluminium(2), iron(2), oxygen (6)
+			name = "low grade cement"
 			id = "poor_cement"
 			description = "A poor mixture of different minerals and chemicals that binds with an aggregate to form a rock-solid... solid."
-			reagent_state = SOLID
-			fluid_r = 124
-			fluid_g = 124
-			fluid_b = 124
-			transparency = 255
+			cement_quality = 1

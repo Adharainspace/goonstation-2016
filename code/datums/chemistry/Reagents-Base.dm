@@ -31,6 +31,16 @@ datum
 			fluid_b = 50
 			transparency = 50
 
+		calcium
+			name = "calcium"
+			id = "calcium"
+			description = "A white metallic element commonly found in bones."
+			reagent_state = SOLID
+			fluid_r = 255
+			fluid_g = 255
+			fluid_b = 255
+			transparenct = 255
+
 		carbon
 			name = "carbon"
 			id = "carbon"
