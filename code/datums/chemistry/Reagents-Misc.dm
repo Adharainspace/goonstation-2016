@@ -1923,11 +1923,10 @@ datum
 						M.shock(M, 10000, "chest", 1, 1)
 						holder.remove_reagent(id, 10)
 
-		// haha fuck no I'm not porting this to the new lighting system
-		/*lumen
+		lumen //lumen reagent is no longer removed!
 			name = "lumen"
 			id = "lumen"
-			description = "A viscous liquid that seems to glow rather intensively. Perhaps applying this to things might lighten up places."
+			description = "A viscous liquid that seems to glow rather cheerfully. Perhaps applying this to things might brighten up someone's day."
 			reagent_state = LIQUID
 			fluid_r = 255
 			fluid_g = 255
@@ -1937,29 +1936,51 @@ datum
 			proc/calculate_glow_color()
 				if (holder)
 					return holder.get_average_color()
-				return new /datum/color(fluid_r, fluid_g, fluid_b, transparency)
+				return new /datum/color(fluid_r, fluid_b, fluid_b, transparency)
 
-			reaction_turf(var/turf/T)
-				if (locate(/obj/decal/glow) in T)
+			reaction_turf(var/turf/T, var/volume)
+				if (volume < 5)
 					return
-				var/obj/decal/glow/G = new(T)
+				if (locate(/obj/effects/lumen_light) in T)
+					return
 				var/datum/color/mycolor = calculate_glow_color()
-				G.sd_SetColor(mycolor.r / 255.0, mycolor.g / 255.0, mycolor.b / 255.0)
-				G.sd_SetLuminosity(3)
-				spawn (rand(1500, 6000)) // 2.5-10 minutes
-					qdel(G)
+				var/obj/effects/lumen_light/L = new /obj/effects/lumen_light(T)
+				L.light.enable()
+				L.light.set_color(mycolor.r / 255, mycolor.g / 255, mycolor.b / 255)
+				var/lumen_brightness = min(1, volume / 25)
+				L.light.set_brightness(lumen_brightness)
 
-			reaction_obj(var/obj/O)
-				var/datum/color/mycolor = calculate_glow_color()
-				src = null
-				if (!O)
+			reaction_obj(var/obj/O, var/volume)
+				if (volume < 5)
 					return
-				if (!O.luminosity)
-					O.sd_SetColor(mycolor.r / 255.0, mycolor.g / 255.0, mycolor.b / 255.0)
-					O.sd_SetLuminosity(3)
-					spawn (rand(3000, 12000)) // 5-20 minutes
-						if (O)
-							O.sd_SetLuminosity(0)*/
+				if (locate(/obj/effects/lumen_light) in O)
+					return
+				var/datum/color/mycolor = calculate_glow_color()
+				var/obj/effects/lumen_light/L = new /obj/effects/lumen_light(O.loc)
+				L.light.attach(O)
+				L.set_loc(O)
+				L.light.enable()
+				L.light.set_color(mycolor.r / 255, mycolor.g / 255, mycolor.b / 255)
+				var/lumen_brightness = min(1, volume / 25)
+				L.light.set_brightness(lumen_brightness)
+				L.non_turf = 1
+
+			reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
+				if (method != TOUCH)
+					return
+				if (volume < 5)
+					return
+				if (locate(/obj/effects/lumen_light) in M)
+					return
+				var/datum/color/mycolor = calculate_glow_color()
+				var/obj/effects/lumen_light/L = new /obj/effects/lumen_light(M.loc)
+				L.light.attach(M)
+				L.set_loc(M)
+				L.light.enable()
+				L.light.set_color(mycolor.r / 255, mycolor.g / 255, mycolor.b / 255)
+				var/lumen_brightness = min(1, volume / 25)
+				L.light.set_brightness(lumen_brightness)
+				L.non_turf = 1
 
 		///////////////////////////
 		/// BOTANY REAGENTS ///////

@@ -91,6 +91,95 @@ datum
 					holder.del_reagent("smokepowder")
 				return
 
+		no_lumen_smoke //still super laggy, maybe if someone has better ideas to optimise it we can bring this back?
+			name = "no lumen smoke"
+			id = "no_lumen_smoke"
+			instant = 1
+			required_reagents = list("lumen" = 1, "sugar" = 1, "phosphorus" = 1, "potassium" = 1)
+			mix_phrase = "The mixture dissipates in a flash of intense light!"
+
+			on_reaction(var/datum/reagents/holder, var/created_volume) //flash and sparks
+				if (holder)
+					holder.del_reagent("lumen")
+					holder.del_reagent("sugar")
+					holder.del_reagent("phosphorus")
+					holder.del_reagent("potassium")
+				var/location = get_turf(holder.my_atom)
+				playsound(location, "sound/weapons/flashbang.ogg", 25, 1)
+				var/datum/effects/system/spark_spread/s = unpool(/datum/effects/system/spark_spread)
+				s.set_up(2, 1, location)
+				s.start()
+				for (var/mob/living/M in all_viewers(5, location))
+					if (issilicon(M) || isintangible(M))
+						continue
+
+					var/dist = get_dist(M, location)
+					M.apply_flash(60, 0, (3 - dist), 0, ((5 - dist) * 2), (2 - dist))
+
+				for (var/mob/living/silicon/M in all_viewers(world.view, location))
+					var/checkdist = get_dist(M, location)
+
+					M.apply_flash(30, max(2 * (3 - checkdist), 0), max(2 * (5 - checkdist), 0))
+				return
+
+		no_lumen_smoke2 //what i said above, too laggy
+			name = "no lumen smoke 2"
+			id = "no_lumen_smoke2"
+			instant = 1
+			required_reagents = list("lumen" = 1, "smokepowder" = 1)
+			mix_phrase = "The mixture dissipates in a flash of intense light!"
+
+			on_reaction(var/datum/reagents/holder, var/created_volume) //flash and sparks
+				if (holder)
+					holder.del_reagent("lumen")
+					holder.del_reagent("smokepowder")
+				var/location = get_turf(holder.my_atom)
+				playsound(location, "sound/weapons/flashbang.ogg", 25, 1)
+				var/datum/effects/system/spark_spread/s = unpool(/datum/effects/system/spark_spread)
+				s.set_up(2, 1, location)
+				s.start()
+				for (var/mob/living/M in all_viewers(5, location))
+					if (issilicon(M) || isintangible(M))
+						continue
+
+					var/dist = get_dist(M, location)
+					M.apply_flash(60, 0, (3 - dist), 0, ((5 - dist) * 2), (2 - dist))
+
+				for (var/mob/living/silicon/M in all_viewers(world.view, location))
+					var/checkdist = get_dist(M, location)
+
+					M.apply_flash(30, max(2 * (3 - checkdist), 0), max(2 * (5 - checkdist), 0))
+				return
+
+		no_lumen_foam //maybe not as laggy but still laggy
+			name = "no lumen foam"
+			id = "no_lumen_foam"
+			instant = 1
+			required_reagents = list("lumen" = 1, "fluorosurfactant" = 1, "water" = 1)
+			mix_phrase = "The mixture dissipates in an intense flash of light!"
+			on_reaction(var/datum/reagents/holder, var/created_volume)
+				if (holder)
+					holder.del_reagent("lumen")
+					holder.del_reagent("fluorosurfactant")
+					holder.del_reagent("water")
+				var/location = get_turf(holder.my_atom)
+				playsound(location, "sound/weapons/flashbang.ogg", 25, 1)
+				var/datum/effects/system/spark_spread/s = unpool(/datum/effects/system/spark_spread)
+				s.set_up(2, 1, location)
+				s.start()
+				for (var/mob/living/M in all_viewers(5, location))
+					if (issilicon(M) || isintangible(M))
+						continue
+
+					var/dist = get_dist(M, location)
+					M.apply_flash(60, 0, (3 - dist), 0, ((5 - dist) * 2), (2 - dist))
+
+				for (var/mob/living/silicon/M in all_viewers(world.view, location))
+					var/checkdist = get_dist(M, location)
+
+					M.apply_flash(30, max(2 * (3 - checkdist), 0), max(2 * (5 - checkdist), 0))
+				return
+
 		nitroglycerin_violent_reaction
 			name = "Nitroglycerin Foam"
 			id = "nitroglycerin_foam"
