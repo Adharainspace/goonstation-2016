@@ -2396,7 +2396,7 @@ datum
 			fluid_b = 255
 			transparency = 255
 
-		silicon_dioxide
+		silicon_dioxide //primary ingredient in sand, aside from other small rocks
 			name = "silicon dioxide"
 			id = "silicon_dioxide"
 			description = "Also known as Silica, it is one of the main minerals found in sand."
@@ -2409,7 +2409,7 @@ datum
 		sodium_sulfate //useless right now, maybe for laundry detergent? just here so i dont have a really messy reaction
 			name = "sodium sulfate"
 			id = "sodium_sulfate"
-			description = "PLACEHOLDER"
+			description = "A chemical compound that is used in dying textiles and manufacturing glass."
 			reagent_state = SOLID
 			reagent_state = SOLID
 			fluid_r = 255

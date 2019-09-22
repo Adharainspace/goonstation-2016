@@ -7,9 +7,23 @@
 	name = "seafloor"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "mars1"
+	var/reagent = "silicon_dioxide"
+	var/scoop_amt = 10
 
-/obj/item/seashell //placeholder for seashells, add the stuff in New() to seashells please
-	name = "seashell"
+	attackby(var/obj/item/I, var/mob/user)
+		if (!istype(I, /obj/item/reagent_containers/glass))
+			return
+
+			if (I.reagents.total_volume >= I.reagents.maximum_volume - (scoop_amt - 1))
+				boutput(user, "<span style=\"color:red\">[I] is too full!</span>")
+				return 0
+			else
+				I.reagents.add_reagent(reagent, scoop_amt)
+				user.visible_message("<span style=\"color:blue\"><b>[user]</b> is scooping sand off of \the [src] and into [I].</span>",\
+				"<span style=\"color:blue\">You scoop some of the sand into [I].</span>")
+				I.reagents.handle_reactions()
+
+/obj/item/seashell //placeholder for seashells, add the stuff thats in the object procs please
 	icon = 'icons/obj/decals.dmi'
 	icon_state = "seashell"
 
@@ -20,11 +34,30 @@
 		R.my_atom = src
 		R.add_reagent("calcium_carbonate", 10)
 
+/*	attackby(var/obj/item/I, var/mob/user)
+		if (i.force >= 10)
+			user.visible_message("<span style=\"color:red\">[user] shatters the shell!</span>")
+			return
+		user.visible_message("<span style=\"color:red\">[user] doesn't hit the shell hard enough to break it.</span>")
+
+/obj/item/reagent_containers/food/seashell_crushed
+	name = "crushed seashell"
+	desc = "It's a seashell that's been crushed with brute force."
+	icon = 'icons/obj/decals.dmi'
+	icon_state = "seashell_crushed"
+	edible = 0
+
+	New()
+		..()
+		var/datum/reagents/R = new/datum/reagents(10)
+		reagents = R
+		R.my_atom = src
+		R.add_reagent("calcium_carbonate", 10)*/
+
 /obj/concrete_wet
 	name = "wet concrete"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "concrete_wet"
-	opacity = 0
 	anchored = 1
 	density = 0
 	layer = OBJ_LAYER + 0.9
@@ -48,10 +81,10 @@
 		processing_items -= src
 		..()
 
-/*	CanPass(atom/A, turf/T)
-		if (ismob(A))
-			if (istype(A, mob/
-			A.slowed += 2*/
+	HasEntered(mob/living/carbon/M as mob)
+		..()
+		M.slowed += 2
+		boutput(M, "<span style=\"color:red\">Running through the wet concrete is slowing you down...</span>")
 
 	attack_hand(var/mob/user)
 		if (health <= 0)
@@ -84,7 +117,7 @@
 	desc = "A heavy duty wall made of concrete! This thing is gonna take some manual labour to get through..."
 	flags = FPRINT | CONDUCT | USEDELAY
 	var/strength = 0 // 1=poor, 2=ok, 3=good, 4=perfect
-	var/health = 3 //3, 6, 9, 12 health
+	var/health = 30 //30, 60, 90, 120 health
 	var/max_health = 0 //description purposes
 
 	New()
@@ -126,7 +159,7 @@
 			user.visible_message( "<span style=\"color:red\">[user] smashes through the concrete wall.</span>", "<span style=\"color:blue\">You smash through the concrete wall with \the [I].</span>")
 			dispose()
 			return
-		health = health*10 - I.force
+		health -= I.force
 		if (health <= 0)
 			user.visible_message( "<span style=\"color:red\">[user] smashes through the concrete wall.</span>", "<span style=\"color:blue\">You smash through the concrete wall with \the [I].</span>")
 			dispose()
