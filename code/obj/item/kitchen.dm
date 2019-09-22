@@ -33,10 +33,20 @@ MISC KITCHENWARE
 	stamina_damage = 5
 	stamina_cost = 10
 	stamina_crit_chance = 15
+	var/rotatable = 1 //just in case future utensils are added that dont wanna be rotated
 
 	New()
 		if (prob(60))
 			src.pixel_y = rand(0, 4)
+		return
+
+	verb/rotate()
+		set name = "Rotate"
+		set category = "Local"
+		if (rotatable)
+			set src in oview(1)
+
+			src.dir = turn(src.dir, 90)
 		return
 
 /obj/item/kitchen/utensil/fork
@@ -202,36 +212,49 @@ MISC KITCHENWARE
 		src.icon_state = "[src.box_type][src.amount]"
 		return
 
-/obj/item/plate
-	name = "plate"
-	desc = "It's like a frisbee, but more dangerous!"
+//=-=-=-=-=-=-=-=-=-=-=-=-
+//TRAYS AND PLATES OH MY||
+//=-=-=-=-=-=-=-=-=-=-=-=-
+/obj/item/food_service
+	name = "food service device"
+	desc = "a food delivery device"
 	icon = 'icons/obj/foodNdrink/food_related.dmi'
-	icon_state = "plate"
+	icon_state = "pizzatray"
 	item_state = "zippo"
-	throwforce = 3.0
-	throw_speed = 3
-	throw_range = 8
-	force = 2
-	rand_pos = 0
+	w_class = 4.0
+	var/list/ordered_contents = list()
+	var/food_desc = null
+	var/max_food = 0
 
-/obj/item/plate/attack(mob/M as mob, mob/user as mob)
-	if (user.a_intent == INTENT_HARM)
-		if (M == user)
-			boutput(user, "<span style=\"color:red\"><B>You smash the plate over your own head!</b></span>")
-		else
-			M.visible_message("<span style=\"color:red\"><B>[user] smashes [src] over [M]'s head!</B></span>")
-			logTheThing("combat", user, M, "smashes [src] over %target%'s head! ")
-		random_brute_damage(M, force)
-		M.weakened += rand(0,2)
-		M.updatehealth()
-		playsound(src, "shatter", 70, 1)
-		var/obj/O = new /obj/item/raw_material/shard/glass(get_turf(M))
-		if (src.material)
-			O.setMaterial(copyMaterial(src.material))
-		qdel(src)
-	else
-		M.visible_message("<span style=\"color:red\">[user] taps [M] over the head with [src].</span>")
-		logTheThing("combat", user, M, "taps %target% over the head with [src].")
+	proc/add_contents(var/obj/item/W)
+		ordered_contents += W
+
+	proc/remove_contents(var/obj/item/W)
+		ordered_contents -= W
+
+	proc/update_icon()
+		for (var/i = 1, i <= ordered_contents.len, i++)
+			var/obj/item/F = ordered_contents[i]
+			var/image/I = SafeGetOverlayImage("food_[i]", F.icon, F.icon_state)
+			I.transform *= 0.75
+			if (i % 2)
+				I.pixel_x = -8
+			else
+				I.pixel_x = 8
+			y_counter++
+			if (y_counter == 3)
+				y_mod++
+				y_counter = 1
+			I.pixel_y = y_mod * 3
+			I.layer = src.layer + 0.1
+			src.UpdateOverlays(I, "food_[i]", 0, 1)
+		for (var/i = ordered_contents.len + 1, i <= src.overlays.len, i++)
+			src.ClearSpecificOverlays("food_[i]")
+		y_counter = 0
+		y_mod = 0
+		return
+
+//MESSY AS FUCK TRAY CODE IM SO SORRY
 
 /obj/item/tray //this is the big boy!
 	name = "serving tray"
@@ -243,7 +266,7 @@ MISC KITCHENWARE
 	throw_range = 4
 	force = 10
 	w_class = 4.0 //cant be fried or fit in backpacks. this interacts REALLY WEIRDLY with the frier, so this is intentional
-	var/list/tray_contents = list() //this is an ordered list of stuff that gets put into the tray
+	var/list/tray_contents = list() //list in order of addition
 	var/health_desc = null
 	var/food_desc = null
 	var/y_counter = 0
@@ -260,7 +283,7 @@ MISC KITCHENWARE
 		for (var/i = 1, i <= tray_contents.len, i++)
 			var/obj/item/F = tray_contents[i]
 			var/image/I = SafeGetOverlayImage("food_[i]", F.icon, F.icon_state)
-			I.transform *= 0.75 //scaleable, currently puts food down to 1/4ths size
+			I.transform *= 0.75 //scaleable, currently puts food down to 3/4ths size
 			if (i % 2) //i feel clever for this haha
 				I.pixel_x = -8
 			else
@@ -300,7 +323,7 @@ MISC KITCHENWARE
 			spawn(0) //i know it isnt good practice, but mbc told me to do this so blame them not me!!!
 			F.throw_at(pick(nearby_turfs), 16, 3)
 
-	get_desc(dist) //this is the messiest part of this code, i think, but it w o r k s im so happy
+	get_desc(dist)
 		if (dist > 5)
 			return
 		if ((5 >= tray_health) && (tray_health > 3)) //im using hardcoded values im so garbage
@@ -323,7 +346,7 @@ MISC KITCHENWARE
 				else //just a normal food then ok
 					food_desc += "\an [F], "
 		if (length("[health_desc] [food_desc]") > MAX_MESSAGE_LEN)
-			return "<span style=\"color:orange\">There's a positively <i>indescribable</i> amount of food on \the [src]!</span>" //oo orange, fancy text colours ahoy
+			return "<span style=\"color:orange\">There's a positively <i>indescribable</i> amount of food on \the [src]!</span>"
 		return "[health_desc] [food_desc]" //heres yr desc you *bastard*
 
 	throw_impact(var/turf/T)
@@ -420,7 +443,7 @@ MISC KITCHENWARE
 			src.shit_goes_everywhere(get_turf(src))
 
 /datum/action/bar/icon/tray_chug
-	duration = 4
+	duration = 10
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_STUNNED
 	id = "tray_chug"
 	icon = 'icons/obj/foodNdrink/food_related.dmi'
@@ -467,11 +490,42 @@ MISC KITCHENWARE
 			user.emote("burp")
 			return
 
-		if (!F in T.contents)
+/*		if (!F in T.contents)
 			T.remove_contents(F)
-			T.update_icon()
+			T.update_icon()*/
 
 		actions.start(new/datum/action/bar/icon/tray_chug(user, T), user)
+
+/obj/item/plate
+	name = "plate"
+	desc = "It's like a frisbee, but more dangerous!"
+	icon = 'icons/obj/foodNdrink/food_related.dmi'
+	icon_state = "plate"
+	item_state = "zippo"
+	throwforce = 3.0
+	throw_speed = 3
+	throw_range = 8
+	force = 2
+	rand_pos = 0
+
+/obj/item/plate/attack(mob/M as mob, mob/user as mob)
+	if (user.a_intent == INTENT_HARM)
+		if (M == user)
+			boutput(user, "<span style=\"color:red\"><B>You smash the plate over your own head!</b></span>")
+		else
+			M.visible_message("<span style=\"color:red\"><B>[user] smashes [src] over [M]'s head!</B></span>")
+			logTheThing("combat", user, M, "smashes [src] over %target%'s head! ")
+		random_brute_damage(M, force)
+		M.weakened += rand(0,2)
+		M.updatehealth()
+		playsound(src, "shatter", 70, 1)
+		var/obj/O = new /obj/item/raw_material/shard/glass(get_turf(M))
+		if (src.material)
+			O.setMaterial(copyMaterial(src.material))
+		qdel(src)
+	else
+		M.visible_message("<span style=\"color:red\">[user] taps [M] over the head with [src].</span>")
+		logTheThing("combat", user, M, "taps %target% over the head with [src].")
 
 /*/datum/action/bar/icon/automender_apply
     duration = 10

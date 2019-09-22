@@ -67,7 +67,7 @@
 
 			return
 
-		if (W.w_class > src.max_wclass || istype(W, /obj/item/storage) || istype(W, /obj/item/storage/secure))
+		if (W.w_class > src.max_wclass || istype(W, /obj/item/storage) || istype(W, /obj/item/storage/secure) || istype(W, /obj/item/food_storage))
 			boutput(user, "<span style=\"color:red\">There is no way that could fit!</span>")
 			return
 
