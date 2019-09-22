@@ -39,7 +39,7 @@ datum
 			fluid_r = 255
 			fluid_g = 255
 			fluid_b = 255
-			transparenct = 255
+			transparency = 255
 
 		carbon
 			name = "carbon"

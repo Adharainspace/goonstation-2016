@@ -174,7 +174,7 @@ datum
 //|| C E M E N T ||
 //=-=-=-=-=-=-=-=-=
 
-		calcium_carbonate //CaCl2(aq) + Na2CO3(aq) -> CaCO3(s) + 2NaCl(aq)
+		calcium_carbonate //CaCl2 + Na2CO3 -> CaCO3 + 2NaCl
 			name = "calcium carbonate"
 			id = "calcium_carbonate"
 			result = "calcium_carbonate"
@@ -185,7 +185,7 @@ datum
 			on_reaction(var/datum/reagents/holder, created_volume)
 				holder.add_reagent("salt", created_volume * 2,,holder.total_temperature)
 
-		lime //CaCO3(s) -> CaO(s) + CO2(g)
+		lime //CaCO3 -> CaO + CO2
 			name = "calcium oxide"
 			id = "lime"
 			result = "lime"
@@ -195,7 +195,7 @@ datum
 			mix_phrase = "The white powder settles into little clusters of powder."
 			mix_sound = 'sound/misc/fuse.ogg'
 
-		gypsum //H2SO4(l) + CaCO3(aq) -> CaSO4(s) + H2O(l) + CO2(g)
+		gypsum //H2SO4 + CaCO3 -> CaSO4 + H2O + CO2
 			name = "calcium sulfate"
 			id = "gypsum"
 			result = "gypsum"

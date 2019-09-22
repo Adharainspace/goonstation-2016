@@ -2406,7 +2406,16 @@ datum
 			fluid_b = 255
 			transparency = 255
 
-//		sodium_sulfate //useless right now, maybe for laundry detergent? just here so i dont have a really messy reaction
+		sodium_sulfate //useless right now, maybe for laundry detergent? just here so i dont have a really messy reaction
+			name = "sodium sulfate"
+			id = "sodium_sulfate"
+			description = "PLACEHOLDER"
+			reagent_state = SOLID
+			reagent_state = SOLID
+			fluid_r = 255
+			fluid_g = 255
+			fluid_b = 255
+			transparency = 255
 
 		cement
 			name = "cement parent"
@@ -2417,7 +2426,12 @@ datum
 			fluid_g = 124
 			fluid_b = 124
 			transparency = 255
-//			var/quality = 0
+			var/cement_quality = 0
+
+			reaction_turf(var/turf/T, var/volume)
+				if(volume >= 5)
+					var/obj/concrete_wet/C = new(T)
+					C.quality = cement_quality
 
 		cement/perfect_cement //calcium oxide, aluminium(2), magnesium, iron(2), calcium sulfate, oxygen (10), sulfur
 			name = "ultrahigh grade supercement"

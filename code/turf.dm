@@ -772,8 +772,8 @@ var/global/client/ff_debugger = null
 		floor.icon_state = icon_old
 	return floor
 
-/turf/proc/ReplaceWithConcrete()
-	var/turf/simulated/floor/concrete = ReplaceWith("Concrete")
+/turf/proc/ReplaceWithConcreteFloor()
+	var/turf/simulated/floor = ReplaceWith("Concrete")
 	if(icon_old)
 		floor.icon_state = icon_old
 	return floor
