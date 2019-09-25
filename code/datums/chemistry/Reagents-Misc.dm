@@ -2417,8 +2417,8 @@ datum
 			fluid_b = 255
 			transparency = 255
 
-		cement
-			name = "cement parent"
+		cement //
+			name = "You shouldn't see this!"
 			id = "cement_parent"
 			description = "You shouldn't see this!"
 			reagent_state = SOLID
@@ -2426,33 +2426,87 @@ datum
 			fluid_g = 124
 			fluid_b = 124
 			transparency = 255
-			var/cement_quality = 0
-
-			reaction_turf(var/turf/T, var/volume)
-				if(volume >= 5)
-					var/obj/concrete_wet/C = new(T)
-					C.quality = cement_quality
 
 		cement/perfect_cement //calcium oxide, aluminium(2), magnesium, iron(2), calcium sulfate, oxygen (10), sulfur
 			name = "ultrahigh grade supercement"
 			id = "perfect_cement"
 			description = "A perfect mixture of different minerals and chemicals that binds with an aggregate to form a rock-solid... solid."
-			cement_quality = 4
 
 		cement/good_cement //calcium oxide, aluminium(2), magnesium, iron(2), calcium sulfate, oxygen (7)
 			name = "high grade cement"
 			id = "good_cement"
 			description = "A great mixture of different minerals and chemicals that binds with an aggregate to form a rock-solid... solid."
-			cement_quality = 3
 
 		cement/ok_cement //calcium oxide, aluminium(2), magnesium, iron(2), oxygen (7)
-			name = "standard cement"
-			id = "ok_cement"
-			description = "A good mixture of different minerals and chemicals that binds with an aggregate to form a rock-solid... solid."
-			cement_quality = 2
+			name = "cement"
+			id = "okay_cement"
+			description = "A mixture of different minerals and chemicals that binds with an aggregate to form a rock-solid... solid."
 
 		cement/poor_cement  //calcium oxide, aluminium(2), iron(2), oxygen (6)
 			name = "low grade cement"
 			id = "poor_cement"
 			description = "A poor mixture of different minerals and chemicals that binds with an aggregate to form a rock-solid... solid."
-			cement_quality = 1
+
+		concrete //concrete parent to cut down on duplicate code
+			name = "You shouldn't see this!"
+			id = "concrete_parent"
+			description = "You shouldn't see this!"
+			reagent_state = SOLID
+			fluid_r = 124
+			fluid_g = 124
+			fluid_b = 124
+			transparency = 255
+			overdose = 70
+			var/concrete_strength = 0
+
+			reaction_turf(var/turf/T, var/volume)
+				if (volume < 5)
+					return
+				if (locate(/obj/concrete_wet) in T || locate(/obj/concrete_wall) in T)
+					return
+				var/obj/concrete_wet/C = new(T)
+				C.c_quality = concrete_strength
+
+			do_overdose(var/severity, var/mob/M) //yo this is ugly as fuck and im so sorry -adhara
+				var/mob/living/carbon/human/H = M
+				if (H.color != rgb(125, 125, 125))
+					if (!data)
+						data = 1
+					else
+						data++
+					if (H.color == rgb(130, 130, 130))
+						H.real_name = "Stoned [H.real_name]"
+					var/dec_amt = data * 5
+					H.color = rgb(255 - dec_amt, 255 - dec_amt, 255 - dec_amt)
+				if(prob(25))
+					boutput(H, "<span style=\"color:grey\"><b>[pick("You feel pretty cool", "You feel pretty chill","You've gotta slow down", "Maybe sit down for a bit",\
+					"Maybe you should slow down for a mo'", "You feel like you need a snack", "You've got the munchies","You need a bit to eat",\
+					"You feel totally tubular","You feel really gnar","You feel pretty garnbuckle","You feel like the life of the party",\
+					"You're doin' great")], [pick("bro", "broski", "brah", "bruh", "breh", "broseph", "brobama", "broseph stalin", "brosephi", "brud", "bruv",\
+					"bruvner", "brudner", "vincent van bro", "brozo the clown", "marco brolo", "angelina brolie", "brome chompski", "C-3PBRO", "rice o' broni",\
+					"edgar allen bro", "broseidon, god of the brocean")].</b></span>")
+					H.slowed = max(1, H.slowed)
+
+		concrete/perfect_concrete
+			name = "ultra high grade superconcrete"
+			id = "perfect_concrete"
+			description = "A perfectly formulated blend of chemical agents, water, an aggregate and cement."
+			concrete_strength = 4
+
+		concrete/good_concrete
+			name = "high grade concrete"
+			id = "good_concrete"
+			description = "A well formulated blend of chemical agents, water, an aggregate and cement."
+			concrete_strength = 3
+
+		concrete/okay_concrete
+			name = "concrete"
+			id = "okay_concrete"
+			description = "A blend of chemical agents, water, an aggregate and cement."
+			concrete_strength = 2
+
+		concrete/poor_concrete
+			name = "low grade concrete"
+			id = "poor_concrete"
+			description = "A low quality blend of chemical agents, water, an aggregate and cement."
+			concrete_strength = 1

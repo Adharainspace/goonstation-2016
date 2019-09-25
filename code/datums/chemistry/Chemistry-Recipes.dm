@@ -152,6 +152,254 @@ datum
 					holder.del_reagent("water")
 				return
 
+//the suffering begins. im so sorry for this, but i didnt wanna make a big edit to how 3 diff. types reactions are handled
+//you can skip past this if you want: heres a big start sign and theres also a big end sign
+//ideally at some point thered be a global list of prohibited chems for smoke, propellant, foam reactions
+//but thats outside of the scope of this patch, so this is what you will have to settle for now
+//all 4 concrete reagents will also NEED to be blacklisted from fluids because it will get unfun fast
+
+/////////////////////////////////////////////////
+//S  T  A  R  T   O  F    B  I  G    H  E  L  L//
+/////////////////////////////////////////////////
+
+		no_perf_concrete_smoke
+			name = "no concrete smoke"
+			id = "no_perf_conc_smoke"
+			instant = 1
+			required_reagents = list("perfect_concrete" = 1, "potassium" = 1, "phosphorus" = 1, "sugar" = 1)
+			mix_phrase = "The concrete is too heavy to be moved by the smoke!"
+			on_reaction(var/datum/reagents/holder, var/created_volume)
+				if (holder)
+					holder.del_reagent("potassium")
+					holder.del_reagent("phosphorus")
+					holder.del_reagent("sugar")
+				return
+
+		no_perf_concrete_smoke2
+			name = "no concrete smoke"
+			id = "no_perf_conc_smoke2"
+			required_reagents = list("perfect_concrete" = 1, "smokepowder" = 1)
+			mix_phrase = "The concrete is too heavy to be moved by the smoke!"
+			instant = 1
+			on_reaction(var/datum/reagents/holder, var/created_volume)
+				if (holder)
+					holder.del_reagent("smokepowder")
+				return
+
+		no_perf_concrete_propel
+			name = "no concrete propellant"
+			id = "no_perf_conc_propel"
+			required_reagents = list("perfect_concrete" = 1, "chlorine" = 1, "platinum" = 1, "hydrogen" = 1, "sugar" = 1)
+			mix_phrase = "The concrete is too heavy to be moved by the smoke!"
+			instant = 1
+			on_reaction(var/datum/reagents/holder, var/created_volume)
+				if (holder)
+					holder.del_reagent("chlorine")
+					holder.del_reagent("hydrogen")
+					holder.del_reagent("platinum")
+					holder.del_reagent("sugar")
+				return
+
+		no_perf_concrete_propel2
+			name = "no concrete propellant"
+			id = "no_perf_conc_propel2"
+			required_reagents = list("perfect_concrete" = 1, "propellant" = 1)
+			mix_phrase = "The concrete is too heavy to be moved by the smoke!"
+			instant = 1
+			on_reaction(var/datum/reagents/holder, var/created_volume)
+				if (holder)
+					holder.del_reagent("propellant")
+				return
+
+		no_perf_concrete_foam
+			id = "no_perf_conc_foam"
+			required_reagents = list("perfect_concrete" = 1, "fluorosurfactant" = 1, "water" = 1)
+			mix_phrase = "The concrete is too heavy to be moved by the foam!"
+			instant = 1
+			on_reaction(var/datum/reagents/holder, var/created_volume)
+				if (holder)
+					holder.del_reagent("fluorosurfactant")
+					holder.del_reagent("water")
+				return
+
+		no_good_concrete_smoke
+			id = "no_good_conc_smoke"
+			mix_phrase = "The concrete is too heavy to be moved by the smoke!"
+			instant = 1
+			required_reagents = list("good_concrete" = 1, "potassium" = 1, "phosphorus" = 1, "sugar" = 1)
+			on_reaction(var/datum/reagents/holder, var/created_volume)
+				if (holder)
+					holder.del_reagent("potassium")
+					holder.del_reagent("phosphorus")
+					holder.del_reagent("sugar")
+				return
+
+		no_good_concrete_smoke2
+			id = "no_good_conc_smoke2"
+			mix_phrase = "The concrete is too heavy to be moved by the smoke!"
+			required_reagents = list("good_concrete" = 1, "smokepowder" = 1)
+			instant = 1
+			on_reaction(var/datum/reagents/holder, var/created_volume)
+				if (holder)
+					holder.del_reagent("smokepowder")
+				return
+
+		no_good_concrete_propel
+			id = "no_good_conc_propel"
+			name = "no concrete propellant"
+			required_reagents = list("good_concrete" = 1, "chlorine" = 1, "platinum" = 1, "hydrogen" = 1, "sugar" = 1)
+			mix_phrase = "The concrete is too heavy to be moved by the smoke!"
+			instant = 1
+			on_reaction(var/datum/reagents/holder, var/created_volume)
+				if (holder)
+					holder.del_reagent("chlorine")
+					holder.del_reagent("hydrogen")
+					holder.del_reagent("platinum")
+					holder.del_reagent("sugar")
+				return
+
+		no_good_concrete_propel2
+			id = "no_good_conc_propel2"
+			name = "no concrete propellant"
+			required_reagents = list("good_concrete" = 1, "propellant" = 1)
+			mix_phrase = "The concrete is too heavy to be moved by the smoke!"
+			instant = 1
+			on_reaction(var/datum/reagents/holder, var/created_volume)
+				if (holder)
+					holder.del_reagent("propellant")
+				return
+
+		no_good_concrete_foam
+			id = "no_good_conc_foam"
+			required_reagents = list("good_concrete" = 1, "fluorosurfactant" = 1, "water" = 1)
+			mix_phrase = "The concrete is too heavy to be moved by the foam!"
+			instant = 1
+			on_reaction(var/datum/reagents/holder, var/created_volume)
+				if (holder)
+					holder.del_reagent("fluorosurfactant")
+					holder.del_reagent("water")
+				return
+
+		no_okay_concrete_smoke
+			id = "no_ok_conc_smoke"
+			mix_phrase = "The concrete is too heavy to be moved by the smoke!"
+			instant = 1
+			required_reagents = list("okay_concrete" = 1, "potassium" = 1, "phosphorus" = 1, "sugar" = 1)
+			on_reaction(var/datum/reagents/holder, var/created_volume)
+				if (holder)
+					holder.del_reagent("potassium")
+					holder.del_reagent("phosphorus")
+					holder.del_reagent("sugar")
+				return
+
+		no_okay_concrete_smoke2
+			id = "no_ok_conc_smoke2"
+			mix_phrase = "The concrete is too heavy to be moved by the smoke!"
+			required_reagents = list("okay_concrete" = 1, "smokepowder" = 1)
+			instant = 1
+			on_reaction(var/datum/reagents/holder, var/created_volume)
+				if (holder)
+					holder.del_reagent("smokepowder")
+				return
+
+		no_okay_concrete_propel
+			id = "no_ok_conc_propel"
+			name = "no concrete propellant"
+			required_reagents = list("okay_concrete" = 1, "chlorine" = 1, "platinum" = 1, "hydrogen" = 1, "sugar" = 1)
+			mix_phrase = "The concrete is too heavy to be moved by the smoke!"
+			instant = 1
+			on_reaction(var/datum/reagents/holder, var/created_volume)
+				if (holder)
+					holder.del_reagent("chlorine")
+					holder.del_reagent("hydrogen")
+					holder.del_reagent("platinum")
+					holder.del_reagent("sugar")
+				return
+
+		no_okay_concrete_propel2
+			id = "no_ok_conc_propel2"
+			name = "no concrete propellant"
+			required_reagents = list("okay_concrete" = 1, "propellant" = 1)
+			mix_phrase = "The concrete is too heavy to be moved by the smoke!"
+			instant = 1
+			on_reaction(var/datum/reagents/holder, var/created_volume)
+				if (holder)
+					holder.del_reagent("propellant")
+				return
+
+		no_okay_concrete_foam
+			id = "no_ok_conc_foam"
+			mix_phrase = "The concrete is too heavy to be moved by the foam!"
+			required_reagents = list("okay_concrete" = 1, "fluorosurfactant" = 1, "water" = 1)
+			instant = 1
+			on_reaction(var/datum/reagents/holder, var/created_volume)
+				if (holder)
+					holder.del_reagent("fluorosurfactant")
+					holder.del_reagent("water")
+				return
+
+		no_poor_concrete_smoke
+			id = "no_poor_conc_smoke"
+			mix_phrase = "The concrete is too heavy to be moved by the smoke!"
+			instant = 1
+			required_reagents = list("poor_concrete" = 1, "potassium" = 1, "phosphorus" = 1, "sugar" = 1)
+			on_reaction(var/datum/reagents/holder, var/created_volume)
+				if (holder)
+					holder.del_reagent("potassium")
+					holder.del_reagent("phosphorus")
+					holder.del_reagent("sugar")
+				return
+
+		no_poor_concrete_smoke2
+			id = "no_poor_conc_smoke2"
+			mix_phrase = "The concrete is too heavy to be moved by the smoke!"
+			required_reagents = list("poor_concrete" = 1, "smokepowder" = 1)
+			instant = 1
+			on_reaction(var/datum/reagents/holder, var/created_volume)
+				if (holder)
+					holder.del_reagent("smokepowder")
+				return
+
+		no_poor_concrete_propel
+			id = "no_poor_conc_propel"
+			name = "no concrete propellant"
+			required_reagents = list("poor_concrete" = 1, "chlorine" = 1, "platinum" = 1, "hydrogen" = 1, "sugar" = 1)
+			mix_phrase = "The concrete is too heavy to be moved by the smoke!"
+			instant = 1
+			on_reaction(var/datum/reagents/holder, var/created_volume)
+				if (holder)
+					holder.del_reagent("chlorine")
+					holder.del_reagent("hydrogen")
+					holder.del_reagent("platinum")
+					holder.del_reagent("sugar")
+				return
+
+		no_poor_concrete_propel2
+			id = "no_poor_conc_propel2"
+			name = "no concrete propellant"
+			required_reagents = list("poor_concrete" = 1, "propellant" = 1)
+			mix_phrase = "The concrete is too heavy to be moved by the smoke!"
+			instant = 1
+			on_reaction(var/datum/reagents/holder, var/created_volume)
+				if (holder)
+					holder.del_reagent("propellant")
+				return
+
+		no_poor_concrete_foam
+			id = "no_poor_conc_foam"
+			required_reagents = list("poor_concrete" = 1, "fluorosurfactant" = 1, "water" = 1)
+			mix_phrase = "The concrete is too heavy to be moved by the foam!"
+			instant = 1
+			on_reaction(var/datum/reagents/holder, var/created_volume)
+				if (holder)
+					holder.del_reagent("fluorosurfactant")
+					holder.del_reagent("water")
+				return
+
+/////////////////////////////////////////
+//E  N  D   O  F   B  I  G   H  E  L  L//
+/////////////////////////////////////////
+
 		booster_enzyme
 			name = "Booster Enzyme"
 			id = "booster_enzyme"
@@ -170,7 +418,7 @@ datum
 			result_amount = 1
 			mix_phrase = "The solution burns, leaving behind a lifeless mass!"
 
-//=-=-=-=-=-=-=-=-=
+//=-=-=-=-=-=-=-=-= up this high for reaction order purposes
 //|| C E M E N T ||
 //=-=-=-=-=-=-=-=-=
 
@@ -201,6 +449,7 @@ datum
 			result = "gypsum"
 			required_reagents = list("acid" = 1, "calcium_carbonate" = 1)
 			result_amount = 1
+			mix_phrase = "The mixture bubbles fervently."
 			on_reaction(var/datum/reagents/holder, created_volume)
 				holder.add_reagent("water", created_volume,,holder.total_temperature)
 
@@ -210,9 +459,78 @@ datum
 			result = "silicon_dioxide"
 			required_reagents = list("sodium" = 2, "silicon" = 3, "oxygen" = 7, "acid" = 1)
 			result_amount = 3
+			mix_phrase = "The white flakes turn into a white powder."
 			on_reaction(var/datum/reagents/holder, created_volume)
 				holder.add_reagent("water", created_volume / 3,,holder.total_temperature)
 				holder.add_reagent("sodium_sulfate", created_volume / 3,,holder.total_temperature)
+
+		perfect_cement //lime, alumina, magnesia, iron oxide, calcium sulfate, sulfur trioxide, thermite as iron (iii) oxide + alumina
+			name = "perfect cement"
+			id = "perfect_cement"
+			result = "perfect_cement"
+			required_reagents = list("lime" = 1, "magnesium" = 1, "thermite" = 1, "calcium_sulfate" = 1, "oxygen" = 4, "sulfur" = 1)
+			result_amount = 9 //18
+			mix_phrase = "The mixture of particles settles together with so much ease that it seems like it has been waiting for this moment for a long time."
+			mix_sound = 'sound/misc/fuse.ogg'
+
+		good_cement //lime, alumina, magnesia, iron oxide, calcium sulfate, thermite as iron (iii) oxide + alumina
+			name = "good cement"
+			id = "good_cement"
+			result = "good_cement"
+			required_reagents = list("lime" = 1, "magnesium" = 1, "thermite" = 1, "calcium_sulfate" = 1, "oxygen" = 1)
+			result_amount = 5 //14
+			mix_phrase = "The mixture of particles settles together with ease."
+			mix_sound = 'sound/misc/fuse.ogg'
+
+		okay_cement //lime, alumina, magnesia, iron oxide, thermite as iron (iii) oxide + alumina
+			name = "okay cement"
+			id = "okay_cement"
+			result = "okay_cement"
+			required_reagents = list("lime" = 1, "magnesium" = 1, "thermite" = 1, "oxygen" = 1)
+			result_amount = 4 //13
+			mix_phrase = "The mixture of particles settles together complacently."
+			mix_sound = 'sound/misc/fuse.ogg'
+
+		poor_cement //lime, alumina, iron oxide, thermite as iron (iii) oxide + alumina
+			name = "okay cement"
+			id = "okay_cement"
+			result = "okay_cement"
+			required_reagents = list("lime" = 1, "thermite" = 1)
+			result_amount = 2 //
+			mix_phrase = "The mixture of particles settles together... barely."
+			mix_sound = 'sound/misc/fuse.ogg'
+
+		perfect_concrete
+			name = "perfect concrete"
+			id = "perfect_concrete"
+			result = "perfect_concrete"
+			mix_phrase = "The mixture comes together smoothly... you feel like you've witnessed something great."
+			required_reagents = list("perfect_cement" = 1, "silicon_dioxide" = 5, "water" = 1)
+			result_amount = 7
+
+		good_concrete
+			name = "good concrete"
+			id = "good_concrete"
+			result = "good_concrete"
+			mix_phrase = "The mixture comes together smoothly."
+			required_reagents = list("good_cement" = 1, "silicon_dioxide" = 5, "water" = 1)
+			result_amount = 7
+
+		okay_concrete
+			name = "okay concrete"
+			id = "ok_concrete"
+			result = "ok_concrete"
+			mix_phrase = "The mixture comes together."
+			required_reagents = list("okay_cement" = 1, "silicon_dioxide" = 5, "water" = 1)
+			result_amount = 7
+
+		poor_concrete
+			name = "poor concrete"
+			id = "poor concrete"
+			result = "poor concrete"
+			mix_phrase = "The mixture comes together slowly. It doesn't seem like it wants to be here."
+			required_reagents = list("poor_cement" = 1, "silicon_dioxide" = 5, "water" = 1)
+			result_amount = 7
 
 		water_holy
 			name = "Holy Water"

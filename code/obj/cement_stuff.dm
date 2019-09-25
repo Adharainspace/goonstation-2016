@@ -12,16 +12,16 @@
 
 	attackby(var/obj/item/I, var/mob/user)
 		if (!istype(I, /obj/item/reagent_containers/glass))
-			return
-
-			if (I.reagents.total_volume >= I.reagents.maximum_volume - (scoop_amt - 1))
-				boutput(user, "<span style=\"color:red\">[I] is too full!</span>")
-				return 0
-			else
-				I.reagents.add_reagent(reagent, scoop_amt)
-				user.visible_message("<span style=\"color:blue\"><b>[user]</b> is scooping sand off of \the [src] and into [I].</span>",\
-				"<span style=\"color:blue\">You scoop some of the sand into [I].</span>")
-				I.reagents.handle_reactions()
+			return 0
+		if (I.reagents.total_volume >= I.reagents.maximum_volume - (scoop_amt - 1))
+			boutput(user, "<span style=\"color:red\">[I] is too full!</span>")
+			return 0
+		else
+			I.reagents.add_reagent(reagent, scoop_amt)
+			user.visible_message("<span style=\"color:blue\"><b>[user]</b> is scooping sand off of \the [src] and into [I].</span>",\
+			"<span style=\"color:blue\">You scoop some of the sand into [I].</span>")
+			I.reagents.handle_reactions()
+			return 1
 
 /obj/item/seashell //placeholder for seashells, add the stuff thats in the object procs please
 	icon = 'icons/obj/decals.dmi'
@@ -61,7 +61,7 @@
 	anchored = 1
 	density = 0
 	layer = OBJ_LAYER + 0.9
-	var/health = 4
+	var/health = 4 //how many hits to destroy + 1
 	var/c_quality = 0
 	var/created_time = 0
 
@@ -74,6 +74,7 @@
 		if (world.time >= created_time + 150) //15secs
 			flick("concrete_drying", src)
 			var/obj/concrete_wall/C = new(get_turf(src))
+			sleep(12)
 			C.update_strength(c_quality)
 			qdel(src)
 
@@ -83,12 +84,13 @@
 
 	HasEntered(mob/living/carbon/M as mob)
 		..()
-		M.slowed += 2
+		M.slowed = max(1, M.slowed)
 		boutput(M, "<span style=\"color:red\">Running through the wet concrete is slowing you down...</span>")
 
 	attack_hand(var/mob/user)
 		if (health <= 0)
 			user.visible_message("<span style=\"color:red\">[user] breaks apart the lump of wet concrete with their bare hands!</span>")
+			qdel(src)
 			return
 		health--
 		if (health <= 0)
@@ -164,7 +166,7 @@
 			user.visible_message( "<span style=\"color:red\">[user] smashes through the concrete wall.</span>", "<span style=\"color:blue\">You smash through the concrete wall with \the [I].</span>")
 			dispose()
 			return
-		boutput(user, "<span style=\"color:blue\">You hit the concrete wall and it cracks a little under the assault.</span>")
+		boutput(user, "<span style=\"color:red\">You hit the concrete wall and it cracks a little under the assault.</span>")
 
 	proc/update_nearby_tiles(need_rebuild)
 		var/turf/simulated/source = loc
@@ -174,18 +176,18 @@
 		return 1
 
 	get_desc()
-		if (max_health / health == 1)
+		if (health / max_health == 1)
 			. += "The wall is in perfect condition!"
 			return
-		if (max_health / health >= 0.75)
+		if (health / max_health >= 0.75)
 			. += "The wall is showing some wear and tear."
 			return
-		if (max_health / health >= 0.5)
+		if (health / max_health >= 0.5)
 			. += "The wall is starting to look worse for the wear."
 			return
-		if (max_health / health >= 0.25)
+		if (health / max_health >= 0.25)
 			. += "The wall has suffered some major damage!"
 			return
-		if (max_health / health >= 0)
+		if (health / max_health >= 0)
 			. += "The wall is almost in pieces!"
 			return
