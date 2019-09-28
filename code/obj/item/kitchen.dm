@@ -3,6 +3,7 @@ CONTAINS:
 
 CUTLERY
 MISC KITCHENWARE
+TRAYS
 */
 
 /obj/item/kitchen
@@ -215,16 +216,22 @@ MISC KITCHENWARE
 //=-=-=-=-=-=-=-=-=-=-=-=-
 //TRAYS AND PLATES OH MY||
 //=-=-=-=-=-=-=-=-=-=-=-=-
-/obj/item/food_service
-	name = "food service device"
-	desc = "a food delivery device"
+
+/obj/item/plate //so i basically copy pasted everything so no comments here, go look at tray code for comments, sorry
+	name = "plate"
+	desc = "It's like a frisbee, but more dangerous!"
 	icon = 'icons/obj/foodNdrink/food_related.dmi'
-	icon_state = "pizzatray"
+	icon_state = "plate"
 	item_state = "zippo"
-	w_class = 4.0
+	throwforce = 3.0
+	throw_speed = 3
+	throw_range = 8
+	force = 2
+	rand_pos = 0
 	var/list/ordered_contents = list()
 	var/food_desc = null
-	var/max_food = 0
+	var/max_food = 2
+	var/list/throw_targets = list()
 
 	proc/add_contents(var/obj/item/W)
 		ordered_contents += W
@@ -236,54 +243,154 @@ MISC KITCHENWARE
 		for (var/i = 1, i <= ordered_contents.len, i++)
 			var/obj/item/F = ordered_contents[i]
 			var/image/I = SafeGetOverlayImage("food_[i]", F.icon, F.icon_state)
-			I.transform *= 0.75
-			if (i % 2)
-				I.pixel_x = -8
+			if (ordered_contents.len == 1)
+				I.transform *= 0.75
 			else
-				I.pixel_x = 8
-			y_counter++
-			if (y_counter == 3)
-				y_mod++
-				y_counter = 1
-			I.pixel_y = y_mod * 3
+				I.transform *= 0.5
+				if (i % 2)
+					I.pixel_x = -4
+				else
+					I.pixel_x = 4
 			I.layer = src.layer + 0.1
 			src.UpdateOverlays(I, "food_[i]", 0, 1)
 		for (var/i = ordered_contents.len + 1, i <= src.overlays.len, i++)
 			src.ClearSpecificOverlays("food_[i]")
-		y_counter = 0
-		y_mod = 0
 		return
 
-//MESSY AS FUCK TRAY CODE IM SO SORRY
+	proc/shit_goes_everywhere()
+		src.visible_message("<span style=\"color:red\">Everything on \the [src] goes flying!</span>")
+		for (var/i = 1, i <= ordered_contents.len, i++)
+			throw_targets += get_offset_target_turf(src.loc, rand(5)-rand(5), rand(5)-rand(5))
 
-/obj/item/tray //this is the big boy!
+		while (ordered_contents.len > 0)
+			var/obj/item/F = ordered_contents[1]
+			src.remove_contents(F)
+			src.update_icon()
+			F.set_loc(src.loc)
+			spawn(0)
+			F.throw_at(pick(throw_targets), 5, 1)
+
+	throw_impact(var/turf/T)
+		..()
+		if(ordered_contents.len == 0)
+			return
+		src.shit_goes_everywhere()
+
+	get_desc(dist)
+		if (dist > 5)
+			return
+		if (ordered_contents.len == 0)
+			food_desc = "\The [src] has no food on it!"
+		else
+			food_desc = "\The [src] has "
+			for (var/i = 1, i <= ordered_contents.len, i++)
+				var/obj/item/F = ordered_contents[i]
+				if (i == ordered_contents.len && i == 1)
+					food_desc += "\an [F] on it."
+					return "[food_desc]"
+				if (i == ordered_contents.len)
+					food_desc += "and \an [F] on it."
+				else
+					food_desc += "\an [F], "
+		if (length("[food_desc]") > MAX_MESSAGE_LEN)
+			return "<span style=\"color:orange\">There's a positively <i>indescribable</i> amount of food on \the [src]!</span>"
+		return "[food_desc]"
+
+	attackby(obj/item/W as obj, mob/user as mob)
+		if (!W.edible)
+			if (istype(W, /obj/item/kitchen/utensil/fork) || istype(W, /obj/item/kitchen/utensil/spoon))
+				var/obj/item/reagent_containers/food/sel_food = input(user, "Which food do you want to eat?", "[src] Contents") as null|anything in ordered_contents
+				if(!sel_food)
+					return
+				sel_food.Eat(user,user)
+				user.visible_message("[user] takes a bite from \the [sel_food].")
+				if(sel_food in src.contents)
+					return
+				src.remove_contents(sel_food)
+				src.update_icon()
+				return
+			boutput(user, "[W] isn't food, That doesn't belong on \the [src]!")
+			return
+		if (ordered_contents.len == max_food)
+			boutput(user, "That won't fit, \the [src] is too full!")
+			return
+		user.drop_item()
+		W.set_loc(src)
+		src.add_contents(W)
+		src.ClearAllOverlays()
+		src.update_icon()
+		boutput(user, "You put [W] on \the [src]")
+
+	attack_self(mob/user as mob)
+		if (ordered_contents.len == 0)
+			boutput(user, "There's no food to take off of \the [src]!")
+			return
+		var/food_sel = input(user, "Which food do you want to take off of \the [src]?", "[src]'s contents") as null|anything in ordered_contents
+		if (!food_sel)
+			return
+		user.put_in_hand_or_drop(food_sel)
+		src.remove_contents(food_sel)
+		src.update_icon()
+		boutput(user, "You take \the [food_sel] off of \the [src].")
+
+	attack(mob/M as mob, mob/user as mob)
+		if (user.a_intent == INTENT_HARM)
+			if (M == user)
+				boutput(user, "<span style=\"color:red\"><B>You smash the plate over your own head!</b></span>")
+			else
+				M.visible_message("<span style=\"color:red\"><B>[user] smashes [src] over [M]'s head!</B></span>")
+				logTheThing("combat", user, M, "smashes [src] over %target%'s head! ")
+			if (ordered_contents.len != 0)
+				src.shit_goes_everywhere()
+			random_brute_damage(M, force)
+			M.weakened += rand(0,2)
+			M.updatehealth()
+			playsound(src, "shatter", 70, 1)
+			var/obj/O = new /obj/item/raw_material/shard/glass(get_turf(M))
+			if (src.material)
+				O.setMaterial(copyMaterial(src.material))
+			qdel(src)
+		else
+			M.visible_message("<span style=\"color:red\">[user] taps [M] over the head with [src].</span>")
+			logTheThing("combat", user, M, "taps %target% over the head with [src].")
+
+	attack_hand(mob/user as mob)
+		..()
+		src.ClearAllOverlays()
+		src.update_icon()
+
+	dropped(mob/user as mob) //shit_goes_everwhere doesnt work
+		..()
+		if (user && user.bioHolder.HasEffect("clumsy") && prob(50))
+			user.visible_message("<span style=\"color:red\">[user] clumsily drops \the [src]!")
+			if (ordered_contents.len == 0)
+				return
+			src.shit_goes_everywhere()
+
+/obj/item/plate/tray //this is the big boy!
 	name = "serving tray"
 	desc = "It's a big flat tray for serving food upon."
 	icon = 'icons/obj/foodNdrink/food_related.dmi'
 	icon_state = "tray"
+	inhand_image_icon = 'icons/mob/inhand/hand_food.dmi'
+	item_state = "tray"
 	throwforce = 3.0 //these values could use some tweaking if theyre too powerful, i have 0 idea how damage stuff works sorry
 	throw_speed = 3
 	throw_range = 4
 	force = 10
-	w_class = 4.0 //cant be fried or fit in backpacks. this interacts REALLY WEIRDLY with the frier, so this is intentional
-	var/list/tray_contents = list() //list in order of addition
+	w_class = 4.0 //no trays of loaves in a backpack for you
+	max_food = 30
+//	two_handed = 1 //decomment this line when porting over please
 	var/health_desc = null
-	var/food_desc = null
 	var/y_counter = 0
 	var/y_mod = 0
-	var/tray_health = 5 //the number of times ( + 1) you can smash someone over the head with the tray before it breaks, !!!ADJUST GET DESC VALUES IF ADJUSTING TRAY HEALTH!!!
+	var/tray_health = 5 //number of times u can smash with a tray + 1, get_desc values are hardcoded so please adjust them (i know im a bad coder)
 
-	proc/add_contents(var/obj/item/W)
-		tray_contents += W
-
-	proc/remove_contents(var/obj/item/W)
-		tray_contents -= W
-
-	proc/update_icon() //this is what builds the overlays, it looks at the ordered list of food in the tray and does its magic from there
-		for (var/i = 1, i <= tray_contents.len, i++)
-			var/obj/item/F = tray_contents[i]
+	update_icon() //this is what builds the overlays, it looks at the ordered list of food in the tray and does magic
+		for (var/i = 1, i <= ordered_contents.len, i++)
+			var/obj/item/F = ordered_contents[i]
 			var/image/I = SafeGetOverlayImage("food_[i]", F.icon, F.icon_state)
-			I.transform *= 0.75 //scaleable, currently puts food down to 3/4ths size
+			I.transform *= 0.75
 			if (i % 2) //i feel clever for this haha
 				I.pixel_x = -8
 			else
@@ -295,13 +402,13 @@ MISC KITCHENWARE
 			I.pixel_y = y_mod * 3 //layers are 3px above eachother
 			I.layer = src.layer + 0.1
 			src.UpdateOverlays(I, "food_[i]", 0, 1)
-		for (var/i = tray_contents.len + 1, i <= src.overlays.len, i++) //this is to make clear up any funky ghost overlays
+		for (var/i = ordered_contents.len + 1, i <= src.overlays.len, i++) //this is to clear up any funky ghost overlays
 			src.ClearSpecificOverlays("food_[i]")
 		y_counter = 0
 		y_mod = 0
 		return
 
-	proc/shit_goes_everywhere(var/turf/T) //i dont think i need to explain what this one does
+/*	proc/shit_goes_everywhere(var/turf/T) //i dont think i need to explain what this one does
 		if (!T)
 			T = src.loc
 		if (ismob(T))
@@ -315,13 +422,14 @@ MISC KITCHENWARE
 		for (T in view(5,src)) //change this to increase/decrease how far stuff gets thrown
 			nearby_turfs += T
 
-		while (tray_contents.len > 0)
-			var/obj/item/F = tray_contents[1]
+		while (ordered_contents.len > 0)
+			var/obj/item/F = ordered_contents[1]
 			src.remove_contents(F)
 			src.update_icon()
 			F.set_loc(src.loc)
 			spawn(0) //i know it isnt good practice, but mbc told me to do this so blame them not me!!!
-			F.throw_at(pick(nearby_turfs), 16, 3)
+			if (nearby_turfs.len)
+				F.throw_at(pick(nearby_turfs), 16, 3)*/
 
 	get_desc(dist)
 		if (dist > 5)
@@ -332,16 +440,16 @@ MISC KITCHENWARE
 			health_desc = "\The [src] is getting pretty warped and flimsy."
 		else if ((1 >= tray_health) && (tray_health >=0))  //im a bad coder
 			health_desc = "\The [src] is about to break, be careful!"
-		if (tray_contents.len == 0)
+		if (ordered_contents.len == 0)
 			food_desc = "\The [src] has no food on it!"
 		else
 			food_desc = "\The [src] has "
-			for (var/i = 1, i <= tray_contents.len, i++)
-				var/obj/item/F = tray_contents[i]
-				if (i == tray_contents.len && i == 1)
+			for (var/i = 1, i <= ordered_contents.len, i++)
+				var/obj/item/F = ordered_contents[i]
+				if (i == ordered_contents.len && i == 1)
 					food_desc += "\an [F] on it."
 					return "[health_desc] [food_desc]"
-				if (i == tray_contents.len)
+				if (i == ordered_contents.len)
 					food_desc += "and \an [F] on it."
 				else //just a normal food then ok
 					food_desc += "\an [F], "
@@ -349,51 +457,9 @@ MISC KITCHENWARE
 			return "<span style=\"color:orange\">There's a positively <i>indescribable</i> amount of food on \the [src]!</span>"
 		return "[health_desc] [food_desc]" //heres yr desc you *bastard*
 
-	throw_impact(var/turf/T)
-		..()
-		if(tray_contents.len == 0)
-			return
-		src.shit_goes_everywhere(T)
-
-	attackby(obj/item/W as obj, mob/user as mob)
-		if (!W.edible)
-			if (istype(W, /obj/item/kitchen/utensil/fork) || istype(W, /obj/item/kitchen/utensil/spoon)) //youve heard of backwards compatible, now try forwards compatible
-				var/obj/item/reagent_containers/food/sel_food = input(user, "Which food?", "Tray Contents") as null|anything in tray_contents
-				if(!sel_food)
-					return
-				sel_food.Eat(user,user)
-				user.visible_message("[user] takes a bite from \the [sel_food].") //maybe unecessary?
-				if(sel_food in src.contents)
-					return
-				src.remove_contents(sel_food)
-				src.update_icon()
-				return
-			boutput(user, "[W] isn't food, That doesn't belong on \the [src]!")
-			return
-		if (tray_contents.len == 30)
-			boutput(user, "That won't fit, \the [src] is too full!")
-			return
-		user.drop_item()
-		W.set_loc(src)
-		src.add_contents(W)
-		src.update_icon()
-		boutput(user, "You put [W] on \the [src]")
-
-	attack_self(mob/user as mob)
-		if (tray_contents.len == 0)
-			boutput(user, "There's no food to take off of \the [src]!")
-			return
-		var/food_sel = input(user, "Which food?", "Tray Contents") as null|anything in tray_contents //the names for the window might be bad sorry
-		if (!food_sel)
-			return
-		user.put_in_hand_or_drop(food_sel)
-		src.remove_contents(food_sel)
-		src.update_icon()
-		boutput(user, "You take \the [food_sel] off of \the [src].")
-
-	attack(mob/M as mob, mob/user as mob) //this could be kinda op cos it does stun, but i tried my hardest to limit that potential
+	attack(mob/M as mob, mob/user as mob)
 		if (user.a_intent == INTENT_HARM)
-			if (M == user) //why are you hitting yourself why are you hitting yourself
+			if (M == user) //why are you hitting yourself why are you hitting yourself why are y
 				boutput(user, "<span style=\"color:red\"><B>You bash yourself in the face with \the [src]!</b></span>")
 			else
 				M.visible_message("<span style=\"color:red\"><B>[user] bashes [M] over the head with \the [src]!</B></span>")
@@ -401,11 +467,11 @@ MISC KITCHENWARE
 			random_brute_damage(M, force)
 			M.weakened += rand(0,2) //adjust if stun is too long
 			M.updatehealth()
-			playsound(get_turf(src), 'sound/weapons/trayhit.ogg', 50, 1) //i made this sound *flex*
+			playsound(get_turf(src), 'sound/weapons/trayhit.ogg', 50, 1)
 			src.visible_message("\The [src] falls out of [user]'s hands due to the impact!")
 			user.drop_item(src)
-			if(tray_contents.len > 0)
-				src.shit_goes_everywhere(get_turf(src))
+			if(ordered_contents.len > 0)
+				src.shit_goes_everywhere()
 			if (tray_health == 0) //breakable trays because you flew too close to the sun, you tried to have unlimited damage AND stuns you fool, your hubris is too fat, too wide
 				src.visible_message("\The [src] shatters!")
 				playsound(src, 'sound/effects/grillehit.ogg', 70, 1)
@@ -416,291 +482,10 @@ MISC KITCHENWARE
 			src.visible_message("\The [src] looks less sturdy now.")
 		else
 			if(M == user)
-				if (user.zone_sel.selecting == "head" && tray_contents.len > 0)
-					user.visible_message("<span style=\"color:red\"><B>[user] tilts \the [src] towards \his face and starts shovelling food into \his mouth!</b></span>")
-					actions.start(new/datum/action/bar/icon/tray_chug(user, src), user)
-					return
-				else
-					boutput(user, "<span style=\"color:red\">There isn't enough food on the tray to eat!</span>")
-					return
-			else
 				M.visible_message("<span style=\"color:green\">[user] bops themselves over the head with \the [src].</span>")
 				return
 			M.visible_message("<span style=\"color:green\">[user] bops [M] over the head with \the [src].</span>")
 			logTheThing("combat", user, M, "taps %target% over the head with [src].")
-
-	attack_hand(mob/user as mob) //this works to make inhand overlays function AND lets you force update funky trays by grabbing them
-		..()
-		src.ClearAllOverlays()
-		src.update_icon()
-
-	dropped(mob/user as mob) //clowns are too clumsy to balance trays!! (sorry clowns i love you)
-		..()
-		if (user && user.bioHolder.HasEffect("clumsy") && prob(50))
-			user.visible_message("<span style=\"color:red\">[user] clumsily drops \the [src]!")
-			if (tray_contents.len == 0)
-				return
-			src.shit_goes_everywhere(get_turf(src))
-
-/datum/action/bar/icon/tray_chug
-	duration = 10
-	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_STUNNED
-	id = "tray_chug"
-	icon = 'icons/obj/foodNdrink/food_related.dmi'
-	icon_state = "tray_status"
-	var/mob/living/user
-	var/obj/item/tray/T
-
-	New(usermob, tray)
-		user = usermob
-		T = tray
-		..()
-
-	onUpdate()
-		..()
-		if (T != user.equipped() || user == null || T == null)
-			interrupt(INTERRUPT_ALWAYS)
-			return
-
-	onStart()
-		..()
-		if (T != user.equipped() || user == null || T == null)
-			interrupt(INTERRUPT_ALWAYS)
-			return
-
-		if (T.tray_contents.len == 0)
-			user.visible_message("<span style=\"color:blue\">[user] finishes eating everything on the tray!</span>")
-			user.emote("burp")
-			return
-
-		var/obj/item/reagent_containers/food/F = T.tray_contents[1]
-		F.Eat(user,user)
-		if (!F in T.contents)
-			T.remove_contents(F)
-			T.update_icon()
-
-	onEnd()
-		..()
-		if (T != user.equipped() || user == null || T == null)
-			interrupt(INTERRUPT_ALWAYS)
-			return
-
-		if (T.tray_contents.len == 0)
-			user.visible_message("<span style=\"color:blue\">[user] finishes eating everything on the tray!</span>")
-			user.emote("burp")
-			return
-
-/*		if (!F in T.contents)
-			T.remove_contents(F)
-			T.update_icon()*/
-
-		actions.start(new/datum/action/bar/icon/tray_chug(user, T), user)
-
-/obj/item/plate
-	name = "plate"
-	desc = "It's like a frisbee, but more dangerous!"
-	icon = 'icons/obj/foodNdrink/food_related.dmi'
-	icon_state = "plate"
-	item_state = "zippo"
-	throwforce = 3.0
-	throw_speed = 3
-	throw_range = 8
-	force = 2
-	rand_pos = 0
-
-/obj/item/plate/attack(mob/M as mob, mob/user as mob)
-	if (user.a_intent == INTENT_HARM)
-		if (M == user)
-			boutput(user, "<span style=\"color:red\"><B>You smash the plate over your own head!</b></span>")
-		else
-			M.visible_message("<span style=\"color:red\"><B>[user] smashes [src] over [M]'s head!</B></span>")
-			logTheThing("combat", user, M, "smashes [src] over %target%'s head! ")
-		random_brute_damage(M, force)
-		M.weakened += rand(0,2)
-		M.updatehealth()
-		playsound(src, "shatter", 70, 1)
-		var/obj/O = new /obj/item/raw_material/shard/glass(get_turf(M))
-		if (src.material)
-			O.setMaterial(copyMaterial(src.material))
-		qdel(src)
-	else
-		M.visible_message("<span style=\"color:red\">[user] taps [M] over the head with [src].</span>")
-		logTheThing("combat", user, M, "taps %target% over the head with [src].")
-
-/*/datum/action/bar/icon/automender_apply
-    duration = 10
-    interrupt_flags = INTERRUPT_MOVE | INTERRUPT_STUNNED
-    id = "automender_apply"
-    icon = 'icons/obj/chemical.dmi'
-    icon_state = "mender-active"
-    var/mob/living/user
-    var/obj/item/reagent_containers/mender/M
-    var/mob/living/target
-    var/looped = 0
-
-    var/health_temp = 0
-
-    New(usermob,tool,targetmob, loopcount = 0)
-        user = usermob
-        M = tool
-        target = targetmob
-        looped = loopcount
-        ..()
-
-    onUpdate()
-        ..()
-        if(get_dist(user, target) > 1 || user == null || target == null)
-            interrupt(INTERRUPT_ALWAYS)
-            return
-
-
-    onStart()
-        ..()
-        if(get_dist(user, target) > 1 || user == null || target == null)
-            interrupt(INTERRUPT_ALWAYS)
-            return
-
-        if (!M.reagents || M.reagents.total_volume <= 0)
-            user.show_text("[M] is empty.", "red")
-            interrupt(INTERRUPT_ALWAYS)
-            return
-
-        health_temp = target.health
-
-        //WEAKEN the first apply or use some sort of ramp-up!
-        var/multiply = 1
-        if (looped <= 0)
-            multiply = 0.2
-
-        M.apply_to(target,user, multiply, silent = (looped >= 1))
-
-    onEnd()
-        ..()
-        if(get_dist(user, target) > 1 || user == null || target == null)
-            interrupt(INTERRUPT_ALWAYS)
-            return
-
-        //Auto stop healing loop if we are not tampered and the health didnt change at all
-        if (!M.tampered)
-            if (health_temp == target.health)
-                user.show_text("[M] is finished healing and powers down automatically.", "blue")
-                return
-
-        actions.start(new/datum/action/bar/icon/automender_apply(user, M, target, looped + 1), user)*/
-
-/*	attack_hand(mob/user as mob) //i want overlays to work in hands please please come ON
-		..()
-		spawn(5)
-			src.update_icon()*/
-
-/*	dropped(mob/user as mob) apparently this triggers whenever you click with a tray at all so...?
-		..()
-		if(tray_contents.len == 0)
-			return
-		user.visible_message("[user] drops \the [src] on the ground!")
-		src.shit_goes_everywhere(get_turf(src))*/
-
-/*	proc/build_desc() //this is a mess and doesnt work
-		if (old_desc) //remove old desc from the description
-			src.desc -= old_desc
-		if (tray_contents.len == 0) //if the tray's empty, set the empty description
-			new_desc = "There's nothing on \the [src]!"
-			old_desc = new_desc
-			src.desc = new_desc
-			return
-		new_desc = "[src] has " //set the start of the sentence
-		for (var/i = 1, i <= tray_contents.len, i++) //loop through the list
-			var/obj/item/F = tray_contents[i]
-			if(i == tray_contents.len) //if its at the last element, cap off the sentence
-				new_desc += "and \an [F]."
-			else
-				new_desc += "\an [F], " //otherwise, keep building the sentence normally
-		old_desc = new_desc //set old desc so we can clear it next time we need to redo the description
-		src.desc += new_desc
-		return
-
-	New()
-		src.build_desc()*/
-
-/*	attackby(obj/item/W as obj, mob/user as mob)
-		if (!W.edible)
-			boutput(user, "[W] isn't food! That doesn't belong on \the [src]")
-			return
-		if (!food1)
-			food1 = image(W.icon, "")
-			food1.icon_state = "[W.icon_state]"
-			food1.pixel_x = -8
-			user.drop_item()
-			W.set_loc(src)
-			food_in_tray += food1
-			src.UpdateOverlays(food1, 1)
-			src.desc += " The [src] has \an [W] on it."
-			return
-		if (food1 && !food2)
-			food2 = image(W.icon, "")
-			food2.icon_state = "[W.icon_state]"
-			food2.pixel_x = 8
-			user.drop_item()
-			W.set_loc(src)
-			food_in_tray += food2
-			src.UpdateOverlays(food2, 2)
-			src.desc += " The [src] also has \an [W] on it."
-			return
-
-	attack_hand(mob/user as mob, unused, flag)
-		for(/obj/item/W in src)
-			if(W.edible)
-				food_in_tray += W.name
-
- 		var/food_sel = input(user, "Test1", "Test2") as null|anything in food_in_tray
-			if (!food_sel)
-				return
-
-		user.put_in_hand_or_drop(food_sel)
-		boutput(user, "You take [food_sel] off of /the [src]")
-		if (food_sel.icon_state == food1.iconstate)
-			src.overlays -= food1
-			src.desc -= " The [src] has \an [W] on it."
-			return
-		else if (food_sel.icon_state == food2.icon_state)
-			src.overlays -= food2
-			src.desc -= " The [src] also has \an [W] on it."
-			return
-		else //is this necessary? probably not
-			return
-
-attackby(obj/item/W as obj, mob/user as mob)
-        if (istype(W,/obj/item/kitchen/utensil/fork) || istype(W,/obj/item/kitchen/utensil/spoon))
-            if (prob(20) && (istype(W,/obj/item/kitchen/utensil/fork/plastic) || istype(W,/obj/item/kitchen/utensil/spoon/plastic)))
-                var/obj/item/kitchen/utensil/spoon/plastic/S = W
-                S.break_spoon(user)
-                user.visible_message("<span style=\"color:red\">[user] stares glumly at [src].</span>")
-                return
-
-            src.Eat(user,user)
-        else
-            ..()
-
-proc/build_desc(var/name1, var/name2) maybe not necessary?
-
-
-	New()
-		..()
-		handle = image('icons/obj/surgery.dmi', "")
-		handle.icon_state = "surgical-scissors-handle"
-		handle.color = "#[random_hex(6)]"
-		src.overlays += handle
-
-obj/item/tray/attack(mod/M as mob, mob/user as mob)
-loose plan for this is to...
- when attacked one start doing the overlay stuff
-first it checks if its food
-then it checks the icon of the object for overlay stuff
-then it sets an overlay on the tray with the icon and iconstate info
-one per tray until i learn how to offset or whatever
-also += to description with the name of the food that was added
-then, store the food in src
-then, when attacked w/ an empty hand, remove food (if there is any)*/
 
 /obj/item/fish
 	throwforce = 3

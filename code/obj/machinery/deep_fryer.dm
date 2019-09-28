@@ -66,8 +66,8 @@
 			src.reagents.reaction(W:affecting, TOUCH)
 
 			return
-
-		if (W.w_class > src.max_wclass || istype(W, /obj/item/storage) || istype(W, /obj/item/storage/secure) || istype(W, /obj/item/food_storage))
+//plates and trays dont work in fryers
+		if (W.w_class > src.max_wclass || istype(W, /obj/item/storage) || istype(W, /obj/item/storage/secure) || istype(W, /obj/item/plate))
 			boutput(user, "<span style=\"color:red\">There is no way that could fit!</span>")
 			return
 
