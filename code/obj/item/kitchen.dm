@@ -232,6 +232,7 @@ TRAYS
 	var/food_desc = null
 	var/max_food = 2
 	var/list/throw_targets = list()
+	var/throw_dist = 3
 
 	proc/add_contents(var/obj/item/W)
 		ordered_contents += W
@@ -260,13 +261,13 @@ TRAYS
 	proc/shit_goes_everywhere()
 		src.visible_message("<span style=\"color:red\">Everything on \the [src] goes flying!</span>")
 		for (var/i = 1, i <= ordered_contents.len, i++)
-			throw_targets += get_offset_target_turf(src.loc, rand(5)-rand(5), rand(5)-rand(5))
+			throw_targets += get_offset_target_turf(src.loc, rand(throw_dist)-rand(throw_dist), rand(throw_dist)-rand(throw_dist))
 
 		while (ordered_contents.len > 0)
 			var/obj/item/F = ordered_contents[1]
 			src.remove_contents(F)
 			src.update_icon()
-			F.set_loc(src.loc)
+			F.set_loc(get_turf(src))
 			spawn(0)
 			F.throw_at(pick(throw_targets), 5, 1)
 
@@ -342,6 +343,7 @@ TRAYS
 				logTheThing("combat", user, M, "smashes [src] over %target%'s head! ")
 			if (ordered_contents.len != 0)
 				src.shit_goes_everywhere()
+			sleep(3)
 			random_brute_damage(M, force)
 			M.weakened += rand(0,2)
 			M.updatehealth()
@@ -349,6 +351,7 @@ TRAYS
 			var/obj/O = new /obj/item/raw_material/shard/glass(get_turf(M))
 			if (src.material)
 				O.setMaterial(copyMaterial(src.material))
+			sleep(3)
 			qdel(src)
 		else
 			M.visible_message("<span style=\"color:red\">[user] taps [M] over the head with [src].</span>")
@@ -361,8 +364,13 @@ TRAYS
 
 	dropped(mob/user as mob) //shit_goes_everwhere doesnt work
 		..()
-		if (user && user.bioHolder.HasEffect("clumsy") && prob(50))
-			user.visible_message("<span style=\"color:red\">[user] clumsily drops \the [src]!")
+		if (user.lying)
+			user.visible_message("<span style=\"color:red\">[user] drops \the [src]!</span>")
+			if (ordered_contents.len == 0)
+				return
+			src.shit_goes_everywhere()
+		if (user && user.bioHolder.HasEffect("clumsy") && prob(25))
+			user.visible_message("<span style=\"color:red\">[user] clumsily drops \the [src]!</span>")
 			if (ordered_contents.len == 0)
 				return
 			src.shit_goes_everywhere()
@@ -374,17 +382,41 @@ TRAYS
 	icon_state = "tray"
 	inhand_image_icon = 'icons/mob/inhand/hand_food.dmi'
 	item_state = "tray"
-	throwforce = 3.0 //these values could use some tweaking if theyre too powerful, i have 0 idea how damage stuff works sorry
+	throwforce = 3.0
 	throw_speed = 3
 	throw_range = 4
 	force = 10
 	w_class = 4.0 //no trays of loaves in a backpack for you
 	max_food = 30
+	throw_dist = 5
 //	two_handed = 1 //decomment this line when porting over please
 	var/health_desc = null
 	var/y_counter = 0
 	var/y_mod = 0
 	var/tray_health = 5 //number of times u can smash with a tray + 1, get_desc values are hardcoded so please adjust them (i know im a bad coder)
+
+	proc/update_inhand_icon()
+		var/weighted_num = round(ordered_contents.len / 5) //6 inhand sprites, 30 possible foods on the tray
+		if (ordered_contents.len == 0)
+			src.item_state = "tray"
+			return
+
+		switch (weighted_num)
+			if (1)
+				src.item_state = "tray_2"
+			if (2)
+				src.item_state = "tray_3"
+			if (3)
+				src.item_state = "tray_4"
+			if (4)
+				src.item_state = "tray_5"
+			if (5)
+				src.item_state = "tray_6"
+			else  //overflow from 25 to 30, underflow from 0 to 5
+				if (ordered_contents.len < 5)
+					src.item_state = "tray_1"
+					return
+				src.item_state = "tray_6"
 
 	update_icon() //this is what builds the overlays, it looks at the ordered list of food in the tray and does magic
 		for (var/i = 1, i <= ordered_contents.len, i++)
@@ -399,37 +431,15 @@ TRAYS
 			if (y_counter == 3)
 				y_mod++
 				y_counter = 1
-			I.pixel_y = y_mod * 3 //layers are 3px above eachother
+			I.pixel_y = y_mod * 3 //food layers are 3px above eachother
 			I.layer = src.layer + 0.1
 			src.UpdateOverlays(I, "food_[i]", 0, 1)
 		for (var/i = ordered_contents.len + 1, i <= src.overlays.len, i++) //this is to clear up any funky ghost overlays
 			src.ClearSpecificOverlays("food_[i]")
 		y_counter = 0
 		y_mod = 0
+		src.update_inhand_icon() //update inhand sprite to match
 		return
-
-/*	proc/shit_goes_everywhere(var/turf/T) //i dont think i need to explain what this one does
-		if (!T)
-			T = src.loc
-		if (ismob(T))
-			T = get_turf(T)
-		if (!T)
-			qdel(src)
-			return
-
-		T.visible_message("<span style=\"color:red\">Everything on \the [src] goes flying!</span>")
-		var/list/nearby_turfs = list()
-		for (T in view(5,src)) //change this to increase/decrease how far stuff gets thrown
-			nearby_turfs += T
-
-		while (ordered_contents.len > 0)
-			var/obj/item/F = ordered_contents[1]
-			src.remove_contents(F)
-			src.update_icon()
-			F.set_loc(src.loc)
-			spawn(0) //i know it isnt good practice, but mbc told me to do this so blame them not me!!!
-			if (nearby_turfs.len)
-				F.throw_at(pick(nearby_turfs), 16, 3)*/
 
 	get_desc(dist)
 		if (dist > 5)
@@ -473,7 +483,7 @@ TRAYS
 			if(ordered_contents.len > 0)
 				src.shit_goes_everywhere()
 			if (tray_health == 0) //breakable trays because you flew too close to the sun, you tried to have unlimited damage AND stuns you fool, your hubris is too fat, too wide
-				src.visible_message("\The [src] shatters!")
+				src.visible_message("<b>\The [src] shatters!</b>")
 				playsound(src, 'sound/effects/grillehit.ogg', 70, 1)
 				new /obj/item/scrap(src.loc)
 				qdel(src)
