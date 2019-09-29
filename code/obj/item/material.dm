@@ -565,7 +565,8 @@
 	default_material = "viscerite"
 
 /obj/item/material_piece/gold
-	desc = "Dag."
+	name = "stamped bullion"
+	desc = "Oh wow! This stuff's got to be worth a lot of money!"
 	default_material = "gold"
 
 /obj/item/material_piece/ice
