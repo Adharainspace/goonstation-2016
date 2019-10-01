@@ -72,9 +72,7 @@
 
 	proc/process()
 		if (world.time >= created_time + 150) //15secs
-			flick("concrete_drying", src)
 			var/obj/concrete_wall/C = new(get_turf(src))
-			sleep(12)
 			C.update_strength(c_quality)
 			qdel(src)
 
@@ -124,6 +122,8 @@
 
 	New()
 		..()
+
+		flick("concrete_drying", src)
 
 		if(istype(loc, /turf/space))
 			loc:ReplaceWithConcreteFloor()

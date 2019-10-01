@@ -2417,7 +2417,7 @@ datum
 			fluid_b = 255
 			transparency = 255
 
-		cement //
+		cement //parent to cut down on duplicate code
 			name = "You shouldn't see this!"
 			id = "cement_parent"
 			description = "You shouldn't see this!"
@@ -2467,7 +2467,7 @@ datum
 				var/obj/concrete_wet/C = new(T)
 				C.c_quality = concrete_strength
 
-			do_overdose(var/severity, var/mob/M) //yo this is ugly as fuck and im so sorry -adhara
+/*			do_overdose(var/severity, var/mob/M) //yo this is ugly as fuck and im so sorry and idk if i even want it to exist aaaa
 				var/mob/living/carbon/human/H = M
 				if (H.color != rgb(125, 125, 125))
 					if (!data)
@@ -2485,7 +2485,7 @@ datum
 					"You're doin' great")], [pick("bro", "broski", "brah", "bruh", "breh", "broseph", "brobama", "broseph stalin", "brosephi", "brud", "bruv",\
 					"bruvner", "brudner", "vincent van bro", "brozo the clown", "marco brolo", "angelina brolie", "brome chompski", "C-3PBRO", "rice o' broni",\
 					"edgar allen bro", "broseidon, god of the brocean")].</b></span>")
-					H.slowed = max(1, H.slowed)
+					H.slowed = max(2, H.slowed)*/
 
 		concrete/perfect_concrete
 			name = "ultra high grade superconcrete"
