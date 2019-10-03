@@ -2704,4 +2704,34 @@ datum
 			result_amount = 1
 			mix_phrase = ".ylegnarts dnuora lriws ot snigeb erutxim ehT"
 			mix_sound = 'sound/misc/drinkfizz.ogg'
+
+		calcium_carbonate //CaCl2 + Na2CO3 -> CaCO3 + 2NaCl
+			name = "calcium carbonate"
+			id = "calcium_carbonate"
+			result = "calcium_carbonate"
+			required_reagents = list("calcium" = 1, "chlorine" = 2, "sodium" = 2, "carbon" = 1, "oxygen" = 3)
+			result_amount = 1
+			mix_phrase = "A white solid precipitates out of the solution."
+			mix_sound = 'sound/misc/fuse.ogg'
+			on_reaction(var/datum/reagents/holder, created_volume)
+				holder.add_reagent("salt", created_volume * 2,,holder.total_temperature)
+
+		gypsum //H2SO4 + CaCO3 -> CaSO4 + H2O + CO2
+			name = "calcium sulfate"
+			id = "gypsum"
+			result = "gypsum"
+			required_reagents = list("acid" = 1, "calcium_carbonate" = 1)
+			result_amount = 1
+			mix_phrase = "The mixture bubbles fervently."
+			on_reaction(var/datum/reagents/holder, created_volume)
+				holder.add_reagent("water", created_volume,,holder.total_temperature)
+
+		chalk //"pastels also contain clays and oils for binding, and strong pigments" some website i found
+			name = "chalk"
+			id = "chalk"
+			result = "chalk"
+			required_reagents = list("gypsum" = 4, "oil" = 1)
+			result_amount = 5
+			mix_phrase = "The powder and liquid smoothly mix together. Maybe this'll let pigments bind to it easier?"
+
 #undef get_fucked_clarks

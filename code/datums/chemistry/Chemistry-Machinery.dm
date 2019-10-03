@@ -261,7 +261,7 @@
 	flags = NOSPLASH
 	mats = 30
 	var/beaker = null
-	var/list/dispensable_reagents = list("aluminium","barium","bromine","carbon","chlorine","chromium","copper","fluorine","ethanol","hydrogen","iodine","iron","lithium","magnesium","mercury","nickel","nitrogen","oxygen","plasma","platinum","phosphorus","potassium","radium","silicon","silver","sodium","sulfur","sugar","water")
+	var/list/dispensable_reagents = list("aluminium","barium","bromine","carbon","calcium","chlorine","chromium","copper","fluorine","ethanol","hydrogen","iodine","iron","lithium","magnesium","mercury","nickel","nitrogen","oxygen","plasma","platinum","phosphorus","potassium","radium","silicon","silver","sodium","sulfur","sugar","water")
 	var/glass_path = /obj/item/reagent_containers/glass
 	var/glass_name = "beaker"
 	var/dispenser_name = "Chemical"

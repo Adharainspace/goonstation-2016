@@ -274,6 +274,113 @@
 		G.pixel_y = rand(-4,4)
 		src.in_use = 0
 
+/obj/item/pen/crayon/chalk
+	name = "chalk"
+	desc = "Don't shove it up your nose, no matter how good of an idea that may seem to you.  You might not get it back."
+	icon_state = "chalk-9"
+	color = "#333333"
+	font = "Comic Sans MS"
+	var/chalk_health = 10 //9 uses before it snaps
+
+	random
+		New()
+			..()
+			src.color = random_color_hex()
+			src.font_color = src.color
+			src.color_name = hex2color_name(src.color)
+			src.name = "[src.color_name] chalk"
+
+	proc/assign_color(var/color)
+		src.color = color
+		src.font_color = src.color
+		src.color_name = hex2color_name(color)
+		src.name = "[src.color_name] chalk"
+
+	proc/chalk_break()
+		if (src.chalk_health <= 1)
+			src.visible_message("<span style=\"color:red\"><b>\The [src] snaps into pieces so small that you can't use them to draw anymore!</b></span>")
+			qdel(src)
+			return
+		if (src.chalk_health % 2)
+			src.chalk_health-- //im lazy
+		src.chalk_health /= 2
+		var/obj/item/pen/crayon/chalk/C = new(get_turf(src))
+		C.chalk_health = src.chalk_health
+		C.color = src.color
+		C.font_color = C.color
+		C.name = "[src.color_name] chalk"
+		C.adjust_icon()
+		src.adjust_icon()
+		src.visible_message("<span style=\"color:red\"><b>\The [src] snaps in half! [pick("Fuck!", "Damn!", "Shit!", "Damnit!", "Fucking...", "Argh!")]")
+
+	proc/adjust_icon()
+		if (src.chalk_health > 10)
+			src.icon_state = "chalk-9"
+			return
+		if (src.chalk_health < 0)
+			src.icon_state = "chalk-0"
+		src.icon_state = "chalk-[src.chalk_health]"
+
+	write_on_turf(var/turf/T as turf, var/mob/user as mob)
+		if (!T || !user || src.in_use || get_dist(T, user) > 1)
+			return
+		src.in_use = 1
+		var/t = input(user, "What do you want to write?", null, null) as null|anything in list(\
+		"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",\
+		"0", "1", "2", "3", "4", "5", "6", "7", "8", "9",\
+		"Exclamation Point", "Question Mark", "Ampersand", "Dollar", "Percent",\
+		"Plus", "Minus", "Times", "Divided", "Equals",\
+		"Arrow North", "Arrow East", "Arrow South", "Arrow West", "Square", "Circle", "Triangle", "Heart", "Star", "Smile", "Frown", "Neutral Face", "Bee", "Pentagram")
+		if (!t || get_dist(T, user) > 1)
+			src.in_use = 0
+			return
+		var/obj/decal/cleanable/writing/G = new /obj/decal/cleanable/writing(T)
+		logTheThing("station", user, null, "writes on [T] with [src] at [showCoords(T.x, T.y, T.z)]: [t]")
+		G.icon_state = "c[t]"
+		if (src.font_color && src.color_name)
+			G.color = src.font_color
+			G.name = "[src.color_name] [t]"
+		G.words = "[src.color_name] [t]"
+		G.pixel_x = rand(-4,4)
+		G.pixel_y = rand(-4,4)
+		src.in_use = 0
+		if (prob(15))
+			src.chalk_break()
+			return
+		if (src.chalk_health <= 0)
+			src.chalk_break()
+			return
+		src.chalk_health--
+		src.adjust_icon()
+
+	attack(mob/M as mob, mob/user as mob, def_zone)
+		if (user == M && ishuman(M) && istype(M:mutantrace, /datum/mutantrace/lizard))
+			user.visible_message("[user] shoves \the [src] into [his_or_her(user)] mouth and takes a bite out of it! [pick("That's sick!", "That's metal!", "That's punk as fuck!", "That's hot!")]")
+			if(prob(50))
+				playsound(user.loc, "sound/effects/chalkeat1.ogg", 50, 1)
+			else
+				playsound(user.loc, "sound/effects/chalkeat2.ogg", 50, 1)
+			src.chalk_health -= rand(3-6)
+			if (src.chalk_health <= 0)
+				src.chalk_break()
+				return
+			src.adjust_icon()
+		else
+			boutput(user, "You couldn't possibly eat \the [src], that's such a cold blooded thing to do!") //heh
+
+	suicide(var/mob/user as mob)
+		user.visible_message("<span style=\"color:red\"><b>[user] crushes \the [src] into a powder and then [he_or_she(user)] snorts it all! That can't be good for [his_or_her(user)] lungs!</b></span>")
+		spawn(5) // so we get a moment to think before we die
+			user.take_oxygen_deprivation(175)
+		user.u_equip(src)
+		user.updatehealth()
+		src.set_loc(user)
+		spawn(100)
+			if (user)
+				user.suiciding = 0
+		qdel(src)
+		return 1
+
 /obj/item/pen/infrared
 	desc = "A pen that can write in infrared."
 	name = "infrared pen"
