@@ -540,6 +540,7 @@ var/global/list/soundCache = list(
  	"sound/piano/gb5.ogg" = 'sound/piano/gb5.ogg',\
  	"sound/piano/gs3.ogg" = 'sound/piano/gb3.ogg',\
  	"sound/piano/gs4.ogg" = 'sound/piano/gb4.ogg',\
+ 	"sound/piano/rrr.ogg" = 'sound/piano/rrr.ogg',\
  	"sound/voice/bcreep.ogg" = 'sound/voice/bcreep.ogg',\
  	"sound/voice/bcriminal.ogg" = 'sound/voice/bcriminal.ogg',\
  	"sound/voice/bfreeze.ogg" = 'sound/voice/bfreeze.ogg',\

@@ -60,7 +60,6 @@
 	<br>*Whirring followed by a complete shutdown means that your note input was too long for the piano.
 	<br>*Ratchetting followed by a complete shutdown means that you forgot to input a piece of a note cluster somewhere.
 	<br>*A lot of noise followed by a count of beeps means that a note you tried to play doesn't exist. The number of beeps is the position of the note.
-	<br>*A sad beep followed by a complete shutdown means that the piano's maintenance panel is open.
 	"}
 
 var/global/list/all_player_pianos = list()
@@ -72,7 +71,7 @@ var/global/list/all_player_pianos = list()
 	icon_state = "player_piano"
 	density = 1
 	anchored = 1
-	var/is_looping = 0 //is the piano looping? 0 is no, 1 is yes, 2 is broken looping
+	var/is_looping = 0 //is the piano looping? 0 is no, 1 is yes, 2 is never more looping
 	var/panel_exposed = 0 //0 by default
 	var/is_busy = 0 //stops people from messing about with it when its working
 	var/list/note_input = "" //where input is stored
@@ -158,8 +157,8 @@ var/global/list/all_player_pianos = list()
 			if (is_looping == 2)
 				boutput(user, "There's no wires to snip!")
 				return
-			user.visible_message("<span style=\"color:red\">[user] looks for a wire to snip...</span>", "You start snipping wires in the piano...")
-			if (!do_after(user, 30) || is_looping == 2)
+			user.visible_message("<span style=\"color:red\">[user] looks for a wire to snip...</span>", "You look for a wire to snip...")
+			if (!do_after(user, 70) || is_looping == 2)
 				return
 			is_looping = 2
 			playsound(user, "sound/items/Wirecutter.ogg", 65, 1)
