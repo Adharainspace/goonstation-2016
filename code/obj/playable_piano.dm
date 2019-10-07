@@ -287,7 +287,7 @@ var/global/list/all_player_pianos = list()
 			return
 		var/sound_name = "sound/piano/"
 		sound_name += "[compiled_notes[curr_note]].ogg"
-		src.visible_message("[sound_name]")
+//		src.visible_message("[sound_name]") debug only
 		playsound(src, sound_name, note_volumes[curr_note],0,0,0)
 
 	proc/reset_piano() //so i dont have to have duplicate code for multiool pulsing and piano key
