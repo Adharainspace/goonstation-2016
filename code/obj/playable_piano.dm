@@ -28,7 +28,7 @@
 	<br>
 	<br>Each note "cluster" needs to be separated by a vertical pipe, like so: A,B,F,3|B,B,F,3
 	<br>
-	<br>Note Name: Either A,B,C,D,E,F or G if you want to play a note, or R if you don't. (IMPORTANT: READ FURTHER FOR REST INFO)
+	<br>Note Name: Either A,B,C,D,E,F or G if you want to play a note, or R if you don't. (IMPORTANT: READ FURTHER FOR HOW TO REST)
 	<br>
 	<br>Accidentals: B for flat, S for sharp, N for natural.
 	<br>
@@ -39,17 +39,21 @@
 	<br><B>Limitations:</B>
 	<br>
 	<br>*If you want a note to be a rest, you'll need to put an R in for every field on the note: (R,R,R,R|)
-	<br>*You cannot change the duration of a note, or play notes at the same time.
+	<br>*You cannot change the duration of a note.
+	<br>*If you want to play notes at the same time, you will need to link multiple pianos together. Input notes, make one piano play, and electronics will handle the rest.
+	<br>*BE SURE TO LINK ALL PIANOS TOGETHER. IF YOU HAVE THREE, YOU WILL NEED TO LINK THE FIRST AND SECOND, SECOND AND THIRD, AND FIRST AND THIRD.
 	<br>*You cannot play below octave 3 or above octave 5 (Including C6)
 	<br>*Even though it's not likely you'll run into it, there is a limit for the number of characters you can input (2048 characters, 256 notes.)
 	<br>
 	<br><B>Maintenance:</B>
 	<br>
-	<br>*You can use your piano's key to activate a built in reset.
+	<br>*You can use your piano's key to activate a built in factory reset.
 	<br>*You can use your piano's key to enable or disable the looping circuit.
 	<br>*You can use your piano's key to set the interval of notes from 0.25 to 0.5 seconds. The default timing is 0.5 seconds.
 	<br>*You can access your piano's internal workings by prying off the front panel.
 	<br>*You can use a multitool to reset the piano's memory once you have access to its insides.
+	<br>*You can use a multitool to link player pianos together like you would a mechcomp component.
+	<br>*If your linked pianos sound weird, you may have linked a set of pianos together multiple times. Use a multitool or key to reset and relink <i>carefully</i>.
 	<br>*You can use a wirecutter to disable looping. (WARNING, THIS IS PERMANENT, DON'T LOSE YOUR DAMN KEY)
 	<br>*You can use a screwdriver to raise and lower the wheel bolts, making the piano moveable.
 	<br>
@@ -79,6 +83,8 @@
 	var/is_looping = 0 //is the piano looping? 0 is no, 1 is yes, 2 is never more looping
 	var/panel_exposed = 0 //0 by default
 	var/is_busy = 0 //stops people from messing about with it when its working
+	var/song_length = 0 //the number of notes in the song
+	var/curr_note = 0 //what note is the song on?
 	var/list/note_input = "" //where input is stored
 	var/list/piano_notes = list() //after we break it up into chunks
 	var/list/note_volumes = list() //list of volumes as nums (20,30,40,50,60)
@@ -86,12 +92,16 @@
 	var/list/note_names = list() //a,b,c,d,e,f,g,r
 	var/list/note_accidentals = list() //(s)harp,b(flat),N(none)
 	var/list/compiled_notes = list() //holds our compiled filenames for the note
-	var/song_length = 0 //the number of notes in the song
-	var/curr_note = 0 //what note is the song on?
+	var/list/linked_pianos = list() //list that stores our linked pianos, including the main one
 
-	attackby(obj/item/W as obj, mob/user as mob)
+	New()
+		..()
+//		linked_pianos += src
+		if (!items_claimed)
+			src.desc += " The free user essentials box is untouched!" //jank
 
-		if (istype(W, /obj/item/piano_key)) //piano key
+	attackby(obj/item/W as obj, mob/user as mob) //this one is big and sucks, where all of our key and construction stuff is
+		if (istype(W, /obj/item/piano_key)) //piano key controls
 			var/mode_sel = input("Which do you want to do?", "Piano Control") as null|anything in list("Reset Piano", "Toggle Looping", "Adjust Timing")
 
 			switch(mode_sel)
@@ -200,25 +210,41 @@
 				src.visible_message("<span style=\"color:red\">\The [src] makes an angry whirring noise and shuts down.</span>")
 				return
 			clean_input(note_input) //if updating input order to have a different order, update build_notes to reflect that order
+			build_notes(piano_notes)
 			return
 		else if (mode_sel == "Play Song")
-			build_notes(piano_notes)
 			ready_piano()
 			return
 		else //just in case
 			return
 
-	verb/item_claim()
-		set name = "Claim Items" // idea: emagging bathtub makes the bath spit out a photo of itself when you draw a bath?
-		set src in oview(1)
-		set category = "Local"
-		if (items_claimed)
-			src.visible_message("\The [src] has nothing in its item box to take! Drat!")
+	MouseDrop(obj/player_piano/O, null)//, var/src_location, var/control_orig, var/control_new, var/params)
+		if (!istype(usr, /mob/living))
 			return
-		new /obj/item/piano_key(get_turf(src))
-		new /obj/item/paper/book/player_piano(get_turf(src))
-		items_claimed = 1
-		src.visible_message("\The [src] spills out a key and a booklet! Nifty!")
+		if (usr.stat)
+			return
+		if (!allowChange(usr))
+			boutput(usr, "<span style=\"color:red\">You can't link pianos without a multitool!</span>")
+			return
+		if (O.is_busy || is_busy)
+			boutput(usr, "<span style=\"color:red\">You can't link a busy piano!</span>")
+		if (O.panel_exposed && panel_exposed)
+			usr.visible_message("[usr] links the pianos.", "You link the pianos!")
+			add_piano(O)
+			O.add_piano(src)
+
+	disposing() //just to clear up ANY funkiness
+		reset_piano(1)
+		..()
+
+	proc/allowChange(var/mob/M) //copypasted from mechanics code because why do something someone else already did better
+		if(hasvar(M, "l_hand") && istype(M:l_hand, /obj/item/device/multitool)) return 1
+		if(hasvar(M, "r_hand") && istype(M:r_hand, /obj/item/device/multitool)) return 1
+		if(hasvar(M, "module_states"))
+			for(var/atom/A in M:module_states)
+				if(istype(A, /obj/item/device/multitool))
+					return 1
+		return 0
 
 	proc/clean_input(var/list/input) //breaks our big input string into chunks
 		is_busy = 1
@@ -226,7 +252,8 @@
 //		src.visible_message("<span style=\"color:blue\">\The [src] starts humming and rattling as it processes!</span>")
 		var/list/split_input = splittext("[note_input]", "|")
 		for (var/string in split_input)
-			piano_notes += string
+			if (string)
+				piano_notes += string
 		is_busy = 0
 
 	proc/build_notes(var/list/piano_notes) //breaks our chunks apart and puts them into lists on the object
@@ -267,8 +294,10 @@
 				if ("r")
 					curr_notes[3] = 0
 			note_volumes += curr_notes[3]
+		is_busy = 0
 
-	proc/ready_piano() //final checks to make sure stuff is right, gets notes into a compiled form for easy playsounding
+	proc/ready_piano(var/is_linked) //final checks to make sure stuff is right, gets notes into a compiled form for easy playsounding
+		is_busy = 1
 		if (note_volumes.len + note_octaves.len - note_names.len - note_accidentals.len)
 			src.visible_message("<span style=\"color:red\">\The [src] makes a grumpy ratchetting noise and shuts down!</span>")
 			is_busy = 0
@@ -288,9 +317,16 @@
 				return
 		src.visible_message("<span style=\"color:blue\">\The [src] starts playing music!</span>")
 		update_icon(1)
-		play_notes()
+		if (is_linked)
+			play_notes(0)
+			return
+		play_notes(1)
 
-	proc/play_notes() //how notes are handled, using while and spawn to set a very strict interval, solo piano process loop was too variable to work for music
+	proc/play_notes(var/is_master) //how notes are handled, using while and spawn to set a very strict interval, solo piano process loop was too variable to work for music
+		if (linked_pianos.len > 0 && is_master)
+			for (var/obj/player_piano/p in linked_pianos)
+				spawn(0)
+				p.ready_piano(1)
 		while (curr_note <= song_length)
 			curr_note++
 			if (curr_note > song_length)
@@ -308,12 +344,11 @@
 			sound_name += "[compiled_notes[curr_note]].ogg"
 			playsound(src, sound_name, note_volumes[curr_note],0,10,0)
 
-	proc/play_notes_2() //this feels wrong
-		play_notes()
-
-	proc/reset_piano() //so i dont have to have duplicate code for multiool pulsing and piano key
-		if (is_looping != 2)
+	proc/reset_piano(var/disposing) //so i dont have to have duplicate code for multiool pulsing and piano key
+		if (is_looping != 2 || disposing)
 			is_looping = 0
+		song_length = 0
+		curr_note = 0
 		timing = 0.5
 		is_busy = 0
 		note_input = ""
@@ -323,8 +358,7 @@
 		note_names = list()
 		note_accidentals = list()
 		compiled_notes = list()
-		song_length = 0
-		curr_note = 0
+		linked_pianos = list()
 		update_icon(0)
 
 	proc/update_icon(var/active) //1: active, 0: inactive
@@ -336,3 +370,24 @@
 			return
 		icon_state = "player_piano"
 		return
+
+	proc/add_piano(var/obj/player_piano/p)
+		var/piano_id = "\ref[p]"
+		for (var/obj/player_piano in linked_pianos)
+			var/other_piano_id = "\ref[player_piano]"
+			if (other_piano_id == piano_id)
+				linked_pianos -= p
+		linked_pianos += p
+
+	verb/item_claim()
+		set name = "Claim Items"
+		set src in oview(1)
+		set category = "Local"
+		if (items_claimed)
+			src.visible_message("\The [src] has nothing in its item box to take! Drat!")
+			return
+		new /obj/item/piano_key(get_turf(src))
+		new /obj/item/paper/book/player_piano(get_turf(src))
+		items_claimed = 1
+		src.visible_message("\The [src] spills out a key and a booklet! Nifty!")
+		src.desc = "A piano that can take raw text and turn it into music! The future is now! The free user essentials box has been raided!" //jaaaaaaaank

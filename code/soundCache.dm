@@ -504,7 +504,6 @@ var/global/list/soundCache = list(
  	"sound/piano/cs3.ogg" = 'sound/piano/cs3.ogg',\
  	"sound/piano/cs4.ogg" = 'sound/piano/cs4.ogg',\
  	"sound/piano/cs5.ogg" = 'sound/piano/cs5.ogg',\
- 	"sound/piano/c6.ogg" = 'sound/piano/c6.ogg',\
  	"sound/piano/d3.ogg" = 'sound/piano/d3.ogg',\
  	"sound/piano/d4.ogg" = 'sound/piano/d4.ogg',\
  	"sound/piano/d5.ogg" = 'sound/piano/d5.ogg',\
