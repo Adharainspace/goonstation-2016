@@ -62,9 +62,11 @@
 	<br>*A lot of horrible mechanical noise followed by a complete shutdown means that the tempo you tried to input was too fast or slow.
 	<br>*Ratcheting followed by a complete shutdown means that you forgot to input a piece of a note cluster somewhere.
 	<br>*A lot of noise followed by a count of beeps means that a note you tried to play doesn't exist. The number of beeps is the position of the note.
+	<br>*If the song ends earlier than expected, make sure that you don't have any double vertical bars in your input.
+	<br>*And remember, if things are funky and not working, use your piano reset key!
 	"}
 
-/obj/player_piano
+/obj/player_piano //this is the big boy im pretty sure all this code is garbage
 	name = "player piano"
 	desc = "A piano that can take raw text and turn it into music! The future is now!"
 	icon = 'icons/obj/instruments.dmi'
@@ -305,6 +307,9 @@
 			var/sound_name = "sound/piano/"
 			sound_name += "[compiled_notes[curr_note]].ogg"
 			playsound(src, sound_name, note_volumes[curr_note],0,10,0)
+
+	proc/play_notes_2() //this feels wrong
+		play_notes()
 
 	proc/reset_piano() //so i dont have to have duplicate code for multiool pulsing and piano key
 		if (is_looping != 2)
