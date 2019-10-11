@@ -6,7 +6,7 @@
 
 /obj/item/paper/book/player_piano //book for helping people!
 	name = "Your Player Piano and You"
-	desc = "A guide to using the station's new player piano!"
+	desc = "A guide to using the station's new player piano! Probably'd make good kindling."
 	info = {"
 	<BIG><B>Everything You Need To Know About The Player Piano</B></BIG>
 	<br>
@@ -19,20 +19,20 @@
 	<br>A note will play approximately every half second.
 	<br>You can enable looping on the piano by using the piano key!
 	<br>The piano key will also let you reset everything on the piano (like a factory reset) if something goes really crazy.
-	<br>A "note" in the player piano has four parts, each seperated by a comma:
+	<br>A "note" in the player piano has four parts, each separated by a comma:
 	<br>
 	<br>*The Note Name
 	<br>*Accidentals
 	<br>*Dynamics
 	<br>*Octave
 	<br>
-	<br>Each note "cluter" needs to be seperated by a vertical pipe, like so: A,B,F,3|B,B,F,3
+	<br>Each note "cluster" needs to be separated by a vertical pipe, like so: A,B,F,3|B,B,F,3
 	<br>
 	<br>Note Name: Either A,B,C,D,E,F or G if you want to play a note, or R if you don't. (IMPORTANT: READ FURTHER FOR REST INFO)
 	<br>
 	<br>Accidentals: B for flat, S for sharp, N for natural.
 	<br>
-	<br>Dynamics: P for piano (quietest), MP for mezzo piano, N for netral, MF for mezzo forte and F for forte (loudest).
+	<br>Dynamics: P for piano (quietest), MP for mezzo piano, N for neutral, MF for mezzo forte and F for forte (loudest).
 	<br>
 	<br>Octave: Notes can be on one of three octaves: 3, 4 or 5. 3 is low, 5 is high. The only exception is G Sharp, which can only be 3 or 4.
 	<br>
@@ -47,9 +47,10 @@
 	<br>
 	<br>*You can use your piano's key to activate a built in reset.
 	<br>*You can use your piano's key to enable or disable the looping circuit.
+	<br>*You can use your piano's key to set the interval of notes from 0.25 to 0.5 seconds. The default timing is 0.5 seconds.
 	<br>*You can access your piano's internal workings by prying off the front panel.
 	<br>*You can use a multitool to reset the piano's memory once you have access to its insides.
-	<br>*You can use a wirecutter to disable looping if you can access the inside of the piano. (WARNING, THIS IS PERMANENT, DON'T LOSE YOUR DAMN KEY)
+	<br>*You can use a wirecutter to disable looping. (WARNING, THIS IS PERMANENT, DON'T LOSE YOUR DAMN KEY)
 	<br>*You can use a screwdriver to raise and lower the wheel bolts, making the piano moveable.
 	<br>
 	<br><B>Understanding Your Piano's Language</B>
@@ -58,11 +59,10 @@
 	<br>
 	<br>*An angry sounding beep means that the piano is busy and you can't interface with it.
 	<br>*Whirring followed by a complete shutdown means that your note input was too long for the piano.
-	<br>*Ratchetting followed by a complete shutdown means that you forgot to input a piece of a note cluster somewhere.
+	<br>*A lot of horrible mechanical noise followed by a complete shutdown means that the tempo you tried to input was too fast or slow.
+	<br>*Ratcheting followed by a complete shutdown means that you forgot to input a piece of a note cluster somewhere.
 	<br>*A lot of noise followed by a count of beeps means that a note you tried to play doesn't exist. The number of beeps is the position of the note.
 	"}
-
-var/global/list/all_player_pianos = list()
 
 /obj/player_piano
 	name = "player piano"
@@ -71,40 +71,50 @@ var/global/list/all_player_pianos = list()
 	icon_state = "player_piano"
 	density = 1
 	anchored = 1
+	mats = 20
+	var/timing = 0.5 //values from 0.25 to 0.5 please
+	var/items_claimed = 0 //set to 1 when items are claimed
 	var/is_looping = 0 //is the piano looping? 0 is no, 1 is yes, 2 is never more looping
 	var/panel_exposed = 0 //0 by default
 	var/is_busy = 0 //stops people from messing about with it when its working
 	var/list/note_input = "" //where input is stored
 	var/list/piano_notes = list() //after we break it up into chunks
 	var/list/note_volumes = list() //list of volumes as nums (20,30,40,50,60)
-	var/list/note_octaves = list() //list of octaves as nums (2-6)
+	var/list/note_octaves = list() //list of octaves as nums (3-5)
 	var/list/note_names = list() //a,b,c,d,e,f,g,r
 	var/list/note_accidentals = list() //(s)harp,b(flat),N(none)
 	var/list/compiled_notes = list() //holds our compiled filenames for the note
 	var/song_length = 0 //the number of notes in the song
 	var/curr_note = 0 //what note is the song on?
 
-	attackby(obj/item/W as obj, mob/user as mob) //reset key
+	attackby(obj/item/W as obj, mob/user as mob)
 
-		if (istype(W, /obj/item/piano_key))
-			var/mode_sel = input("Which do you want to do?", "Piano Control") as null|anything in list("Reset Piano", "Toggle Looping")
-			if (mode_sel == "Reset Piano")
-				reset_piano()
-				src.visible_message("<span style=\"color:red\">[user] sticks \the [W] into a slot on \the [src] and twists it! \The [src] grumbles and shuts down completely.</span>")
-				return
+		if (istype(W, /obj/item/piano_key)) //piano key
+			var/mode_sel = input("Which do you want to do?", "Piano Control") as null|anything in list("Reset Piano", "Toggle Looping", "Adjust Timing")
 
-			else if (mode_sel == "Toggle Looping")
-				if (is_looping == 0)
-					is_looping = 1
-				else if (is_looping == 1)
-					is_looping = 0
-				else
-					src.visible_message("<span style=\"color:red\">[user] tries to stick \the [W] into a slot on \the [src], but it doesn't seem to want to fit.")
+			switch(mode_sel)
+				if ("Reset Piano") //reset piano B)
+					reset_piano()
+					src.visible_message("<span style=\"color:red\">[user] sticks \the [W] into a slot on \the [src] and twists it! \The [src] grumbles and shuts down completely.</span>")
 					return
-				src.visible_message("<span style=\"color:red\">[user] sticks \the [W] into a slot on \the [src] and twists it! \The [src] seems different now.")
 
-			else //just in case
-				return
+				if ("Toggle Looping") //self explanatory, sets whether or not the piano should be looping
+					if (is_looping == 0)
+						is_looping = 1
+					else if (is_looping == 1)
+						is_looping = 0
+					else
+						src.visible_message("<span style=\"color:red\">[user] tries to stick \the [W] into a slot on \the [src], but it doesn't seem to want to fit.")
+						return
+					src.visible_message("<span style=\"color:red\">[user] sticks \the [W] into a slot on \the [src] and twists it! \The [src] seems different now.")
+
+				if ("Adjust Timing") //adjusts tempo
+					var/time_sel = input("Input a custom tempo from 0.25 to 0.5 BPS", "Tempo Control") as num
+					if (time_sel < 0.25 || time_sel > 0.5)
+						src.visible_message("<span style=\"color:red\">The mechanical workings of [src] emit a horrible din for several seconds before \the [src] shuts down.")
+						return
+					timing = time_sel
+					src.visible_message("<span style=\"color:red\">[user] sticks \the [W] into a slot on \the [src] and twists it! \The [src] rumbles indifferently.")
 
 		else if (istype(W, /obj/item/screwdriver)) //unanchoring piano
 			if (anchored)
@@ -138,37 +148,37 @@ var/global/list/all_player_pianos = list()
 				P.name = "Piano Maintenance Panel"
 				P.desc = "A cover for the internal workings of a piano. Better not lose it."
 				panel_exposed = 1
-				icon_state = "player_piano_open"
+				update_icon()
 			else
 				boutput(user, "There's nothing to pry off of \the [src].")
 
 		else if (istype(W, /obj/item/plank)) //replacing panel
-			if (panel_exposed == 1 && W.name != "wooden plank")
+			if (panel_exposed == 1 && W.name != "wooden plank" && !is_busy)
 				user.visible_message("[user] starts replacing the piano's maintenance panel...", "You start replacing the piano's maintenance panel...")
 				if (!do_after(user, 30) || panel_exposed != 1)
 					return
 				playsound(user, "sound/items/Deconstruct.ogg", 65, 1)
 				user.visible_message("[user] replaces the maintenance panel!", "You replace the maintenance panel!")
 				panel_exposed = 0
-				icon_state = "player_piano"
+				update_icon(0)
 				qdel(W)
 
 		else if (istype(W, /obj/item/wirecutters)) //turning off looping... forever!
 			if (is_looping == 2)
 				boutput(user, "There's no wires to snip!")
 				return
-			user.visible_message("<span style=\"color:red\">[user] looks for a wire to snip...</span>", "You look for a wire to snip...")
+			user.visible_message("<span style=\"color:red\">[user] looks for the looping control wire...</span>", "You look for the looping control wire...")
 			if (!do_after(user, 70) || is_looping == 2)
 				return
 			is_looping = 2
 			playsound(user, "sound/items/Wirecutter.ogg", 65, 1)
-			user.visible_message("<span style=\"color:red\">[user] snips a bunch of the wires in the piano!</span>", "You snip a bunch of wires in the piano!")
+			user.visible_message("<span style=\"color:red\">[user] snips the looping control wire!</span>", "You snip the looping control wire!")
 
-		else if (istype(W, /obj/item/device/multitool))
+		else if (istype(W, /obj/item/device/multitool)) //resetting piano the hard way
 			if (panel_exposed == 0)
 				..()
 				return
-			user.visible_message("<span style=\"color:red\">[user] starts pulsing wires in the piano.</span>", "You start pulsing wires in the piano.")
+			user.visible_message("<span style=\"color:red\">[user] starts pulsing random wires in the piano.</span>", "You start pulsing random wires in the piano.")
 			if (!do_after(user, 30))
 				return
 			user.visible_message("<span style=\"color:red\">[user] pulsed a bunch of wires in the piano!</span>", "You pulsed some wires in the piano!")
@@ -192,12 +202,21 @@ var/global/list/all_player_pianos = list()
 		else if (mode_sel == "Play Song")
 			build_notes(piano_notes)
 			ready_piano()
-			if (panel_exposed)
-				return
-			icon_state = "player_piano_playing"
 			return
 		else //just in case
 			return
+
+	verb/item_claim()
+		set name = "Claim Items" // idea: emagging bathtub makes the bath spit out a photo of itself when you draw a bath?
+		set src in oview(1)
+		set category = "Local"
+		if (items_claimed)
+			src.visible_message("\The [src] has nothing in its item box to take! Drat!")
+			return
+		new /obj/item/piano_key(get_turf(src))
+		new /obj/item/paper/book/player_piano(get_turf(src))
+		items_claimed = 1
+		src.visible_message("\The [src] spills out a key and a booklet! Nifty!")
 
 	proc/clean_input(var/list/input) //breaks our big input string into chunks
 		is_busy = 1
@@ -251,10 +270,7 @@ var/global/list/all_player_pianos = list()
 		if (note_volumes.len + note_octaves.len - note_names.len - note_accidentals.len)
 			src.visible_message("<span style=\"color:red\">\The [src] makes a grumpy ratchetting noise and shuts down!</span>")
 			is_busy = 0
-			if (panel_exposed)
-				return
-			icon_state = "player_piano"
-			return
+			update_icon(0)
 		song_length = note_names.len
 		compiled_notes = list()
 		for (var/i = 1, i <= note_names.len, i++)
@@ -266,35 +282,35 @@ var/global/list/all_player_pianos = list()
 			if (!(string in soundCache))
 				src.visible_message("<span style=\"color:red\">\The [src] makes an atrocious racket and beeps [i] times.</span>")
 				is_busy = 0
-				icon_state = "player_piano"
+				update_icon(0)
 				return
-		global.all_player_pianos += src
 		src.visible_message("<span style=\"color:blue\">\The [src] starts playing music!</span>")
+		update_icon(1)
+		play_notes()
 
-	proc/play_notes() //called in the piano process loop
-		curr_note++
-		if (curr_note > song_length)
-			if (is_looping == 1)
+	proc/play_notes() //how notes are handled, using while and spawn to set a very strict interval, solo piano process loop was too variable to work for music
+		while (curr_note <= song_length)
+			curr_note++
+			if (curr_note > song_length)
+				if (is_looping == 1)
+					curr_note = 0
+					play_notes()
+					return
+				is_busy = 0
 				curr_note = 0
+				src.visible_message("<span style=\"color:blue\">\The [src] stops playing music.</span>")
+				update_icon(0)
 				return
-			global.all_player_pianos -= src
-			src.visible_message("<span style=\"color:blue\">\The [src] stops playing music.</span>")
-			is_busy = 0
-			curr_note = 0
-			if (panel_exposed)
-				return
-			icon_state = "player_piano"
-			return
-		var/sound_name = "sound/piano/"
-		sound_name += "[compiled_notes[curr_note]].ogg"
-//		src.visible_message("[sound_name]") debug only
-		playsound(src, sound_name, note_volumes[curr_note],0,0,0)
+			sleep((timing * 10)) //to get delay into 10ths of a second
+			var/sound_name = "sound/piano/"
+			sound_name += "[compiled_notes[curr_note]].ogg"
+			playsound(src, sound_name, note_volumes[curr_note],0,10,0)
 
 	proc/reset_piano() //so i dont have to have duplicate code for multiool pulsing and piano key
-		if (src in all_player_pianos)
-			all_player_pianos -= src
+		if (is_looping != 2)
+			is_looping = 0
+		timing = 0.5
 		is_busy = 0
-		is_looping = 0
 		note_input = ""
 		piano_notes = list()
 		note_volumes = list()
@@ -304,3 +320,14 @@ var/global/list/all_player_pianos = list()
 		compiled_notes = list()
 		song_length = 0
 		curr_note = 0
+		update_icon(0)
+
+	proc/update_icon(var/active) //1: active, 0: inactive
+		if (panel_exposed)
+			icon_state = "player_piano_open"
+			return
+		if (active)
+			icon_state = "player_piano_playing"
+			return
+		icon_state = "player_piano"
+		return
