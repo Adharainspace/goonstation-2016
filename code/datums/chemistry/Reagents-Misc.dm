@@ -2372,7 +2372,7 @@ datum
 			fluid_b = 255
 			transparency = 255
 
-		calcium_carbonate //made from crushed/hammered/picked/reagent/extracted sea shells OR just chemical synthesis
+		calcium_carbonate //made from extracted sea shells OR just chemical synthesis
 			name = "calcium carbonate"
 			id = "calcium_carbonate"
 			description = "A naturally occuring chemical found in seashells and certain rocks."
@@ -2385,7 +2385,7 @@ datum
 		chalk
 			name = "chalk"
 			id = "chalk"
-			description = "A mixture of minerals and additives, this is commonly used as a writing implement."
+			description = "A mixture of minerals and additives that is commonly used as a writing implement."
 			reagent_state = SOLID
 			fluid_r = 255
 			fluid_g = 255

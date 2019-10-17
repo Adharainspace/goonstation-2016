@@ -276,11 +276,11 @@
 
 /obj/item/pen/crayon/chalk
 	name = "chalk"
-	desc = "Don't shove it up your nose, no matter how good of an idea that may seem to you.  You might not get it back."
+	desc = "A stick of rock and dye that reminds you of your childhood. Don't get too carried away!"
 	icon_state = "chalk-9"
 	color = "#333333"
 	font = "Comic Sans MS"
-	var/chalk_health = 10 //9 uses before it snaps
+	var/chalk_health = 10 //10 uses before it snaps
 
 	random
 		New()
@@ -296,30 +296,29 @@
 		src.color_name = hex2color_name(color)
 		src.name = "[src.color_name] chalk"
 
-	proc/chalk_break()
+	proc/chalk_break(var/mob/user as mob)
 		if (src.chalk_health <= 1)
-			src.visible_message("<span style=\"color:red\"><b>\The [src] snaps into pieces so small that you can't use them to draw anymore!</b></span>")
+			user.visible_message("<span style=\"color:red\"><b>\The [src] snaps into pieces so small that you can't use them to draw anymore!</b></span>")
 			qdel(src)
 			return
 		if (src.chalk_health % 2)
-			src.chalk_health-- //im lazy
+			src.chalk_health--
 		src.chalk_health /= 2
 		var/obj/item/pen/crayon/chalk/C = new(get_turf(src))
 		C.chalk_health = src.chalk_health
-		C.color = src.color
-		C.font_color = C.color
-		C.name = "[src.color_name] chalk"
+		C.assign_color(src.color)
 		C.adjust_icon()
 		src.adjust_icon()
-		src.visible_message("<span style=\"color:red\"><b>\The [src] snaps in half! [pick("Fuck!", "Damn!", "Shit!", "Damnit!", "Fucking...", "Argh!")]")
+		user.visible_message("<span style=\"color:red\"><b>\The [src] snaps in half! [pick("Fuck!", "Damn!", "Shit!", "Damnit!", "Fucking...", "Argh!", "Arse!", "Piss!")]")
 
 	proc/adjust_icon()
-		if (src.chalk_health > 10)
+		if (src.chalk_health > 10) //shouldnt happen but it could
 			src.icon_state = "chalk-9"
 			return
-		if (src.chalk_health < 0)
+		else if (src.chalk_health < 0) //shouldnt happen but it could
 			src.icon_state = "chalk-0"
-		src.icon_state = "chalk-[src.chalk_health]"
+		else
+			src.icon_state = "chalk-[src.chalk_health]"
 
 	write_on_turf(var/turf/T as turf, var/mob/user as mob)
 		if (!T || !user || src.in_use || get_dist(T, user) > 1)
@@ -343,12 +342,13 @@
 		G.words = "[src.color_name] [t]"
 		G.pixel_x = rand(-4,4)
 		G.pixel_y = rand(-4,4)
+		playsound(src.loc, "sound/misc/chalkwrite_[rand(1,4)].ogg", 60, 1)
 		src.in_use = 0
-		if (prob(15))
-			src.chalk_break()
+		if (src.chalk_health <= 1)
+			src.chalk_break(user)
 			return
-		if (src.chalk_health <= 0)
-			src.chalk_break()
+		if (prob(15))
+			src.chalk_break(user)
 			return
 		src.chalk_health--
 		src.adjust_icon()
@@ -356,13 +356,10 @@
 	attack(mob/M as mob, mob/user as mob, def_zone)
 		if (user == M && ishuman(M) && istype(M:mutantrace, /datum/mutantrace/lizard))
 			user.visible_message("[user] shoves \the [src] into [his_or_her(user)] mouth and takes a bite out of it! [pick("That's sick!", "That's metal!", "That's punk as fuck!", "That's hot!")]")
-			if(prob(50))
-				playsound(user.loc, "sound/effects/chalkeat1.ogg", 50, 1)
-			else
-				playsound(user.loc, "sound/effects/chalkeat2.ogg", 50, 1)
-			src.chalk_health -= rand(3-6)
-			if (src.chalk_health <= 0)
-				src.chalk_break()
+			playsound(user.loc, "sound/misc/chalkeat_[rand(1,2)].ogg", 60, 1)
+			src.chalk_health -= rand(2,5)
+			if (src.chalk_health <= 1)
+				src.chalk_break(user)
 				return
 			src.adjust_icon()
 		else
@@ -374,7 +371,7 @@
 			user.take_oxygen_deprivation(175)
 		user.u_equip(src)
 		user.updatehealth()
-		src.set_loc(user)
+		src.set_loc(user) //yes i did this dont ask why i cant literally think of anything better to do
 		spawn(100)
 			if (user)
 				user.suiciding = 0
