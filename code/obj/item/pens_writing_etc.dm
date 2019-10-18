@@ -321,29 +321,7 @@
 			src.icon_state = "chalk-[src.chalk_health]"
 
 	write_on_turf(var/turf/T as turf, var/mob/user as mob)
-		if (!T || !user || src.in_use || get_dist(T, user) > 1)
-			return
-		src.in_use = 1
-		var/t = input(user, "What do you want to write?", null, null) as null|anything in list(\
-		"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",\
-		"0", "1", "2", "3", "4", "5", "6", "7", "8", "9",\
-		"Exclamation Point", "Question Mark", "Ampersand", "Dollar", "Percent",\
-		"Plus", "Minus", "Times", "Divided", "Equals",\
-		"Arrow North", "Arrow East", "Arrow South", "Arrow West", "Square", "Circle", "Triangle", "Heart", "Star", "Smile", "Frown", "Neutral Face", "Bee", "Pentagram")
-		if (!t || get_dist(T, user) > 1)
-			src.in_use = 0
-			return
-		var/obj/decal/cleanable/writing/G = new /obj/decal/cleanable/writing(T)
-		logTheThing("station", user, null, "writes on [T] with [src] at [showCoords(T.x, T.y, T.z)]: [t]")
-		G.icon_state = "c[t]"
-		if (src.font_color && src.color_name)
-			G.color = src.font_color
-			G.name = "[src.color_name] [t]"
-		G.words = "[src.color_name] [t]"
-		G.pixel_x = rand(-4,4)
-		G.pixel_y = rand(-4,4)
-		playsound(src.loc, "sound/misc/chalkwrite_[rand(1,4)].ogg", 60, 1)
-		src.in_use = 0
+		..()
 		if (src.chalk_health <= 1)
 			src.chalk_break(user)
 			return
