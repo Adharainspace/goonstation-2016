@@ -271,6 +271,8 @@
 	heal_amt = 1
 	rc_flags = RC_FULLNESS
 	initial_volume = 50
+	var/is_sealed = 1 //can you drink out of it?
+	var/standard_override //is this a random cola or a standard cola (for crushed icons)
 
 	New()
 		..()
@@ -279,6 +281,54 @@
 
 		if(prob(50))
 			src.icon_state = "cola-blue"
+
+	attack(mob/M as mob, mob/user as mob)
+		if (is_sealed)
+			boutput(user, "<span style=\"color:red\">You can't drink out of a sealed can!</span>") //idiot
+			return
+		..()
+
+	attack_self(mob/user as mob)
+		var/drop_this_shit = 0 //i promise this is useful
+		if (src.is_sealed)
+			user.visible_message("[user] pops the tab on \the [src]!", "You pop \the [src] open!")
+			is_sealed = 0
+			playsound(src.loc, "sound/items/can_open.ogg", 50, 1)
+			return
+		if (!src.reagents || !src.reagents.total_volume)
+			var/zone = user.zone_sel.selecting
+			if (zone == "head")
+				user.visible_message("<span style=\"color:red\"><b>[user] crushes \the [src] against their forehead!! [pick("Bro!", "Epic!", "Damn!", "Gnarly!", "Sick!",\
+				"Crazy!", "Nice!", "Hot!", "What a monster!", "How sick is that?", "That's slick as shit, bro!")]", "You crush the can against your forehead! You feel super cool.")
+				drop_this_shit = 1
+			else
+				user.visible_message("[user] crushes \the [src][pick(" one-handed!", ".", ".", ".")] [pick("Lame.", "Eh.", "Meh.", "Whatevs.", "Weirdo.")]", "You crush the can!")
+			var/obj/item/crushed_can/C = new(get_turf(user))
+			playsound(src.loc, "sound/items/can_crush-[rand(1,3)].ogg", 50, 1)
+			C.set_stuff(src.name, src.icon_state)
+			user.u_equip(src)
+			user.drop_item(src)
+			if (!drop_this_shit) //see?
+				user.put_in_hand_or_drop(C)
+			qdel(src)
+
+/obj/item/crushed_can
+	name = "crushed can"
+	desc = "This can's been totally crushed!"
+	icon = 'icons/obj/can.dmi'
+
+	proc/set_stuff(var/name, var/icon_state)
+		src.name = "crushed [name]"
+		if (icon_state == "cola" || "cola-blue")
+			switch(icon_state)
+				if ("cola")
+					src.icon_state = "crushed-1"
+					return
+				if ("cola-blue")
+					src.icon_state = "crushed-2"
+					return
+		var/list/iconsplit = splittext("[icon_state]", "-")
+		src.icon_state = "crushed-[iconsplit[2]]"
 
 /obj/item/reagent_containers/food/drinks/milk
 	name = "Creaca's Space Milk"
