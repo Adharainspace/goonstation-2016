@@ -271,6 +271,18 @@ TRAYS
 			spawn(0)
 			F.throw_at(pick(throw_targets), 5, 1)
 
+	proc/unique_attack_garbage_fuck(mob/M as mob, mob/user as mob)
+		sleep(3)
+		random_brute_damage(M, force)
+		M.weakened += rand(0,2)
+		M.updatehealth()
+		playsound(src, "shatter", 70, 1)
+		var/obj/O = new /obj/item/raw_material/shard/glass(get_turf(M))
+		if (src.material)
+			O.setMaterial(copyMaterial(src.material))
+		sleep(3)
+		qdel(src)
+
 	throw_impact(var/turf/T)
 		..()
 		if(ordered_contents.len == 0)
@@ -337,22 +349,13 @@ TRAYS
 	attack(mob/M as mob, mob/user as mob)
 		if (user.a_intent == INTENT_HARM)
 			if (M == user)
-				boutput(user, "<span style=\"color:red\"><B>You smash the plate over your own head!</b></span>")
+				boutput(user, "<span style=\"color:red\"><B>You smash [src] over your own head!</b></span>")
 			else
 				M.visible_message("<span style=\"color:red\"><B>[user] smashes [src] over [M]'s head!</B></span>")
 				logTheThing("combat", user, M, "smashes [src] over %target%'s head! ")
 			if (ordered_contents.len != 0)
 				src.shit_goes_everywhere()
-			sleep(3)
-			random_brute_damage(M, force)
-			M.weakened += rand(0,2)
-			M.updatehealth()
-			playsound(src, "shatter", 70, 1)
-			var/obj/O = new /obj/item/raw_material/shard/glass(get_turf(M))
-			if (src.material)
-				O.setMaterial(copyMaterial(src.material))
-			sleep(3)
-			qdel(src)
+			unique_attack_garbage_fuck(M, user)
 		else
 			M.visible_message("<span style=\"color:red\">[user] taps [M] over the head with [src].</span>")
 			logTheThing("combat", user, M, "taps %target% over the head with [src].")
@@ -467,35 +470,40 @@ TRAYS
 			return "<span style=\"color:orange\">There's a positively <i>indescribable</i> amount of food on \the [src]!</span>"
 		return "[health_desc] [food_desc]" //heres yr desc you *bastard*
 
-	attack(mob/M as mob, mob/user as mob)
+	unique_attack_garbage_fuck(mob/M as mob, mob/user as mob)
+		random_brute_damage(M, force)
+		M.weakened += rand(0,2) //adjust if stun is too long
+		M.updatehealth()
+		playsound(get_turf(src), 'sound/weapons/trayhit.ogg', 50, 1)
+		src.visible_message("\The [src] falls out of [user]'s hands due to the impact!")
+		user.drop_item(src)
+
+		if (tray_health == 0) //breakable trays because you flew too close to the sun, you tried to have unlimited damage AND stuns you fool, your hubris is too fat, too wide
+			src.visible_message("<b>\The [src] shatters!</b>")
+			playsound(src, 'sound/effects/grillehit.ogg', 70, 1)
+			new /obj/item/scrap(src.loc)
+			qdel(src)
+			return
+		tray_health--
+
+		src.visible_message("\The [src] looks less sturdy now.")
+
+/*	attack(mob/M as mob, mob/user as mob)
 		if (user.a_intent == INTENT_HARM)
 			if (M == user) //why are you hitting yourself why are you hitting yourself why are y
 				boutput(user, "<span style=\"color:red\"><B>You bash yourself in the face with \the [src]!</b></span>")
 			else
 				M.visible_message("<span style=\"color:red\"><B>[user] bashes [M] over the head with \the [src]!</B></span>")
 				logTheThing("combat", user, M, "smashes \the [src] over %target%'s head! ")
-			random_brute_damage(M, force)
-			M.weakened += rand(0,2) //adjust if stun is too long
-			M.updatehealth()
-			playsound(get_turf(src), 'sound/weapons/trayhit.ogg', 50, 1)
-			src.visible_message("\The [src] falls out of [user]'s hands due to the impact!")
-			user.drop_item(src)
 			if(ordered_contents.len > 0)
 				src.shit_goes_everywhere()
-			if (tray_health == 0) //breakable trays because you flew too close to the sun, you tried to have unlimited damage AND stuns you fool, your hubris is too fat, too wide
-				src.visible_message("<b>\The [src] shatters!</b>")
-				playsound(src, 'sound/effects/grillehit.ogg', 70, 1)
-				new /obj/item/scrap(src.loc)
-				qdel(src)
-				return
-			tray_health--
-			src.visible_message("\The [src] looks less sturdy now.")
+
 		else
 			if(M == user)
 				M.visible_message("<span style=\"color:green\">[user] bops themselves over the head with \the [src].</span>")
 				return
 			M.visible_message("<span style=\"color:green\">[user] bops [M] over the head with \the [src].</span>")
-			logTheThing("combat", user, M, "taps %target% over the head with [src].")
+			logTheThing("combat", user, M, "taps %target% over the head with [src].")*/
 
 /obj/item/fish
 	throwforce = 3
