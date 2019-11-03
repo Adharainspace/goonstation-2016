@@ -467,6 +467,32 @@
 	containertype = /obj/storage/crate
 	containername = "Novelty Clothing Crate"
 
+/datum/supply_packs/ink_refill
+	name = "Printing Press Refill Supplies"
+	desc = "x1 Ink Cartridge, x2 Paper Bin"
+	contains = list(/obj/item/press_upgrade/ink,
+					/obj/item/paper_bin,
+					/obj/item/paper_bin)
+	cost = 2500 //space ink monopoly, is the price too low / too high?
+	containertype = /obj/storage/crate
+	containername = "Printing Press Refill Crate"
+
+/datum/supply_packs/ink_upgrade
+	name = "Printing Press Colour Module"
+	desc = "x1 Ink Color Upgrade"
+	contains = list(/obj/item/press_upgrade/colors)
+	cost = 2000 //colour ink is expensive yo
+	containertype = /obj/storage/crate
+	containername = "Printing Press Colour Crate"
+
+/datum/supply_packs/custom_books
+	name = "Printing Press Custom Cover Module"
+	desc = "x1 Custom Cover Upgrade"
+	contains = list(/obj/item/press_upgrade/books)
+	cost = 2000
+	containertype = /obj/storage/crate
+	containername = "Printing Press Cover Crate"
+
 #ifdef HALLOWEEN
 /datum/supply_packs/halloween
 	name = "Spooky Crate"

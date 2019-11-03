@@ -12,10 +12,12 @@
 	var/paper_amt = 0 //empty by default
 	var/was_paper = 0 //workaround for now, need to update icon if paper_amt is 0 to clear overlay
 	var/is_running = 0 //1 if its working, 0 when idle/depowered
-	var/colors_upgrade = 0 //0 by default, set to 1 when colors upgrade is installed
-	var/books_upgrade = 0 //0 by default, set to 1 when custom books upgrade is installed
-//	var/ink_level = 100 //decrements by 1 for each book printed, can be refilled (expensively)
-	var/list/press_modes = list("Choose cover", "Set book info", "Set book contents", "Amount to make", "Print books") //default, can be expanded to have "Ink Colors" and "Custom Cover"
+	var/colors_upgrade = 0 //0 by default, set to 1 when ink colors upgrade is installed
+	var/books_upgrade = 0 //0 by default, set to 1 when custom book covers upgrade is installed
+	var/forbidden_upgrade = 0 //0 by default, set to 1 when forbidden covers/symbols/styles upgrade is installed
+	var/ink_level = 100 //decrements by 1 for each book printed, can be refilled (expensively)
+	var/list/press_modes = list("Choose cover", "Set book info", "Set book contents",\
+	"Amount to make", "Print books") //default, can be expanded to have "Ink Colors" and "Custom Cover"
 
 	var/book_amount = 0 //how many reams to use? (5 books per ream)
 	var/book_cover = "" //what cover design to use?
@@ -26,19 +28,25 @@
 	var/ink_color = "" //what color is the text written in?
 	var/list/cover_designs = list("Grey", "Dull red", "Red", "Blue", "Green", "Yellow", "Dummies", "Robuddy", "Skull", "Latch", "Bee",\
 	"Albert", "Surgery", "Law", "Nuke", "Rat", "Pharma", "Bar") //list of covers to choose from
-	var/list/non_writing_icons = list("Bible")
+	var/list/non_writing_icons = list("Bible") //just the bible for now. add covers to this list if their icon file isnt icons/obj/writing.dmi
 
 	var/cover_color = "#FFFFFF" //white by default, what colour will our book be?
 	var/cover_symbol = "" //what symbol is on our front cover?
 	var/symbol_color = "#FFFFFF" //white by default, if our symbol is colourable, what colour is it?
 	var/cover_flair = "" //whats the "flair" thing on the book?
 	var/flair_color = "#FFFFFF" //white by default, whats the color of the flair (if its colorable)?
-	var/list/cover_symbols = list("Bee", "Skull", "Blood", "Drop", "Eye", "No", "ShortCross", "Smile", "One", "Clown", "FadeCircle", "Square",\
-	"Wizhat", "NT", "Ghost", "S", "Bone", "Brimstone", "Duck", "Heart", "Planet+Moon", "Sol", "Candle", "Pentagram", "Lock") //list of names of cover symbols
-	var/list/cover_flairs = list("Gold", "Corners", "Bookmark", "Latch", "RightCover", "SpineCover", "Dirty", "Key", "Lock") //list of names of flair symbols
+
+	var/list/standard_symbols = list("Bee", "Blood", "Eye", "No", "Clown", "Wizhat", "CoolS", "Brimstone", "Duck", "Planet+Moon", "Sol",\
+	"Candle", "Shelterbee")//symbols that cant be colored
 	var/list/colorable_symbols = list("Skull", "Drop", "Shortcross", "Smile", "One", "FadeCircle", "Square", "NT", "Ghost", "Bone",\
-	"Heart", "Pentagram", "Key") //list of symbols that can be coloured
-	var/list/colorable_flairs = list("Corners", "Bookmark", "RightCover", "SpineCover") //list of flairs that can be coloured
+	"Heart", "Pentagram", "Key", "Lock") //list of symbols that can be coloured
+	var/list/alchemical_symbols = list("Mercury", "Salt", "Sulfur", "Urine", "Water", "Fire", "Air", "Earth", "Calcination", "Congelation",\
+	"Fixation", "Dissolution", "Digestion", "Distillation", "Sublimation", "Seperation", "Ceration", "Fermentation", "Multiplication",\
+	"Projection") //alchemical symbols (because theres a lot of them)
+	var/list/alphanumeric_symbols = list("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",\
+	"T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
+	var/list/standard_flairs = list("Gold", "Latch", "Dirty", "Scratch", "Torn") //flairs that cant be coloured
+	var/list/colorable_flairs = list("Corners", "Bookmark", "RightCover", "SpineCover") //flairs that can be coloured
 
 ////////////////////
 //Appearance stuff//
@@ -87,28 +95,58 @@
 					paper_amt++
 					update_icon()
 					W.amount -= 10.0
-					W:update() //it was erroring at me idk why but this works
+					W:update() //it was erroring at me idk why, so i fixed it with this, i do a typecheck so its legal
 					return
 				else
 					boutput(user, "failure") //too full
 			else
 				boutput(user, "failure") //not enough paper in bin
 				return
-		else if (istype(W, /obj/item/paper)) //want a special error message
+
+		else if (istype(W, /obj/item/paper)) //i want a special error message so people know to use bins
 			boutput(user, "failure")
 			return
+
 		else if (istype(W, /obj/item/press_upgrade))
-			if (W.icon_state == "press_colors")
-				colors_upgrade = 1
-				press_modes += "Ink color"
-			else if (W.icon_state == "press_books")
-				books_upgrade = 1
-				press_modes += "Customise cover"
-			else //in case some wiseguy tries the parent im watching u
-				return
+			switch (W.icon_state)
+				if ("press_colors")
+					if (colors_upgrade)
+						src.visible_message("upgrade already installed")
+						return
+					colors_upgrade = 1
+					press_modes += "Ink color"
+					src.visible_message("upgrade installed")
+				if ("press_books")
+					if (books_upgrade)
+						src.visible_message("upgrade already installed")
+						return
+					books_upgrade = 1
+					press_modes += "Customise cover"
+					src.visible_message("upgrade installed")
+				if ("press_forbidden")
+					if (forbidden_upgrade)
+						src.visible_message("upgrade already installed")
+						return
+					forbidden_upgrade = 1
+					standard_symbols += list("Anarchy", "Syndie")
+					colorable_symbols += list("FixMe")
+					standard_flairs += list("Fire")
+					cover_designs += list("Necronomicon", "Old", "Bible")
+/*					cover_designs += "Old"
+					cover_designs += "Bible"*/
+					src.visible_message("upgrade installed")
+				if ("press_ink")
+					if (ink_level < 500) //500ink internal resevoir
+						ink_level += 100
+						src.visible_message("ink refilled")
+					else
+						src.visible_message("too full for a refill")
+						return
+				else //in case some wiseguy tries the parent im watching u
+					src.visible_message("no good, asshole")
+					return
 			qdel(W)
 //			playsound
-			src.visible_message("upgrade installed")
 
 		else
 			boutput(user, "failure")
@@ -176,7 +214,7 @@
 				return
 
 			if ("set book info")
-				var/name_sel = input("What do you want the title of your book to be?", "Information Control") //total information control! the patriots have the memes on lockdown, snake!
+				var/name_sel = input("What do you want the title of your book to be?", "Information Control") //total information control! the patriots control the memes, snake!
 /*				if (!name_sel)
 					return*/
 				if (length(name_sel) > info_len_lim)
@@ -224,15 +262,25 @@
 				return
 
 			if ("amount to make")
-				var/amount_sel = input("How many reams do you want to use? (1 ream = 5 books)", "Ream Control") as num
+				var/amount_sel = input("How many reams do you want to use? (1 ream = 5 books, 1 book = 0 < amount < 1)", "Ream Control") as num
 				if (amount_sel > paper_amt)
 					src.visible_message("not enough paper")
 					return
-				book_amount = amount_sel
+				if (amount_sel > 0 && amount_sel < 7) //was the number they put in any good?
+					if (amount_sel > 0 && amount_sel < 1) //is it between 0 and 1?
+						book_amount = -1 //special value, tells press to only make 1
+					else
+						book_amount = amount_sel
 
 			if ("print books")
 				if (is_running)
 					src.visible_message("busy")
+					return
+				if (!book_amount)
+					src.visible_message("set an amount")
+					return
+				if ((book_amount * 5) > ink_level)
+					src.visible_message("not enough ink")
 					return
 				logTheThing("say", user, null, "made some books with the name: [book_name] | the author: [book_author] | the contents: [book_info]") //book logging
 				make_books()
@@ -247,40 +295,53 @@
 			if ("customise cover")
 				if (books_upgrade) //can never be too safe
 					book_cover = "custom" //so we can bypass normal cover selection in the bookmaking process
-					var/color_sel = input("What colour would you like the cover to be?", "Cover Control") as color
-					if (color_sel)
-						cover_color = color_sel
-					var/symbol_sel = input("What symbol would you like to have on the cover?", "Cover Control") as null|anything in cover_symbols
-					if (symbol_sel)
-						cover_symbol = lowertext(symbol_sel)
-						if (symbol_sel in colorable_symbols)
-							var/s_color_sel = input("What color would you like the symbol to be?", "Cover Control") as color
-							if (s_color_sel)
-								symbol_color = s_color_sel
-					var/flair_sel = input("What flair would you like to have on the cover?", "Cover Control") as null|anything in cover_flairs
-					if (flair_sel)
-						cover_flair = lowertext(flair_sel)
-						if (flair_sel in colorable_flairs)
-							var/f_color_sel = input("What color would you like the flair to be?", "Cover Control") as color
-							if (f_color_sel)
-								flair_color = f_color_sel
+					var/cover_color_sel = input("What colour would you like the cover to be?", "Cover Control") as color
+					if (cover_color_sel)
+						cover_color = cover_color_sel
 
+					var/s_cat_sel = input("What type of symbol would you like?", "Cover Control") as null|anything in list("Standard", "Colorable", "Alchemical", "Alphanumeric")
+					switch (lowertext(s_cat_sel))
+						if ("standard")
+							var/symbol_sel = input("What would you like the symbol to be?", "Cover Control") as null|anything in standard_symbols
+							if (symbol_sel)
+								cover_symbol = lowertext(symbol_sel)
+
+						if ("colorable")
+							var/symbol_sel = input("What would you like the symbol to be?", "Cover Control") as null|anything in colorable_symbols
+							if (symbol_sel)
+								cover_symbol = lowertext(symbol_sel)
+								var/color_sel = input("What color would you like the symbol to be?", "Cover Control") as color
+								if (color_sel)
+									symbol_color = color_sel
+
+						if ("alchemical")
+							var/symbol_sel = input("What would you like the symbol to be?", "Cover Control") as null|anything in alchemical_symbols
+							if (symbol_sel)
+								cover_symbol = lowertext(symbol_sel)
+
+						if ("alphanumeric")
+							var/symbol_sel = input("What would you like the symbol to be?", "Cover Control") as null|anything in alphanumeric_symbols
+							if (symbol_sel)
+								cover_symbol = lowertext(symbol_sel)
+								var/color_sel = input("What color would you like the symbol to be?", "Cover Control") as color
+								if (color_sel)
+									symbol_color = color_sel
+
+					var/f_cat_sel = input("What type of flair would you like?", "Cover Control") as null|anything in list("Standard", "Colorable")
+
+					if (f_cat_sel == "Standard")
+						var/flair_sel = input("What would you like the flair to be?", "Cover Control") as null|anything in standard_flairs
+						if (flair_sel)
+							cover_flair = lowertext(flair_sel)
+
+					else if (f_cat_sel == "Colorable")
+						var/flair_sel = input("What would you like the flair to be?", "Cover Control") as null|anything in colorable_flairs
+						if (flair_sel)
+							var/color_sel = input("What color would you like the flair to be?", "Cover Control") as color
+							if (color_sel)
+								flair_color = color_sel
 			else //just in case, yell at me if this is bad
 				return
-
-	emag_act(var/mob/user, var/obj/item/card/emag/E) //emag adds all the i l l e g a l symbols - remove if this is a bad feature
-		if (!src.emagged)
-			if (user)
-				boutput(user, "You short out the blacklist on \the [src].")
-			cover_designs += "Necronomicon"
-			cover_designs += "Old"
-			cover_designs += "Bible"
-			cover_symbols += "Syndie"
-			cover_symbols += "Anarchy"
-			cover_flairs += "Fire"
-			src.emagged = 1
-			return 1
-		return 0
 
 /////////////////////
 //Book making stuff//
@@ -289,6 +350,8 @@
 	proc/make_books() //alright so this makes our books
 		is_running = 1
 		var/books_to_make = book_amount * 5
+		if (books_to_make == -5)
+			books_to_make = 1
 		while (books_to_make)
 			update_icon()
 //			playsound
@@ -328,7 +391,7 @@
 							I.color = flair_color
 						B.UpdateOverlays(I, "flair")
 				else
-					if (book_cover in non_writing_icon) //for our non-writing.dmi icons
+					if (book_cover in non_writing_icons) //for our non-writing.dmi icons
 						switch (book_cover)
 							if ("bible")
 								B.icon = 'icons/obj/storage.dmi'
@@ -345,11 +408,10 @@
 					B.info = book_info
 
 			books_to_make--
-//			ink_level--
+			ink_level--
 
 		is_running = 0
 		update_icon() //just in case?
-
 
 /obj/item/press_upgrade //parent just to i dont have to set name and icon twice i am PEAK lazy
 	name = "printing press upgrade module"
@@ -363,7 +425,12 @@
 	desc = "Looks like this upgrade module is for letting your press customise book covers!"
 	icon_state = "press_books"
 
-/obj/item/press_upgrade/ink_cart //using press_upgrade so i dont have to set icon i really am the laziest bitch
+/obj/item/press_upgrade/ink //using press_upgrade so i dont have to set icon i really am the laziest bitch
 	name = "ink cartridge"
 	desc = "Looks like this is an ink restock cartridge for the printing press!"
 	icon_state = "press_ink"
+
+/obj/item/press_upgrade/forbidden
+	name = "bootleg printing press upgrade module"
+	desc = "This press upgrade looks sketchy as fuck."
+	icon_state = "press_forbidden"
