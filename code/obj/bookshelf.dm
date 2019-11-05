@@ -13,6 +13,43 @@
 	var/bottom_shelf_cap = 6
 	var/list/bookshelf_contents = list() //idk if its important to have ordered bookshelf contents?
 
+	//this is where we store pixel offsets (i know its ugly, sorry, but i promise this cuts down on duplicate code4
+	//this one especially is a bit messy but thats because theres 2 variants on the same object i had to capture
+	var/shelf_overlay_list = list(list(7,16,9,21),\
+	list(7,16,12,21),\
+	list(7,16,16,21),\
+	list(7,16,19,21),\
+	list(7,16,22,21),\
+	list(7,16,25,21),\
+	list(7,9,10,14),\
+	list(7,9,14,14),\
+	list(7,9,18,14),\
+	list(7,9,21,14),\
+	list(7,9,25,14),\
+	list(7,2,9,7),\
+	list(7,2,12,7),\
+	list(7,2,16,7),\
+	list(7,2,19,7),\
+	list(7,2,22,7),\
+	list(7,2,25,7),\
+	list("sideways"),\
+	list("sideways"),\
+	list(7,16,15,21),\
+	list(7,16,19,21),\
+	list(7,16,22,21),\
+	list(7,16,25,21),\
+	list(7,9,12,14),\
+	list("sideways"),\
+	list("sideways"),\
+	list(7,9,21,14),\
+	list(7,9,25,14),\
+	list(7,2,9,7),\
+	list(7,2,13,7),\
+	list(7,2,16,7),\
+	list(7,2,19,7),\
+	list(7,2,22,7),\
+	list(7,2,25,7))
+
 	New()
 		..()
 		if (variant)
@@ -60,7 +97,7 @@
 		if (bookshelf_contents.len > top_shelf_cap) //is the top shelf full? move onto the middle shelf
 			var/icon/middle = new(src.icon, "bookshelf_full_[update_icon_suffix]")
 			var/list/middle_crop = list()
-			if (bookshelf_contents.len > middle_shelf_cap)
+			if (bookshelf_contents.len > (top_shelf_cap + middle_shelf_cap))
 				middle_crop = book_overlay_logic_center(top_shelf_cap + middle_shelf_cap)
 			else
 				middle_crop = book_overlay_logic_center(bookshelf_contents.len)
@@ -78,7 +115,7 @@
 				middle.Crop(middle_crop[1], middle_crop[2], middle_crop[3], middle_crop[4])
 				middle_image = image(middle)
 
-		if (bookshelf_contents.len > middle_shelf_cap) //is the middle shelf full? move onto the bottom shelf
+		if (bookshelf_contents.len > (top_shelf_cap + middle_shelf_cap)) //is the middle shelf full? move onto the bottom shelf
 			var/icon/bottom = new(src.icon, "bookshelf_full_[update_icon_suffix]")
 			var/list/bottom_crop = book_overlay_logic_center(bookshelf_contents.len) //dont need the if because the bottom shelf is the last shelf!!
 			if ("sideways" in bottom_crop)
@@ -101,6 +138,7 @@
 				if ("wall")
 					top_image.pixel_y += 16
 				if ("L")
+					top_image.pixel_x += 1
 					top_image.pixel_y += 16
 				if ("R")
 					top_image.pixel_x += 1
@@ -118,6 +156,7 @@
 				if ("wall")
 					middle_image.pixel_y += 9
 				if ("L")
+					middle_image.pixel_x += 1
 					middle_image.pixel_y += 9
 				if ("R")
 					middle_image.pixel_x += 1
@@ -135,6 +174,7 @@
 				if ("wall")
 					bottom_image.pixel_y += 2
 				if ("L")
+					bottom_image.pixel_x += 1
 					bottom_image.pixel_y += 2
 				if ("R")
 					bottom_image.pixel_x += 1
@@ -142,8 +182,10 @@
 			UpdateOverlays(bottom_image, "bottom_shelf")
 
 	proc/book_overlay_logic_center(var/book_count) //we will need to overwrite this for each seperate shelf, but ONLY this proc, standardisation baby
-		if (update_icon_suffix == "1")
-			switch(book_count)
+		if (variant && update_icon_suffix == "2")
+			book_count += 17
+		return shelf_overlay_list[book_count]
+/*			switch(book_count)
 				if (1)
 					return list(7,16,9,21)
 				if (2)
@@ -213,7 +255,7 @@
 				if (16)
 					return list(7,2,22,7)
 				if (17)
-					return list(7,2,25,7)
+					return list(7,2,25,7)*/
 
 ///////////////////////////////////
 //you can look again now its over//
@@ -240,6 +282,8 @@
 			take_off_bookshelf(book_sel)
 			user.put_in_hand_or_drop(book_sel)
 			update_icon()
+		else
+			boutput(user, "shelf is empty ding dong")
 
 /obj/bookshelf/long
 	icon_state = "bookshelf_empty_long"
@@ -251,6 +295,7 @@
 	capacity = 29
 
 	book_overlay_logic_center(var/book_count)
+		return shelf_overlay_list
 		switch(book_count)
 			if (1)
 				return list(1,17,3,22)
@@ -311,7 +356,7 @@
 			if (29)
 				return list(1,3,32,8)
 
-/obj/bookshelf/long_end_left
+/obj/bookshelf/long/end_left
 	icon_state = "bookshelf_empty_end_L"
 	update_icon_suffix = "L"
 	top_shelf_cap = 9
@@ -376,7 +421,7 @@
 			if (27)
 				return list(2,3,32,8)
 
-/obj/bookshelf/long_end_right
+/obj/bookshelf/long/end_right
 	icon_state = "bookshelf_empty_end_R"
 	update_icon_suffix = "R"
 	top_shelf_cap = 9
