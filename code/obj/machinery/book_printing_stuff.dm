@@ -7,7 +7,7 @@
 	icon_state = "printing_press" //proper icon is set in update_icon
 	anchored = 1
 	density = 1
-	bound_width = 64
+	bound_width = 64 //the game just handles xtra wide objects already halleluiah
 
 	var/paper_amt = 0 //empty by default
 	var/was_paper = 0 //workaround for now, need to update icon if paper_amt is 0 to clear overlay
