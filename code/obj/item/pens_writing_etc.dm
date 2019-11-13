@@ -6,6 +6,7 @@
  - Infrared Pens (not "infared", jfc mport)
  - Hand labeler
  - Clipboard
+ - Folder
 */
 /* --------------------------------- */
 
@@ -523,3 +524,54 @@
 		..()
 		src.pen = new /obj/item/pen(src)
 		return
+
+/obj/item/folder //if any of these are bad numbers just change them im a bad idiot
+	name = "folder"
+	desc = "A folder for holding papers!"
+	icon = 'icons/obj/writing.dmi'
+	icon_state = "folder" //futureproofed icons baby
+	w_class = 2.0
+	throwforce = 0
+	w_class = 3.0
+	throw_speed = 3
+	throw_range = 10
+
+	attackby(var/obj/item/W as obj, var/mob/user as mob)
+		if (istype(W, /obj/item/paper))
+			if (src.contents.len < 10)
+				boutput(user, "You cram the paper into the folder.")
+				user.drop_item()
+				W.set_loc(src)
+				src.amount++
+
+	attack_self(var/mob/user as mob)
+		show_window(user)
+
+	Topic(var/href, var/href_list)
+		if (get_dist(src, usr) > 1 || !isliving(usr) || iswraith(usr) || isintangible(usr))
+			return
+		if (usr.stunned > 0 || usr.weakened > 0 || usr.paralysis > 0 || usr.stat != 0 || usr.restrained())
+			return
+		..()
+
+		if(href_list["action"] == "retrieve")
+			usr.put_in_hand_or_drop(src.contents[text2num(href_list["id"])], usr)
+			usr.visible_message("[usr] takes a piece of paper out of the folder.")
+		show_window(usr) // to refresh the window
+
+	get_desc(dist)
+		var/fullness = ""
+		if (dist > 4)
+			fullness = "You're too far away to see how many papers are in the folder."
+		else if (src.contents.len)
+			fullness = "It looks like there's about [src.contents.len] papers in the folder."
+		else
+			fullness = "It looks like the folder's empty!"
+		return fullness
+
+	proc/show_window(var/user)
+		var/output = "<html><head><title>Folder</title></head><body><br>"
+		for(var/i = 1, i <= src.contents.len, i++)
+			output += "<a href='?src=\ref[src];id=[i];action=retrieve'>[src.contents[i].name]</a><br>"
+		output += "</body></html>"
+		user << browse(output, "window=folder;size=400x600")
