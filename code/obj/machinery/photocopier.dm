@@ -11,7 +11,7 @@
 	var/make_amount = 0 //from 0 to 30, amount of copies the photocopier will copy, copy?
 
 	var/list/paper_info = list()//index 1 is name, index 2 is desc, index 3 is info
-	var/list/photo_info = list()//index 1 is name, index 2 is desc, index 3 is fullImage, index 4 is overlay list
+	var/list/photo_info = list()//index 1 is name, index 2 is desc, index 3 is fullImage, index 4 is fullIcon
 	var/list/paper_photo_info = list() //index 1 is desc, index 2 is print_icon, index 3 is print_icon_state
 	var/butt_stuff = 0 //uwu its me im the funniest joke queen
 
@@ -66,85 +66,53 @@
 			boutput(user, "<span style=\"color:red\">/The [src] is busy! Try again later!</span>")
 			return
 
-		else if (src.use_state == 1) //photocopier is open?
-			if (istype(w, /obj/item/paper/printout))
-				var/obj/item/paper/printout/P = w
+		else if (src.use_state == 1) //is the photocopier open?
+			if (w in list(/obj/item/paper/printout, /obj/item/paper, /obj/item/clothing/head/butt, /obj/item/photo)) //what items can we scan on the photocopier?
 				src.reset_all()
 				src.use_state = 2
-				src.icon_state = "papper"
-				user.drop_item()
-				P.set_loc(src)
-				sleep(3)
-				boutput(user, "You put the picture on the scan bed, close the lid, and press start...")
-				src.icon_state = "close_sesame"
-				flick("scan", src)
-				playsound(src.loc, "sound/machines/scan.ogg", 50, 1)
-				sleep(18)
-				src.icon_state = "open_sesame"
-				P.set_loc(get_turf(src))
-				src.paper_photo_info += P.desc
-				src.paper_photo_info += P.print_icon
-				src.paper_photo_info += P.print_icon_state
-				src.visible_message("\The [src] finishes scanning and opens automatically!")
-
-			else if (istype(w, /obj/item/paper))
-				var/obj/item/paper/P = w
-				src.reset_all()
-				src.use_state = 2
-				src.icon_state = "papper"
-				user.drop_item()
-				P.set_loc(src)
-				sleep(3)
-				boutput(user, "You put the paper on the scan bed, close the lid, and press start...")
-				src.icon_state = "close_sesame"
-				flick("scan", src)
-				playsound(src.loc, "sound/machines/scan.ogg", 50, 1)
-				sleep(18)
-				src.icon_state = "open_sesame"
-				P.set_loc(get_turf(src))
-				src.paper_info += P.name
-				src.paper_info += P.desc
-				src.paper_info += P.info
-				src.visible_message("\The [src] finishes scanning and opens automatically!")
-
-			else if (istype(w, /obj/item/clothing/head/butt))
-				src.reset_all()
-				src.use_state = 2
-				src.icon_state = "buttt"
 				user.drop_item()
 				w.set_loc(src)
+				if (istype(w, /obj/item/clothing/head/butt))
+					src.icon_state = "buttt"
+					boutput(user, "You slap the ass (hot) on the scan bed, close the lid, and press start...")
+				else
+					src.icon_state = "papper"
+					if (istype(w, /obj/item/paper/printout) || istype(w, /obj/item/photo))
+						boutput(user, "You put the picture on the scan bed, close the lid, and press start...")
+					else
+						boutput(user, "You put the paper on the scan bed, close the lid, and press start...")
 				sleep(3)
-				boutput(user, "You slap the ass (hot) on the scan bed, close the lid, and press start...")
 				src.icon_state = "close_sesame"
 				flick("scan", src)
 				playsound(src.loc, "sound/machines/scan.ogg", 50, 1)
 				sleep(18)
 				src.icon_state = "open_sesame"
 				w.set_loc(get_turf(src))
-				src.butt_stuff = 1
 				src.visible_message("\The [src] finishes scanning and opens automatically!")
+				src.use_state = 1
 
-			else if (istype(w, /obj/item/photo))
-				var/obj/item/photo/P = w
-				src.reset_all()
-				src.use_state = 2
-				src.icon_state = "papper"
-				user.drop_item()
-				P.set_loc(src)
-				sleep(3)
-				boutput(user, "You put the picture on the scan bed, close the lid, and press start...")
-				src.icon_state = "close_sesame"
-				flick("scan", src)
-				playsound(src.loc, "sound/machines/scan.ogg", 50, 1)
-				sleep(18)
-				src.icon_state = "open_sesame"
-				src.photo_info += P.name
-				src.photo_info += P.desc
-				src.photo_info += P.fullImage
-				src.photo_info += P.overlays
-				src.visible_message("\The [src] finishes scanning and opens automatically!")
-				P.set_loc(get_turf(src))
-			src.use_state = 1
+				if (istype(w, /obj/item/paper/printout))
+					var/obj/item/paper/printout/P = w
+					src.paper_photo_info += P.desc
+					src.paper_photo_info += P.print_icon
+					src.paper_photo_info += P.print_icon_state
+
+				else if (istype(w, /obj/item/paper))
+					var/obj/item/paper/P = w
+					src.paper_info += P.name
+					src.paper_info += P.desc
+					src.paper_info += P.info
+
+				else if (istype(w, /obj/item/clothing/head/butt))
+					src.butt_stuff = 1
+
+				else if (istype(w, /obj/item/photo))
+					var/obj/item/photo/P = w
+					src.photo_info += P.name
+					src.photo_info += P.desc
+					src.photo_info += P.fullImage
+					src.photo_info += P.fullIcon
+			return
 
 		else //photocopier is closed? if someone varedits use state this'll screw up but if they do theyre dumb so
 			if (istype(w, /obj/item/paper))
@@ -154,6 +122,7 @@
 				boutput(user, "You load the sheet of paper into \the [src].")
 				src.paper_amount++
 				qdel(w)
+				return
 
 			else if (istype(w, /obj/item/paper_bin))
 				if ((w.amount + src.paper_amount) > 30.0)
@@ -164,6 +133,9 @@
 				src.paper_amount += w.amount
 				P.amount = 0.0
 				P.update()
+				return
+
+		..()
 
 	attack_hand(var/mob/user as mob) //handles choosing amount, printing, scanning
 		if (src.use_state == 2)
@@ -172,7 +144,7 @@
 		var/mode_sel =  input("Which do you want to do?", "Photocopier Controls") as null|anything in list("Reset Memory", "Print Copies", "Adjust Amount")
 		if (mode_sel)
 			switch(mode_sel)
-				if ("Reset Copier")
+				if ("Reset Memory")
 					src.reset_all()
 					playsound(src.loc, "sound/machines/bweep.ogg", 50, 1)
 					boutput(user, "<span style=\"color:blue\">You reset \the [src]'s memory.</span>")
@@ -192,7 +164,7 @@
 						if (num_sel <= src.paper_amount)
 							src.make_amount = num_sel
 							playsound(src.loc, "sound/machines/ping.ogg", 50, 1)
-							boutput(user, "Amount set to [num_sel] sheets.")
+							boutput(user, "Amount set to: [num_sel] sheets.")
 							return
 						else
 							boutput(user, "<span style=\"color:red\">That number's too big!</span>")
@@ -201,23 +173,32 @@
 	proc/print_stuff() //handles printing photos, papers
 		if (src.paper_info.len)
 			var/obj/item/paper/P = new(get_turf(src))
-			P.name = paper_info[1]
-			P.desc = paper_info[2]
-			P.info = paper_info[3]
+			P.name = src.paper_info[1]
+			P.desc = src.paper_info[2]
+			P.info = src.paper_info[3]
 			return
+
 		if (src.photo_info.len)
 			var/obj/item/photo/P = new(get_turf(src)) //yes im using P for all 3 of these judge me i dont care
-			P.name = photo_info[1]
-			P.desc = photo_info[2]
-			P.fullImage = photo_info[3]
-			P.overlays = photo_info[4]
+			P.name = src.photo_info[1]
+			P.desc = src.photo_info[2]
+			P.fullImage = src.photo_info[3]
+			P.fullIcon = src.photo_info[4]
+			var/oldtransform = P.fullImage.transform
+			P.fullImage.transform = matrix(0.6875, 0.625, MATRIX_SCALE)
+			P.fullImage.pixel_y = 1
+			P.overlays += P.fullImage
+			P.fullImage.transform = oldtransform
+			P.fullImage.pixel_y = 0
 			return
+
 		if (src.paper_photo_info.len)
 			var/obj/item/paper/printout/P = new(get_turf(src))
-			P.desc = paper_photo_info[1]
-			P.print_icon = paper_photo_info[2]
-			P.print_icon_state = paper_photo_info[3]
+			P.desc = src.paper_photo_info[1]
+			P.print_icon = src.paper_photo_info[2]
+			P.print_icon_state = src.paper_photo_info[3]
 			return
+
 		if (src.butt_stuff)
 			var/obj/item/paper/P = new(get_turf(src))
 			P.name = "butt"
