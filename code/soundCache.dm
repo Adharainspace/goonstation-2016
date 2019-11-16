@@ -364,6 +364,7 @@ var/global/list/soundCache = list(
  	"sound/machines/romhack2.ogg" = 'sound/machines/romhack2.ogg',\
  	"sound/machines/romhack3.ogg" = 'sound/machines/romhack3.ogg',\
  	"sound/machines/satcrash.ogg" = 'sound/machines/satcrash.ogg',\
+ 	"sound/machines/scan.ogg" = 'sound/machines/scan.ogg',\
  	"sound/machines/signal.ogg" = 'sound/machines/signal.ogg',\
  	"sound/machines/siren_generalquarters.ogg" = 'sound/machines/siren_generalquarters.ogg',\
  	"sound/machines/siren_police.ogg" = 'sound/machines/siren_police.ogg',\
