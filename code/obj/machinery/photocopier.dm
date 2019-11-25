@@ -4,9 +4,9 @@
 	density = 1
 	anchored = 1
 	icon = 'icons/obj/machines/photocopier.dmi'
-	icon_state = "open_sesame"
+	icon_state = "close_sesame"
 	pixel_x = 2 //its just a bit limited by sprite width, needs a small offset
-	var/use_state = 1 //0 is closed, 1 is open, 2 is busy
+	var/use_state = 0 //0 is closed, 1 is open, 2 is busy, closed by default
 	var/paper_amount = 0.0 //starts at 0.0, increments by one for every paper added, max of... 30 sheets
 	var/make_amount = 0 //from 0 to 30, amount of copies the photocopier will copy, copy?
 
@@ -30,7 +30,7 @@
 			if (2)
 				desc_string += "\The [src] is busy! "
 			else //just in case
-				desc_string += "call 1-800-coder today (abt use_state) "
+				desc_string += "call 1-800-coder today (mention use_state) "
 
 		if (make_amount)
 			desc_string += "The counter shows that \the [src] is set to make [make_amount] "
@@ -67,7 +67,9 @@
 			return
 
 		else if (src.use_state == 1) //is the photocopier open?
-			if (w in list(/obj/item/paper/printout, /obj/item/paper, /obj/item/clothing/head/butt, /obj/item/photo)) //what items can we scan on the photocopier?
+			if (istype(w, /obj/item/paper) || istype(w, /obj/item/clothing/head/butt) || istype(w, /obj/item/photo)) //what items can we scan on the photocopier?
+				if (istype(w, /obj/item/paper/book)) //all subtypes of paper that ARENT printout should go here, but book might be the only one? this is hopefully good for now
+					return
 				src.reset_all()
 				src.use_state = 2
 				user.drop_item()
@@ -184,6 +186,7 @@
 			P.desc = src.photo_info[2]
 			P.fullImage = src.photo_info[3]
 			P.fullIcon = src.photo_info[4]
+//			i just copypasted all this garbage over from pictures because thats the only way this worked, idk if any of this is extraneous sorry
 			var/oldtransform = P.fullImage.transform
 			P.fullImage.transform = matrix(0.6875, 0.625, MATRIX_SCALE)
 			P.fullImage.pixel_y = 1
