@@ -67,6 +67,12 @@
 			var/obj/trait/T = getTraitById(X)
 			if(length(traitStr)) traitStr += " | [T.cleanName]"
 			else traitStr = T.name
+			if (istype(T, /obj/trait/random_allergy))
+				var/obj/trait/random_allergy/AT = T
+				if (M.fields["notes"] == "No notes.") //is it in its default state?
+					M.fields["notes"] = "[G.fields["name"]] has an allergy to [AT.allergen_name]."
+				else
+					M.fields["notes"] += " [G.fields["name"]] has an allergy to [AT.allergen_name]."
 
 	M.fields["traits"] = traitStr
 

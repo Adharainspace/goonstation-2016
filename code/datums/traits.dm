@@ -546,29 +546,55 @@
 	isPositive = 0
 
 /obj/trait/random_allergy
-	name = "Allergy (+1)"
+	name = "Allergy (+0)"
 	cleanName = "Allergy"
-	desc = "You're allergic to... something. You can't quite remember. "
-	id = "randomallergies"
-	points = 1
+	desc = "You're allergic to... something. You can't quite remember, but bad could it possibly be?"
+	id = "randomallergy"
+	points = 0
 	isPositive = 0
 
-	var/allergen = null
-	var/list/allergen_list = list("spaceacillin","morphine","teporone","salicylic_acid","calomel","synthflesh","omnizine","saline","anti_rad","smelling_salt",\
+	var/allergen = ""
+	var/allergen_name = ""
+
+	var/list/allergen_id_list = list("spaceacillin","morphine","teporone","salicylic_acid","calomel","synthflesh","omnizine","saline","anti_rad","smelling_salt",\
 	"haloperidol","epinephrine","insulin","silver_sulfadiazine","mutadone","ephedrine","penteticacid","antihistamine","stypic_powder","cryoxadone","atropine",\
-	"salbutamol","perfluorodecalin","mannitol","charcoal","antihol","ethanol","iron","lithium","copper","mercury","oxygen","plasma","sugar","radium","water","bathsalts",\
-	"jenkem","crank","LSD","space_drugs","THC","nicotine","krokodil","catdrugs","triplemeth","methamphetamine","thermite","smokepowder","infernite","ldmatter","fuel",\
+	"salbutamol","perfluorodecalin","mannitol","charcoal","antihol","ethanol","iron","mercury","oxygen","plasma","sugar","radium","water","bathsalts","jenkem","crank",\
+	"LSD","space_drugs","THC","nicotine","krokodil","catdrugs","triplemeth","methamphetamine","mutagen","neurotoxin","sarin","smokepowder","infernite","napalm", "fuel",\
 	"anti_fart","lube","ectoplasm","cryostylane","oil","sewage","ants","spiders","poo","love","hugs","fartonium","blood","bloodc","vomit","urine","capsaicin","cheese",\
 	"coffee","chocolate","chickensoup","salt","grease","badgrease","msg","egg")
+	//is there a better way to do it? this feels really dumb to me
+	var/list/allergen_name_list = list("spaceacillin", "morphine", "teporone", "salicylic acid", "calomel", "synthflesh", "omnizine", "saline", "potassium iodide",\
+	"ammonium bicarbonate", "haloperidol", "epinephrine", "insulin", "silver sulfazidine", "mutadone", "ephedrine", "pentetic acid", "diphenhydramine", "styptic powder",\
+	"cryoxadone", "atropine", "salbutamol", "perfluorodecalin", "mannitol", "charcoal", "antihol", "ethanol", "iron", "mercury", "oxygen", "plasma", "sugar", "radium",\
+	"water", "bath salts", "jenkem", "crank", "lysergic acid diethylamide", "space drugs", "tetrahydrocannabinol", "nicotine", "krokodil", "cat drugs", "triple meth",\
+	"methamphetamine", "unstable mutagen", "neurotoxin", "sarin", "smoke powder", "chlorine trifluoride", "phlogiston", "welding fuel", "simethicone", "space lube",\
+	"ectoplasm", "cryostylane", "oil", "sewage", "ants", "spiders", "compost", "pure love", "pure hugs", "fartonium", "blood", "bloodc", "vomit", "urine", "capsaicin",\
+	"cheese", "coffee", "chocolate", "chicken soup", "salt", "space soybean oil", "partially hydrogenated space soybean oil", "msg", "egg")
 
 	onAdd(var/mob/owner)
-		var/owner_name = owner.real_name
-		if(allergen_list.len > 1)
-			allergen = pick(allergen_list)
-			for(var/datum/data/record/E in data_core.medical)
-				if (E.fields["name"] == "[owner_name]")
-					E.fields["notes"] += "[owner_name] is allergic to [allergen]."
+		if(allergen_id_list.len > 0)
+			var/rand_num = rand(1, allergen_id_list.len)
+			allergen = allergen_id_list[rand_num]
+			allergen_name = allergen_name_list[rand_num]
 
+	onLife(var/mob/owner)
+		if (owner.reagents.has_reagent("[allergen]"))
+			owner.reagents.add_reagent("histamine", 1.4) //1.4 units of histamine per life cycle? is that too much?
+
+/obj/trait/random_allergy/medical_allergy
+	name = "Medical Allergy (+1)"
+	cleanName = "Medical Allergy"
+	desc = "You're allergic to some medical chemical... but you can't remember which."
+	id = "medicalallergy"
+	points = 1
+
+	allergen_id_list = list("spaceacillin","morphine","teporone","salicylic_acid","calomel","synthflesh","omnizine","saline","anti_rad","smelling_salt",\
+	"haloperidol","epinephrine","insulin","silver_sulfadiazine","mutadone","ephedrine","penteticacid","antihistamine","stypic_powder","cryoxadone","atropine",\
+	"salbutamol","perfluorodecalin","mannitol","charcoal","antihol")
+
+	allergen_name_list = list("spaceacillin", "morphine", "teporone", "salicylic acid", "calomel", "synthflesh", "omnizine", "saline", "potassium iodide",\
+	"ammonium bicarbonate", "haloperidol", "epinephrine", "insulin", "silver sulfazidine", "mutadone", "ephedrine", "pentetic acid", "diphenhydramine", "styptic powder",\
+	"cryoxadone", "atropine", "salbutamol", "perfluorodecalin", "mannitol", "charcoal", "antihol")
 /*
 /obj/trait/lizard
 	name = "Lizard (-1) \[Race\]"
