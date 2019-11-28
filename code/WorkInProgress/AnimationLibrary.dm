@@ -358,6 +358,50 @@
 	animate(A, transform = M, time = 1, loop = -1, easing = LINEAR_EASING)
 	animate(transform = MD, time = 1, loop = -1, easing = LINEAR_EASING)
 
+/proc/animate_wavy_screen(var/mob/target, var/filter_num, var/x_size, var/y_size, var/distort_size, var/wave_speed, var/final)
+	if (!target)
+		return
+	if (!target.client) //should only be animated on the screens of mobs who have clients
+		return
+/*
+- filter_num should NORMALLY be 1. any more than that, and things get fucked up pretty quickly
+- x_size should be between 0 and 50, horizontal size of the wave
+- y_size should be between 0 and 50, verticle size of the wave
+- higher size is, the less tight the wave is, keep it between 0 and 6
+- wave speed is just how quickly one cycle animates, its in 10ths of a second, between 10 (fast) and 30 (slow)
+- final should be either not set or 1, it just tells the animation to ONLY run 1 more loop and then its all done
+*/
+
+	var/obj/screen/plane_parent/pp = new()
+	target.client.screen += pp
+	var/start = pp.filters.len //so we dont mess up preexisting filters
+	var/looping = -1
+	if (final)
+		looping = 1
+	for (var/i = 1, i <= filter_num, i++)
+		pp.filters += filter(type="wave", x=x_size, y=y_size, size=distort_size, offset=rand())
+	for(var/i = 1, i <= filter_num, i++)
+		var/filter = pp.filters[start + i]
+		animate(filter, offset=filter:offset, time=0, loop=looping, flags=ANIMATION_PARALLEL)
+		animate(offset=filter:offset-1, time=wave_speed)
+
+/obj/screen/plane_parent //this is just for testing i think??? you should be good to delete it i thiiiiiiink??????
+	name = "parent of planes"
+	icon = null
+	screen_loc = "1,1"
+	plane = 0
+
+	New()
+		src.appearance_flags = PLANE_MASTER | appearance_flags
+		src.blend_mode = BLEND_DEFAULT
+		src.mouse_opacity = 1
+
+/obj/item/space_thing/filter_thing //also just for testing
+	name = "Filter Thing"
+
+	attack_self(mob/user)
+		animate_wavy_screen(user, 3, 25, 25, 3, 25)
+
 // these don't use animate but they're close enough, idk
 /proc/showswirl(var/atom/target)
 	if (!target)

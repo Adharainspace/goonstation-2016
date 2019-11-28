@@ -372,6 +372,10 @@ datum
 					holder.add_reagent("neurotoxin", myvol, null)
 				return
 
+			on_add(var/mob/M)
+				if (M)
+					animate_wavy_screen(M, 1, 50, 50, 4, 25)
+
 			on_mob_life(var/mob/M)
 				if(!M) M = holder.my_atom
 				if(ishuman(M))
@@ -385,6 +389,10 @@ datum
 				if(prob(7)) M.emote(pick("twitch","drool","moan","giggle"))
 				..(M)
 				return
+
+			on_remove(var/mob/M)
+				if (M)
+					animate_wavy_screen(M, 1, 50, 50, 4, 25, 1)
 
 		drug/THC
 			name = "tetrahydrocannabinol"
