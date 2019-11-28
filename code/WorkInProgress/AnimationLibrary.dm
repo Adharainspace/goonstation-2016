@@ -380,10 +380,12 @@
 		looping = 1
 	for (var/i = 1, i <= filter_num, i++)
 		pp.filters += filter(type="wave", x=x_size, y=y_size, size=distort_size, offset=rand())
-	for(var/i = 1, i <= filter_num, i++)
+	for (var/i = 1, i <= filter_num, i++)
 		var/filter = pp.filters[start + i]
 		animate(filter, offset=filter:offset, time=0, loop=looping, flags=ANIMATION_PARALLEL)
 		animate(offset=filter:offset-1, time=wave_speed)
+		if (final)
+			qdel(pp)
 
 /obj/screen/plane_parent //this is just for testing i think??? you should be good to delete it i thiiiiiiink??????
 	name = "parent of planes"

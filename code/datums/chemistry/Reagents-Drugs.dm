@@ -372,9 +372,10 @@ datum
 					holder.add_reagent("neurotoxin", myvol, null)
 				return
 
-			on_add(var/mob/M)
-				if (M)
-					animate_wavy_screen(M, 1, 50, 50, 4, 25)
+			on_add()
+				if (istype(holder) && istype(holder.my_atom))
+					var/mob/M = holder.my_atom
+					animate_wavy_screen(M, 1, 20, 40, 1, 25)
 
 			on_mob_life(var/mob/M)
 				if(!M) M = holder.my_atom
@@ -390,9 +391,10 @@ datum
 				..(M)
 				return
 
-			on_remove(var/mob/M)
-				if (M)
-					animate_wavy_screen(M, 1, 50, 50, 4, 25, 1)
+			on_remove()
+				if (istype(holder) && istype(holder.my_atom))
+					var/mob/M = holder.my_atom
+					animate_wavy_screen(M, 1, 20, 40, 1, 25, 1)
 
 		drug/THC
 			name = "tetrahydrocannabinol"
