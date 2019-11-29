@@ -467,6 +467,24 @@
 	containertype = /obj/storage/crate
 	containername = "Novelty Clothing Crate"
 
+/datum/supply_packs/bureaucrat
+	name = "Bureaucracy Supply Crate"
+	desc = "x2 Paper bins, x2 Folders, x2 Pencils, x2 Pens, x2 Stamps, x1 Fancy Pen"
+	contains = list(/obj/item/paper_bin,
+					/obj/item/paper_bin,
+					/obj/item/folder,
+					/obj/item/folder,
+					/obj/item/pen/pencil,
+					/obj/item/pen/pencil,
+					/obj/item/pen,
+					/obj/item/pen,
+					/obj/item/stamp,
+					/obj/item/stamp,
+					/obj/item/pen/fancy)
+	cost = 1500
+	containertype = /obj/storage/crate
+	containername = "Bureaucracy Supply Crate"
+
 #ifdef HALLOWEEN
 /datum/supply_packs/halloween
 	name = "Spooky Crate"
