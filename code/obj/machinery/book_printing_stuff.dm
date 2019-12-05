@@ -1,4 +1,4 @@
-//TODO: FULLY INTEGRATE INK CARTRIDGE, ADD ACTUAL MESSAGSES AND PLAYSOUNDS
+//TODO: FULLY INTEGRATE INK CARTRIDGE, ADD ACTUAL MESSAGSES AND PLAYSOUNDS, MAKE IT RUN OFF OF ACTUAL PAPER, NOT JUST MAGIC BULLSHIT, MAKE ORDERABLE FROM QM
 
 /obj/machinery/printing_press //this makes books
 	name = "printing press"
@@ -9,7 +9,7 @@
 	density = 1
 	bound_width = 64 //the game just handles xtra wide objects already halleluiah
 
-	var/paper_amt = 0 //empty by default
+	var/paper_amt = 0 //empty by default, 0 to 70
 	var/was_paper = 0 //workaround for now, need to update icon if paper_amt is 0 to clear overlay
 	var/is_running = 0 //1 if its working, 0 when idle/depowered
 	var/colors_upgrade = 0 //0 by default, set to 1 when ink colors upgrade is installed
@@ -70,13 +70,29 @@
 			return
 		var/press_desc = ""
 		if (paper_amt)
-			press_desc += "There's [paper_amt] reams of paper loaded into \the [src]."
+			if (paper_amt == 70)
+				press_desc = "The paper bin is totally full!"
+			switch(round(paper_amt / 7))
+				if (0)
+					press_desc += "The paper bin is nearly empty!"
+				if (1)
+					press_desc += "The paper bin is barely 1/4th full."
+				if (2)
+					press_desc += "The paper bin is almost 1/4th full."
+				if (3)
+					press_desc += "The paper bin is nearly halfway full."
+				if (4)
+					press_desc += "The paper bin is a bit more than halfway full."
+				if (5)
+					press_desc += "The paper bin is about 3/4ths full!"
+				if (6)
+					press_desc += "The paper bin is pretty close to being full."
+				if (7)
+					press_desc += "The paper bin is almost completely full!"
 		else
-			press_desc += "There's no paper loaded into \the [src]"
+			press_desc += "There paper bin is empty."
 		if (is_running)
 			press_desc += " \The [src] is currently making books!"
-		else
-			press_desc += " \The [src] is currently idle."
 		return press_desc
 
 	New()
@@ -89,22 +105,22 @@
 
 	attackby(var/obj/item/W as obj, mob/user as mob)
 		if (istype(W, /obj/item/paper_bin))
-			if (W.amount >= 10.0)
-				if (paper_amt < 7)
+			W = var/obj/item/paper_bin/P
+			if (W.amount > 0.0 && (paper_amt + W.amount) <= 70) //if the paper bin has paper, and adding the paper bin doesnt add too much paper
 					user.visible_message("success", "success")
-					paper_amt++
+					paper_amt += W.amount
 					update_icon()
-					W.amount -= 10.0
-					W:update() //it was erroring at me idk why, so i fixed it with this, i do a typecheck so its legal
+					W.amount = 0
+					W.update()
 					return
-				else
-					boutput(user, "failure") //too full
 			else
-				boutput(user, "failure") //not enough paper in bin
-				return
+				boutput(user, "failure") //empty paper bin
 
-		else if (istype(W, /obj/item/paper)) //i want a special error message so people know to use bins
-			boutput(user, "failure")
+
+		if (istype(W, /obj/item/paper) && !istype(W, /obj/item/paper/book)) //should also exclude all other weird paper subtypes, but i think books are the only one
+			if (paper_amt < 70)
+				user.visible_message("success", "success")
+			boutput(user, "failure") //too full to accept paper
 			return
 
 		else if (istype(W, /obj/item/press_upgrade))

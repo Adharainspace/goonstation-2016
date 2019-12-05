@@ -1,4 +1,5 @@
-/obj/bookshelf //these should be placed on the ground
+//TODO: MAKE THEM BUILDABLE WITH WOOD, UNSCREWABLE
+/obj/bookshelf //these should be placed on ground
 	name = "bookshelf"
 	desc = "A storage unit designed to fit a lot of books. Been a while since you've seen one of these!"
 	icon = 'icons/obj/bookshelf.dmi'
@@ -13,8 +14,8 @@
 	var/bottom_shelf_cap = 6
 	var/list/bookshelf_contents = list() //idk if its important to have ordered bookshelf contents?
 
-	//this is where we store pixel offsets (i know its ugly, sorry, but i promise this cuts down on duplicate code4
-	//this one especially is a bit messy but thats because theres 2 variants on the same object i had to capture
+	//this is where we store pixel offsets (i know its ugly, sorry, but i promise this cuts down on duplicate code)
+	//this one especially is a bit messy but thats because theres 2 variants on the same object i had to capture with 1 list
 	var/shelf_overlay_list = list(list(7,16,9,21),\
 	list(7,16,12,21),\
 	list(7,16,16,21),\
