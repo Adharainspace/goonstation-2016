@@ -2318,3 +2318,9 @@ var/list/lowercase_letters = list("a", "b", "c", "d", "e", "f", "g", "h", "i", "
 	if (!C || !C.preferences)
 		return
 	return C.preferences.hud_style
+
+/proc/can_weld(var/obj/item/weldingtool/w) //thought this might be useful, returns 1 if the welder can weld, 0 if low fuel, null if it cant weld
+	if (w.welding)
+		if (w.get_fuel() < 2)
+			return 0
+		return 1
