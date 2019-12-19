@@ -2319,8 +2319,11 @@ var/list/lowercase_letters = list("a", "b", "c", "d", "e", "f", "g", "h", "i", "
 		return
 	return C.preferences.hud_style
 
-/proc/can_weld(var/obj/item/weldingtool/w) //thought this might be useful, returns 1 if the welder can weld, 0 if low fuel, null if it cant weld
+/proc/can_weld(var/obj/item/weldingtool/w, var/fuel_amt = 2, var/use_amt = 1) //fuel amt is how much fuel is needed to weld, use_amt is how much fuel is used per action
 	if (w.welding)
-		if (w.get_fuel() < 2)
-			return 0
-		return 1
+		if (w.get_fuel() < fuel_amt)
+			boutput(usr, "<span style=\"color:red\">Need more fuel!</span>")
+			return 0 //welding, doesnt have fuel
+		w.use_fuel(use_amt)
+		return 1 //welding, has fuel
+	return 0 //not welding
