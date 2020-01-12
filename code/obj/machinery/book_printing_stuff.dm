@@ -1,4 +1,4 @@
-//TODO: FULLY INTEGRATE INK CARTRIDGE, ADD ACTUAL MESSAGSES AND PLAYSOUNDS, MAKE IT RUN OFF OF ACTUAL PAPER, NOT JUST MAGIC BULLSHIT, MAKE ORDERABLE FROM QM
+//TODO: FULLY INTEGRATE INK CARTRIDGE, ADD PLAYSOUNDS, MAKE ORDERABLE FROM QM
 
 /obj/machinery/printing_press //this makes books
 	name = "printing press"
@@ -15,11 +15,11 @@
 	var/colors_upgrade = 0 //0 by default, set to 1 when ink colors upgrade is installed
 	var/books_upgrade = 0 //0 by default, set to 1 when custom book covers upgrade is installed
 	var/forbidden_upgrade = 0 //0 by default, set to 1 when forbidden covers/symbols/styles upgrade is installed
-	var/ink_level = 100 //decrements by 1 for each book printed, can be refilled (expensively)
+	var/ink_level = 100 //decrements by 2 for each book printed, can be refilled (expensively)
 	var/list/press_modes = list("Choose cover", "Set book info", "Set book contents",\
 	"Amount to make", "Print books") //default, can be expanded to have "Ink Colors" and "Custom Cover"
 
-	var/book_amount = 0 //how many reams to use? (5 books per ream)
+	var/book_amount = 0 //how many books to make?
 	var/book_cover = "" //what cover design to use?
 	var/book_info = "" //what text will the made books have?
 	var/book_name = "" //whats the made books name?
@@ -56,7 +56,7 @@
 		if (paper_amt || was_paper)
 			if (GetOverlayImage("paper"))
 				ClearSpecificOverlays("paper")
-			var/image/I = SafeGetOverlayImage("paper", src.icon, "paper-[paper_amt]")
+			var/image/I = SafeGetOverlayImage("paper", src.icon, "paper-[round(paper_amt / 7)]")
 			src.UpdateOverlays(I, "paper")
 			was_paper = 0
 		if (is_running)
@@ -105,64 +105,69 @@
 
 	attackby(var/obj/item/W as obj, mob/user as mob)
 		if (istype(W, /obj/item/paper_bin))
-			W = var/obj/item/paper_bin/P
-			if (W.amount > 0.0 && (paper_amt + W.amount) <= 70) //if the paper bin has paper, and adding the paper bin doesnt add too much paper
-					user.visible_message("success", "success")
-					paper_amt += W.amount
-					update_icon()
-					W.amount = 0
-					W.update()
-					return
+			var/obj/item/paper_bin/P = W
+			if (P.amount > 0.0 && (paper_amt + P.amount) <= 70) //if the paper bin has paper, and adding the paper bin doesnt add too much paper
+				boutput(user, "You load \the [P] into \the [src].")
+				paper_amt += P.amount
+				update_icon()
+				P.amount = 0
+				P.update()
+				return
 			else
-				boutput(user, "failure") //empty paper bin
+				if (P.amount <= 0.0)
+					boutput(user, "\The [P] is empty!") //empty paper bin or too much paper
+					return
+				boutput(user, "\The [src] is too full for that!")
 
-
-		if (istype(W, /obj/item/paper) && !istype(W, /obj/item/paper/book)) //should also exclude all other weird paper subtypes, but i think books are the only one
+		else if (istype(W, /obj/item/paper) && !istype(W, /obj/item/paper/book)) //should also exclude all other weird paper subtypes, but i think books are the only one
 			if (paper_amt < 70)
-				user.visible_message("success", "success")
-			boutput(user, "failure") //too full to accept paper
-			return
+				boutput(user, "You load \the [W] into \the [src].")
+				paper_amt++
+				update_icon()
+				user.drop_item()
+				qdel(W)
+			else
+				boutput(user, "\The [src] is too full for that!")
+				return
 
 		else if (istype(W, /obj/item/press_upgrade))
 			switch (W.icon_state)
 				if ("press_colors")
 					if (colors_upgrade)
-						src.visible_message("upgrade already installed")
+						src.visible_message("\The [src] rejects the upgrade, as its already installed.")
 						return
 					colors_upgrade = 1
 					press_modes += "Ink color"
-					src.visible_message("upgrade installed")
+					src.visible_message("\The [src] accepts the upgrade.")
 				if ("press_books")
 					if (books_upgrade)
-						src.visible_message("upgrade already installed")
+						src.visible_message("\The [src] rejects the upgrade, as its already installed.")
 						return
 					books_upgrade = 1
 					press_modes += "Customise cover"
-					src.visible_message("upgrade installed")
+					src.visible_message("\The [src] accepts the upgrade.")
 				if ("press_forbidden")
 					if (forbidden_upgrade)
-						src.visible_message("upgrade already installed")
+						src.visible_message("\The [src] rejects the upgrade, as its already installed.")
 						return
 					forbidden_upgrade = 1
 					standard_symbols += list("Anarchy", "Syndie")
 					colorable_symbols += list("FixMe")
 					standard_flairs += list("Fire")
 					cover_designs += list("Necronomicon", "Old", "Bible")
-/*					cover_designs += "Old"
-					cover_designs += "Bible"*/
-					src.visible_message("upgrade installed")
+					src.visible_message("\The [src] accepts the upgrade.")
 				if ("press_ink")
-					if (ink_level < 500) //500ink internal resevoir
+					if ((ink_level + 100) <= 500) //500ink internal resevoir
 						ink_level += 100
-						src.visible_message("ink refilled")
+						boutput(user, "Ink refilled.")
 					else
-						src.visible_message("too full for a refill")
+						boutput(user, "Too full to refill.")
 						return
 				else //in case some wiseguy tries the parent im watching u
-					src.visible_message("no good, asshole")
+					boutput(user, "no good, asshole >:\[")
 					return
 			qdel(W)
-//			playsound
+//			playsound tile
 
 		else
 			boutput(user, "failure")
@@ -278,15 +283,14 @@
 				return
 
 			if ("amount to make")
-				var/amount_sel = input("How many reams do you want to use? (1 ream = 5 books, 1 book = 0 < amount < 1)", "Ream Control") as num
-				if (amount_sel > paper_amt)
-					src.visible_message("not enough paper")
+				var/amount_sel = input("How many books do you want to make? (1 book = 2 paper)", "Ream Control") as num
+				if ((amount_sel * 2) > paper_amt) //2*amount sel is the amount of paper
+					boutput(user, "Not enough paper.")
 					return
-				if (amount_sel > 0 && amount_sel < 7) //was the number they put in any good?
-					if (amount_sel > 0 && amount_sel < 1) //is it between 0 and 1?
-						book_amount = -1 //special value, tells press to only make 1
-					else
-						book_amount = amount_sel
+				if (amount_sel > 0 && amount_sel < 35) //is the number in range?
+					book_amount = amount_sel
+				else
+					boutput(user, "Amount out of range.")
 
 			if ("print books")
 				if (is_running)
@@ -365,16 +369,13 @@
 
 	proc/make_books() //alright so this makes our books
 		is_running = 1
-		var/books_to_make = book_amount * 5
-		if (books_to_make == -5)
-			books_to_make = 1
+		var/books_to_make = book_amount
 		while (books_to_make)
 			update_icon()
 //			playsound
-			if (!(books_to_make % 5)) //every 5 books take away 1 sheet
-				paper_amt--
-				if (!paper_amt)
-					was_paper = 1
+			if ((books_to_make * 2) > paper_amt) //if the amount of paper thats gonna be used is > the amount of paper left
+				break //aborts our loop
+
 			var/obj/item/paper/book/B = new(get_turf(src))
 
 			if (book_name)
@@ -382,7 +383,7 @@
 			else
 				B.name = "unnamed book"
 
-			B.desc = "A book printed by a machine! The future is now! (if you lived in the 15th century)"
+			B.desc = "A book printed by a machine! The future is now! (if you live in the 15th century)"
 			if (book_author)
 				B.desc += " It says it was written by [book_author]."
 			else
@@ -424,12 +425,14 @@
 					B.info = book_info
 
 			books_to_make--
-			ink_level--
+			ink_level -= 2
+			paper_amt -= 2
 
 		is_running = 0
 		update_icon() //just in case?
+		src.visible_message("\The [src] finishes printing and shuts down.")
 
-/obj/item/press_upgrade //parent just to i dont have to set name and icon twice i am PEAK lazy
+/obj/item/press_upgrade //parent just to i dont have to set name and icon a bunch i am PEAK lazy
 	name = "printing press upgrade module"
 	icon = 'icons/obj/module.dmi'
 
@@ -446,7 +449,7 @@
 	desc = "Looks like this is an ink restock cartridge for the printing press!"
 	icon_state = "press_ink"
 
-/obj/item/press_upgrade/forbidden
+/obj/item/press_upgrade/forbidden //has some crazy wacky book covers, symbols, flairs
 	name = "bootleg printing press upgrade module"
 	desc = "This press upgrade looks sketchy as fuck."
 	icon_state = "press_forbidden"

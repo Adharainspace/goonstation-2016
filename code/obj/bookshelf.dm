@@ -1,4 +1,4 @@
-//TODO: MAKE THEM BUILDABLE WITH WOOD, UNSCREWABLE
+//TODO: MAKE THEM BUILDABLE WITH WOOD, DECONSTRUCTIBLE, FINISH ZUNGY SHELF (?)
 /obj/bookshelf //these should be placed on ground
 	name = "bookshelf"
 	desc = "A storage unit designed to fit a lot of books. Been a while since you've seen one of these!"
@@ -189,26 +189,26 @@
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (istype(W, /obj/item/paper/book))
 			if (!(bookshelf_contents.len >= capacity))
-				boutput(user, "you shelf the book")
+				boutput(user, "You shelf the book.")
 				user.drop_item()
 				add_to_bookshelf(W)
 				update_icon()
 			else
-				boutput(user, "too full")
+				boutput(user, "\The [src] is too full!")
 		else
-			boutput(user, "not a book")
+			boutput(user, "You can't shelf that!")
 
 	attack_hand(mob/user as mob)
 		if (bookshelf_contents.len > 0)
 			var/book_sel = input("What book would you like to take off \the [src]?", "[src]") as null|anything in bookshelf_contents
 			if (!book_sel)
 				return
-			boutput(user, "you deshelf the book")
+			boutput(user, "You take the book off the shelf.")
 			take_off_bookshelf(book_sel)
 			user.put_in_hand_or_drop(book_sel)
 			update_icon()
 		else
-			boutput(user, "shelf is empty ding dong")
+			boutput(user, "There's nothing to take off the shelf!")
 
 /obj/bookshelf/long //these should be placed ON walls, they look just fine without any pixel editing.
 	icon_state = "bookshelf_empty_long"
