@@ -1,10 +1,8 @@
-//TODO: FULLY INTEGRATE INK CARTRIDGE, ADD PLAYSOUNDS, MAKE ORDERABLE FROM QM
-
 /obj/machinery/printing_press //this makes books
 	name = "printing press"
 	desc = "Some machinery that's supposed to be able to write on a lot of pages super quickly. It looks pretty old."
 	icon = 'icons/obj/64x32.dmi' //lets immortalise =atamusvaleo= in the code forever, i miss him
-	icon_state = "printing_press" //proper icon is set in update_icon
+	icon_state = "" //proper icon is set in update_icon
 	anchored = 1
 	density = 1
 	bound_width = 64 //the game just handles xtra wide objects already halleluiah
@@ -28,7 +26,7 @@
 	var/ink_color = "" //what color is the text written in?
 	var/list/cover_designs = list("Grey", "Dull red", "Red", "Blue", "Green", "Yellow", "Dummies", "Robuddy", "Skull", "Latch", "Bee",\
 	"Albert", "Surgery", "Law", "Nuke", "Rat", "Pharma", "Bar") //list of covers to choose from
-	var/list/non_writing_icons = list("Bible") //just the bible for now. add covers to this list if their icon file isnt icons/obj/writing.dmi
+	var/list/non_writing_icons = list("Bible") //just the bible for now. !!!add covers to this list if their icon file isnt icons/obj/writing.dmi!!!
 
 	var/cover_color = "#FFFFFF" //white by default, what colour will our book be?
 	var/cover_symbol = "" //what symbol is on our front cover?
@@ -56,7 +54,7 @@
 		if (paper_amt || was_paper)
 			if (GetOverlayImage("paper"))
 				ClearSpecificOverlays("paper")
-			var/image/I = SafeGetOverlayImage("paper", src.icon, "paper-[round(paper_amt / 7)]")
+			var/image/I = SafeGetOverlayImage("paper", src.icon, "paper-[round(paper_amt / 10)]")
 			src.UpdateOverlays(I, "paper")
 			was_paper = 0
 		if (is_running)
@@ -72,7 +70,7 @@
 		if (paper_amt)
 			if (paper_amt == 70)
 				press_desc = "The paper bin is totally full!"
-			switch(round(paper_amt / 7))
+			switch(round(paper_amt / 10))
 				if (0)
 					press_desc += "The paper bin is nearly empty!"
 				if (1)
@@ -97,6 +95,16 @@
 
 	New()
 		..()
+		var/turf/T = get_step(src, EAST) //gets the turf that will be under the right side of the machine, so we can abort construction if itll be weird
+		if(!T)
+			return
+		if (T.density) //is the turf a wall/dense?
+			qdel(src)
+			return
+		for (var/obj/O in T) //are any objects on that turf dense that arent the printing press?
+			if (O.density && !istype(O, /obj/machinery/printing_press))
+				qdel(src)
+				return
 		update_icon()
 
 /////////////////////
@@ -167,14 +175,14 @@
 					boutput(user, "no good, asshole >:\[")
 					return
 			qdel(W)
-//			playsound tile
+			playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
 
 		else
-			boutput(user, "failure")
+			..()
 
 	attack_hand(var/mob/user as mob) //all of our mode controls and setters here, these control what the books are/look like/have as contents
 		if (is_running)
-			src.visible_message("busy") //machine is running
+			boutput(user, "\The [src] is busy.") //machine is running
 			return
 		var/mode_sel = input("What would you like to do?", "Mode Control") as null|anything in press_modes
 		if (!mode_sel) //just in case? idk if this is necessary
@@ -184,71 +192,69 @@
 
 			if ("choose cover")
 				var/cover_sel = input("What cover design would you like?", "Cover Control") as null|anything in cover_designs
-/*				if (!cover_sel)
-					return*/
-				switch (lowertext(cover_sel))
-					if ("grey")
-						book_cover = "book0"
-					if ("dull red")
-						book_cover = "book1"
-					if ("red")
-						book_cover = "book7"
-					if ("blue")
-						book_cover = "book2"
-					if ("green")
-						book_cover = "book3"
-					if ("yellow")
-						book_cover = "book6"
-					if ("dummies")
-						book_cover = "book4"
-					if ("robuddy")
-						book_cover = "book5"
-					if ("skull")
-						book_cover = "sbook"
-					if ("latch")
-						book_cover = "bookcc"
-					if ("bee")
-						book_cover = "booktth"
-					if ("albert")
-						book_cover = "bookadps"
-					if ("surgery")
-						book_cover = "surgical_textbook"
-					if ("law")
-						book_cover = "spacelaw"
-					if ("nuke")
-						book_cover = "nuclearguide"
-					if ("rat")
-						book_cover = "ratbook"
-					if ("pharma")
-						book_cover = "pharmacopia"
-					if ("bar")
-						book_cover = "barguide"
-					if ("necronomicon")
-						book_cover = "necronomicon"
-					if ("bible")
-						book_cover = "bible"
-					if ("old")
-						book_cover = "bookkiy"
-					else
-						book_cover = "book0"
-				src.visible_message("successful")
+				if (!cover_sel)
+					book_cover = "book0"
+				else
+					switch (lowertext(cover_sel))
+						if ("grey")
+							book_cover = "book0"
+						if ("dull red")
+							book_cover = "book1"
+						if ("red")
+							book_cover = "book7"
+						if ("blue")
+							book_cover = "book2"
+						if ("green")
+							book_cover = "book3"
+						if ("yellow")
+							book_cover = "book6"
+						if ("dummies")
+							book_cover = "book4"
+						if ("robuddy")
+							book_cover = "book5"
+						if ("skull")
+							book_cover = "sbook"
+						if ("latch")
+							book_cover = "bookcc"
+						if ("bee")
+							book_cover = "booktth"
+						if ("albert")
+							book_cover = "bookadps"
+						if ("surgery")
+							book_cover = "surgical_textbook"
+						if ("law")
+							book_cover = "spacelaw"
+						if ("nuke")
+							book_cover = "nuclearguide"
+						if ("rat")
+							book_cover = "ratbook"
+						if ("pharma")
+							book_cover = "pharmacopia"
+						if ("bar")
+							book_cover = "barguide"
+						if ("necronomicon")
+							book_cover = "necronomicon"
+						if ("bible")
+							book_cover = "bible"
+						if ("old")
+							book_cover = "bookkiy"
+						else
+							book_cover = "book0"
+				boutput(user, "Book cover set.")
 				return
 
 			if ("set book info")
 				var/name_sel = input("What do you want the title of your book to be?", "Information Control") //total information control! the patriots control the memes, snake!
-/*				if (!name_sel)
-					return*/
 				if (length(name_sel) > info_len_lim)
-					src.visible_message("too long")
+					boutput(user, "Aborting, title too long.")
 					return
 				book_name = name_sel
 				var/author_sel = input("Who is the author of your book?", "Information Control")
-/*				if (!author_sel)
-					return*/
 				if (length(author_sel) > info_len_lim)
-					src.visible_message("too long")
+					boutput(user, "Aborting, author name too long.")
 					return
 				book_author = author_sel
+				boutput(user, "Information set.")
 				return
 
 			if ("set book contents")
@@ -280,27 +286,29 @@
 				info_sel = replacetext(info_sel, "\[bq\]", "<BLOCKQUOTE>")
 				info_sel = replacetext(info_sel, "\[/bq\]", "</BLOCKQUOTE>")
 				book_info = info_sel
+				boutput(user, "Book contents set.")
 				return
 
 			if ("amount to make")
 				var/amount_sel = input("How many books do you want to make? (1 book = 2 paper)", "Ream Control") as num
-				if ((amount_sel * 2) > paper_amt) //2*amount sel is the amount of paper
+/*				if ((amount_sel * 2) > paper_amt) //2*amount sel is the amount of paper
 					boutput(user, "Not enough paper.")
-					return
+					return*/
 				if (amount_sel > 0 && amount_sel < 35) //is the number in range?
+					boutput(user, "Book amount set.")
 					book_amount = amount_sel
 				else
 					boutput(user, "Amount out of range.")
 
 			if ("print books")
 				if (is_running)
-					src.visible_message("busy")
+					boutput(user, "\The [src] is busy.")
 					return
 				if (!book_amount)
-					src.visible_message("set an amount")
+					boutput(user, "Invalid book amount.")
 					return
-				if ((book_amount * 5) > ink_level)
-					src.visible_message("not enough ink")
+				if ((book_amount * 2) > ink_level)
+					src.visible_message("Not enough ink")
 					return
 				logTheThing("say", user, null, "made some books with the name: [book_name] | the author: [book_author] | the contents: [book_info]") //book logging
 				make_books()
@@ -371,10 +379,12 @@
 		is_running = 1
 		var/books_to_make = book_amount
 		while (books_to_make)
-			update_icon()
-//			playsound
-			if ((books_to_make * 2) > paper_amt) //if the amount of paper thats gonna be used is > the amount of paper left
+
+			if ((paper_amt - 2) < 0) //if the amount of paper thats gonna be used is more than whats left
 				break //aborts our loop
+
+			playsound(src.loc, "sound/machines/printer_press.ogg", 50, 1)
+			update_icon()
 
 			var/obj/item/paper/book/B = new(get_turf(src))
 
@@ -453,3 +463,22 @@
 	name = "bootleg printing press upgrade module"
 	desc = "This press upgrade looks sketchy as fuck."
 	icon_state = "press_forbidden"
+
+/obj/item/electronics/frame/press_frame //this is really dumb dont kill me, just wanna make it qm orderable
+	name = "Printing Press frame"
+	store_type = /obj/machinery/printing_press
+	viewstat = 2
+	secured = 2
+	icon_state = "dbox"
+
+/obj/item/paper/press_warning
+	name = "printing press setup warning"
+	info = {"<B>WARNING FOR ALL PROSPECTIVE BUILDERS OF THE NT-112 PRINTING PRESS</B><BR>
+In this shipment you recieved a frame for your new NT-112 Printing Press.<BR>
+This device takes up 2 standard floor tiles once fully deployed.<BR>
+If you are seeking to set up your own NT-112 Printing Press, be aware:<BR>
+<li>The left side of the device will be deployed on the tile where the frame is.<BR>
+<li>The right side of the device will be one tile to the right of the frame.<BR>
+<li>If that tile is blocked by a wall or other barriers, construction will fail.<BR>
+<li>If this occurs, please order another frame and remove all blockages from the construction area.<BR>
+Have a secure day."}

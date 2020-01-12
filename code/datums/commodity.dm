@@ -1635,3 +1635,12 @@
 	baseprice = 400
 	upperfluc = 400
 	lowerfluc = -200
+
+/datum/commodity/sketchy_press_upgrade
+	comname = "Sketchy press upgrade"
+	desc = "This looks like a bootlegged printing press upgrade."
+	comtype = /obj/item/press_upgrade/forbidden
+	price = 2000
+	baseprice = 2000
+	upperfluc = 1700
+	lowerfluc = -1700

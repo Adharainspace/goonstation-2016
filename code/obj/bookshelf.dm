@@ -1,4 +1,5 @@
-//TODO: MAKE THEM BUILDABLE WITH WOOD, DECONSTRUCTIBLE, FINISH ZUNGY SHELF (?)
+//this is coded in a really dumb way lol
+//probably wouldve been faster to just have like 700000000 icon states and swap between them
 /obj/bookshelf //these should be placed on ground
 	name = "bookshelf"
 	desc = "A storage unit designed to fit a lot of books. Been a while since you've seen one of these!"
@@ -195,6 +196,17 @@
 				update_icon()
 			else
 				boutput(user, "\The [src] is too full!")
+		else if (istype(W, /obj/item/wrench))
+			if (src.contents.len > 0)
+				boutput(user, "You can't take apart \the [src] if there's still books on it.")
+				return
+			user.visible_message("[user] starts to take apart \the [src].", "You start to take apart \the [src].")
+			if (!do_after(user, 20))
+				return
+			user.visible_message("[user] takes \the [src] apart.", "You take \the [src] apart.")
+			playsound(src.loc, "sound/items/Ratchet.ogg", 50, 1)
+			new /obj/item/bookshelf_parts(src.loc)
+			qdel(src)
 		else
 			boutput(user, "You can't shelf that!")
 
@@ -210,8 +222,9 @@
 		else
 			boutput(user, "There's nothing to take off the shelf!")
 
-/obj/bookshelf/long //these should be placed ON walls, they look just fine without any pixel editing.
+/obj/bookshelf/long //these automatically pixel edit themselves to go onto a wall
 	icon_state = "bookshelf_empty_long"
+	density = 0
 	variant = 0
 	update_icon_suffix = "wall"
 	top_shelf_cap = 9
@@ -248,6 +261,10 @@
 	list("sideways"),\
 	list(1,3,28,8),\
 	list(1,3,32,8))
+
+	New()
+		..()
+		pixel_y += 32 //shifts it up to the tile above it
 
 /obj/bookshelf/long/end_left
 	icon_state = "bookshelf_empty_end_L"
@@ -320,3 +337,9 @@
 	list(1,3,24,8),\
 	list(1,3,27,8),\
 	list(1,3,31,8))
+
+/obj/item/bookshelf_parts  //these arent finished, but i dont know how to do all the construction stuff, theres 4 bookshelves, standalone, middle, left endcap, right endcap.
+	name = "bookshelf parts"
+	desc = "All the pieces of wood needed to construct a genuine bookshelf."
+	icon = 'icons/obj/bookshelf.dmi'
+	icon_state = "bookshelf_parts"

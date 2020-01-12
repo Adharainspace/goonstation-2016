@@ -473,7 +473,7 @@
 	contains = list(/obj/item/press_upgrade/ink,
 					/obj/item/paper_bin,
 					/obj/item/paper_bin)
-	cost = 2500 //space ink monopoly, is the price too low / too high?
+	cost = 2500 //theres a monopoly on space ink!
 	containertype = /obj/storage/crate
 	containername = "Printing Press Refill Crate"
 
@@ -492,6 +492,15 @@
 	cost = 2000
 	containertype = /obj/storage/crate
 	containername = "Printing Press Cover Crate"
+
+/datum/supply_packs/printing_press
+	name = "Printing Press"
+	desc = "x1 Printing Press Frame"
+	contains = list(/obj/item/electronics/frame/press_frame,
+					/obj/item/paper/press_warning)
+	cost = 5000
+	containertype = /obj/storage/crate
+	containername = "Printing Press Crate"
 
 #ifdef HALLOWEEN
 /datum/supply_packs/halloween

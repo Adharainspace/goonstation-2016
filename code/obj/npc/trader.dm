@@ -698,6 +698,7 @@
 				src.goods_sell += new /datum/commodity/drugs/krokodil(src)
 				src.goods_sell += new /datum/commodity/drugs/lsd(src)
 				src.goods_sell += new /datum/commodity/pills/uranium(src)
+				src.goods_sell += new /datum/commodity/sketchy_press_upgrade(src)
 
 				src.goods_buy += new /datum/commodity/drugs/shrooms(src)
 				src.goods_buy += new /datum/commodity/drugs/cannabis(src)
