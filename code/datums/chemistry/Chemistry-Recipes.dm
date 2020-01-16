@@ -2159,22 +2159,22 @@ datum
 			mix_phrase = "The mixture dries into a pale blue powder."
 			mix_sound = 'sound/misc/fuse.ogg'
 
-	/*	helldrug // the worst thing. if splashed on floor, create void turf. if ingested, replace mob with crunch critter and teleport user to hell
-			name = "Cthonium"
-			id = "cthonium"
-			result = "cthonium"
-			//required_temperature = 666
-			result_amount = 2
-			//required_reagents = list("el_diablo" = 1, "salts1" = 1,"mugwort" = 1, "catonium" = 1, "bloodc" = 1, "sulfur" = 1, "liquid spacetime" = 1, "strange_reagent" = 1)
-			required_reagents = list("blood" = 1, "sulfur" = 1, "plasma" = 1)
-			mix_phrase = "The mixture seems to have corrupted the very fabric of reality."
-			mix_sound = 'airraid_loop.ogg'
-			on_reaction(var/datum/reagents/holder, var/created_volume)
-				bust_lights()
-				creepify_station()
-				return
+		void_fluid
+			name = "Stablised Anomalous Semifluid"
+			id = "void_fluid"
+			result = "void_fluid"
+			result_amount = 1
+			required_reagents = list("water" = 1, "blood" = 1) //just a placeholder, dm me if you want suggestions!!
+			mix_phrase = "The solution rapidly turns purple and \"gloops\" up."
+			mix_sound = 'sound/effects/blobattack.ogg'
 
-		bleach
+			on_reaction(var/datum/reagents/holder, var/created_volume)
+				var/T = get_turf(holder.my_atom)
+				var/datum/effects/system/spark_spread/s = unpool(/datum/effects/system/spark_spread)
+				s.set_up(3, 1, T)
+				s.start()
+
+		/*bleach
 			name = "Bleach" // cogwerks WIP: could be useful for hobo chemistry, hair bleaching, stubborn stains, being a jerk and turning stuff white
 			id = "bleach"
 			result = "bleach"
