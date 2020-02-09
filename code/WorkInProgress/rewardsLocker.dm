@@ -301,7 +301,7 @@
 
 /datum/achievementReward/ntso_commander
 	title = "(Skin set) NT-SO Commander Uniform"
-	desc = "Requires that you're wearing a captain's hat and armor."
+	desc = "Will change the skin of captain hats, captain armor/spacesuits and captain uniforms."
 	required_medal = "Icarus"
 	once_per_round = 0
 
@@ -313,10 +313,25 @@
 				var/obj/item/clothing/M = H.w_uniform
 				if (istype(M, /obj/item/clothing/under/rank/captain))
 					var/prev = M.name
-					M.icon_state = "captain-blue"
-					M.item_state = "captain-blue"
-					M.name = "administrator's uniform"
+					M.name = "commander's uniform"
 					M.desc = "A uniform specifically for NanoTrasen commanders. (Base Item: [prev])"
+					if (istype(M, /obj/item/clothing/under/rank/captain/fancy))
+						M.icon_state = "captain-fancy-blue"
+						M.item_state = "captain-fancy-blue"
+					else if (istype(M, /obj/item/clothing/under/rank/captain/dress))
+						M.icon_state = "captain-dress-blue"
+						M.item_state = "captain-dress-blue"
+					else
+						M.icon_state = "captain-blue"
+						M.item_state = "captain-blue"
+					H.set_clothing_icon_dirty()
+
+				else if (istype(M, /obj/item/clothing/under/suit/captain))
+					var/prev = M.name
+					M.name = "commander's uniform"
+					M.desc = "A uniform specifically for NanoTrasen commanders. (Base Item: [prev])"
+					M.icon_state = "suit-capB"
+					M.item_state = "suit-capB"
 					H.set_clothing_icon_dirty()
 
 			if (H.wear_suit)
@@ -325,7 +340,7 @@
 					var/prev = M.name
 					M.icon_state = "centcom"
 					M.item_state = "centcom"
-					M.name = "administrator's armor"
+					M.name = "commander's armor"
 					M.desc = "A suit of protective formal armor. It is made specifically for NanoTrasen commanders. (Base Item: [prev])"
 					H.set_clothing_icon_dirty()
 
@@ -333,7 +348,7 @@
 					var/prev = M.name
 					M.icon_state = "spacecap-blue"
 					M.item_state = "spacecap-blue"
-					M.name = "administrator's space suit"
+					M.name = "commander's space suit"
 					M.desc = "A suit that protects against low pressure environments. It is made specifically for NanoTrasen commanders. (Base Item: [prev])"
 					H.set_clothing_icon_dirty()
 
@@ -343,8 +358,69 @@
 					var/prev = M.name
 					M.icon_state = "centcom"
 					M.item_state = "centcom"
-					M.name = "Cent. Comm. hat"
+					M.name = "commander's hat"
 					M.desc = "A fancy hat specifically for NanoTrasen commanders. (Base Item: [prev])"
+					H.set_clothing_icon_dirty()
+		return
+
+/datum/achievementReward/centcom_administrator
+	title = "(Skin Set) CENTCOM Administrator Uniform"
+	desc = "Will change the skin of captain hats, captain armor/spacesuits and captain uniforms."
+	required_medal = "Nero" //nero for now, only a suggestion, please replace if anyone has better ideas for this ty <3
+	once_per_round = 0
+
+	rewardActivate(var/mob/activator)
+		if (ishuman(activator))
+			var/mob/living/carbon/human/H = activator
+
+			if (H.w_uniform)
+				var/obj/item/clothing/M = H.w_uniform
+				if (istype(M, /obj/item/clothing/under/rank/captain))
+					var/prev = M.name
+					M.name = "administrator's uniform"
+					M.desc = "A uniform specifically for CENTCOM administrators. (Base Item: [prev])"
+					if (istype(M, /obj/item/clothing/under/rank/captain/dress))
+						M.icon_state = "captain-dress-red"
+						M.item_state = "captain-dress-red"
+					else
+						M.icon_state = "captain-red"
+						M.item_state = "captain-red"
+					H.set_clothing_icon_dirty()
+
+				else if (istype(M, /obj/item/clothing/under/suit/captain))
+					var/prev = M.name
+					M.name = "administrator's uniform"
+					M.desc = "A uniform specifically for CENTCOM administrators. (Base Item: [prev])"
+					M.icon_state = "suit-capR"
+					M.item_state = "suit-capR"
+					H.set_clothing_icon_dirty()
+
+			if (H.wear_suit)
+				var/obj/item/clothing/M = H.wear_suit
+				if (istype(M, /obj/item/clothing/suit/armor/captain))
+					var/prev = M.name
+					M.icon_state = "centcom-red"
+					M.item_state = "centcom-red"
+					M.name = "administrator's armor"
+					M.desc = "A suit of protective formal armor. It is made specifically for CENTCOM administrators. (Base Item: [prev])"
+					H.set_clothing_icon_dirty()
+
+				else if (istype(M, /obj/item/clothing/suit/space/captain))
+					var/prev = M.name
+					M.icon_state = "spacecap-red"
+					M.item_state = "spacecap-red"
+					M.name = "administrator's space suit"
+					M.desc = "A suit that protects against low pressure environments. It is made specifically for CENTCOM administrators. (Base Item: [prev])"
+					H.set_clothing_icon_dirty()
+
+			if (H.head)
+				var/obj/item/clothing/M = H.head
+				if (istype(M, /obj/item/clothing/head/caphat))
+					var/prev = M.name
+					M.icon_state = "centcom-red"
+					M.item_state = "centcom-red"
+					M.name = "CENTCOM hat"
+					M.desc = "A fancy hat specifically for CENTCOM administrators. (Base Item: [prev])"
 					H.set_clothing_icon_dirty()
 		return
 
