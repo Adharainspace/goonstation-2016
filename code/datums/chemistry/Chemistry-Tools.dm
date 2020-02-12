@@ -86,8 +86,7 @@
 	var/splash_all_contents = 1
 	flags = FPRINT | TABLEPASS | OPENCONTAINER | SUPPRESSATTACK
 
-	afterattack(obj/target, mob/user , flag)
-
+	afterattack(atom/target as obj|mob|turf, mob/user , flag)
 		if (ismob(target))
 			if (!src.reagents.total_volume)
 				boutput(user, "<span style=\"color:red\">Your [src.name] is empty!</span>")
@@ -132,7 +131,6 @@
 				return
 
 		else if (istype(target, /obj/reagent_dispensers) || (target.is_open_container() == -1 && target.reagents)) //A dispenser. Transfer FROM it TO us.
-
 			if (!target.reagents.total_volume && target.reagents)
 				boutput(user, "<span style=\"color:red\">[target] is empty.</span>")
 				return
@@ -171,7 +169,20 @@
 			var/trans = src.reagents.trans_to(target, 10)
 			boutput(user, "<span style=\"color:blue\">You dump [trans] units of the solution to [target].</span>")
 
-		else if (reagents.total_volume)
+		else if (reagents.total_volume || reagents.total_volume == 0) //i have to add this in so that empty beakers can scoop
+			if (istype(target, /turf/space/fluid)) //specific exception for seafloor rn, since theres no others
+				if (src.reagents.total_volume >= src.reagents.maximum_volume)
+					boutput(user, "<span style=\"color:red\">[src] is full.</span>")
+					return
+				else if (src.reagents.total_volume >= src.reagents.maximum_volume - 19)// - 19 because seafloor adds 20u of sand
+					src.reagents.add_reagent("silicon_dioxide", src.reagents.maximum_volume - src.reagents.total_volume) //should add like, 100 - 85 sand or something
+				else
+					src.reagents.add_reagent("silicon_dioxide", 20)
+				boutput(user, "<span style=\"color:blue\">You scoop some of the sand into [src].</span>")
+				return
+
+			if (reagents.total_volume == 0)
+				return
 
 			if (isobj(target)) //Have to do this in 2 lines because byond is shit.
 				if (target:flags & NOSPLASH) return

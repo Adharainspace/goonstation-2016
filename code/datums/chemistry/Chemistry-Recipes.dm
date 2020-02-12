@@ -422,7 +422,7 @@ datum
 //|| C E M E N T ||
 //=-=-=-=-=-=-=-=-=
 
-		calcium_carbonate //CaCl2 + Na2CO3 -> CaCO3 + 2NaCl
+		calcium_carbonate //CaCl2 + Na2CO3 -> CaCO3 + 2NaCl !!!ALREADY IN, DONT DOUBLE MERGE!!!
 			name = "calcium carbonate"
 			id = "calcium_carbonate"
 			result = "calcium_carbonate"
@@ -439,11 +439,11 @@ datum
 			result = "lime"
 			required_reagents = list("calcium_carbonate" = 1)
 			result_amount = 1
-			required_temperature = T0C + 700 //actually synthesises at 825c/1090k but that wont work
+			required_temperature = T0C + 600 //actually synthesises at 825c/1090k but that wont work so lets put it down to an achievable num
 			mix_phrase = "The white powder settles into little clusters of powder."
 			mix_sound = 'sound/misc/fuse.ogg'
 
-		gypsum //H2SO4 + CaCO3 -> CaSO4 + H2O + CO2
+		gypsum //H2SO4 + CaCO3 -> CaSO4 + H2O + CO2 !!!ALREADY IN, DONT DOUBLE MERGE!!!
 			name = "calcium sulfate"
 			id = "gypsum"
 			result = "gypsum"
@@ -464,41 +464,45 @@ datum
 				holder.add_reagent("water", created_volume / 3,,holder.total_temperature)
 				holder.add_reagent("sodium_sulfate", created_volume / 3,,holder.total_temperature)
 
-		perfect_cement //lime, alumina, magnesia, iron oxide, calcium sulfate, sulfur trioxide, thermite as iron (iii) oxide + alumina
+		perfect_cement //lime, alumina, magnesia, iron (iii) oxide, calcium sulfate, sulfur trioxide
 			name = "perfect cement"
 			id = "perfect_cement"
 			result = "perfect_cement"
-			required_reagents = list("lime" = 1, "magnesium" = 1, "thermite" = 1, "calcium_sulfate" = 1, "oxygen" = 4, "sulfur" = 1)
+			required_reagents = list("lime" = 1, "magnesium" = 1, "thermite" = 1, "gypsum" = 1, "oxygen" = 4, "sulfur" = 1) //thermite as iron (iii) oxide + alumina
 			result_amount = 9 //18
 			mix_phrase = "The mixture of particles settles together with so much ease that it seems like it has been waiting for this moment for a long time."
 			mix_sound = 'sound/misc/fuse.ogg'
+			//priority = 14
 
-		good_cement //lime, alumina, magnesia, iron oxide, calcium sulfate, thermite as iron (iii) oxide + alumina
+		good_cement //lime, alumina, magnesia, iron (iii) oxide, calcium sulfate
 			name = "good cement"
 			id = "good_cement"
 			result = "good_cement"
-			required_reagents = list("lime" = 1, "magnesium" = 1, "thermite" = 1, "calcium_sulfate" = 1, "oxygen" = 1)
+			required_reagents = list("lime" = 1, "magnesium" = 1, "thermite" = 1, "gypsum" = 1, "oxygen" = 1) //thermite as iron (iii) oxide + alumina
 			result_amount = 5 //14
 			mix_phrase = "The mixture of particles settles together with ease."
 			mix_sound = 'sound/misc/fuse.ogg'
+			//priority = 13
 
-		okay_cement //lime, alumina, magnesia, iron oxide, thermite as iron (iii) oxide + alumina
+		okay_cement //lime, alumina, magnesia, iron (iii) oxide
 			name = "okay cement"
 			id = "okay_cement"
 			result = "okay_cement"
-			required_reagents = list("lime" = 1, "magnesium" = 1, "thermite" = 1, "oxygen" = 1)
+			required_reagents = list("lime" = 1, "magnesium" = 1, "thermite" = 1, "oxygen" = 1) //thermite as iron (iii) oxide + alumina
 			result_amount = 4 //13
 			mix_phrase = "The mixture of particles settles together complacently."
 			mix_sound = 'sound/misc/fuse.ogg'
+			//priority = 12
 
-		poor_cement //lime, alumina, iron oxide, thermite as iron (iii) oxide + alumina
-			name = "okay cement"
-			id = "okay_cement"
-			result = "okay_cement"
-			required_reagents = list("lime" = 1, "thermite" = 1)
+		poor_cement //lime, alumina, iron (iii) oxide
+			name = "poor cement"
+			id = "poor_cement"
+			result = "poor_cement"
+			required_reagents = list("lime" = 1, "thermite" = 1) //thermite as iron (iii) oxide + alumina
 			result_amount = 2 //
 			mix_phrase = "The mixture of particles settles together... barely."
 			mix_sound = 'sound/misc/fuse.ogg'
+			//priority = 11
 
 		perfect_concrete
 			name = "perfect concrete"
@@ -518,8 +522,8 @@ datum
 
 		okay_concrete
 			name = "okay concrete"
-			id = "ok_concrete"
-			result = "ok_concrete"
+			id = "okay_concrete"
+			result = "okay_concrete"
 			mix_phrase = "The mixture comes together."
 			required_reagents = list("okay_cement" = 1, "silicon_dioxide" = 5, "water" = 1)
 			result_amount = 7
@@ -527,7 +531,7 @@ datum
 		poor_concrete
 			name = "poor concrete"
 			id = "poor concrete"
-			result = "poor concrete"
+			result = "poor_concrete"
 			mix_phrase = "The mixture comes together slowly. It doesn't seem like it wants to be here."
 			required_reagents = list("poor_cement" = 1, "silicon_dioxide" = 5, "water" = 1)
 			result_amount = 7

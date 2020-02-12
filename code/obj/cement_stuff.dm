@@ -1,29 +1,9 @@
-/turf/simulated/floor/concrete
-	name = "concrete floor"
-	icon = 'icons/turf/floors.dmi'
-	icon_state = "concrete"
-
-/turf/space/fluid //add override for attack_object w/ reagent containers to scoop SiO2
+/turf/space/fluid //placeholder for seafloor turf, remove this
 	name = "seafloor"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "mars1"
-	var/reagent = "silicon_dioxide"
-	var/scoop_amt = 10
 
-	attackby(var/obj/item/I, var/mob/user)
-		if (!istype(I, /obj/item/reagent_containers/glass))
-			return 0
-		if (I.reagents.total_volume >= I.reagents.maximum_volume - (scoop_amt - 1))
-			boutput(user, "<span style=\"color:red\">[I] is too full!</span>")
-			return 0
-		else
-			I.reagents.add_reagent(reagent, scoop_amt)
-			user.visible_message("<span style=\"color:blue\"><b>[user]</b> is scooping sand off of \the [src] and into [I].</span>",\
-			"<span style=\"color:blue\">You scoop some of the sand into [I].</span>")
-			I.reagents.handle_reactions()
-			return 1
-
-/obj/item/seashell //placeholder for seashells, add the stuff thats in the object procs please
+/obj/item/seashell //placeholder for seashells, remove this
 	icon = 'icons/obj/decals.dmi'
 	icon_state = "seashell"
 
@@ -34,25 +14,10 @@
 		R.my_atom = src
 		R.add_reagent("calcium_carbonate", 10)
 
-/*	attackby(var/obj/item/I, var/mob/user)
-		if (i.force >= 10)
-			user.visible_message("<span style=\"color:red\">[user] shatters the shell!</span>")
-			return
-		user.visible_message("<span style=\"color:red\">[user] doesn't hit the shell hard enough to break it.</span>")
-
-/obj/item/reagent_containers/food/seashell_crushed
-	name = "crushed seashell"
-	desc = "It's a seashell that's been crushed with brute force."
-	icon = 'icons/obj/decals.dmi'
-	icon_state = "seashell_crushed"
-	edible = 0
-
-	New()
-		..()
-		var/datum/reagents/R = new/datum/reagents(10)
-		reagents = R
-		R.my_atom = src
-		R.add_reagent("calcium_carbonate", 10)*/
+/turf/simulated/floor/concrete
+	name = "concrete floor"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "concrete"
 
 /obj/concrete_wet
 	name = "wet concrete"
@@ -93,18 +58,21 @@
 		health--
 		if (health <= 0)
 			user.visible_message("<span style=\"color:red\">[user] breaks apart the lump of wet concrete with their bare hands!</span>")
+			qdel(src)
 			return
-		user.visible_message("<span style=\"color:red\">[user] hits the hunk of wet concrete! It looks a bit less sturdy now.</span>")
+		..()
 
 	attackby(var/obj/item/I, var/mob/user)
 		if (health <= 0)
 			user.visible_message("<span style=\"color:red\">[user] breaks apart the lump of wet concrete!!</span>")
+			qdel(src)
 			return
 		health -= 2
 		if (health <= 0)
 			user.visible_message("<span style=\"color:red\">[user] breaks apart the lump of wet concrete!</span>")
+			qdel(src)
 			return
-		user.visible_message("<span style=\"color:red\">[user] hits the hunk of wet concrete! It looks a lot less sturdy now.</span>")
+		..()
 
 /obj/concrete_wall
 	name = "concrete wall"
@@ -117,8 +85,8 @@
 	desc = "A heavy duty wall made of concrete! This thing is gonna take some manual labour to get through..."
 	flags = FPRINT | CONDUCT | USEDELAY
 	var/strength = 0 // 1=poor, 2=ok, 3=good, 4=perfect
-	var/health = 30 //30, 60, 90, 120 health
-	var/max_health = 0 //description purposes
+	var/health = 30 //health num modified in New, 30 for poor, 60 for ok, 90 for good, 120 for perfect
+	var/max_health = 0 //allows our description to show how close it is to dying
 
 	New()
 		..()
@@ -144,29 +112,47 @@
 			health *= strength
 			max_health = health
 
-	ex_act(severity)
-		dispose()
+	ex_act(severity) //hopefully this works
+		if (health <= 0)
+			playsound(src.loc, "sound/effects/rockscrape.ogg", 50, 1)
+			qdel(src)
+			return
+		switch(severity)
+			if (3)
+				health -= 40
+			if (2)
+				health -= 60
+			if (1)
+				qdel(src)
+				return
+		if (health <= 0)
+			playsound(src.loc, "sound/effects/rockscrape.ogg", 50, 1)
+			qdel(src)
+			return
 
 	attack_hand(var/mob/user)
-		if (user.bioHolder.HasEffect("hulk") && (prob(100 - strength*20)))
-			user.visible_message("<span style=\"color:red\">[user] smashes through the concrete wall! Woah!</span>")
-			dispose()
+		if (user.bioHolder.HasEffect("hulk") && (prob(100 - strength*20))) //hulk smash
+			user.visible_message("<span style=\"color:red\">[user] smashes through the concrete wall! OH YEAH!!!</span>")
+			qdel(src)
 		else
 			boutput(user, "<span style=\"color:red\">You hit the concrete wall and really hurt your hand!</span>")
+			playsound(src.loc, "sound/weapons/punch[rand(1,4)]", 50, 1)
 			random_brute_damage(user, 5)
 		return
 
 	attackby(var/obj/item/I, var/mob/user)
 		if (health <= 0)
 			user.visible_message( "<span style=\"color:red\">[user] smashes through the concrete wall.</span>", "<span style=\"color:blue\">You smash through the concrete wall with \the [I].</span>")
-			dispose()
+			playsound(src.loc, "sound/effects/rockscrape.ogg", 50, 1)
+			qdel(src)
 			return
 		health -= I.force
 		if (health <= 0)
 			user.visible_message( "<span style=\"color:red\">[user] smashes through the concrete wall.</span>", "<span style=\"color:blue\">You smash through the concrete wall with \the [I].</span>")
-			dispose()
+			playsound(src.loc, "sound/effects/rockscrape.ogg", 50, 1)
+			qdel(src)
 			return
-		boutput(user, "<span style=\"color:red\">You hit the concrete wall and it cracks a little under the assault.</span>")
+		..()
 
 	proc/update_nearby_tiles(need_rebuild)
 		var/turf/simulated/source = loc
@@ -177,17 +163,17 @@
 
 	get_desc()
 		if (health / max_health == 1)
-			. += "The wall is in perfect condition!"
+			. += "The wall looks great."
 			return
 		if (health / max_health >= 0.75)
 			. += "The wall is showing some wear and tear."
 			return
 		if (health / max_health >= 0.5)
-			. += "The wall is starting to look worse for the wear."
+			. += "The wall is starting to look pretty beat up."
 			return
 		if (health / max_health >= 0.25)
-			. += "The wall has suffered some major damage!"
+			. += "The wall has suffered some major damage."
 			return
 		if (health / max_health >= 0)
-			. += "The wall is almost in pieces!"
+			. += "The wall is almost in pieces."
 			return

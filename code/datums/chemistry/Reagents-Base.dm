@@ -31,7 +31,7 @@ datum
 			fluid_b = 50
 			transparency = 50
 
-		calcium
+		calcium //!!!ALREADY IN, DONT DOUBLE MERGE!!!
 			name = "calcium"
 			id = "calcium"
 			description = "A white metallic element commonly found in bones."
